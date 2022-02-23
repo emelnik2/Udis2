@@ -1,0 +1,638 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice Generate Bill</title>
+</head>
+<style>
+  .invoice-box {
+        max-width: 900px;
+        margin: auto;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+
+    table {
+        width: 100%;
+      
+    }
+
+    .iconimg {
+        margin: 0 auto;
+        float: none;
+        display: block;
+    }
+
+    .text-all {
+        text-align: center;
+    }
+
+    .itemaccount th {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 5px;
+    }
+
+    .bgcolortr {
+        background: #eee;
+    }
+
+        .bgcolortr td {
+            font-size: 10px;
+            text-align: center;
+        }
+
+    span.usebar {
+        width: 142px;
+        background: #b5a9a9;
+        height: 9px;
+        display: grid;
+        margin: auto;
+        position: relative;
+    }
+
+    .bgcolortrtp {
+        background: transparent
+    }
+
+    .usebarbefore {
+        width: 86px;
+        background: #4a4646;
+        height: 9px;
+        display: grid;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .borderline tr {
+    }
+
+        .borderline tr td {
+            padding: 5px;
+            min-height: 24px;
+            line-height: 14px;
+        }
+
+        .borderline tr th {
+            padding: 5px;
+            min-height: 24px;
+            line-height: 14px;
+        }
+
+    .bgcolortr td {
+        padding: 5px;
+        min-height: 24px;
+        line-height: 14px;
+    }
+</style>
+<body>
+    <div class="invoice-box">
+        <table>
+            <tr class="top">
+                <td colspan="6">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="#hlogo" height="70" width="200" />
+                            </td>
+
+                            <td style="font-size: 11px;line-height: 18px;">
+
+                                <table>
+                                    <tr>
+                                        <td colspan="6" style="width: 30px;height: 30px;margin: 0 auto;float: none;display: block;">
+                                            <span class="iconimg" style="width:30px; height: 30px;"><img src="#place" style="width:30px; height: 30px;"></span>
+                                        </td>
+                                        <td colspan="6" style="width: 100%; float: left;"><p class="text-all">Miguel de Cervantes Saavedra<br>CDMX,Mexico<p></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td style="font-size: 11px;line-height: 18px;">
+                                <table>
+                                    <tr>
+                                        <td colspan="6" style="width: 30px;height: 30px;margin: 0 auto;float: none;display: block;">
+                                            <span class="iconimg" style="width:30px; height: 30px;"><img src="#mail" style="width:30px; height: 30px;"></span>
+                                        </td>
+                                        <td colspan="6" style="width: 100%; float: left;"><p class="text-all"><a href="#">info@accuenergy.com </a></p><br></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="font-size: 11px;line-height: 18px;">
+                                <table>
+                                    <tr>
+                                        <td colspan="6" style="width: 30px;height: 30px;margin: 0 auto;float: none;display: block;">
+                                            <span class="iconimg" style="width:30px; height: 30px;"><img src="#web" style="width:30px; height: 30px;"></span>
+                                        </td>
+                                        <td colspan="6" style="width: 100%; float: left;">
+                                            <p class="text-all"> <a href="#">www.accuenergy.com  </a></p><br>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td style="font-size: 11px;line-height: 18px;">
+                                <table>
+                                    <tr>
+                                        <td colspan="6" style="width: 30px;height: 30px;margin: 0 auto;float: none;display: block;">
+                                            <span class="iconimg" style="width:30px; height: 30px;"><img src="#fone" style="width:30px; height: 30px;"></span>
+                                        </td>
+                                        <td colspan="6" style="width: 100%; float: left;">
+                                            <p class="text-all">1-877-721-8908 <br>Lu-Vi 9:00am to 5:00pm</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <span class="iconimg" style="width:50px; height: 50px;"><img src="#qr" style="width:50px; height: 50px;"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="top" bgcolor="#ccc" style="height: 1px">
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr colspan="12" width="100%">
+                            <td colspan="12" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse; padding:0px !important;    float: left;">
+                                <table>
+                                    <tr>
+                                        <td style="font-style: italic;font-size: 12px;line-height: 17px;margin: 1em 0;    float: left;">
+                                            <!--Welcome Message: this area is designed for property manager to deliver
+                                    personal message to the resident (i.e. this is a resent bill, hydro rate
+                                    change, etc)#Statementmonth #Tenantname-->
+                                            Favor de realizer el pago de esta factura antes del dia:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table style="border: 1px solid #000;">
+                                                <tr>
+                                                    <!--<th colspan="12" style="text-align: left;font-size: 11px;">Account Reading</th>-->
+                                                    <th colspan="12" style="text-align: left;font-size: 11px;">Numerco de cuenta</th>
+                                                </tr>
+                                                <tr class="itemaccount" bgcolor="#ccc" style="">
+                                                    <!--<th colspan="4">Account Number</th>-->
+                                                    <th colspan="4">Numerco de cuenta</th>
+                                                    <!--<th colspan="4">Curremt Reading Date</th>-->
+                                                    <th colspan="4">Fecha de Lectura del Medidor</th>
+                                                    <!--<th colspan="4">Previous Reading Date</th>-->
+                                                    <th colspan="4">Lectura Anterior</th>
+                                                    <th colspan="4">Dias</th>
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td style="font-size:10px;text-align:center;" colspan="4">NCM12RK</td>
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#edate</td>
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#sdate</td>
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#days</td>
+                                                </tr>
+
+
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr>
+                                        <td>
+                                            <table style="border: 1px solid #000;">
+
+                                                <tr class="itemaccount" bgcolor="#ccc" style="">
+                                                    <!--<th colspan="4">Meter Number</th>
+                                            <th colspan="4">Meter Type</th>
+                                            <th colspan="4">Current Reading</th>
+                                            <th colspan="4">Previous Reading</th>
+                                            <th colspan="4">Usage</th>
+                                            <th colspan="4">Units</th>-->
+
+                                                    <th colspan="4">Numero de Medidor</th>
+                                                    <th colspan="4">Lectura Actual</th>
+                                                    <th colspan="4">Lectura Anterior</th>
+                                                    <th colspan="4">Uso</th>
+                                                    <th colspan="4">Unidaddes</th>
+                                                </tr>
+                                                #read
+                                                <!--<tr>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">ME00987610</td>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">EL</td>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">#VaueMax</td>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">#VaueMin </td>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">#usese</td>
+                                            <td style="font-size:10px; text-align:center;" colspan="4">kWh</td>
+                                        </tr>-->
+
+
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr><td></td></tr>
+                                    <tr>
+                                        <td>
+
+                                            <table>
+                                                <tr>
+                                                    <th colspan="12" style="text-align: left;font-size: 13px;"><!--Electricity Usage History--> Historia de Consumo Electrico</th>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr colspan="12" style="border: 1px solid #000;border-spacing: 0px;  display: grid;">
+                                        <td colspan="12">
+                                            <table style="border: 1px solid #000;">
+                                                <tr colspan="12" class="itemaccount" bgcolor="#ccc" style="">
+                                                    <th colspan="4">Peridodo</th>
+                                                    <th colspan="4">Dias</th>
+                                                    <th colspan="4">kWh</th>
+                                                    <th colspan="4">Utilizacion</th>
+                                                </tr>
+                                                <tr class="bgcolortr bgcolortrtp" bgcolor="transparent">
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#edate - #sdate</td>
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#days</td>
+                                                    <td style="font-size:10px; text-align:center;" colspan="4">#usese</td>
+                                                    <!--<td colspan="4"><img src="#barimg" /></td>-->
+
+                                                    <td colspan="4"><progress id="bar" max="10000" value="0"></progress></td>
+                                                </tr>
+                                                <!--<tr class="bgcolortr bgcolortrtp" bgcolor="transparent">
+                                            <td style="font-size:10px;" colspan="4">11/01/2015 - 12/01/2015</td>
+                                            <td style="font-size:10px;" colspan="4">31</td>
+                                            <td style="font-size:10px;" colspan="4">473</td>
+                                            <td style="font-size:10px;" colspan="4">
+                                                <img src="#barimg" />
+                                            </td>
+                                        </tr>-->
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </td>
+
+                            <td colspan="6" width="50%">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr> <th>TOTAL A PAGAR: #ToPayAmount</th></tr>
+                                            </table>
+                                        </td>
+
+                                    </tr>
+                                    <tr bgcolor="#ccc">
+                                        <td>
+                                            <table>
+                                                <tr> <td>Penthouse</td></tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr> <td style="font-size: 12px; color: #a09f9f; font-style: italic;"> Ilinonqui : #Tenantname &emsp;&emsp;&emsp;&emsp;Fecha de declaracion: #Statement</td></tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <table class="borderline">
+                                                <tr colspan="12">
+                                                    <th colspan="12" style="font-size: 12px; text-align: left;    margin-bottom: 0.5em;display: block;"><!--Charges Summary-->Factura Mensual de : #monthname</th>
+                                                </tr>
+                                                #meteridd
+                                                <!--<tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px;">On Peak Charges - #energyusage1 * $#energyrate1</td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$#energyamt1</td>
+                                        </tr>
+                                        <tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px;">Mid Peak Charges - #energyusage2 * $#energyrate2</td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$#energyamt2</td>
+                                        </tr>
+                                        <tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px; ">Off Peak Charges - #energyusage3 * $#energyrate3</td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$#energyamt3</td>
+                                        </tr>-->
+                                                <!--<tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px;">Delivery Charges </td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$43.33</td>
+                                        </tr>-->
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 12px;">Cantidad total</td>
+                                                    <td colspan="6" style="font-size: 12px; text-align: right;">#sumofamount</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 12px;">Ajuste(5%)</td>
+                                                    <td colspan="6" style="font-size: 12px; text-align: right;">#Charge5</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 12px;">Demanda Facturable</td>
+                                                    <td colspan="6" style="font-size: 12px; text-align: right;">#customamt1</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 12px;">IVA</td>
+                                                    <td colspan="6" style="font-size: 12px; text-align: right;">#chargedesc2</td>
+                                                </tr>
+                                                <!--<tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px;">Debt Retirement Charge ($0.0076/kWh)</td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$3.61</td>
+                                        </tr>-->
+                                                <!--<tr colspan="12">
+                                            <td colspan="6" style="font-size: 12px;">HST</td>
+                                            <td colspan="6" style="font-size: 12px; text-align: right;">$12.47</td>
+                                        </tr>-->
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 12px;"> Tax</td>
+                                                    <td colspan="6" style="font-size: 12px; text-align: right;">#customamt3</td>
+                                                </tr>
+                                                <tr colspan="12" bgcolor="#ccc">
+                                                    <th colspan="6" style="font-size: 12px; text-align: left;">Cargo total por esta factura </th>
+                                                    <th colspan="6" style="font-size: 12px; text-align: right;">#ToPayAmount</th>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <table class="borderline" style="margin-top: 2em;">
+                                                <tr colspan="12">
+                                                    <td><img src="#FooterImg"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!--this is for Address-->
+
+            <tr class="information">
+                <td colspan="2">
+                    <table style="border-spacing: 0px !important;border: 3px dashed #999;border-radius: 2px;
+    margin: 10px 0.5%;">
+                        <tr>
+                            <td colspan="6" width="25%" style="float: left;">
+                                <table>
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12">
+                                                    <td class="title">
+                                                        <img src="#hlogo" height="70" width="200" />
+                                                    </td>
+                                                </tr>
+
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">#TenantAdd1,</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">#TenantAdd2,</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">#TCity,</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">#TS,</td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px;vertical-align: top;">#TC,</td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="6" width="40%" style="float: left;  margin-left: 2%;">
+                                <table>
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12">
+                                                    <td colspan="12">
+                                                        <table colspan="12">
+                                                            <tr colspan="12">
+                                                                <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">Tennessee 4, Colonia Nápoles</td>
+                                                            </tr>
+
+                                                            <tr colspan="12">
+                                                                <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">CDMX, México</td>
+                                                            </tr>
+
+                                                            <tr colspan="12">
+                                                                <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px; vertical-align: top;">Teléfono: 5448-7810</td>
+                                                            </tr>
+                                                            <tr colspan="12">
+                                                                <td colspan="6">
+                                                                    Preguntas?: info@ametec.com.mx<br />
+                                                                    Website: http://www.ametec.com.mx
+                                                                </td>
+                                                                <td colspan="6"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="#barc" style=" margin-right: 15%;" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="6" width="30%" style="float: left;  margin-left: 2%;">
+                                <table>
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12">
+                                                    <td colspan="12">
+                                                        <table colspan="12">
+                                                            <tr colspan="12">
+                                                                <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">Número de Cuenta: 77-210-00101-00</td>
+                                                            </tr>
+                                                            <tr colspan="12">
+                                                                <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;"></td>
+                                                            </tr>
+                                                            <tr colspan="12" class="itemaccount" bgcolor="#ccc" style="">
+                                                                <th colspan="3"> Fecha de Emisión</th>
+
+                                                                <th colspan="3">#Statement </th>
+
+                                                            </tr>
+                                                            <tr colspan="12" class="itemaccount" bgcolor="#ccc" style="">
+                                                                <td colspan="3">Total a Pagar</td>
+                                                                <td colspan="3">#ToPayAmount </td>
+                                                            </tr>
+                                                            <tr><td></td></tr>
+                                                            <tr><td></td></tr>
+                                                            <tr colspan="12">
+                                                                <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;"></td>
+                                                            </tr>
+                                                            <tr colspan="12">
+                                                                <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">Puede Entregar este Talón con su Pago </td>
+                                                            </tr>
+                                                            <tr><td></td></tr>
+                                                            <tr><td></td></tr>
+
+                                                            <tr colspan="12" class="itemaccount" bgcolor="#ccc" style="">
+                                                                <th colspan="12">Cantidad Pagada</th>
+                                                            </tr>
+                                                           
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+
+            <!--End for Address-->
+
+
+
+            <tr class="information">
+                <td colspan="2">
+                    <table style="border-spacing: 0px !important;border: 1px solid #999;border-radius: 5px;
+    margin: 10px 0.5%;">
+                        <tr>
+                            <td colspan="6" width="50%" style="float: left;">
+                                <table>
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12"><td colspan="12" style="border-bottom: 1px solid #999;">Metodos de pago</td></tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12">
+                                                    <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">Cheque</td>
+                                                    <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>Payable to ACCUENERGY</b><br /> Please include account number in memo section of cheque</td>
+                                                </tr>
+
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">VISA/MC</td>
+                                                    <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b><a href="#" target="_blanck">Pay online at www.accuenergy.com</a></b></td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="12"></td>
+                                                    <td colspan="12"></td>
+                                                </tr>
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">Online Banking</td>
+                                                    <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>Through your personal banks</b></td>
+                                                </tr>
+
+                                                <tr colspan="12">
+                                                    <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">PAP</td>
+                                                    <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>Pre-Authorized Payment Plan</b><br>Save time and avoid late payment charges</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="6" width="47.5%" style="float: left;  margin-left: 2%;">
+                                <table>
+                                    <tr colspan="12">
+                                        <td colspan="12">
+                                            <table colspan="12">
+                                                <tr colspan="12"><td colspan="12" style="border-bottom: 1px solid #999;">Go paperless today to conserve annually</td></tr>
+
+                                                <tr colspan="12">
+                                                    <td colspan="12">
+                                                        <table colspan="12">
+                                                            <tr colspan="12">
+                                                                <td colspan="6" width="200px" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">30 Pounds of wood</td>
+                                                                <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>1. Visit www.accuenergy.com</b></td>
+                                                            </tr>
+
+                                                            <tr colspan="12">
+                                                                <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">39 Pounds of CO2</td>
+                                                                <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>2. Enter account number and code 198Acc56</b></td>
+                                                            </tr>
+
+                                                            <tr colspan="12">
+                                                                <td colspan="6" style="font-size: 13px;font-weight: bold;line-height: 9px;    vertical-align: top;">94 Gallons of wasterwater</td>
+                                                                <td colspan="6" style="font-size: 12px;line-height: 15px;vertical-align: top;"><b>3. Subscribe to eBilling</b></td>
+                                                            </tr>
+                                                            <tr colspan="12">
+                                                                <td colspan="6"></td>
+                                                                <td colspan="6"></td>
+                                                            </tr>
+                                                            <tr><td></td></tr>
+                                                            <tr><td></td></tr>
+                                                            <tr><td></td></tr>
+                                                            <tr colspan="12">
+
+                                                                <td colspan="12" style="font-size: 12px;line-height: 15px;vertical-align: top;">
+                                                                    <b>
+                                                                        Effective May 1st 2015 your hydro rates are changing. Please visit our <br />website
+                                                                        <a href="#" target="_blanck">www.accuenergy.com</a> for more information. For general account<br /> inquiries
+                                                                        please call 1-877-721-8908(Lu-Vi 9:00am to 5:00pm)
+                                                                    </b>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
+
+   

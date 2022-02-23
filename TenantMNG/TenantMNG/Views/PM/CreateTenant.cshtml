@@ -1,0 +1,422 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+@{
+    ViewBag.Title = "CreateTenant";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+<style>
+    .adisabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "User")" class="tip-bottom">@TenantMNG.Resource.tenant_list</a> <a href="#" class="current">@TenantMNG.Resource.tenantuser</a> </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.create @TenantMNG.Resource.tenantuser</h5>
+                </div>
+                <div class="widget-content">
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="widget-title">
+                        <ul class="nav nav-tabs" id="tabsdemo">
+                            <li class="active"><a data-toggle="tab" href="#tab1">@TenantMNG.Resource.contact_details</a></li>
+                            <li><a id="a1" data-toggle="tab" href="#tab2">@TenantMNG.Resource.billing_details</a></li>
+                            <li><a id="a2" data-toggle="tab" href="#tab3">@TenantMNG.Resource.contract_details</a></li>
+                            <li><a id="a3" data-toggle="tab" href="#tab4">@TenantMNG.Resource.email_setup</a></li>
+                            <li><a id="a4" data-toggle="tab" href="#tab5">@TenantMNG.Resource.setting</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-content tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            @Html.Partial("_TenantContactInfo", Model)
+                        </div>
+                        <div id="tab2" class="tab-pane">
+                            @Html.Partial("_TenantBillingInfo", Model)
+                        </div>
+                        <div id="tab3" class="tab-pane">
+                            @Html.Partial("_TenantContract", Model)
+                        </div>
+                        <div id="tab4" class="tab-pane">
+                            @Html.Partial("_TenantEmail", Model)
+                        </div>
+                        <div id="tab5" class="tab-pane">
+                            @Html.Partial("_TenantSetting", Model)
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scriptstop {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+
+            var lang = '@Session["_lang"]';
+
+
+
+            $("#s_date").datepicker({
+                //minDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+
+                }
+            });
+
+
+
+
+
+            $("#e_date").datepicker({
+                //minDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    $("#s_date").datepicker("option", "maxDate", dt);
+                }// Client can directly modify date in textbox?
+            });
+
+        
+
+            if (lang == "es") {
+                $("#s_date").datepicker("option", "dateFormat", "yy/mm/dd");
+                $("#e_date").datepicker("option", "dateFormat", "yy/mm/dd");
+            }
+            else {
+                $("#s_date").datepicker("option", "dateFormat", "yy/mm/dd");
+                $("#e_date").datepicker("option", "dateFormat", "yy/mm/dd");
+            }
+
+
+
+            if ($("#contact_id").val() == '0') {
+                $("#a1").addClass("adisabled");
+                $("#a2").addClass("adisabled");
+                $("#a3").addClass("adisabled");
+                $("#a4").addClass("adisabled");
+            }
+
+            //$("#tabsdemo").tabs().tabs({ disabled: [1, 2] });
+
+            //save contact information
+            $("#btnsave").click(function () {
+
+
+
+                $.validator.unobtrusive.parse("#formcontact");
+                $("#formcontact").validate();
+                if ($("#formcontact").valid()) {
+
+                    var tenant = {};
+
+                    tenant.int_id = $('#contact_id').val();
+                    tenant.str_comp_name = $('#cmp_name').val();
+                    tenant.str_contact_name = $('#contact_name').val();
+                    tenant.str_add_1 = $('#add1').val();
+                    tenant.str_add_2 = $('#add2').val();
+                    tenant.str_city = $('#city').val();
+                    tenant.str_state = $('#state').val();
+                    tenant.int_pin_code = $('#pin_code').val();
+                    tenant.str_country = $('#country').val();
+                    tenant.str_user_name = $('#uname').val();
+                    tenant.str_password = $('#password').val();
+                    tenant.int_pm_id = $('#propertymng').val();
+                    tenant.str_email = $('#str_email').val();
+                    tenant.int_invoice_period = $('#invoiceperiod').val();
+
+                    var options = {};
+
+                    options.url = '@Url.Action("CreateTenantContactInfo","User")';
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenant),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        $("#a1").removeClass("adisabled");
+                        $("#a2").removeClass("adisabled");
+                        $("#a3").removeClass("adisabled");
+                        $("#a4").removeClass("adisabled");
+                        alertMessageContact(data);
+                    };
+                    options.error = function () {
+                        alertMessageContact(0);
+                    };
+                    $.ajax(options);
+                }
+
+            });
+
+
+             //save contact information
+            $("#btnsavesetting").click(function () {
+
+
+
+                $.validator.unobtrusive.parse("#formsetting");
+                $("#formsetting").validate();
+                if ($("#formsetting").valid()) {
+
+                    var s_tenant = {};
+
+                    s_tenant.int_id = $('#setting_id').val();
+                    s_tenant.dec_demanda_facturable = $('#txt_demand').val();
+                    s_tenant.dec_total_ene = $('#txt_total').val();
+
+
+
+                    var options = {};
+
+                    options.url = '@Url.Action("CreateTenantSetting", "User")';
+                    options.type = "POST";
+                    options.data = JSON.stringify(s_tenant),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+                        alertMessageSetting(data);
+                    };
+                    options.error = function () {
+                        alertMessageSetting(0);
+                    };
+                    $.ajax(options);
+                }
+
+            });
+
+            //save contact information
+            $("#btnsavebill").click(function () {
+
+                $.validator.unobtrusive.parse("#formbill");
+                $("#formbill").validate();
+                if ($("#formbill").valid()) {
+                    var tenant = {};
+
+
+
+                    tenant.int_id = $('#bill_id').val();
+                    tenant.int_template_id = $('#templateid').val();
+                    tenant.dec_rate = $('#rate').val();
+                    tenant.bit_is_seasonal_rate = true;
+                    tenant.dec_seasonal_multi_rate = $('#seasonal_rate').val();
+                    tenant.bit_is_surchare = true;
+                    tenant.dec_surcharge_amt = $('#surcharge_amt').val();
+                    tenant.str_min_billable_over = $('#bill_over').val();
+                    tenant.str_charge_tenant_min = $('#charge_min').val();
+                    tenant.str_charge_tenant_max = $('#charge_max').val();
+                    tenant.bit_is_consolidate_zone = $('#is_conslidate').prop('checked');
+                    tenant.bit_is_print = $('#is_print').prop('checked');
+                    tenant.bit_is_file = $('#is_file').prop('checked');
+                    tenant.int_type = 1;
+                    tenant.str_email = $('#bill_str_email').val();
+
+
+
+
+
+                    var options = {};
+                    options.url =  '@Url.Action("CreateTenantBillingInfo", "User")'
+                    // options.url = "/User/CreateTenantBillingInfo";
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenant),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        alertMessageBill(data);
+                    };
+                    options.error = function () {
+                        alertMessageBill(0);
+                    };
+                    $.ajax(options);
+                }
+
+            });
+
+            //save email information
+            $("#btnsaveemail").click(function () {
+
+                $.validator.unobtrusive.parse("#formemail");
+                $("#formemail").validate();
+                if ($("#formemail").valid()) {
+
+                    var tenant = {};
+                    tenant.int_email_id = $('#email_id').val();
+                    tenant.str_from_email = $('#from_email').val();
+                    tenant.str_cc_email = $('#cc_email').val();
+                    tenant.str_bcc_email = $('#bcc_email').val();
+                    tenant.str_subject = $('#subject').val();
+                    tenant.str_body = $('#body').val();
+
+
+
+                    var options = {};
+                    //options.url = "/User/SetupTenantEmailInfo";
+                    options.url =  '@Url.Action("SetupTenantEmailInfo", "User")'
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenant),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        alertMessageEmail(data);
+                    };
+                    options.error = function () {
+                        alertMessageEmail(0);
+                    };
+                    $.ajax(options);
+                }
+
+            });
+
+            //save contact information
+            $("#btnsavecontract").click(function () {
+
+                $.validator.unobtrusive.parse("#formcontract");
+                $("#formcontract").validate();
+                if ($("#formcontract").valid()) {
+
+                    var tenant = {};
+
+                    tenant.int_contract_id = $('#contract_id').val();
+                    tenant.int_tenant_id = $('#tenant_id').val();
+                    tenant.s_date = $('#s_date').val();
+                    tenant.e_date = $('#e_date').val();
+
+
+                    var options = {};
+                    //options.url = "/User/CreateTenantContract";
+                    options.url =  '@Url.Action("CreateTenantContract", "User")'
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenant),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+                        alertMessageContract(data);
+                    };
+                    options.error = function () {
+                        alertMessageContract(0);
+                    };
+                    $.ajax(options);
+                }
+
+            });
+
+
+            $('#is_seasonal').change(function () {
+                $("#seasonal_rate").prop("disabled", !$(this).is(':checked'));
+            });
+
+            $('#is_surcharge').change(function () {
+                $("#surcharge_amt").prop("disabled", !$(this).is(':checked'));
+            });
+
+            $('#is_file').change(function () {
+                $("#filename").prop("disabled", !$(this).is(':checked'));
+            });
+
+            $('#is_print').change(function () {
+                $("#printfile").prop("disabled", !$(this).is(':checked'));
+            });
+
+            $('#is_email').change(function () {
+                $("#str_email").prop("disabled", !$(this).is(':checked'));
+            });
+
+        });
+
+        function alertMessageContact(val) {
+            if (val > 0) {
+                $('#divSuccess').show();
+                $('#divFail').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess').hide();
+                $('#divFail').show();
+            }
+        }
+
+        function alertMessageBill(val) {
+            if (val > 0) {
+                $('#divSuccess_bill').show();
+                $('#divFail_bill').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_bill').hide();
+                $('#divFail_bill').show();
+            }
+        }
+
+        function alertMessageEmail(val) {
+            if (val > 0) {
+                $('#divSuccess_email').show();
+                $('#divFail_email').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_email').hide();
+                $('#divFail_email').show();
+            }
+        }
+
+        function alertMessageContract(val) {
+            if (val > 0) {
+                $('#divSuccess_contract').show();
+                $('#divFail_contract').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_contract').hide();
+                $('#divFail_contract').show();
+            }
+        }
+
+        function alertMessageSetting(val) {
+            if (val > 0) {
+                $('#divSuccess_setting').show();
+                $('#divFail_setting').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_setting').hide();
+                $('#divFail_setting').show();
+            }
+        }
+    </script>
+
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+
+
+

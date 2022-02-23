@@ -1,0 +1,27 @@
+﻿@model TenantMNG.ViewModel.UserMasterVM
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="#" class="tip-bottom">@TenantMNG.Resource.account</a> <a href="#" class="current">@TenantMNG.Resource.profile</a> </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Change Profile</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @Html.Partial("~/Views/Shared/_Profile.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")

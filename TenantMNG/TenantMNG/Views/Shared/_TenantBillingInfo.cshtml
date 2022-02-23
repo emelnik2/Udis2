@@ -1,0 +1,199 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+
+<style>
+    .control-label-new {
+        width: 350px;
+        display: inline;
+        top: 15px;
+    }
+
+    .control-new {
+        display: inline;
+        padding: 10px 0;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("CreateTenantBillingInfo", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formbill" }))
+{
+    <div class="alert alert-success" id="divSuccess_bill" style="display:none">
+        @TenantMNG.Resource.msg_bill_info_success
+    </div>
+
+    <div class="alert alert-danger" id="divFail_bill" style="display:none">
+        @TenantMNG.Resource.msg_global_fail
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">@TenantMNG.Resource.int_template_id</label>
+        <div class="controls">
+            @Html.DropDownListFor(m => m.int_template_id, new SelectList(Model.template, "int_temp_id", "str_temp_name"), "-- " + TenantMNG.Resource.select + " --", new { @class = "span5", @id = "templateid" })
+        </div>
+    </div>
+    @*<div class="control-group">
+            @Html.LabelFor(m => m.dec_rate, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.dec_rate, new { @class = "span2", @id = "rate", @onkeypress = "return isDecimalNumberKey(event)" }) ($/hr)
+                @Html.ValidationMessageFor(m => m.dec_rate)
+            </div>
+        </div>*@
+    <fieldset>
+        <legend>@TenantMNG.Resource.bill_adjust</legend>
+        <div class="span3">
+            <div class="checkbox">
+
+
+                @TenantMNG.Resource.dec_rate
+
+
+            </div>
+        </div>
+        <div class="span6">
+            @Html.TextBoxFor(m => m.dec_rate, new { @class = "span2", @id = "rate", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div class="span3">
+            <div class="checkbox">
+
+
+                @TenantMNG.Resource.peak_demand_rate
+
+
+            </div>
+        </div>
+        <div class="span6">
+            @Html.TextBoxFor(m => m.dec_seasonal_multi_rate, new { @class = "span2", @id = "seasonal_rate", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div class="span3">
+            <div class="checkbox">
+
+
+                @TenantMNG.Resource.inter_demand_rate
+
+
+            </div>
+        </div>
+        <div class="span6">
+            @Html.TextBoxFor(m => m.dec_surcharge_amt, new { @class = "span2", @id = "surcharge_amt", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+        </div>
+        <div class="clearfix"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>@TenantMNG.Resource.bill_rule</legend>
+        <div class="control-group">
+
+            <div class="span4">
+                @Html.LabelFor(m => m.str_min_billable_over, new { @class = "control-label-new" })
+            </div>
+            <div class="span6">
+                <div class="control-new">
+                    @Html.TextBoxFor(m => m.str_min_billable_over, new { @class = "span2", @id = "bill_over" })  (hr:min)
+                    @Html.ValidationMessageFor(m => m.str_min_billable_over)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="control-group">
+            <div class="span4">
+                @Html.LabelFor(m => m.str_charge_tenant_min, new { @class = "control-label-new" })
+            </div>
+            <div class="span6">
+                <div class="control-new">
+                    @Html.TextBoxFor(m => m.str_charge_tenant_min, new { @class = "span2", @id = "charge_min" }) (hr:min)
+                    @Html.ValidationMessageFor(m => m.str_charge_tenant_min)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="control-group">
+            <div class="span4">
+                @Html.LabelFor(m => m.str_charge_tenant_max, new { @class = "control-label-new" })
+            </div>
+            <div class="span6">
+                <div class="control-new">
+                    @Html.TextBoxFor(m => m.str_charge_tenant_max, new { @class = "span2", @id = "charge_max" })  (hr:min)
+                    @Html.ValidationMessageFor(m => m.str_charge_tenant_max)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div class="span10">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.bit_is_consolidate_zone, new { @id = "is_conslidate" }) @TenantMNG.Resource.consol_mess
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset style="display:none">
+        <legend>@TenantMNG.Resource.bill_adjust</legend>
+        <div class="span2">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.bit_is_print, new { @id = "is_print" }) Print
+            </div>
+        </div>
+        <div class="span6">
+            @Html.TextBoxFor(m => m.dec_seasonal_multi_rate, new { @class = "span8", @id = "printfile", disabled = "disabled" })
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div class="span2">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.bit_is_file, new { @id = "is_file" }) File
+            </div>
+        </div>
+        <div class="span6">
+            @Html.TextBoxFor(m => m.dec_surcharge_amt, new { @class = "span8", @id = "filename", disabled = "disabled" })
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="control-group">
+            <label class="control-label">Type</label>
+            <div class="controls">
+
+                @*@Html.RadioButtonFor(m => m.int_type, 1, new { @id = "rbltype" })RTF
+                @Html.RadioButtonFor(m => m.int_type, 2, new { @id = "rbltype" })XLS*@
+                <br />
+                <br />
+                <div class="span2">
+                    <div class="checkbox">
+
+
+                        @Html.CheckBoxFor(m => m.bit_is_file, new { @id = "is_email" }) Email Address
+
+
+                    </div>
+                </div>
+                <div class="span6">
+                    @Html.TextBoxFor(m => m.str_email, new { @class = "span8", @id = "bill_str_email", disabled = "disabled" })
+                    @Html.ValidationMessageFor(m => m.str_email)
+                </div>
+
+            </div>
+        </div>
+    </fieldset>
+    <div class="clearfix"></div>
+    <br />
+    @Html.HiddenFor(m => m.int_id, new { @id = "bill_id" })
+    <div class="form-actions">
+        @*<input type="submit" class="btn btn-success" value="Save" />*@
+        <input type="button" id="btnsavebill"
+               value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "Tenant", Session["utypeid"].ToString() == "2" ? "PM" : "User", null, new { @class = "btn btn-default" })
+    </div>
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

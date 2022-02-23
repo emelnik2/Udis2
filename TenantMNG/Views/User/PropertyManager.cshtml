@@ -1,0 +1,52 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+@model IPagedList<TenantMNG.Models.tbl_user_master>
+
+@{
+    ViewBag.Title = TenantMNG.Core.CommonCls._applicationname + " : Property Manager List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("PropertyManager", "User")" class="current">@TenantMNG.Resource.pmuser</a></div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.pm_list_title</h5>
+                </div>
+                <div class="widget-content">
+
+                    @Html.ActionLink(TenantMNG.Resource.add_new, "CreatePropertyManager", "User", new { @class = "btn btn-primary" })
+                    <br />
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div id="targetContainer">
+                            @Html.Partial("_PMList", Model)
+                        </div>
+
+                        @*@Html.PagedListPager(Model, page => Url.Action("PropertyManager", new { page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })*@
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryvalajax");

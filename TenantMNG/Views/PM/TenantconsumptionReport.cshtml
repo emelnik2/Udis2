@@ -1,0 +1,243 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+@{
+    ViewBag.Title = "TenantconsumptionReport";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+<style>
+
+    #ch {
+        background: #D6D6D6;
+        padding: 16px;
+    }
+
+    .chart-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+    }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.tenant_consumption_report</a>  </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenant_consumption_report</h5>
+                </div>
+                <br>
+                <div class="col-lg-offset-10">
+                    @*@using (Html.BeginForm("TenantconsumptionReport", "PM", FormMethod.Get))
+                    {
+
+                        SelectList listtenant = ViewBag.TenantDropDown;
+
+
+                        <div class="span3" hidden>
+                            @Html.DropDownList("int_id", listtenant, null, new { @id = "ddl_tenant", @class = "chzn-select", @onclick = "UpdateUserDetail()"})
+                        </div>
+
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success"  hidden/>
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+                                @Html.ActionLink(TenantMNG.Resource.clear, "TenantconsumptionReport", "PM", new { @class = "btn btn-mini" })
+                            }
+                        </div>
+                        <h5>@TenantMNG.Resource.how_much</h5>
+                    }*@
+                    <br />
+
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-bordered data-table">
+                            <thead hidden>
+                                <tr>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.tenant + " " + TenantMNG.Resource.name, "")</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.invoice + " " + @TenantMNG.Resource.total_energy, null)</th>
+                                    <th>@TenantMNG.Resource.monthly</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody hidden>
+                                @if (ViewBag._abc != null)
+                                {
+
+                                    foreach (var dt in ViewBag._abc)
+                                    {
+                                        <tr class="gradex" hidden>
+                                            <td><input type="text" id="txtName" value="@dt.Name" /></td>
+                                            <td><input type="text" id="txtEnergy" value="@dt.totalenergy" /></td>
+                                            <td><input type="text" id="txtmonth" value="@dt.dateinvoice" /></td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    @*<div id="ch">
+                            <div class="chart-container">
+                                <canvas id="chart_0"></canvas>
+                            </div>
+                        </div>*@
+
+
+                    <div id="divchart">
+
+
+                        </div>
+                    @*<div>
+                    <h4 class="heading_c uk-margin-bottom">Distributed Series</h4>
+                    <div id="chartist_distributed_series" class="chartist"></div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        @*<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>*@
+
+        @*For Graph*@
+        <script>
+
+
+                    $(function () {
+                        $("#ddl_tenant").change(function () {
+                            drawChart();
+                        });
+                    });
+
+                    // Load the Visualization API and the piechart package.
+                    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+                    // Set a callback to run when the Google Visualization API is loaded.
+                    google.setOnLoadCallback(drawChart);
+
+                    //google.setOnLoadCallback(drawAnthonyChart);
+
+                    // Callback that creates and populates a data table,
+                    // instantiates the pie chart, passes in the data and
+
+                    // draws it.
+                    function drawChart() {
+
+                        const tenetsNames = [];
+
+
+                        var data = JSON.stringify({
+                            's_date': '1/1/2016',
+                            'tenantid': $('#ddl_tenant').val(),
+
+                        });
+
+                        var dataPoints = [];
+
+                        var options = {};
+                        options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                        options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                        options.type = "GET";
+
+                        options.contentType = "application/json";
+                        options.dataType = "json";
+                        options.success = function (datajson) {
+
+                            debugger;
+                            for (j = 0; j < datajson.length; j++) {
+                                tenetsNames.push(datajson[j].Name);
+                            }
+
+                            for (i = 0; i < datajson.length; i++) {
+                                dataPoints[i] = [];
+                                //dataPoints[i][0] = datajson[i].Invoice_No;
+                                dataPoints[i][0] = tenetsNames[i];
+                                dataPoints[i][1] = parseInt(datajson[i].totalenergy);
+
+                            }
+
+                            // Create the data table.
+                            var data = new google.visualization.DataTable();
+                            data.addColumn('string', 'Tenet Name');
+                            data.addColumn('number', 'Energy');
+
+                            //data.addColumn('string', 'MonthName');
+                            //data.addRows([['2008', 50], ['2009', 70], ['2010', 80], ['2011', 90], ['2012', 120], ['2013', 150], ['2014', 100], ['2015', 300]]);
+                            data.addRows(dataPoints);
+
+                            // Set chart options
+                            var options = {
+                                'title': 'Energy Consumption by Tenants',
+                                'width': 1100,
+                                'height': 400,
+                                'is3D': true,
+                                vAxis: { maxValue: 10, title: "@TenantMNG.Resource.energy" },
+                                hAxis: { maxValue: 10, title: "Tenants" }
+                            };
+
+                            // Instantiate and draw our chart, passing in some options.
+                            var chart = new google.visualization.ColumnChart(document.getElementById('divchart'));
+                            chart.draw(data, options);
+
+
+
+                        };
+                        options.error = function () {
+                           // alert('error');
+                        };
+                        $.ajax(options);
+                    }
+
+
+                    function FillShow() {
+                        var tourid = $('#tour_id').val();
+
+
+
+                        $.ajax({
+                            url: '/Order/FillShow',
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { tourid: tourid },
+                            success: function (shows) {
+
+
+                                $("#show_id").html(""); // clear before appending new list
+
+
+                                $("#show_id").append(
+                                       $('<option></option>').val('').html("-- Select Show --"));
+
+                                $.each(shows, function (i, shows) {
+                                    $("#show_id").append(
+                                        $('<option></option>').val(shows.show_id).html(shows.show_name));
+                                });
+                            }
+                        });
+                    }
+            </script>
+    
+       
+       
+    }
+

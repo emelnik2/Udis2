@@ -1,0 +1,100 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+
+@{
+    ViewBag.Title = "Alarm";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">Alarm</a> </div>
+
+</div>
+<div class="container-fluid">
+
+
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenant @TenantMNG.Resource.invoice @TenantMNG.Resource.list</h5>
+                </div>
+                <div class="widget-content">
+
+                    @Html.AntiForgeryToken()
+
+
+
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.date, "Alarm", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>
+                                    <th>@TenantMNG.Resource.pay_date</th>
+                                    <th>@TenantMNG.Resource.meter  @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.bill_period</th>
+
+                                    <th>@Html.ActionLink(TenantMNG.Resource.peak_energy, "Alarm", new { sortby = ViewBag.SortPeackEnergyParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>
+
+                                    <th>@Html.ActionLink(TenantMNG.Resource.inter_energy, "Alarm", new { sortby = ViewBag.SortIntermediateEnergyParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.cust_energy, "Alarm", new { sortby = ViewBag.SortCustomChargeParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>
+                                    @*<th>Demand</th>*@
+
+                                    <th>@TenantMNG.Resource.tax</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.total_amt, "Alarm", new { sortby = ViewBag.SortAmountParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>
+                                    <th>@TenantMNG.Resource.tax</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+
+                                        <td>@string.Format("{0:MMM-dd-yyyy}", user.date_invoice_date)</td>
+                                        <td>@string.Format("{0:MMM-dd-yyyy}", user.date_pay_date)</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).str_meter_id)</td>
+                                        <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
+                                        <td>@string.Format("{0:0.00}", user.tbl_invoice_details.ElementAt(0).dec_peak_energy)</td>
+                                        <td>@string.Format("{0:0.00}", user.tbl_invoice_details.ElementAt(0).dec_inter_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_custome_charges)</td>
+                                        @*<td>@user.dec_demad</td>*@
+                                        <td>@string.Format("{0:0.00}",user.dec_tax_amt)</td>
+
+                                        <td>@string.Format("{0:0.00}",user.dec_total)</td>
+                                        <td>
+                                            @if (user.bit_is_editable == true)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.edit, "EditInvoice", new { @id = user.int_invoice_id, @reqt = "a" }, new { @class = "btn btn-mini btn-success" })
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @Html.PagedListPager(Model, page => Url.Action("Alarm", new { page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

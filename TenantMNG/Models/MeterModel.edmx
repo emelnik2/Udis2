@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NiagaraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH1_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH2_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH3_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL3">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL5">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTALPLANTPOWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HISTORY_CONFIG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_" Type="varchar" MaxLength="500" />
+          <Property Name="HISTORYNAME" Type="varchar" MaxLength="500" />
+          <Property Name="SOURCE" Type="varchar" MaxLength="500" />
+          <Property Name="SOURCEHANDLE" Type="varchar" MaxLength="500" />
+          <Property Name="TIMEZONE" Type="varchar" MaxLength="500" />
+          <Property Name="INTERVAL_" Type="varchar" MaxLength="500" />
+          <Property Name="SYSTEMTAGS" Type="varchar" MaxLength="500" />
+          <Property Name="VALUEFACETS" Type="varchar" MaxLength="500" />
+          <Property Name="TABLE_NAME" Type="varchar" MaxLength="500" />
+          <Property Name="DB_TIMEZONE" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HISTORY_TYPE_MAP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_" Type="varchar" MaxLength="500" />
+          <Property Name="TIMEZONE" Type="varchar" MaxLength="500" />
+          <Property Name="RECORDTYPE" Type="varchar" MaxLength="500" />
+          <Property Name="VALUEFACETS" Type="varchar" MaxLength="500" />
+          <Property Name="TABLE_NAME" Type="varchar" MaxLength="500" />
+          <Property Name="DB_TIMEZONE" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HISTORYNUMERICTRENDRECORD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="TRENDFLAGS" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="HISTORY_ID" Type="varchar" MaxLength="500" />
+          <Property Name="TRENDFLAGS_TAG" Type="varchar" MaxLength="500" />
+          <Property Name="STATUS_TAG" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityContainer Name="NiagaraModelStoreContainer">
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH_CFG0" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH1_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH1_CFG0" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH2_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH2_CFG0" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH3_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH3_CFG0" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL" EntityType="Self.AMETEC_SUBMETERING_TOTAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL1" EntityType="Self.AMETEC_SUBMETERING_TOTAL1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL2" EntityType="Self.AMETEC_SUBMETERING_TOTAL2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL3" EntityType="Self.AMETEC_SUBMETERING_TOTAL3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL5" EntityType="Self.AMETEC_SUBMETERING_TOTAL5" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTALPLANTPOWER" EntityType="Self.AMETEC_SUBMETERING_TOTALPLANTPOWER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORY_CONFIG" EntityType="Self.HISTORY_CONFIG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORY_TYPE_MAP" EntityType="Self.HISTORY_TYPE_MAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORYNUMERICTRENDRECORD" EntityType="Self.HISTORYNUMERICTRENDRECORD" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NiagaraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH1_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH2_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_POINTS_CONSUMOKWH3_CFG0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL3">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTAL5">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AMETEC_SUBMETERING_TOTALPLANTPOWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HISTORY_CONFIG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HISTORYNAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SOURCE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SOURCEHANDLE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TIMEZONE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="INTERVAL_" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SYSTEMTAGS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VALUEFACETS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TABLE_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DB_TIMEZONE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HISTORY_TYPE_MAP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TIMEZONE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RECORDTYPE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VALUEFACETS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TABLE_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DB_TIMEZONE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HISTORYNUMERICTRENDRECORD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+          <Property Name="TRENDFLAGS" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="HISTORY_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TRENDFLAGS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_TAG" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="NiagaraEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH_CFG0" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH1_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH1_CFG0" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH2_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH2_CFG0" />
+          <EntitySet Name="AMETEC_POINTS_CONSUMOKWH3_CFG0" EntityType="Self.AMETEC_POINTS_CONSUMOKWH3_CFG0" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL" EntityType="Self.AMETEC_SUBMETERING_TOTAL" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL1" EntityType="Self.AMETEC_SUBMETERING_TOTAL1" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL2" EntityType="Self.AMETEC_SUBMETERING_TOTAL2" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL3" EntityType="Self.AMETEC_SUBMETERING_TOTAL3" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTAL5" EntityType="Self.AMETEC_SUBMETERING_TOTAL5" />
+          <EntitySet Name="AMETEC_SUBMETERING_TOTALPLANTPOWER" EntityType="Self.AMETEC_SUBMETERING_TOTALPLANTPOWER" />
+          <EntitySet Name="HISTORY_CONFIG" EntityType="Self.HISTORY_CONFIG" />
+          <EntitySet Name="HISTORY_TYPE_MAP" EntityType="Self.HISTORY_TYPE_MAP" />
+          <EntitySet Name="HISTORYNUMERICTRENDRECORDs" EntityType="Self.HISTORYNUMERICTRENDRECORD" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NiagaraModelStoreContainer" CdmEntityContainer="NiagaraEntities">
+          <EntitySetMapping Name="AMETEC_POINTS_CONSUMOKWH_CFG0">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_POINTS_CONSUMOKWH_CFG0">
+              <MappingFragment StoreEntitySet="AMETEC_POINTS_CONSUMOKWH_CFG0">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_POINTS_CONSUMOKWH1_CFG0">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_POINTS_CONSUMOKWH1_CFG0">
+              <MappingFragment StoreEntitySet="AMETEC_POINTS_CONSUMOKWH1_CFG0">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_POINTS_CONSUMOKWH2_CFG0">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_POINTS_CONSUMOKWH2_CFG0">
+              <MappingFragment StoreEntitySet="AMETEC_POINTS_CONSUMOKWH2_CFG0">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_POINTS_CONSUMOKWH3_CFG0">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_POINTS_CONSUMOKWH3_CFG0">
+              <MappingFragment StoreEntitySet="AMETEC_POINTS_CONSUMOKWH3_CFG0">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTAL">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTAL">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTAL1">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTAL1">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTAL1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTAL2">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTAL2">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTAL2">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTAL3">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTAL3">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTAL3">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTAL5">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTAL5">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTAL5">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMETEC_SUBMETERING_TOTALPLANTPOWER">
+            <EntityTypeMapping TypeName="NiagaraModel.AMETEC_SUBMETERING_TOTALPLANTPOWER">
+              <MappingFragment StoreEntitySet="AMETEC_SUBMETERING_TOTALPLANTPOWER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORY_CONFIG">
+            <EntityTypeMapping TypeName="NiagaraModel.HISTORY_CONFIG">
+              <MappingFragment StoreEntitySet="HISTORY_CONFIG">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="HISTORYNAME" ColumnName="HISTORYNAME" />
+                <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+                <ScalarProperty Name="SOURCEHANDLE" ColumnName="SOURCEHANDLE" />
+                <ScalarProperty Name="TIMEZONE" ColumnName="TIMEZONE" />
+                <ScalarProperty Name="INTERVAL_" ColumnName="INTERVAL_" />
+                <ScalarProperty Name="SYSTEMTAGS" ColumnName="SYSTEMTAGS" />
+                <ScalarProperty Name="VALUEFACETS" ColumnName="VALUEFACETS" />
+                <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+                <ScalarProperty Name="DB_TIMEZONE" ColumnName="DB_TIMEZONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORY_TYPE_MAP">
+            <EntityTypeMapping TypeName="NiagaraModel.HISTORY_TYPE_MAP">
+              <MappingFragment StoreEntitySet="HISTORY_TYPE_MAP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="TIMEZONE" ColumnName="TIMEZONE" />
+                <ScalarProperty Name="RECORDTYPE" ColumnName="RECORDTYPE" />
+                <ScalarProperty Name="VALUEFACETS" ColumnName="VALUEFACETS" />
+                <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+                <ScalarProperty Name="DB_TIMEZONE" ColumnName="DB_TIMEZONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORYNUMERICTRENDRECORDs">
+            <EntityTypeMapping TypeName="NiagaraModel.HISTORYNUMERICTRENDRECORD">
+              <MappingFragment StoreEntitySet="HISTORYNUMERICTRENDRECORD">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="TRENDFLAGS" ColumnName="TRENDFLAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="HISTORY_ID" ColumnName="HISTORY_ID" />
+                <ScalarProperty Name="TRENDFLAGS_TAG" ColumnName="TRENDFLAGS_TAG" />
+                <ScalarProperty Name="STATUS_TAG" ColumnName="STATUS_TAG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

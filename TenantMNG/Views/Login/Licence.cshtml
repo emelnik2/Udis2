@@ -1,0 +1,49 @@
+﻿@model TenantMNG.ViewModel.LoginVM
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@TenantMNG.Core.CommonCls._applicationname : Login </title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/login")
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval");
+
+
+
+    @{Html.EnableClientValidation();}
+    @{Html.EnableUnobtrusiveJavaScript();}
+
+</head>
+<body>
+
+    <div id="loginbox">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-vertical", @id = "loginform" }))
+        {
+
+            <div class="control-group normal_text"> <h3><img src="~/img/Logo_Tecnobuildings_Small.png" alt="Logo" /></h3></div>
+
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="alert alert-danger">
+                        <label style="font-size:15px;font-weight:bold"> Sorry !! Licensing for this product has expired.</label>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+</body>
+
+
+
+</html>

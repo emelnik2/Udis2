@@ -1,0 +1,112 @@
+﻿@model TenantMNG.ViewModel.UserMasterVM
+
+@using (Html.BeginForm("Profile", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (ViewBag._errorcode == 0)
+    {
+        <div class="alert alert-danger">@TenantMNG.Resource.msg_global_fail</div>
+    }
+    else if (ViewBag._errorcode == 1)
+    {
+        <div class="alert alert-success">@TenantMNG.Resource.msg_profile_update</div>
+    }
+
+
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_comp_name, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_comp_name, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_comp_name)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_contact_name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_contact_name, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_contact_name)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_add_1, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_add_1, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_add_1)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_add_2, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_add_2, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_add_2)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_city, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_city, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_city)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_state, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_state, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_state)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_country, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_country, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_country)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.str_email, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.str_email, new { @class = "span12" })
+                @Html.ValidationMessageFor(m => m.str_email)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <br />
+    @Html.HiddenFor(m => m.int_id)
+
+    <div class="form-actions">
+        <input type="submit" class="btn btn-success" value="@TenantMNG.Resource.save" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "Profile", "User", new { @class = "btn btn-default" })
+    </div>
+}
+
+
+

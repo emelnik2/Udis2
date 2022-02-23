@@ -1,0 +1,377 @@
+﻿@model TenantMNG.ViewModel.PMDashboardVM
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.dashboard</a>  </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-dashboard"></i> </span>
+                    <h5>@TenantMNG.Resource.dashboard</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>@TenantMNG.Resource.tenant_list</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+
+                                    @foreach (var user in Model.tbl_user_master)
+                                    {
+
+                                        <div class="new-update clearfix">
+
+                                            <div class="update-done">
+                                                <strong>
+                                                    @Html.ActionLink(user.str_comp_name, "EditTenant", "User", new { @tenantid = user.int_id }, null)
+
+                                                </strong>
+                                            </div>
+                                            @*<div class="update-date">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</div>
+                                                <div class="update-date"><span class="update-day">20</span>jan</div>*@
+                                        </div>
+                                    }
+
+                                    <ul class="recent-posts">
+                                        <li>
+                                            @if (Model.tbl_user_master.ToList().Count > 0)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.view_all, "Tenant", "PM", new { @class = "btn btn-warning btn-mini" })
+                                                @*<button class="btn btn-warning btn-mini">View All</button>*@
+                                            }
+                                            else
+                                            {
+                                                <i>@TenantMNG.Resource.sorry_mess</i>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>@TenantMNG.Resource.invocie_list</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+
+                                    <table class="table table-bordered data-table">
+                                        @foreach (var user in Model.tbl_invoice)
+                                        {
+
+                                        <tr class="gradeX">
+                                            <td>@string.Format("{0:MMM-dd-yyyy}", user.date_invoice_date)</td>
+                                            <td>@user.dec_total</td>
+                                            <td>@user.tbl_user_master.str_comp_name</td>
+
+                                        </tr>
+                                        }
+                                    </table>
+                                    <ul class="recent-posts">
+                                        <li>
+                                            @if (Model.tbl_invoice.ToList().Count > 0)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.view_all, "TenantActivity", "PM", new { @class = "btn btn-warning btn-mini" })
+                                                @*<button class="btn btn-warning btn-mini">view all</button>*@
+                                            }
+                                            else
+                                            {
+                                                <i> @TenantMNG.Resource.sorry_mess</i>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon">
+                                        <img src="~/img/icons/16/piechart.png" />
+                                    </span>
+                                    <h5>@TenantMNG.Resource.tenantEngcon</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+                                    <div id="container" style="min-width: 310px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-lg-offset-10">
+                            @{
+                                SelectList listtenant = ViewBag.TenantDropDown;
+                            }
+
+                            @*<div class="span3">
+                                    @Html.DropDownList("int_id", listtenant, null, new { @id = "ddl_tenant", @class = "chzn-select" })
+                                </div>*@
+                            <div class="clearfix"></div>
+                            <div class="widget-title">
+                                <span class="icon">
+                                    <img src="~/img/icons/16/graph.png" />
+                                </span>
+                                <h5>@TenantMNG.Resource.tenantEngcon</h5>
+                            </div>
+                            <div id="divchart">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @*<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>*@
+
+    @*For Graph*@
+    <script>
+
+
+                    $(function () {
+                        $("#ddl_tenant").change(function () {
+                            drawChart();
+                        });
+                    });
+
+                    // Load the Visualization API and the piechart package.
+                    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+                    // Set a callback to run when the Google Visualization API is loaded.
+                    google.setOnLoadCallback(drawChart);
+
+                    //google.setOnLoadCallback(drawAnthonyChart);
+
+                    // Callback that creates and populates a data table,
+                    // instantiates the pie chart, passes in the data and
+
+                    // draws it.
+                    function drawChart() {
+
+                        const tenetsNames = [];
+
+
+                        var data = JSON.stringify({
+                            's_date': '1/1/2016',
+                            'tenantid': $('#ddl_tenant').val(),
+
+                        });
+
+                        var dataPoints = [];
+
+                        var options = {};
+                        options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                        options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                        options.type = "GET";
+
+                        options.contentType = "application/json";
+                        options.dataType = "json";
+                        options.success = function (datajson) {
+
+                            debugger;
+                            for (j = 0; j < datajson.length; j++) {
+                                tenetsNames.push(datajson[j].Name);
+                            }
+
+                            for (i = 0; i < datajson.length; i++) {
+                                dataPoints[i] = [];
+                                //dataPoints[i][0] = datajson[i].Invoice_No;
+                                dataPoints[i][0] = tenetsNames[i];
+                                dataPoints[i][1] = parseInt(datajson[i].totalenergy);
+
+                            }
+
+                            // Create the data table.
+                            var data = new google.visualization.DataTable();
+                            data.addColumn('string', 'Tenet Name');
+                            data.addColumn('number', 'Energy');
+
+                            //data.addColumn('string', 'MonthName');
+                            //data.addRows([['2008', 50], ['2009', 70], ['2010', 80], ['2011', 90], ['2012', 120], ['2013', 150], ['2014', 100], ['2015', 300]]);
+                            data.addRows(dataPoints);
+
+                            // Set chart options
+                            var options = {
+                                'title': 'How Much Energy Consume By Tenants',
+                                'width': 1100,
+                                'height': 400,
+                                'is3D': true,
+                                vAxis: { maxValue: 10, title: "@TenantMNG.Resource.energy" },
+                                hAxis: { maxValue: 10, title: "Tenants" }
+                            };
+
+                            // Instantiate and draw our chart, passing in some options.
+                            var chart = new google.visualization.ColumnChart(document.getElementById('divchart'));
+                            chart.draw(data, options);
+
+
+
+                        };
+                        options.error = function () {
+                           // alert('error');
+                        };
+                        $.ajax(options);
+                    }
+
+
+                    function FillShow() {
+                        var tourid = $('#tour_id').val();
+
+
+
+                        $.ajax({
+                            url: '/Order/FillShow',
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { tourid: tourid },
+                            success: function (shows) {
+
+
+                                $("#show_id").html(""); // clear before appending new list
+
+
+                                $("#show_id").append(
+                                       $('<option></option>').val('').html("-- Select Show --"));
+
+                                $.each(shows, function (i, shows) {
+                                    $("#show_id").append(
+                                        $('<option></option>').val(shows.show_id).html(shows.show_name));
+                                });
+                            }
+                        });
+                    }
+    </script>
+
+
+    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script>
+
+            $(function () {
+                const tenetsNames = [];
+                var dataPoints = [];
+                var options = {};
+                options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                options.data = { int_id:null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    debugger;
+                    var series = new Array();
+                    for (var i in datajson) {
+                        var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
+                        series.push(serie);
+                    }
+                    DrawPieChart(series);
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+            });
+
+            $(function () {
+                $("#ddl_tenant").change(function () {
+                    var options = {};
+                    options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                    options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    debugger;
+                    var series = new Array();
+                    for (var i in datajson) {
+                        var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
+                        series.push(serie);
+                    }
+                    DrawPieChart(series);
+
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+                });
+            });
+
+            function DrawPieChart(series) {
+                debugger;
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Consumo de los Inquilinos'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+
+                    series: [{
+
+                        name: 'Share',
+                        data: series
+
+                    }]
+
+
+
+                    //series: [{
+                    //    name: 'Brands',
+                    //    colorByPoint: true,
+                    //    data: [{ name: 'A', y: 102.21, sliced: true, selected: true },
+                    //    { name: 'Internet Explore', y: 90.56 },
+                    //    { name: 'Firefox', y: 114.56 },
+                    //    { name: 'Safari', y: 145.00 },
+                    //    { name: 'Edge', y: 150 },
+                    //    { name: 'Ram', y: 180 }
+                    //    ]
+                    //}]
+                });
+            }
+    </script>
+
+
+
+}
+

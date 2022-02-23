@@ -1,0 +1,51 @@
+﻿@model TenantMNG.ViewModel.TenantMeterVM
+<!-- Modal -->
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@TenantMNG.Resource.select @TenantMNG.Resource.tenant</h4>
+    </div>
+    <div class="modal-body">
+
+
+        @using (Html.BeginForm("AssignMeterToTenant", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formassignmeter" }))
+        {
+
+            <div class="alert alert-success" id="divSuccess" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_succ
+            </div>
+
+            <div class="alert alert-danger" id="divFail" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_fail
+            </div>
+
+            <div class="alert alert-danger" id="divError" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_alredy
+            </div>
+
+            SelectList listmeter = ViewBag.TenantDropDown;
+
+            <div class="span4">
+                @Html.DropDownList("tenant_id", listmeter, "-- " + TenantMNG.Resource.select + "  " + TenantMNG.Resource.tenant + " --", new { @class = "span4" })
+                @Html.ValidationMessageFor(m => m.int_tenant_id)
+            </div>
+
+            <div class="span1">
+                @Html.HiddenFor(m => m.int_id)
+                @Html.HiddenFor(m => m.int_meter_id)
+
+
+
+                <input type="button" id="btnsave"
+                       value="@TenantMNG.Resource.assign_meter" class="btn btn-success" />
+
+            </div>
+
+        }
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+    </div>
+</div>

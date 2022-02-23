@@ -1,0 +1,228 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+@{
+    ViewBag.Title = "TenantActivity";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@section scriptstop
+{
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#s_date").datepicker({
+                //maxDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+                }
+            });
+
+            $("#e_date").datepicker({
+                // maxDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#s_date").datepicker("option", "maxDate", dt);
+
+
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+
+        });
+    </script>
+}
+<div class="modal hide fade in" id="pnloption">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">@TenantMNG.Resource.select_option</h4>
+        </div>
+        <div class="modal-body">
+            <p>@TenantMNG.Resource.what_like_to_do</p>
+
+            @using (Html.BeginForm("Download", "PM", FormMethod.Get))
+            {
+                @Html.ActionLink(Resource.preview, "ViewPDF", new { controller = "PM" }, new { target = "_blank", @class = "btn btn-info" })
+                <input type="submit" class="btn btn-primary" value="@TenantMNG.Resource.download" />
+            }
+        </div>
+
+    </div>
+    
+</div>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" />@TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "PM")" class="current"> @TenantMNG.Resource.invoice</a> </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenant_actitivy_log</h5>
+                </div>
+                <div class="widget-content">
+
+
+
+                    @using (Html.BeginForm("TenantActivity", "PM", FormMethod.Get))
+                    {
+
+
+                        SelectList listtenant = ViewBag.TenantDropDown;
+
+
+                        <div class="span3">
+                            @Html.DropDownList("int_id", listtenant, "-- " + TenantMNG.Resource.search_tenant + " --", new { @class = "chzn-select" })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("s_date", null, new { placeholder = TenantMNG.Resource.begin_on })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("e_date", null, new { placeholder = TenantMNG.Resource.end_on })
+                        </div>
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success" />
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+                                @Html.ActionLink(TenantMNG.Resource.clear, "TenantActivity", "PM", new { @class = "btn btn-mini" })
+
+                            }
+                            @Html.ActionLink(TenantMNG.Resource.export_to_excel, "ExportToExcel", "PM", new { @page = Request["page"], @class = "btn btn-mini btn-info" })
+
+                            <input type="button" value="Multiple invoice" id="buttonParent" class="btn btn-warning btn-mini">
+                        </div>
+                    }
+
+                    <br />
+
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    @*<th>@Html.ActionLink("Date", "Invoice", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+                                    <th>@TenantMNG.Resource.date</th>
+                                    <th>@TenantMNG.Resource.tenant</th>
+                                    <th>@TenantMNG.Resource.meter @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.bill_period</th>
+                                    <th>@TenantMNG.Resource.tax</th>
+                                    <th>@TenantMNG.Resource.total_amt</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+                                        <td><input id="ckechbox" type="checkbox" onchange="Checkbox(@user.int_invoice_id)" /></td>
+                                        <td>@string.Format("{0:MM-dd-yyyy}", user.date_invoice_date)</td>
+                                        <td>@user.tbl_user_master.str_comp_name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>
+                                        <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_tax_amt)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_total)</td>
+                                        <td>@Html.ActionLink(TenantMNG.Resource.generate + " " + TenantMNG.Resource.invoice, "GeneratePDF", new { @id = user.int_invoice_id }, new { @class = "btn btn-warning btn-mini" }) </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+                        @Html.PagedListPager(Model, page => Url.Action("TenantActivity", "PM", new { tenantid = Request["tenantid"], page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+
+    <script>
+        var msg = '@ViewBag.Message';
+
+        if (msg && msg.length > 0) {
+           
+
+            $('#pnloption').modal('show');
+        }
+
+    </script>
+    <script>
+        var tid = "";
+       
+        function Checkbox(id) {
+            debugger;
+            tid += id + ",";
+        }
+        $("#buttonParent").click(function () {
+            debugger;
+
+            $.ajax({
+
+                type: "POST",
+                url: '/PM/DownloadFiles',
+                data: { forpdf: tid },
+                traditional: true,
+                async: false,
+                cache: false,
+                datatype: 'json',
+                success: function (result) {
+                    debugger;
+                    var getUrl = window.origin;
+                    var url = getUrl + "/PDF/Zip/" + result;
+                    window.open(url);
+
+                    window.location.href = '/PM/TenantActivity';
+                    if (result.success) {
+
+                        
+                    }
+                    else {
+                         
+
+                    }
+
+                }
+            });
+
+        });
+        
+    </script>
+}

@@ -1,0 +1,81 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@TenantMNG.Resource.edit_bill_rate</h4>
+    </div>
+    <div class="modal-body">
+
+
+        @using (Html.BeginForm("EditBill", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formeditbill" }))
+        {
+
+            <div class="alert alert-success" id="divSuccess" style="display:none">
+               @TenantMNG.Resource.msg_bill_rate_success
+            </div>
+
+            <div class="alert alert-danger" id="divFail" style="display:none">
+                @TenantMNG.Resource.msg_global_fail
+            </div>
+                 
+
+
+
+            <div class="span12">
+                <div class="control-group">
+                    @Html.LabelFor(m => m.dec_rate, new { @class = "control-label" })
+
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.dec_rate, new { @class = "span11", @id = "dec_rate", @onkeypress = "return isDecimalNumberKey(event)" })
+                        @Html.ValidationMessageFor(m => m.dec_rate)
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="span12">
+                <div class="control-group">
+                    @Html.LabelFor(m => m.dec_seasonal_multi_rate, new { @class = "control-label" })
+
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.dec_seasonal_multi_rate, new { @class = "span11", @id = "dec_seasonal_rate", @onkeypress = "return isDecimalNumberKey(event)" })
+                        @Html.ValidationMessageFor(m => m.dec_seasonal_multi_rate)
+                    </div>
+                </div>
+
+            </div>
+            <div class="span12">
+                <div class="control-group">
+                    @Html.LabelFor(m => m.dec_surcharge_amt, new { @class = "control-label" })
+
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.dec_surcharge_amt, new { @class = "span11", @id = "dec_surcharge_amt", @onkeypress = "return isDecimalNumberKey(event)" })
+                        @Html.ValidationMessageFor(m => m.dec_surcharge_amt)
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="span12">
+                <div class="control-group">
+
+                    <div class="controls">
+                        @Html.HiddenFor(m => m.int_id)
+
+                        <input type="button" id="btnsave"
+                               value="@TenantMNG.Resource.edit_bill_rate" class="btn btn-success" />
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        }
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+    </div>
+</div>

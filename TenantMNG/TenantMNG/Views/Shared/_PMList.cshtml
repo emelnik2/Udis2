@@ -1,0 +1,95 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+@model IEnumerable<TenantMNG.Models.tbl_user_master>
+
+<style>
+    #edit-rate {
+        width: 1000px;
+        height: 400px;
+        left: 40%;
+    }
+     .modal-body {
+        overflow-y: hidden;
+        height: 100%;
+        max-height: 400px;
+        background-color:red;
+    }
+</style>
+
+<div class="modal hide fade in" id="edit-rate">
+    <div id="edit-rate-container"></div>
+</div>
+
+<table class="table table-bordered data-table">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink(TenantMNG.Resource.company+" "+TenantMNG.Resource.name, "PropertyManager", new { sortby = ViewBag.SortNameParameter, page = Request["page"] })</th>
+            <th>@Html.ActionLink(TenantMNG.Resource.contact + " " + TenantMNG.Resource.name, "PropertyManager", new { sortby = ViewBag.SortContactNameParameter, page = Request["page"] })</th>
+            <th>@Html.ActionLink(TenantMNG.Resource.city, "PropertyManager", new { sortby = ViewBag.SortCityParameter, page = Request["page"] })</th>
+            <th>@TenantMNG.Resource.state</th>
+            <th>@TenantMNG.Resource.int_pin_code</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+            {
+            <tr class="gradeX">
+                <td>@user.str_comp_name</td>
+                <td>@user.str_contact_name</td>
+                <td>@user.str_city</td>
+                <td>@user.str_state</td>
+                <td>@user.int_pin_code</td>
+                <td>
+                    @Html.ActionLink(TenantMNG.Resource.delete, "Delete", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypePM }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" }) &nbsp;&nbsp; @Html.ActionLink(TenantMNG.Resource.edit, "Edit", new { @id = user.int_id }, new { @class = "btn btn-mini btn-info" })
+
+                    <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.int_id">@TenantMNG.Resource.set_hours</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model,
+              page => Url.Action("PropertyManagerPaging", new { page, @class = "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.PageNumbersOnly,
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "Get",
+            UpdateTargetId = "targetContainer"
+        }))
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+        $('.btn').filter('.btn-mini').filter('.btn-success').click(function () {
+
+            var url = '@Url.Action("BillingHours","User")'; // the url to the controller
+            var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+            $.get(url + '/' + id, function (data) {
+                $('#edit-rate-container').html(data);
+                $('#edit-rate').modal('show');
+
+
+            });
+        });
+
+                })
+
+                function rescale() {
+                    var size = { width: $(window).width(), height: $(window).height() }
+                    /*CALCULATE SIZE*/
+                    var offset = 20;
+                    var offsetBody = 150;
+                    $('#edit-rate').css('height', size.height - offset);
+                    $('.modal-body').css('height', size.height - (offset + offsetBody));
+                    $('#edit-rate').css('top', 0);
+                }
+                $(window).bind("resize", rescale);
+</script>
+

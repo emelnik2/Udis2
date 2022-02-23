@@ -1,0 +1,158 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+
+@using (Html.BeginForm("CreateTenantContactInfo", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formcontact" }))
+{
+
+
+    <div class="alert alert-success" id="divSuccess" style="display:none">
+        @TenantMNG.Resource.msg_save_contact_success
+    </div>
+
+    <div class="alert alert-danger" id="divFail" style="display:none">
+        @TenantMNG.Resource.msg_global_fail
+    </div>
+
+
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_comp_name, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_comp_name, new { @class = "span12", @id = "cmp_name" })
+                @Html.ValidationMessageFor(m => m.user_contact_info.str_comp_name)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_contact_name, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_contact_name, new { @class = "span12", @id = "contact_name" })
+                @Html.ValidationMessageFor(m => m.user_contact_info.str_contact_name)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_add_1, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_add_1, new { @class = "span12", @id = "add1" })
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_add_2, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_add_2, new { @class = "span12", @id = "add2" })
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_city, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_city, new { @class = "span12", @id = "city" })
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_state, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_state, new { @class = "span12", @id = "state" })
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_country, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_country, new { @class = "span12", @id = "country" })
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.int_pin_code, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.int_pin_code, new { @class = "span12", @id = "pin_code" })
+                @Html.ValidationMessageFor(m => m.user_contact_info.int_pin_code)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_email, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_email, new { @class = "span12", @id = "str_email" })
+                @Html.ValidationMessageFor(m => m.user_contact_info.str_email)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_user_name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.user_contact_info.str_user_name, new { @class = "span12", @id = "uname" })
+                @Html.ValidationMessageFor(m => m.user_contact_info.str_user_name)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.user_contact_info.str_password, new { @class = "control-label" })
+            <div class="controls">
+                @Html.PasswordFor(m => m.user_contact_info.str_password, new { @class = "span12", @id = "password", value = Model.user_contact_info.str_password })
+                @Html.ValidationMessageFor(m => m.user_contact_info.str_password)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    var _display = "display:none";
+    if (Session["utypeid"].ToString() == TenantMNG.Core.CommonCls._usertypeAdmin.ToString())
+    {
+        _display = "dislay:block";
+    }
+
+    <div class="span5" style="margin-left:0">
+        <div class="control-group" style=@_display>
+            <label class="control-label">@TenantMNG.Resource.select_pm</label>
+            <div class="controls">
+                @Html.DropDownListFor(m => m.user_contact_info.int_pm_id, new SelectList(Model.property_manager, "int_id", "str_comp_name"), "-- " + TenantMNG.Resource.select + " --", new { @class = "span12", @id = "propertymng" })
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            <label class="control-label">@TenantMNG.Resource.select_bill</label>
+            <div class="controls">
+                @Html.DropDownList("list", ViewData["list"] as SelectList, new { @class = "span12", @id = "invoiceperiod" })
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    @Html.HiddenFor(m => m.user_contact_info.int_id, new { @id = "contact_id" })
+    <div class="form-actions">
+        @*<input type="submit" class="btn btn-success" value="Save" />*@
+        <input type="button" id="btnsave"
+               value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "Tenant", Session["utypeid"].ToString() == "2" ? "PM" : "User", null, new { @class = "btn btn-default" })
+    </div>
+
+
+}

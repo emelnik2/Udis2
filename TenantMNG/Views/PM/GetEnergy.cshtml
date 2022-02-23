@@ -1,0 +1,181 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.ProEnergyLog>
+@{
+    ViewBag.Title = "GetEnergy";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@section scriptstop
+{
+    <script>
+        $(function () {
+
+            $("#s_date").datepicker({
+                //maxDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+                }
+            });
+
+            $("#e_date").datepicker({
+                // maxDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#s_date").datepicker("option", "maxDate", dt);
+
+
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+
+        });
+
+
+
+    </script>
+}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.EnergyManagement</a> </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.EnergyManagement</h5>
+                </div>
+
+
+                <div class="widget-content">
+
+                    @using (Html.BeginForm("GetEnergy", "PM", FormMethod.Get))
+                    {
+                        SelectList listtenant = ViewBag.TenantDropDown; ;
+
+                        <div class="span3">
+
+                            @Html.DropDownList("int_id", listtenant, " " + TenantMNG.Resource.search_by_tenant)
+
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("s_date", null, new { placeholder = TenantMNG.Resource.begin_on })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("e_date", null, new { placeholder = TenantMNG.Resource.end_on })
+                            @Html.Hidden("page", 1)
+                        </div>
+
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success" />
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+                                @Html.ActionLink(TenantMNG.Resource.clear, "GetEnergy", "PM", new { @class = "btn btn-mini" })
+
+                            }
+                            @*@Html.ActionLink(TenantMNG.Resource.export_to_excel, "SummaryExportToExcel", "PM", new { @page = Request["page"], @class = "btn btn-mini btn-info" })*@
+
+                        </div>
+
+
+                    }
+
+                    <br />
+
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-bordered data-table" id="table">
+                            <thead>
+                                <tr>
+                                    @*<th>@Html.ActionLink("Date", "Invoice", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+                                    <th>@TenantMNG.Resource.tenant</th>
+                                    <th>@TenantMNG.Resource.meter_name</th>
+                                    <th>@TenantMNG.Resource.TimeStamp</th>
+                                    <th>@TenantMNG.Resource.Value</th>
+                                    @*<th>@Html.ActionLink("Total Amount", "Summary", new { sortby = ViewBag.SortAmountParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag._abc != null)
+                                {
+
+                                    foreach (var uobj in ViewBag._abc)
+                                    {
+                                        <tr class="gradex">
+                                            @*<td hidden>@uobj.TENETID</td>*@
+                                            <td hidden>@uobj.TENETID</td>
+                                            <td>@uobj.TenentName</td>
+                                            <td>@uobj.TABLE_NAME</td>
+                                            <td>@uobj.TIMESTAMP</td>
+                                            <td>@uobj.VALUE</td>
+                                        </tr>
+                                    }
+                                }
+                                <tr>
+                                    <td colspan="5"><b>Total Energy Consumed Per Page</b></td>
+                                    <td><span id="sum"></span></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("GetEnergy", "PM", new { int_id = Request["int_id"], page, s_date = Request["s_date"], e_date = Request["e_date"] }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script type='text/javascript'>
+        var table = document.getElementById("table"), sumval = 0;
+        debugger;
+        for (var i = 1; i < table.rows.length - 1; i++) {
+            sumval = sumval + parseInt(table.rows[i].cells[3].innerHTML);
+        }
+        $("#sum").append(sumval).show();
+    </script>
+    <script>
+        var msg = '@ViewBag.Message';
+
+        if (msg && msg.length > 0) {
+
+            $('#pnloption').modal('show');
+        }
+    </script>
+}

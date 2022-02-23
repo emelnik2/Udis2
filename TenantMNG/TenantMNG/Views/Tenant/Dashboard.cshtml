@@ -1,0 +1,169 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+@{
+
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutTenant.cshtml";
+}
+<style>
+    #ch {
+        background: #1D1F20;
+        padding: 16px;
+    }
+
+    .chart-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+    }
+</style>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Tenant")" title="Go to Home" class="tip-bottom">@*<i class="icon-home"></i>*@ <img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.dashboard</a> </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.dashboard</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><img src="~/img/icons/16/graph.png" /></span>
+                                    <h5>@TenantMNG.Resource.charts</h5>
+                                </div>
+                                <div class="col-lg-offset-10">
+                                    <div id="ch">
+                                        <div class="chart-container">
+                                            <canvas id="chart_0"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>@TenantMNG.Resource.invocie_list</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+
+                                    <table class="table table-bordered data-table">
+                                        @foreach (var user in Model.tbl_invoice)
+                                        {
+
+                                            <tr class="gradeX">
+                                                <td>@string.Format("{0:MMM-dd-yyyy}", user.date_invoice_date)</td>
+                                                <td>@user.dec_total</td>
+                                                <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>
+
+
+                                            </tr>
+                                        }
+                                    </table>
+                                    <ul class="recent-posts">
+                                        <li>
+                                            @if (Model.tbl_invoice.ToList().Count > 0)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.view_all, "TenantActivity", "Tenant", new { @class = "btn btn-warning btn-mini" })
+                                                @*<button class="btn btn-warning btn-mini">view all</button>*@
+                                            }
+                                            else
+                                            {
+                                                <i> @TenantMNG.Resource.sorry_mess</i>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+    <script>
+        @*For Graph*@
+        $(function () {
+            debugger
+
+                    var options = {};
+            options.url = '@Url.Action("ChartNew", "Tenant")';
+            options.data = { page: null };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    var series = "";
+
+                    for (i = 1; i <= 12; i++) {
+                        series += datajson[i - 1].totalenergy + ",";
+                    }
+                    var newDate = JSON.parse("[" + series.substring(0, series.length - 1) + "]");
+                    drawChart(newDate);
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+                });
+
+            function drawChart(series) {
+                debugger;
+                const tenetsNames = [];
+                var dataPoints = [];
+                var dataPoints = [];
+                var data = {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug","Sep","Oct","Nov","Dec"],
+                    datasets: [{
+                        label: "Howmuch I Energy Cosumed",
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                        hoverBorderColor: "rgba(255,99,132,1)",
+                        data: series,
+                    }]
+                };
+
+                var option = {
+
+                    scales: {
+                        yAxes: [{
+                            stacked: true,
+
+                            gridLines: {
+                                display: true,
+                                color: "rgba(255,99,132,0.2)",
+
+                            }
+
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    }
+                };
+
+                Chart.Bar('chart_0', {
+                    options: option,
+                    data: data
+                });
+            };
+    </script>
+
+}
+

@@ -1,0 +1,936 @@
+ERROR 2017-12-04 12:41:53,393 131246ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_meter_id int,@int_tenant_id int,@bit_te' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2017-12-06 09:36:35,703 211093ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_meter_id int,@int_tenant_id int,@bit_te' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2017-12-06 09:40:56,900 122601ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_meter_id int,@int_tenant_id int,@bit_te' expects the parameter '@dec_peak_energy_rate', which was not supplied.
+ERROR 2017-12-08 10:03:36,858 83606ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-08 11:57:05,710 349791ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-08 11:59:06,001 113148ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-08 11:59:06,002 113149ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-11 12:05:52,398 38942ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2017-12-12 09:46:26,961 158991ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-12 09:46:31,652 163682ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-13 10:12:53,948 573775ms TenantBAL              ant_setting_insert - The parameterized query '(@int_tenant_id int,@dec_demanda_facturable nvarchar(4000),@dec_' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-13 10:13:07,709 587536ms TenantBAL              ant_setting_insert - The parameterized query '(@int_tenant_id int,@dec_demanda_facturable nvarchar(4000),@dec_' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-13 10:56:07,108 194017ms TenantBAL              ant_setting_insert - The parameterized query '(@int_tenant_id int,@dec_demanda_facturable nvarchar(4000),@dec_' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-18 12:16:31,226 251658ms PMController           ExportToExcel      - A column named 'Período de facturación' already belongs to this DataTable.
+ERROR 2017-12-18 12:20:25,865 34618ms PMController           ExportToExcel      - A column named 'Bill Period' already belongs to this DataTable.
+ERROR 2017-12-18 12:29:49,020 534682ms PMController           ExportToExcel      - A column named 'Bill Period' already belongs to this DataTable.
+ERROR 2017-12-18 12:32:30,233 112552ms PMController           ExportToExcel      - A column named 'Bill Period' already belongs to this DataTable.
+ERROR 2017-12-18 14:44:11,055 279530ms TenantBAL              ant_invoice_update - The parameterized query '(@int_id int,@bit_tenant_active bit,@date_s_bill_date nvarchar(4' expects the parameter '@date_s_bill_date', which was not supplied.
+ERROR 2017-12-18 14:51:48,962 274030ms TenantBAL              ant_invoice_update - The parameterized query '(@int_id int,@bit_tenant_active bit,@date_s_bill_date nvarchar(4' expects the parameter '@date_s_bill_date', which was not supplied.
+ERROR 2017-12-18 15:13:34,146 132608ms TenantBAL              ant_setting_update - The parameterized query '(@int_id int,@int_tenant_id int,@dec_demanda_facturable nvarchar' expects the parameter '@dec_demanda_facturable', which was not supplied.
+ERROR 2017-12-18 15:14:11,335 169797ms TenantBAL              ant_billing_update - The parameterized query '(@int_tenant_id int,@int_template_id int,@dec_rate nvarchar(4000' expects the parameter '@dec_rate', which was not supplied.
+ERROR 2017-12-18 15:14:18,579 177041ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-18 15:14:49,023 207485ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-18 15:27:51,471 593389ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-19 10:13:54,845 125624ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-19 10:13:59,785 130565ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-19 10:14:10,062 140841ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-19 12:43:59,876 205028ms TenantBAL              ant_billing_update - The parameterized query '(@int_tenant_id int,@int_template_id int,@dec_rate nvarchar(4000' expects the parameter '@dec_rate', which was not supplied.
+ERROR 2017-12-19 12:52:44,725 48149ms TenantBAL              ant_billing_update - The parameterized query '(@int_tenant_id int,@int_template_id int,@dec_rate nvarchar(4000' expects the parameter '@dec_rate', which was not supplied.
+ERROR 2017-12-20 09:33:23,621 173142ms TenantBAL              ant_billing_update - The parameterized query '(@int_tenant_id int,@int_template_id int,@dec_rate nvarchar(4000' expects the parameter '@dec_rate', which was not supplied.
+ERROR 2017-12-20 09:58:19,778 203436ms PMController           getEnerge          - String was not recognized as a valid DateTime.
+ERROR 2017-12-27 09:42:25,285 92708ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2017-12-27 09:45:22,559 269982ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2017-12-27 09:45:51,701 299123ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2017-12-27 09:49:38,696 42834ms PMController           getEnerge          - String was not recognized as a valid DateTime.
+ERROR 2017-12-27 09:50:00,634 64772ms PMController           getEnerge          - String was not recognized as a valid DateTime.
+ERROR 2017-12-27 11:54:22,999 152165ms TenantBAL              ant_setting_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_settings_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2017-12-29 10:21:24,018 107165ms UserBAL                user_delete        - The DELETE statement conflicted with the REFERENCE constraint "FK_tbl_pm_billing_hours_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_pm_billing_hours", column 'int_pm_id'.
+The statement has been terminated.
+ERROR 2017-12-29 10:22:09,852 152999ms TenantBAL              ant_billing_insert - The parameterized query '(@int_tenant_id int,@int_template_id int,@dec_rate nvarchar(1),@' expects the parameter '@int_type', which was not supplied.
+ERROR 2017-12-29 10:25:32,764 355911ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-29 10:25:36,769 359915ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-29 10:25:44,248 367395ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-29 10:26:08,063 391210ms TenantBAL              nt_contract_update - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-29 10:27:28,649 471796ms TenantBAL              nt_contract_insert - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-29 10:32:00,598 60990ms TenantBAL              nt_contract_insert - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2017-12-30 11:06:37,525 151133ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2017-12-31 08:51:59,495 93385ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-01-01 09:31:52,921 46170ms UserBAL                invoice_delete     - Must declare the scalar variable "@usp_delete_invocie".
+ERROR 2018-01-01 09:35:55,098 46158ms UserBAL                invoice_delete     - Must declare the scalar variable "@usp_delete_invocie".
+ERROR 2018-01-02 09:29:31,936 59620ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:36:24,578 91648ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:42:19,922 54267ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:48:15,089 57142ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:49:48,004 35963ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:53:02,987 34881ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:53:43,497 75391ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:58:51,531 150446ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 09:59:56,422 12958ms PMController           bindData           - Nullable object must have a value.
+ERROR 2018-01-02 10:01:40,341 116877ms PMController           bindData           - Attempted to divide by zero.
+ERROR 2018-01-22 12:10:06,889 29651ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-01-23 09:05:29,459 103185ms TenantBAL              enant_meter_update - The parameterized query '(@int_id int,@int_tenant_id int,@int_meter_id nvarchar(4000),@in' expects the parameter '@int_meter_id', which was not supplied.
+ERROR 2018-01-23 09:59:05,995 201074ms TenantBAL              enant_meter_update - The parameterized query '(@int_id int,@int_tenant_id int,@int_meter_id nvarchar(4000),@in' expects the parameter '@int_meter_id', which was not supplied.
+ERROR 2018-01-23 10:19:26,178 57535ms PMController           AssignMeter        - Sequence contains more than one element
+ERROR 2018-01-23 11:22:39,509 51414ms PMController           AssignMeter        - Object reference not set to an instance of an object.
+ERROR 2018-01-26 22:58:38,634 33396ms PMController           AssignMeter        - Object reference not set to an instance of an object.
+ERROR 2018-01-26 23:08:11,447 70231ms PMController           AssignMeter        - Object reference not set to an instance of an object.
+ERROR 2018-01-26 23:17:22,730 621513ms PMController           AssignMeter        - Object reference not set to an instance of an object.
+ERROR 2018-01-26 23:42:39,070 35183ms TenantBAL              etach_meter_tenant - Could not find stored procedure 'usp_detach_meter_tenant'.
+ERROR 2018-01-29 18:07:58,076 28986ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-01-30 10:50:02,302 713108ms UserBAL                invoice_delete     - The DELETE statement conflicted with the REFERENCE constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice_details", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2018-02-09 09:29:34,687 190288ms TenantBAL              ant_setting_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_settings_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-02-19 09:34:49,443 82528ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:34:57,913 90999ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:35:07,948 101033ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:35:15,241 108326ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:35:20,843 113928ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:35:30,614 123700ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:36:06,909 159995ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:36:13,212 166297ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:36:19,099 172184ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:37:04,050 217136ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:38:48,265 41354ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:40:04,887 32004ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:43:32,022 26018ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:43:52,903 46900ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:44:01,369 55365ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-02-19 09:44:43,099 97096ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-06-06 19:10:52,643 26211ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:13:46,758 200327ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:14:41,332 254900ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:14:48,147 261715ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:16:13,869 347438ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:19:14,822 10572ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:19:23,548 19298ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-06 19:22:14,695 16104ms LoginController        Index              - The connection string 'DB_TenantMNGEntities' in the application's configuration file does not contain the required providerName attribute."
+ERROR 2018-06-07 11:06:59,690 1810249ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-07 13:11:11,607 535834ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-07 13:24:19,989 754704ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-07 13:25:46,899 841614ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-07 13:26:55,363 910078ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-07 13:41:16,856 524483ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 13:41:17,221 524849ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:16,915 2045364ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:20,143 2048592ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:25,630 2054079ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:26,798 2055247ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:27,005 2055454ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-07 17:54:27,245 2055694ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-08 12:39:46,610 2794616ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(5),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-08 12:58:39,003 3927008ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0173.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 12:58:54,979 3942985ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0178.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 12:59:12,009 3960015ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0166.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 12:59:25,371 3973377ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0166.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 12:59:52,781 4000787ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0177.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 12:59:53,000 4001005ms CommonCls              sendMail           - Value cannot be null.
+Parameter name: to
+ERROR 2018-06-08 12:59:53,105 4001110ms CommonCls              sendMail           - Value cannot be null.
+Parameter name: to
+ERROR 2018-06-08 12:59:53,197 4001203ms CommonCls              sendMail           - Value cannot be null.
+Parameter name: to
+ERROR 2018-06-08 12:59:53,245 4001251ms CommonCls              sendMail           - Value cannot be null.
+Parameter name: to
+ERROR 2018-06-08 16:55:13,834 3100173ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0177.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:55:30,479 3116818ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0171.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:55:46,147 3132485ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0179.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:56:01,099 3147437ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0173.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:56:16,503 3162841ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0157.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:56:32,519 3178858ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0158.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:56:45,411 3191749ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0158.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:57:00,868 3207206ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0168.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:57:16,214 3222552ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0175.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:57:28,824 3235163ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0175.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:57:44,558 3250897ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0159.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:58:00,532 3266871ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0160.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:58:12,900 3279239ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0171.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:58:25,215 3291554ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0159.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:58:40,494 3306833ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0169.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:58:57,863 3324201ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0164.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:59:10,028 3336367ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0171.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:59:26,033 3352371ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0092.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:59:41,712 3368051ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0089.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 16:59:54,305 3380643ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0089.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:00:10,142 3396480ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0093.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:00:26,977 3413316ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0105.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:00:42,727 3429066ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0097.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:00:57,403 3443741ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0088.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:01:15,102 3461441ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR06CA0104.apcprd06.prod.outlook.com]
+ERROR 2018-06-08 17:01:32,267 3478606ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0033.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:02:01,668 3508006ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0028.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:02:17,414 3523753ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0037.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:02:33,765 3540103ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0040.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:02:49,748 3556086ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0047.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:03:04,420 3570758ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0041.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:03:19,988 3586327ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR02CA0030.apcprd02.prod.outlook.com]
+ERROR 2018-06-08 17:03:35,258 3601597ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR04CA0194.apcprd04.prod.outlook.com]
+ERROR 2018-06-08 17:03:50,931 3617269ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [SG2PR04CA0188.apcprd04.prod.outlook.com]
+ERROR 2018-06-14 12:42:52,219 1398926ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:02,653 1409360ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,171 1414878ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,457 1415163ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,642 1415349ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,673 1415379ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,849 1415556ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:08,888 1415595ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:09,078 1415784ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:09,104 1415810ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:09,298 1416004ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-14 12:43:09,329 1416035ms UserBAL                user_insert        - The parameterized query '(@str_comp_name nvarchar(6),@str_contact_name nvarchar(4),@str_a' expects the parameter '@int_pm_id', which was not supplied.
+ERROR 2018-06-15 10:51:53,053 1276636ms PMController           TenantActivity     - String was not recognized as a valid DateTime.
+ERROR 2018-06-15 14:03:16,973 373640ms PMController           Summary            - Object reference not set to an instance of an object.
+ERROR 2018-06-15 14:43:08,150 513160ms PMController           mmaryExportToExcel - Object reference not set to an instance of an object.
+ERROR 2018-06-15 20:36:50,727 223250ms PMController           Summary            - Object reference not set to an instance of an object.
+ERROR 2018-06-18 16:46:44,882 169007ms PMController           PreviewMeter       - String was not recognized as a valid DateTime.
+ERROR 2018-06-18 16:47:03,442 187566ms PMController           PreviewMeter       - String was not recognized as a valid DateTime.
+ERROR 2018-06-18 16:47:35,415 219539ms PMController           PreviewMeter       - String was not recognized as a valid DateTime.
+ERROR 2018-06-19 11:41:29,743 29869ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 11:50:09,930  3354ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 11:55:34,501 327926ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 11:56:09,228 362653ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 13:06:58,428  8355ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 13:18:58,712 25927ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 14:09:43,234 3070449ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 15:43:06,034 660834ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-19 16:13:30,039  3474ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 16:41:31,603   825ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 17:26:59,549  7063ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 17:31:09,950  1548ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 18:14:28,646  2538ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 18:37:19,450  2956ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 19:20:00,661  3253ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-19 19:37:09,331  3217ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-21 01:16:06,132 2128280ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-06-21 02:12:59,078 5541226ms TenantBAL              nt_contract_insert - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2018-06-21 02:13:00,264 5542412ms TenantBAL              nt_contract_insert - SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+ERROR 2018-06-21 02:13:05,450 5547598ms TenantBAL              nt_contract_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_contract_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-06-21 02:13:07,049 5549196ms TenantBAL              nt_contract_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_contract_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-06-21 04:36:49,437 3731436ms PMController           Summary            - String was not recognized as a valid DateTime.
+ERROR 2018-06-21 05:57:37,665  1019ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-21 07:26:47,255  1981ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-21 23:11:38,347 34637ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:11:41,302 37592ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:11:42,508 38798ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:02,690 58980ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:02,705 58995ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:08,483 64773ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:10,162 66452ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:11,028 67318ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:11,753 68043ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:39,867 96157ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:12:47,022 103312ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:16,671 132961ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:33,158 149448ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:34,306 150596ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:38,124 154414ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:38,879 155169ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:39,130 155419ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:42,898 159188ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:43,527 159817ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:13:43,923 160213ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:14:20,056 196346ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:14:22,868 199158ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:02,813 239103ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:04,445 240735ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:05,689 241979ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:05,999 242289ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:06,315 242605ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:07,147 243437ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:14,562 250852ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:15:40,271 276561ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:16:01,769 298059ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-21 23:24:06,448 782738ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:00:32,135 204029ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:01:04,530 236423ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:02:13,768 44382ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:02:51,531 82146ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:03:35,676 126291ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:04:10,961 161576ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:05:40,161 32311ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:09:02,180 29263ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:10:48,873 32275ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:12:15,941 31439ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:13:31,422 106920ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:13:35,422 110920ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:13:56,666 132164ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:15:02,700 48395ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:18:53,948 48229ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:19:25,041 79322ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:24:40,395 55933ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 14:25:21,092 96630ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:12,872 23524ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:17,334 27986ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:17,547 28199ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:17,740 28392ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:32,503 43155ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:32,529 43181ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:32,529 43181ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:32,554 43206ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:07:32,584 43236ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:14,433 25884ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:16,850 28300ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:17,679 29129ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:17,857 29307ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:18,041 29491ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:18,383 29834ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:18,830 30281ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:19,009 30460ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:19,198 30649ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,001 45452ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,018 45469ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,036 45487ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,037 45488ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,091 45542ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,152 45603ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,157 45608ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:09:34,168 45619ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-06-23 15:40:37,959 1113242ms PMController           getEnerge          - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-23 15:40:52,940 1128223ms PMController           getEnerge          - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-23 15:40:53,044 1128327ms PMController           getEnerge          - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-23 15:41:30,765 1166048ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+ERROR 2018-06-23 18:20:38,222 53336ms PMController           Summary            - Cannot apply indexing with [] to an expression of type 'System.Dynamic.DynamicObject'
+ERROR 2018-06-23 20:41:17,681 866809ms TenantBAL              email_setup_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_email_setup_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-06-23 20:41:19,138 868266ms TenantBAL              email_setup_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_email_setup_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-06-23 20:41:33,011 882139ms TenantBAL              email_setup_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_tenant_email_setup_tbl_user_master". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_user_master", column 'int_id'.
+The statement has been terminated.
+ERROR 2018-06-25 16:48:44,971  3056ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-25 16:49:20,793 38878ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-25 17:38:23,974  1821ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-25 17:44:27,569 365416ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 10:33:40,190 24987ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 14:55:17,023  1747ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 14:56:32,935 77659ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 15:00:16,185  1348ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 15:00:29,087 14250ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 16:02:18,300  3917ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-27 18:35:23,699 14099ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:25:52,139 3014945ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:25:59,380 3022186ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:26:02,446 3025252ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:26:05,052 3027858ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:26:32,959  3053ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 13:26:51,841 21935ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 14:14:22,820 2264785ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 14:14:39,037 2281002ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 18:12:21,981 70871ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-28 18:30:20,749 42056ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:31:58,138 40180ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:34:51,731 29464ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:42:03,661 29389ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:18,405 18859ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:24,064 24518ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:25,367 25822ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:26,339 26793ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:26,867 27321ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:27,253 27707ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:27,883 28337ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:28,320 28774ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-28 18:43:28,771 29225ms PMController           tconsumptionReport - Sequence contains more than one matching element
+ERROR 2018-06-29 15:14:56,372  4110ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-29 15:14:56,372  4110ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-29 15:45:20,390  4344ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-29 15:46:05,686  1360ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-06-29 15:46:38,328 34002ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 11:03:28,832 14110ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 11:04:28,475 73753ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 11:05:31,729 137007ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 11:06:06,427 15736ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 11:17:49,462  2930ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 15:00:02,278 4244258ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-02 18:50:37,215  3947ms PMController           ExportToExcel      - Object reference not set to an instance of an object.
+ERROR 2018-07-03 13:50:29,611 1582943ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-03 13:57:40,579 2013912ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-03 13:57:41,841 2015173ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-03 13:57:43,059 2016391ms TenantBAL              enant_meter_insert - The parameterized query '(@int_tenant_id nvarchar(4000),@int_meter_id int,@int_id int out' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-04 13:28:55,443 44051ms PMController           GetEnergy          - Object reference not set to an instance of an object.
+ERROR 2018-07-05 19:14:09,971 497095ms PMController           tconsumptionReport - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:01:44,129  3636ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:02:21,010 40518ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:02:30,283 49790ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:03:22,080  5500ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:04:23,501 66921ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:07:14,168 237588ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:07:26,925 250345ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:07:36,181 259601ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 16:40:04,203  5150ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-06 18:11:22,278  9163ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-07 14:32:49,802  5858ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-07 14:32:57,551 13606ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-07 15:04:30,553  2740ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-07 15:10:25,053  3379ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-09 10:41:06,873  5182ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-09 11:43:04,220  4464ms PMController           ChartNew           - Object reference not set to an instance of an object.
+ERROR 2018-07-09 11:43:04,220  4464ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-09 11:43:45,243  2511ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-09 17:16:17,004  6537ms PMController           ChartNew           - Object reference not set to an instance of an object.
+ERROR 2018-07-09 17:28:27,205 736738ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-09 17:28:48,128 757661ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-10 14:36:08,848 122603ms PMController           getEnerge          - The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+ 
+ 
+ 
+ 
+ERROR 2018-07-10 16:00:29,295 214848ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Bill Period Column.  Expected type is Decimal.
+ERROR 2018-07-10 16:01:57,982 11033ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Bill Period Column.  Expected type is Decimal.
+ERROR 2018-07-10 16:03:43,224 21454ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Bill Period Column.  Expected type is Decimal.
+ERROR 2018-07-10 16:04:39,358 77587ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Bill Period Column.  Expected type is Decimal.
+ERROR 2018-07-10 17:35:54,288 56738ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\wkhtmltopdf.exe' because it is being used by another process.
+ERROR 2018-07-10 18:14:56,956 1486186ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:11,177 1500407ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:23,816 1513046ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:28,915 1518145ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:31,336 1520566ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:36,213 1525443ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:40,459 1529689ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:50,661 1539891ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:15:56,296 1545526ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-10 18:16:00,845 1550075ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-10 18:16:20,871 1570101ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:16:27,681 1576911ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:16:58,693 1607923ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:00,862 1610092ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:03,644 1612874ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:08,051 1617281ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:40,802 1650032ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:52,852 1662082ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:55,112 1664342ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:17:56,081 1665311ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:18:03,550 1672780ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:18:08,495 1677725ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:18:11,027 1680257ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-10 18:19:16,652 1745882ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:20,620 1749850ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:27,644 1756874ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:29,660 1758890ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:30,562 1759792ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:33,824 1763054ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:39,231 1768461ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:19:39,373 1768603ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-07-10 18:21:16,920 1866150ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:22,114 1871344ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:28,226 1877456ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:31,664 1880894ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:32,301 1881531ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:33,199 1882429ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:21:34,012 1883242ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:22:22,189 1931419ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:23:19,293 1988523ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:30:33,857 2423087ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:49:39,539 3568769ms PMController           ChartNew           - Object reference not set to an instance of an object.
+ERROR 2018-07-10 18:49:40,033 3569263ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-10 19:32:42,762  3869ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-10 19:33:03,803 24911ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-11 13:20:13,664 1866293ms TenantController       Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-11 14:05:02,844 2646194ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-11 16:35:23,649  4502ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-11 20:34:46,619  2639ms TenantController       Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-11 20:34:59,608 15629ms TenantController       Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-12 12:59:14,072  2089ms TenantController       Chartnew           - Object reference not set to an instance of an object.
+ERROR 2018-07-13 16:14:14,225  4439ms PMController           Piechart           - Object reference not set to an instance of an object.
+ERROR 2018-07-13 17:15:55,245  4298ms PMController           Piechart           - Object reference not set to an instance of an object.
+ERROR 2018-07-13 17:16:12,171  3873ms PMController           Piechart           - Object reference not set to an instance of an object.
+ERROR 2018-07-14 16:49:34,632  4392ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-14 16:49:55,009  3602ms PMController           Chart              - Object reference not set to an instance of an object.
+ERROR 2018-07-17 11:07:48,712 26536ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:08:57,512 13772ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:11:13,073 14777ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:12:21,902  2455ms PMController           eviewExportToExcel - Object reference not set to an instance of an object.
+ERROR 2018-07-17 11:16:44,328 13717ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:19:17,801 20046ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:21:07,171 15267ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 11:28:12,369 24717ms PMController           eviewExportToExcel - Input string was not in a correct format.Couldn't store <11/06/2018 To 18/07/2018> in Peak Energy Column.  Expected type is Decimal.
+ERROR 2018-07-17 12:50:03,986 30218ms PMController           eviewExportToExcel - String was not recognized as a valid Boolean.Couldn't store <Active> in Tenant Satus Column.  Expected type is Boolean.
+ERROR 2018-07-17 13:03:52,473 194932ms PMController           eviewExportToExcel - String was not recognized as a valid Boolean.Couldn't store <Active> in Tenant Satus Column.  Expected type is Boolean.
+ERROR 2018-07-23 12:07:08,183 50720ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\wkhtmltopdf.exe' because it is being used by another process.
+ERROR 2018-07-23 12:07:16,556 59092ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\wkhtmltopdf.exe' because it is being used by another process.
+ERROR 2018-07-23 12:10:25,453 25160ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\msvcr120.dll' because it is being used by another process.
+ERROR 2018-07-23 12:11:18,700 11643ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\wkhtmltopdf.exe' because it is being used by another process.
+ERROR 2018-07-23 12:49:34,687 38877ms PMController           bindData           - The process cannot access the file 'D:\source\TenantMNG\TenantMNG\bin\wkhtmltopdf.exe' because it is being used by another process.
+ERROR 2018-07-25 12:13:06,032 127776ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-25 12:13:09,010 130754ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-07-25 12:15:55,549  9121ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:15:55,604  9175ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:16:00,132 13704ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:16:00,183 13755ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:16:09,703 23275ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:16:09,740 23312ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:17:10,571 84142ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:17:10,601 84172ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:18:24,732  7205ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:18:24,791  7264ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:21:45,060  7942ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:21:45,123  8005ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:22:13,897 36779ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:23:51,061  9325ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:23:51,135  9399ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:24:08,016 26280ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:24:34,545 52809ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:26:48,646 186910ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:26:48,680 186944ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:26:53,988 192252ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:27:18,569 216833ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:27:18,598 216862ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:27:20,944 219209ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:28:08,480 266744ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:45:13,383 17167ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:45:13,470 17254ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 12:46:52,325 116109ms PMController           Chart              - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 14:35:17,010 3996875ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-07-25 14:35:30,193 4010058ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 14:35:30,406 4010271ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 14:35:54,439 4034304ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 14:35:54,465 4034330ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2018-07-25 17:05:34,906 11149ms PMController           bindData           - Object reference not set to an instance of an object.
+ERROR 2018-07-27 11:41:40,579 510022ms PMController           bindData           - Object reference not set to an instance of an object.
+ERROR 2018-07-27 11:41:45,572 515015ms PMController           bindData           - Object reference not set to an instance of an object.
+ERROR 2018-07-27 15:02:34,082 176838ms PMController           bindData           - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ERROR 2018-07-27 19:28:02,786 52703ms PMController           bindData           - Sequence contains no elements
+ERROR 2018-07-27 20:14:26,794 143268ms PMController           bindData           - At least one object must implement IComparable.
+ERROR 2018-07-28 15:21:28,625 26522ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-07-28 15:53:37,510 107573ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-28 15:54:38,208 168270ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-28 15:54:52,928 182990ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-28 16:54:16,316 75554ms PMController           bindData           - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ERROR 2018-07-28 16:57:44,105 47981ms PMController           bindData           - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ERROR 2018-07-28 16:58:55,411 119287ms PMController           bindData           - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ERROR 2018-07-28 17:43:01,562 135737ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-28 17:44:46,968 31693ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-28 17:46:52,378 27310ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-30 18:47:40,231 84628ms PMController           bindData           - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ERROR 2018-07-30 19:57:11,756 199489ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-07-31 12:10:48,180 71302ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-07-31 12:13:39,235 114300ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-07-31 12:14:30,503 50440ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-07-31 12:21:24,649 105617ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-08-02 11:52:11,424 251106ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0002.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:15,610 255292ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0011.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:19,304 258986ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0020.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:21,511 261193ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0005.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:21,794 261476ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0023.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:22,089 261771ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0023.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:27,642 267324ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0009.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:31,736 271418ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0007.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:52:35,848 275530ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0006.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-02 11:53:28,007 327689ms CommonCls              sendMail           - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 SMTP; Client was not authenticated to send anonymous mail during MAIL FROM [MAXPR0101CA0012.INDPRD01.PROD.OUTLOOK.COM]
+ERROR 2018-08-14 10:50:40,598 43339ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-08-14 10:51:06,494 69235ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2018-08-14 10:55:42,224 135891ms PMController           Meters             - A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ERROR 2018-08-14 12:20:44,825 85542ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-08-14 12:22:17,556 65335ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-10 23:01:49,341 144200ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-10 23:02:37,564 192424ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 04:57:52,413 179879ms PMController           bindData           - Object reference not set to an instance of an object.
+ERROR 2018-09-11 05:00:14,636  2422ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-11 05:00:14,736  2522ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-11 05:10:54,340 146287ms PMController           bindData           - Object reference not set to an instance of an object.
+ERROR 2018-09-11 05:14:55,778 55460ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 05:19:26,049 46776ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 05:26:52,889 49514ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 05:34:31,027 18297ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 05:38:34,095  2379ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-11 05:38:34,201  2485ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-11 06:02:27,893 171061ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 23:21:43,605 88226ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 23:22:28,413 23932ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-11 23:23:36,704 28285ms PMController           bindData           - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+ERROR 2018-09-12 06:09:02,515 313707ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-09-12 06:09:04,475 315667ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:02,730 763399ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:04,602 765271ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:34,614 795283ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:36,801 797470ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:53,116 813785ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:57:54,780 815449ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:05,968 826637ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:10,613 831282ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:13,272 833941ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:20,392 841061ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:29,458 850127ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:45,273 865942ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:58:45,963 866632ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-09-20 22:58:59,219 879888ms PMController           CreateInvoice      - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:59:05,082 885750ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:59:15,407 896076ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:59:16,678 897347ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:59:53,495 934164ms PMController           getEnerge          - Object reference not set to an instance of an object.
+ERROR 2018-09-20 22:59:53,609 934278ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-09-20 22:59:58,173 938842ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id nvarchar(4000),@bit_tenant_ac' expects the parameter '@int_tenant_id', which was not supplied.
+ERROR 2018-09-22 01:43:22,380 85333ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 01:45:07,533 86518ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 02:42:20,512 546359ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 02:50:49,973 169758ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 02:52:03,760 72757ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 03:02:24,289 550074ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 03:03:59,270 94027ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 03:09:31,327 263545ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 03:10:28,103 31296ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 03:18:03,265 486458ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 04:11:40,799 696378ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-22 04:35:06,686  2574ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-22 04:35:06,810  2698ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-22 04:55:38,504 22710ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-22 05:02:25,705 258313ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:05:06,548 419155ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:09:35,935 55677ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:10:33,270 27974ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:11:03,207 57910ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:17:23,645 167647ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-22 05:21:45,474 429477ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-22 05:22:04,121 17752ms PMController           bindData           - Input string was not in a correct format.
+ERROR 2018-09-22 05:33:32,818 22213ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 05:35:01,933 26410ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-22 05:38:52,876  2470ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-22 05:38:52,978  2572ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 01:34:29,130  2924ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 01:34:29,130  2924ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 02:22:39,563 123965ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 02:23:08,215 152617ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 02:24:09,829 214231ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 02:24:40,366 244769ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 02:30:59,930 624332ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 02:33:03,986 90489ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 02:34:19,390 74477ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 02:36:07,800  3035ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 02:36:07,820  3055ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 02:41:27,362 143195ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 02:46:48,626 57615ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 02:46:50,612 59601ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 02:46:50,690 59679ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 02:58:59,015 83783ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 03:07:27,150 268697ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 03:26:21,897 44161ms PMController           bindData           - Unable to cast object of type 'System.Decimal' to type 'System.String'.
+ERROR 2018-09-24 04:14:25,654 71718ms PMController           bindData           - Unable to cast object of type 'System.Decimal' to type 'System.Collections.Generic.List`1[System.String]'.
+ERROR 2018-09-24 04:34:03,181 117951ms PMController           bindData           - Error reading JObject from JsonReader. Current JsonReader item is not an object: String. Path '', line 1, position 6.
+ERROR 2018-09-24 04:38:22,443 150195ms PMController           bindData           - Error reading JObject from JsonReader. Current JsonReader item is not an object: String. Path '', line 1, position 6.
+ERROR 2018-09-24 04:39:21,924 40173ms PMController           bindData           - Error reading JObject from JsonReader. Current JsonReader item is not an object: String. Path '', line 1, position 6.
+ERROR 2018-09-24 04:42:42,968 86971ms PMController           bindData           - Series data points do not support values of type System.Collections.Stack only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 04:50:42,780 126274ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 04:54:25,964 349458ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:04:58,259 116009ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:05:16,112 16953ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:08:05,226 25206ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:08:18,846 38826ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:08:32,292 52272ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:47:28,348 116632ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:53:32,610 226328ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-24 05:53:54,682 21196ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:56:05,471 82449ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-24 05:56:33,948 25501ms PMController           bindData           - Series data points do not support values of type System.Char only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:56:56,754 48307ms PMController           bindData           - Series data points do not support values of type System.Char only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 05:58:33,289 70417ms PMController           bindData           - Enumeration already finished.
+ERROR 2018-09-24 06:11:36,288 44083ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:13:33,274 39922ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:15:34,432 47238ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:17:14,338 147144ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:19:02,735 33251ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:19:04,125 34641ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 06:19:04,203 34719ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 06:19:24,664 55180ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:19:41,659 72176ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:20:07,307 97823ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:20:25,330 115846ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:20:55,097 145614ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:32:06,964 165422ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:33:08,143 60171ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:33:27,946 79975ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 06:34:25,292 24008ms PMController           bindData           - Y values cannot be data bound to the string object.
+Parameter name: yValues
+ERROR 2018-09-24 07:40:07,454  2672ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 07:40:07,600  2818ms PMController           nsumptionReportNEW - Object reference not set to an instance of an object.
+ERROR 2018-09-24 07:54:03,563 31174ms PMController           bindData           - Series data points do not support values of type System.Text.StringBuilder only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2018-09-24 08:03:59,311 477501ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 08:08:02,746 41827ms PMController           bindData           - Specified cast is not valid.
+ERROR 2018-09-24 08:12:07,616 43401ms PMController           bindData           - Specified cast is not valid.
+ERROR 2018-09-24 08:13:33,838 14426ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 08:16:09,659 170247ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 08:18:57,506 58451ms PMController           bindData           - Unable to cast object of type 'System.Text.StringBuilder' to type 'System.IConvertible'.
+ERROR 2018-09-24 08:20:16,749 20919ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 08:22:16,342 79157ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 08:22:33,046 15886ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
+Parameter name: xValue
+ERROR 2018-09-24 22:18:29,043 369411ms PMController           bindData           - Series data points do not support values of type System.Collections.ArrayList only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2019-03-09 20:36:08,348 44851ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 09:49:03,323 79226ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 09:56:16,652 62836ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 09:57:29,013 135197ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 09:59:13,296 239480ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 10:00:08,457 294641ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 10:01:20,332 366516ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2019-03-10 10:03:06,893 473077ms PMController           bindData           - Object cannot be cast from DBNull to other types.
+ERROR 2020-01-02 10:44:09,668 30880ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-02 10:44:34,054 55267ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-02 10:44:43,040 64253ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-02 10:45:09,212 90425ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-02 10:45:19,364 100577ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-02 10:49:04,907 41881ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2020-01-03 18:47:53,716 25546ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2021-05-06 20:35:26,168 63387ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-05-06 20:35:51,284 88503ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-05-06 20:46:38,146 24275ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-05-06 20:46:39,079 25208ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-05-06 20:54:19,351 81249ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-05-06 20:54:20,327 82225ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:33:25,310 17502ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:33:25,448 17640ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:46:28,833 19327ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:46:28,998 19492ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:49:31,336 71003ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:49:31,438 71105ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 19:52:11,032 74903ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:54:23,675 42016ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:54:43,756 62097ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:55:39,332 49820ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:55:39,399 49887ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:59:35,231 11215ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 20:59:35,332 11316ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:00:46,838 50798ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:20:59,577 38722ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:23:55,581 214726ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:23:59,090 218236ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:24:55,799 274945ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:25:23,018 302164ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:25:59,113 338259ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:35:19,749 227288ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-07-24 21:36:00,720 268259ms PMController           nsumptionReportNEW - Specified argument was out of the range of valid values.
+Parameter name: index
+ERROR 2021-08-16 14:55:32,995 432325ms TenantBAL              lling_rates_update - Error converting data type nvarchar to decimal.
+ERROR 2021-08-20 17:32:45,337 398023ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:33:20,811 433498ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:36:05,342 64607ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:40:20,753 320018ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:40:32,465 331730ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:43:18,623 497888ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:46:02,049 661314ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:46:06,155 665420ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:47:19,575 738840ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-20 17:48:39,020 818285ms TenantBAL              lling_rates_update - Could not find stored procedure 'usp_update_tenant_billing_info_rates'.
+ERROR 2021-08-21 12:10:19,382 70580ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2021-08-21 12:11:56,613 167811ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2021-08-21 12:12:30,485 201683ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2021-08-21 12:15:05,701 356899ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@date_e_bill_date', which was not supplied.
+ERROR 2021-08-21 12:52:24,042 194484ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 12:53:00,536 230978ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 13:31:31,181 112843ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 13:32:41,537  9148ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-08-21 13:32:41,683  9293ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-08-21 18:33:13,072 231394ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:16,094 234416ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:19,758 238080ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:22,355 240677ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:23,596 241918ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:25,648 243970ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:26,890 245212ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:28,130 246452ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:29,375 247697ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:30,596 248918ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:31,731 250053ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:34,596 252917ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:35,538 253860ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-08-21 18:33:36,165 254487ms TenantBAL              ice_details_insert - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_tbl_invoice_details_tbl_invoice". The conflict occurred in database "DB_TenantMNG", table "dbo.tbl_invoice", column 'int_invoice_id'.
+The statement has been terminated.
+ERROR 2021-12-10 18:55:57,495 261012ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+4
+ERROR 2021-12-10 18:56:07,962 271480ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+5
+ERROR 2021-12-10 18:56:20,456 283974ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+6
+ERROR 2021-12-10 18:56:59,764 323282ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+7
+ERROR 2021-12-10 18:59:46,296 489814ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+8
+ERROR 2021-12-10 18:59:49,654 493172ms UserBAL                user_insert        - Procedure or function 'usp_insert_pm_billing_hours' expects parameter '@str_inter_s_time_2_sa', which was not supplied.
+9
+ERROR 2021-12-15 17:08:58,993 47763ms TenantBAL              enant_meter_insert - Must declare the scalar variable "@str_tenant_id".
+ERROR 2021-12-18 14:09:16,821 33814ms PMController           getEnerge          - La secuencia contiene más de un elemento
+ERROR 2021-12-18 14:09:22,785 39777ms PMController           getEnerge          - La secuencia contiene más de un elemento
+ERROR 2021-12-18 14:09:34,145 51137ms PMController           getEnerge          - La secuencia contiene más de un elemento
+ERROR 2021-12-18 14:09:35,568 52561ms PMController           getEnerge          - La secuencia contiene más de un elemento
+ERROR 2021-12-18 14:09:37,639 54632ms PMController           getEnerge          - La secuencia contiene más de un elemento
+ERROR 2021-12-18 18:52:51,207 47935ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 16:56:12,974 31114ms LoginController        Index              - The entity type tbl_user_master is not part of the model for the current context.
+ERROR 2021-12-19 16:56:19,794 37935ms LoginController        Index              - The entity type tbl_user_master is not part of the model for the current context.
+ERROR 2021-12-19 16:56:28,899 47040ms LoginController        Index              - The entity type tbl_user_master is not part of the model for the current context.
+ERROR 2021-12-19 16:56:33,834 51975ms LoginController        Index              - The entity type tbl_user_master is not part of the model for the current context.
+ERROR 2021-12-19 17:32:10,728 24773ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 17:32:15,373 29418ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 17:35:50,307 244352ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 17:42:07,552 23751ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:07:07,378 1523578ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:13:06,425 40744ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,199 336518ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,236 336555ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,275 336594ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,314 336633ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,354 336673ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,400 336719ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:18:02,452 336771ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-19 18:19:27,318 421637ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 18:21:16,418 530737ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 18:30:38,571 1092890ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 18:57:33,456 2707775ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 18:57:45,132 2719451ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 18:58:40,399 2774718ms PMController           bindData           - Could not find stored procedure 'getLastMeterReading'.
+ERROR 2021-12-19 20:23:46,178 7880497ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-19 20:40:39,725 38637ms PMController           bindData           - Palabra clave no admitida: 'metadata'.
+ERROR 2021-12-19 21:05:15,655 1514566ms PMController           bindData           - Palabra clave no admitida: 'metadata'.
+ERROR 2021-12-19 21:06:17,777 1576689ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:11:04,463 350578ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:12:21,331 427445ms PMController           bindData           - Must declare the scalar variable "@retvalOUT".
+ERROR 2021-12-20 12:18:42,191 808306ms PMController           bindData           - Conversion failed when converting the nvarchar value '32054.704300' to data type int.
+ERROR 2021-12-20 12:28:31,431 506838ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:29:22,997 558404ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:34:10,731 846138ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:42:31,776 1347183ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 12:47:40,002 1655409ms PMController           bindData           - Invalid column name 'AMERICAN EXPRESS 9B'.
+ERROR 2021-12-20 13:53:02,756 5578163ms PMController           CreateInvoice      - Referencia a objeto no establecida como instancia de un objeto.
+ERROR 2021-12-20 13:53:29,735 5605142ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,062 5628469ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,105 5628512ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,140 5628547ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,173 5628580ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,210 5628617ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,241 5628648ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,271 5628678ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-20 13:53:53,305 5628712ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-23 20:07:15,052 67189ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-12-23 20:07:15,128 67265ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-12-23 20:11:31,921 324057ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-12-23 20:11:33,906 326042ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2021-12-23 20:15:15,885 548022ms TenantBAL              tEnergyConsumption - La secuencia contiene más de un elemento
+ERROR 2021-12-23 20:15:15,930 548067ms TenantBAL              tEnergyConsumption - La secuencia contiene más de un elemento
+ERROR 2021-12-23 20:18:27,212 739349ms TenantBAL              tEnergyConsumption - La secuencia contiene más de un elemento
+ERROR 2021-12-23 20:18:27,252 739389ms TenantBAL              tEnergyConsumption - La secuencia contiene más de un elemento
+ERROR 2021-12-23 20:23:14,814 1026950ms TenantBAL              tEnergyConsumption - La secuencia contiene más de un elemento
+ERROR 2021-12-23 21:13:41,141 76891ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-23 21:13:41,258 77008ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-24 20:28:56,819 421339ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2021-12-24 20:29:16,501 441021ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.

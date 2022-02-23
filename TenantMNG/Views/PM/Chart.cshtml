@@ -1,0 +1,219 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+
+@{
+    ViewBag.Title = "Chart";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+<style>
+
+
+    #ch {
+        background: #1D1F20;
+        padding: 16px;
+      
+    }
+
+    .chart-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+        Cursor: text !important;
+        Text-Decoration: None !important;
+        pointer-events:none;
+    }
+    .chart_0 {
+        position: fixed;
+    }
+    .element {
+        pointer-events: none;
+    }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.charts</a>  </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <img src="~/img/icons/16/graph.png" /> </span>
+                    <h5>@TenantMNG.Resource.charts</h5>
+                </div>
+                <br>
+                <div class="col-lg-offset-10">
+                    @using (Html.BeginForm("Chart", "PM", FormMethod.Get))
+                    {
+
+                        SelectList listtenant = ViewBag.TenantDropDown;
+
+
+                        <div class="span3">
+                            @Html.DropDownList("int_id", listtenant, null, new { @id = "ddl_tenant", @class = "chzn-select", @onclick = "UpdateUserDetail()" })
+                        </div>
+
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success" hidden />
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+                                @Html.ActionLink(TenantMNG.Resource.clear, "Chart", "PM", new { @class = "btn btn-mini" })
+                            }
+                        </div>
+                        <h5>@TenantMNG.Resource.how_much</h5>
+                    }
+                    <br />
+
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-bordered data-table">
+                            <thead hidden>
+                                <tr>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.tenant + " " + TenantMNG.Resource.name, "")</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.invoice + " " + @TenantMNG.Resource.total_energy, null)</th>
+                                    <th>@TenantMNG.Resource.monthly</th>
+                                </tr>
+
+                            </thead>
+
+                            @*<tbody hidden>
+                                @if (ViewBag._abc != null)
+                                {
+
+                                    foreach (var dt in ViewBag._abc)
+                                    {
+                                        <tr class="gradex">
+                                            <td><input type="text" id="txtName" value="@dt.Name" /></td>
+                                            <td><input type="text" id="txtEnergy" value="@dt.totalenergy" /></td>
+                                            <td><input type="text" id="txtmonth" value="@dt.dateinvoice" /></td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>*@
+                        </table>
+                    }
+                    <div id="ch">
+                        <div class="chart-container">
+                            <canvas id="chart_0"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+        <script>
+        @*For Graph*@
+            $(function () {
+                var options = {};
+                options.url = '@Url.Action("ChartNew", "PM")';
+                options.data = { int_id: $("#ddl_tenant").val(), page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    debugger;
+                    var series = "";
+                    for (i =1; i< 12; i++) {
+                         series += datajson[i-1].totalenergy + ",";
+                    }
+                    var newDate = JSON.parse("[" + series.substring(0, series.length - 1) + "]");
+                    drawChart(newDate);
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+            });
+
+            $(function () {
+                $("#ddl_tenant").change(function () {
+                    var options = {};
+                options.url = '@Url.Action("ChartNew", "PM")';
+                options.data = { int_id: $("#ddl_tenant").val(), page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    var series = "";
+                   
+                    for (i = 1; i <= 12; i++) {
+                        series += datajson[i - 1].totalenergy + ",";
+                    }
+                    var newDate = JSON.parse("[" + series.substring(0, series.length - 1) + "]");
+                    drawChart(newDate);
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+                });
+            });
+            function drawChart(series) {
+                debugger;
+                const tenetsNames = [];
+                var dataPoints = [];
+                var dataPoints = [];
+                var data = {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug","Sep","Oct","Nov","Dec"],
+                    datasets: [{
+                        //label: $("#txtName").val(),
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                        hoverBorderColor: "rgba(255,99,132,1)",
+                        data: series,
+                    }]
+                };
+
+                var option = {
+                    
+                    scales: {
+                        yAxes: [{
+                            stacked: true,
+
+                            gridLines: {
+                                display: true,
+                                color: "rgba(255,99,132,0.2)",
+
+                            }
+                            
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    }
+                };
+
+                Chart.Bar('chart_0', {
+                    options: option,
+                    data: data
+                });
+            };
+        </script>
+
+    }
+
+
+
+

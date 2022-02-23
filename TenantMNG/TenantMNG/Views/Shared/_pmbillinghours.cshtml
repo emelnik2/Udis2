@@ -1,0 +1,279 @@
+﻿@model TenantMNG.ViewModel.PMBillingHoursVM
+
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@TenantMNG.Resource.set_energy_hours</h4>
+    </div>
+    <div class="modal-body">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("BillingHours", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formassignmeter" }))
+        {
+
+        <div class="alert alert-success" id="divSuccess" style="display:none">
+            @TenantMNG.Resource.msg_global_success
+        </div>
+
+        <div class="alert alert-danger" id="divFail" style="display:none">
+            @TenantMNG.Resource.msg_global_fail
+        </div>
+
+
+        SelectList listmeter = ViewBag.MeterDropDown;
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label">@TenantMNG.Resource.day_of_week</label>
+                </div>
+                <div class="controls">
+                    <div class="span3" style="text-align:center">
+                        <label>@TenantMNG.Resource.base_time</label>
+                    </div>
+                    <div class="span3" style="text-align:center">
+                        <label>@TenantMNG.Resource.inter_time</label>
+                    </div>
+                    <div class="span3" style="text-align:center">
+                        <label>@TenantMNG.Resource.peak_time </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label">@TenantMNG.Resource.mon_to_fri</label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="controls">
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_base_s_time_m, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_base_e_time_m, new { @class = "span5" })
+                        </div>
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_inter_s_time_1_m, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_inter_e_time_1_m, new { @class = "span5" })
+                        </div>
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_peak_s_time_m, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_peak_e_time_m, new { @class = "span5" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label"></label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="controls">
+
+                        <div class="span3" style="text-align:center">
+
+                        </div>
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_inter_s_time_2_m, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_inter_e_time_2_m, new { @class = "span5" })
+                        </div>
+                        <div class="span3" style="text-align:center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label">@TenantMNG.Resource.sat</label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="controls">
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_base_s_time_sat, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_base_e_time_sat, new { @class = "span5" })
+                        </div>
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_inter_s_time_sat, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_inter_e_time_sat, new { @class = "span5" })
+                        </div>
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_peak_s_time_sat, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_peak_e_time_sat, new { @class = "span5" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label"></label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="controls">
+
+                        <div class="span3" style="text-align:center">
+
+                        </div>
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_inter_s_time_2_sat, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_inter_e_time_2_sat, new { @class = "span5" })
+                        </div>
+                        <div class="span3" style="text-align:center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="control-group">
+                <div class="col-lg-3">
+                    <label class="control-label">@TenantMNG.Resource.sun</label>
+                </div>
+                <div class="col-lg-9">
+                    <div class="controls">
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_base_s_time_sun, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_base_e_time_sun, new { @class = "span5" })
+                        </div>
+
+                        <div class="span3" style="text-align:center">
+                            @Html.TextBoxFor(m => m.str_inter_s_time_sun, new { @class = "span5" })
+                            TO
+                            @Html.TextBoxFor(m => m.str_inter_e_time_sun, new { @class = "span5" })
+                        </div>
+                        <div class="span3" style="text-align:center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <div class="controls">
+                @Html.HiddenFor(m => m.int_pm_id)
+                @Html.HiddenFor(m => m.int_rate_id)
+
+                <input type="button" id="btnsave"
+                       value="@TenantMNG.Resource.save" class="btn btn-success" />
+
+            </div>
+        </div>
+
+        }
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+
+
+        $('#btnsave').on("click", function (e) {
+
+           
+
+            //$.validator.unobtrusive.parse("#formassignmeter");
+            //$("#formassignmeter").validate();
+            //if ($("#formassignmeter").valid()) {
+
+
+              
+
+                var pmbillinghours = {};
+
+                pmbillinghours.int_rate_id = $('#int_rate_id').val();
+                pmbillinghours.int_pm_id = $('#int_pm_id').val();
+                pmbillinghours.str_peak_s_time_m = $('#str_peak_s_time_m').val();
+                pmbillinghours.str_peak_e_time_m = $('#str_peak_e_time_m').val();
+                pmbillinghours.str_inter_s_time_1_m = $('#str_inter_s_time_1_m').val();
+                pmbillinghours.str_inter_e_time_1_m = $('#str_inter_e_time_1_m').val();
+
+                pmbillinghours.str_inter_s_time_2_m = $('#str_inter_s_time_2_m').val();
+                pmbillinghours.str_inter_e_time_2_m = $('#str_inter_e_time_2_m').val();
+                pmbillinghours.str_base_s_time_m = $('#str_base_s_time_m').val();
+                pmbillinghours.str_base_e_time_m = $('#str_base_e_time_m').val();
+
+                pmbillinghours.str_base_s_time_sat = $('#str_base_s_time_sat').val();
+                pmbillinghours.str_base_e_time_sat = $('#str_base_e_time_sat').val();
+                pmbillinghours.str_inter_s_time_sat = $('#str_inter_s_time_sat').val();
+                pmbillinghours.str_inter_e_time_sat = $('#str_inter_e_time_sat').val();
+
+                pmbillinghours.str_base_s_time_sun = $('#str_base_s_time_sun').val();
+                pmbillinghours.str_base_e_time_sun = $('#str_base_e_time_sun').val();
+                pmbillinghours.str_inter_s_time_sun = $('#str_inter_s_time_sun').val();
+                pmbillinghours.str_inter_e_time_sun = $('#str_inter_e_time_sun').val();
+
+
+
+                var options = {};
+                options.url = '@Url.Action("BillingHours","User")';
+                options.type = "POST";
+                options.data = JSON.stringify(pmbillinghours),
+                options.contentType = "application/json";
+                options.dataType = "json";
+                options.success = function (data) {
+
+                    alertMessage(data);
+                };
+                options.error = function () {
+                    alertMessage(0);
+                };
+                $.ajax(options);
+            //};
+        })
+    })
+
+    function alertMessage(val) {
+        if (val > 0) {
+            $('#divSuccess').show();
+            $('#divFail').hide();
+            $('#divError').hide();
+        }
+        else if (val == -1) {
+            $('#divSuccess').hide();
+            $('#divFail').hide();
+            $('#divError').show();
+        }
+        else {
+            $('#divSuccess').hide();
+            $('#divFail').show();
+            $('#divError').hide();
+        }
+    }
+
+</script>
+@Scripts.Render("~/bundles/jqueryval")

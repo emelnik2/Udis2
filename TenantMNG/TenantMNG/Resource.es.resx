@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add_new" xml:space="preserve">
+    <value>Agregar nuevo</value>
+  </data>
+  <data name="billing_details" xml:space="preserve">
+    <value>Detalles de facturación</value>
+  </data>
+  <data name="changepassword" xml:space="preserve">
+    <value>Cambia la contraseña</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="company" xml:space="preserve">
+    <value>Propiedad</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="contact_details" xml:space="preserve">
+    <value>Detalles de contacto</value>
+  </data>
+  <data name="contract_details" xml:space="preserve">
+    <value>Detalles del contrato</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Tablero</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="edit_bill_rate" xml:space="preserve">
+    <value>Tasa de facturación</value>
+  </data>
+  <data name="email_setup" xml:space="preserve">
+    <value>Configuración de Email</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="int_pin_code" xml:space="preserve">
+    <value>Código Postal</value>
+  </data>
+  <data name="invoice" xml:space="preserve">
+    <value>Facturas</value>
+  </data>
+  <data name="list" xml:space="preserve">
+    <value>Listas de</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="manager" xml:space="preserve">
+    <value>Propiedad</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="passplace" xml:space="preserve">
+    <value>Entrar Contraseña</value>
+  </data>
+  <data name="passrequire" xml:space="preserve">
+    <value>Contraseña necesario</value>
+  </data>
+  <data name="pin_code" xml:space="preserve">
+    <value>Codigo Postal</value>
+  </data>
+  <data name="pmuser" xml:space="preserve">
+    <value>Listas de Administradores</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="property" xml:space="preserve">
+    <value>Propiedad</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>Ajuste</value>
+  </data>
+  <data name="set_hours" xml:space="preserve">
+    <value>Establecer horas</value>
+  </data>
+  <data name="sorry_mess" xml:space="preserve">
+    <value>Datos no encontrados</value>
+  </data>
+  <data name="state" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="str_add_1" xml:space="preserve">
+    <value>Dirección 1</value>
+  </data>
+  <data name="str_add_2" xml:space="preserve">
+    <value>Dirección 2</value>
+  </data>
+  <data name="str_city" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="str_comp_name" xml:space="preserve">
+    <value>Nombre de empresa</value>
+  </data>
+  <data name="str_contact_name" xml:space="preserve">
+    <value>Nombre de contacto</value>
+  </data>
+  <data name="str_country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="str_email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="str_password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="str_state" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="str_user_name" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="tenant" xml:space="preserve">
+    <value>Inquilino</value>
+  </data>
+  <data name="tenantuser" xml:space="preserve">
+    <value>Listas de Inquilinos</value>
+  </data>
+  <data name="unamerequire" xml:space="preserve">
+    <value>Nombre de usuario necesario</value>
+  </data>
+  <data name="usernamplace" xml:space="preserve">
+    <value>Entrar Nombre de usuario</value>
+  </data>
+  <data name="view_all" xml:space="preserve">
+    <value>ver todo</value>
+  </data>
+  <data name="dec_rate" xml:space="preserve">
+    <value>Tasa de energía base</value>
+  </data>
+  <data name="dec_seasonal_multi_rate" xml:space="preserve">
+    <value>Tasa de demanda máxima</value>
+  </data>
+  <data name="dec_surcharge_amt" xml:space="preserve">
+    <value>Tasa de demanda intermedia</value>
+  </data>
+  <data name="e_date" xml:space="preserve">
+    <value>Fecha final</value>
+  </data>
+  <data name="int_template_id" xml:space="preserve">
+    <value>Plantilla Predeterminada</value>
+  </data>
+  <data name="str_bcc_email" xml:space="preserve">
+    <value>Dirección de correo electrónico BCC</value>
+  </data>
+  <data name="str_body" xml:space="preserve">
+    <value>Mensaje de texto</value>
+  </data>
+  <data name="str_cc_email" xml:space="preserve">
+    <value>CC Dirección de correo electrónico</value>
+  </data>
+  <data name="str_charge_tenant_max" xml:space="preserve">
+    <value>Cargue al inquilino por un máximo de</value>
+  </data>
+  <data name="str_charge_tenant_min" xml:space="preserve">
+    <value>Cargue al inquilino por un mínimo de</value>
+  </data>
+  <data name="str_from_email" xml:space="preserve">
+    <value>De la dirección de correo electrónico</value>
+  </data>
+  <data name="str_min_billable_over" xml:space="preserve">
+    <value>Mínimo a Facturar</value>
+  </data>
+  <data name="str_subject" xml:space="preserve">
+    <value>Texto del asunto</value>
+  </data>
+  <data name="s_date" xml:space="preserve">
+    <value>Fecha de inicio</value>
+  </data>
+  <data name="assign_meter" xml:space="preserve">
+    <value>Asignar Medidor</value>
+  </data>
+  <data name="bill_adjust" xml:space="preserve">
+    <value>Ajuste de facturación</value>
+  </data>
+  <data name="consol_mess" xml:space="preserve">
+    <value>Consolidar tarifas en la factura</value>
+  </data>
+  <data name="detach" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="inter_demand_rate" xml:space="preserve">
+    <value>Tasa de demanda intermedia</value>
+  </data>
+  <data name="meter" xml:space="preserve">
+    <value>Medidores</value>
+  </data>
+  <data name="peak_demand_rate" xml:space="preserve">
+    <value>Tasa de demanda máxima</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="begin_on" xml:space="preserve">
+    <value>Comenzando en</value>
+  </data>
+  <data name="bill_period" xml:space="preserve">
+    <value>Período de facturación</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="cust_energy" xml:space="preserve">
+    <value>Demanda Facturable</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="demand" xml:space="preserve">
+    <value>Demanda</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="end_on" xml:space="preserve">
+    <value>Finalizando</value>
+  </data>
+  <data name="export_to_excel" xml:space="preserve">
+    <value>Exportar a Excel</value>
+  </data>
+  <data name="inter_energy" xml:space="preserve">
+    <value>Energía intermedia</value>
+  </data>
+  <data name="meter_assign_mess_alredy" xml:space="preserve">
+    <value>Lo siento, este medidor ya está asignado a otro inquilino.</value>
+  </data>
+  <data name="meter_assign_mess_fail" xml:space="preserve">
+    <value>Lo siento, puede haber un problema al guardar datos. Por favor intente de nuevo más tarde.</value>
+  </data>
+  <data name="meter_assign_mess_succ" xml:space="preserve">
+    <value>El medidor le asigna al inquilino con éxito.</value>
+  </data>
+  <data name="no_contract_mess" xml:space="preserve">
+    <value>Lo siento, todavía no hay inicio de contrato para este inquilino.</value>
+  </data>
+  <data name="peak_energy" xml:space="preserve">
+    <value>Energía máxima</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="search_tenant" xml:space="preserve">
+    <value>Búsqueda por inquilino</value>
+  </data>
+  <data name="select_option" xml:space="preserve">
+    <value>Opciones de Facturación</value>
+  </data>
+  <data name="tax" xml:space="preserve">
+    <value>Impuesto</value>
+  </data>
+  <data name="tenant_actitivy_log" xml:space="preserve">
+    <value>Registro de actividad del inquilino</value>
+  </data>
+  <data name="total_amt" xml:space="preserve">
+    <value>Cantidad total</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="war_detch_mess" xml:space="preserve">
+    <value>¿Está seguro que desea Eliminar el Medidor de Este Inquilino?</value>
+  </data>
+  <data name="what_like_to_do" xml:space="preserve">
+    <value>¿Qué desea hacer?</value>
+  </data>
+  <data name="alarm" xml:space="preserve">
+    <value>Alarma</value>
+  </data>
+  <data name="assign_to" xml:space="preserve">
+    <value>Asignar a</value>
+  </data>
+  <data name="create_multi" xml:space="preserve">
+    <value>Crear una factura múltiple</value>
+  </data>
+  <data name="create_single" xml:space="preserve">
+    <value>Crear una sola factura</value>
+  </data>
+  <data name="date_e_bill_date" xml:space="preserve">
+    <value>Hasta la fecha</value>
+  </data>
+  <data name="date_pay_date" xml:space="preserve">
+    <value>Fecha límite de pago</value>
+  </data>
+  <data name="date_s_bill_date" xml:space="preserve">
+    <value>Partir de la fecha</value>
+  </data>
+  <data name="dec_base_energy" xml:space="preserve">
+    <value>Energía base</value>
+  </data>
+  <data name="dec_base_rate" xml:space="preserve">
+    <value>Tasa de energía base</value>
+  </data>
+  <data name="dec_current_inter_energy" xml:space="preserve">
+    <value>Energía Intermedia Actual</value>
+  </data>
+  <data name="dec_current_peak_energy" xml:space="preserve">
+    <value>Energía máxima actual</value>
+  </data>
+  <data name="dec_custome_charges" xml:space="preserve">
+    <value>Cargos personalizados</value>
+  </data>
+  <data name="dec_demad" xml:space="preserve">
+    <value>Demanda (kW)</value>
+  </data>
+  <data name="demand_fact" xml:space="preserve">
+    <value>Demanda Facturable</value>
+  </data>
+  <data name="dec_inter_energy" xml:space="preserve">
+    <value>Energía intermedia</value>
+  </data>
+  <data name="dec_inter_energy_rate" xml:space="preserve">
+    <value>Tasa de energía intermedia</value>
+  </data>
+  <data name="dec_peak_energy" xml:space="preserve">
+    <value>Energía máxima</value>
+  </data>
+  <data name="dec_peak_energy_rate" xml:space="preserve">
+    <value>Tasa de energía máxima</value>
+  </data>
+  <data name="dec_prev_inter_energy" xml:space="preserve">
+    <value>Energía Intermedia Anterior</value>
+  </data>
+  <data name="dec_prev_peak_energy" xml:space="preserve">
+    <value>Energía pico anterior</value>
+  </data>
+  <data name="dec_tax_amt" xml:space="preserve">
+    <value>Importe del impuesto</value>
+  </data>
+  <data name="dec_total" xml:space="preserve">
+    <value>Cantidad total</value>
+  </data>
+  <data name="total_energy" xml:space="preserve">
+    <value>Energía Consumida por el Edificio</value>
+  </data>
+  <data name="generate" xml:space="preserve">
+    <value>Generar</value>
+  </data>
+  <data name="int_tenant_id" xml:space="preserve">
+    <value>Inquilino</value>
+  </data>
+  <data name="report" xml:space="preserve">
+    <value>Reporte</value>
+  </data>
+  <data name="str_custome_charge_desc" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="str_new_password" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="summary" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="back_login" xml:space="preserve">
+    <value>Atrás para iniciar sesión</value>
+  </data>
+  <data name="base_time" xml:space="preserve">
+    <value>Hora base</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Cambio</value>
+  </data>
+  <data name="day_of_week" xml:space="preserve">
+    <value>Día de la semana</value>
+  </data>
+  <data name="inter_time" xml:space="preserve">
+    <value>Inter Time</value>
+  </data>
+  <data name="lock_out" xml:space="preserve">
+    <value>Bloqueado.</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="lost_password" xml:space="preserve">
+    <value>Olvidé contraseña</value>
+  </data>
+  <data name="mon_to_fri" xml:space="preserve">
+    <value>De lunes a viernes</value>
+  </data>
+  <data name="msg_bill_info_success" xml:space="preserve">
+    <value>Información de facturación insertada con éxito.</value>
+  </data>
+  <data name="msg_bill_rate_success" xml:space="preserve">
+    <value>Las tasas de facturación se actualizan con éxito.</value>
+  </data>
+  <data name="msg_change_pass_success" xml:space="preserve">
+    <value>La contraseña se actualiza con éxito</value>
+  </data>
+  <data name="msg_global_fail" xml:space="preserve">
+    <value>lo siento, puede haber un problema al guardar datos. Por favor intente de nuevo más tarde.</value>
+  </data>
+  <data name="msg_global_success" xml:space="preserve">
+    <value>Detalles guardados con éxito.</value>
+  </data>
+  <data name="msg_invalid_login" xml:space="preserve">
+    <value>Lo siento !! Ingreso invalido.</value>
+  </data>
+  <data name="msg_licencse" xml:space="preserve">
+    <value>Lo siento !! La licencia para este producto ha expirado.</value>
+  </data>
+  <data name="msg_lock_out" xml:space="preserve">
+    <value>Esta cuenta ha sido bloqueada, intente de nuevo más tarde</value>
+  </data>
+  <data name="msg_multi_invocie" xml:space="preserve">
+    <value>Factura múltiple generada con éxito.</value>
+  </data>
+  <data name="msg_no_contract" xml:space="preserve">
+    <value>lo siento, todavía no hay inicio de contrato para este inquilino.</value>
+  </data>
+  <data name="msg_password_fail" xml:space="preserve">
+    <value>lo siento, este nombre de usuario / correo electrónico no se encuentra en el sistema.</value>
+  </data>
+  <data name="msg_password_success" xml:space="preserve">
+    <value>Contraseña Enviar a su dirección de correo electrónico.</value>
+  </data>
+  <data name="msg_profile_update" xml:space="preserve">
+    <value>El perfil se actualiza con éxito.</value>
+  </data>
+  <data name="msg_save_contact_success" xml:space="preserve">
+    <value>Información de contacto insertada con éxito.</value>
+  </data>
+  <data name="msg_save_contract_success" xml:space="preserve">
+    <value>Información del contrato insertada con éxito.</value>
+  </data>
+  <data name="msg_save_email_success" xml:space="preserve">
+    <value>Configuración de correo electrónico insertada con éxito.</value>
+  </data>
+  <data name="msg_save_setting" xml:space="preserve">
+    <value>Configuración insertada con éxito.</value>
+  </data>
+  <data name="peak_time" xml:space="preserve">
+    <value>Hora pico</value>
+  </data>
+  <data name="recover" xml:space="preserve">
+    <value>Recuperar</value>
+  </data>
+  <data name="sat" xml:space="preserve">
+    <value>sábado</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="save_info" xml:space="preserve">
+    <value>Guardar información</value>
+  </data>
+  <data name="set_energy_hours" xml:space="preserve">
+    <value>Establecer horas de energía</value>
+  </data>
+  <data name="sun" xml:space="preserve">
+    <value>domingo</value>
+  </data>
+  <data name="title_password" xml:space="preserve">
+    <value>Ingrese su dirección de correo electrónico a continuación y le enviaremos instrucciones sobre cómo recuperar una contraseña. ¿Contraseña?</value>
+  </data>
+  <data name="val_enter_amt" xml:space="preserve">
+    <value>Ingrese la cantidad del recargo</value>
+  </data>
+  <data name="val_enter_bill_rate" xml:space="preserve">
+    <value>Ingrese la tasa de facturación</value>
+  </data>
+  <data name="val_enter_e_date" xml:space="preserve">
+    <value>Ingrese la fecha de finalización</value>
+  </data>
+  <data name="val_enter_from_date" xml:space="preserve">
+    <value>Por favor ingrese desde la fecha</value>
+  </data>
+  <data name="val_enter_message" xml:space="preserve">
+    <value>Por favor ingrese el texto del mensaje.</value>
+  </data>
+  <data name="val_enter_pay_date" xml:space="preserve">
+    <value>Por favor ingrese la fecha de pago</value>
+  </data>
+  <data name="val_enter_sub" xml:space="preserve">
+    <value>Por favor ingrese el sujeto</value>
+  </data>
+  <data name="val_enter_s_date" xml:space="preserve">
+    <value>Por favor ingrese la fecha de inicio</value>
+  </data>
+  <data name="val_enter_template" xml:space="preserve">
+    <value>Por favor seleccione la plantilla</value>
+  </data>
+  <data name="val_enter_time" xml:space="preserve">
+    <value>Por favor ingrese el tiempo</value>
+  </data>
+  <data name="val_enter_to_date" xml:space="preserve">
+    <value>Por favor ingrese hasta la fecha</value>
+  </data>
+  <data name="val_enter_val" xml:space="preserve">
+    <value>Por favor ingrese el valor</value>
+  </data>
+  <data name="val_form_email" xml:space="preserve">
+    <value>Por favor ingrese el formulario de correo electrónico.</value>
+  </data>
+  <data name="val_invalid_email" xml:space="preserve">
+    <value>Dirección de correo electrónico no válida</value>
+  </data>
+  <data name="val_invalid_time" xml:space="preserve">
+    <value>Ingrese la hora en formato hh: mm</value>
+  </data>
+  <data name="val_enter_cmp_name" xml:space="preserve">
+    <value>Por favor introduzca el nombre de la empresa</value>
+  </data>
+  <data name="val_enter_contact_name" xml:space="preserve">
+    <value>Por favor ingrese el nombre de contacto</value>
+  </data>
+  <data name="val_enter_email" xml:space="preserve">
+    <value>Por favor ingrese correo electrónico</value>
+  </data>
+  <data name="val_enter_new_pass" xml:space="preserve">
+    <value>Por favor ingrese una nueva contraseña</value>
+  </data>
+  <data name="val_enter_pass" xml:space="preserve">
+    <value>Por favor, ingrese contraseña</value>
+  </data>
+  <data name="val_enter_uname" xml:space="preserve">
+    <value>Por favor ingrese el nombre de usuario</value>
+  </data>
+  <data name="val_pass" xml:space="preserve">
+    <value>La contraseña elegida debe cumplir los siguientes criterios: mínimo de 8 caracteres: al menos 1 alfabeto, 1 número y 1 carácter especial.</value>
+  </data>
+  <data name="val_uname" xml:space="preserve">
+    <value>El nombre de usuario debe cumplir los siguientes criterios: una letra, un número y un mínimo de ocho (8) caracteres</value>
+  </data>
+  <data name="day15" xml:space="preserve">
+    <value>15 Días</value>
+  </data>
+  <data name="monthly" xml:space="preserve">
+    <value>Mensualmente</value>
+  </data>
+  <data name="pm" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="select_bill" xml:space="preserve">
+    <value>Seleccione Período de Facturación</value>
+  </data>
+  <data name="select_pm" xml:space="preserve">
+    <value>Seleccione la Propiedad a Administrar</value>
+  </data>
+  <data name="weekly" xml:space="preserve">
+    <value>Semanal</value>
+  </data>
+  <data name="invocie_list" xml:space="preserve">
+    <value>Listas de Facturas</value>
+  </data>
+  <data name="meter_list" xml:space="preserve">
+    <value>Listas de Medidores</value>
+  </data>
+  <data name="meter_name" xml:space="preserve">
+    <value>Nombre del Medidor</value>
+  </data>
+  <data name="not_assign" xml:space="preserve">
+    <value>Medidor no asignado</value>
+  </data>
+  <data name="search_by_tenant" xml:space="preserve">
+    <value>Búsqueda por inquilino</value>
+  </data>
+  <data name="tenant_inv_list" xml:space="preserve">
+    <value>Listas de Facturas del Inquilino</value>
+  </data>
+  <data name="tenant_list" xml:space="preserve">
+    <value>Listas de Inquilinos</value>
+  </data>
+  <data name="bill_rule" xml:space="preserve">
+    <value>Reglas de Facturación</value>
+  </data>
+  <data name="account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="energy" xml:space="preserve">
+    <value>Energia</value>
+  </data>
+  <data name="how_much" xml:space="preserve">
+    <value>Energia Consumida</value>
+  </data>
+  <data name="pm_list" xml:space="preserve">
+    <value>Listas de Administradores de Propiedad</value>
+  </data>
+  <data name="pm_list_title" xml:space="preserve">
+    <value>Listas de Propiedades</value>
+  </data>
+  <data name="meter_detch" xml:space="preserve">
+    <value>Eliminar Medidor</value>
+  </data>
+  <data name="prev_chart" xml:space="preserve">
+    <value>Gráfica de Consumos Anteriores</value>
+  </data>
+  <data name="meter_update" xml:space="preserve">
+    <value>Actualizar Medidor</value>
+  </data>
+  <data name="teant_status" xml:space="preserve">
+    <value>Estado del inquilino</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="detach_meter" xml:space="preserve">
+    <value>Elinimar Medidor</value>
+  </data>
+  <data name="previous_chart" xml:space="preserve">
+    <value>Historial de Facturaction</value>
+  </data>
+  <data name="dec_demanda_facturable_amount" xml:space="preserve">
+    <value>Cantidad de Demanda Facturable</value>
+  </data>
+  <data name="dec_total_ene" xml:space="preserve">
+    <value>Energia Total</value>
+  </data>
+  <data name="final_amount" xml:space="preserve">
+    <value>Cantidad final</value>
+  </data>
+  <data name="final_amout" xml:space="preserve">
+    <value>Cantidad Total</value>
+  </data>
+  <data name="Get" xml:space="preserve">
+    <value>Get</value>
+  </data>
+  <data name="tenantEngcon" xml:space="preserve">
+    <value>Consumo de Energía del Inquilino</value>
+  </data>
+  <data name="charts" xml:space="preserve">
+    <value>Gráficas de Consumo</value>
+  </data>
+  <data name="current_meter_readings_report" xml:space="preserve">
+    <value>Reporte de Lectura de Medidores</value>
+  </data>
+  <data name="EnergyManagement" xml:space="preserve">
+    <value>Administración de Energía</value>
+  </data>
+  <data name="tenant_consumption_report" xml:space="preserve">
+    <value>Reporte de Consumo de Inquilinos</value>
+  </data>
+</root>

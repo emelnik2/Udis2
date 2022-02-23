@@ -1,0 +1,81 @@
+﻿@model TenantMNG.ViewModel.TenantMeterVM
+@{
+    ViewBag.Title = "AssignMeter";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.tenant</a>  </div>
+
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.assign_meter</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Html.BeginForm("AssignMeter", "PM", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+
+                        if (ViewBag.messgVal == 1)
+                        {
+                            <div class="alert alert-success" id="divSuccess" style="display:none">
+                                @TenantMNG.Resource.meter_assign_mess_succ
+                            </div>
+                        }
+                        else if (ViewBag.messgVal == 0)
+                        {
+                            <div class="alert alert-danger" id="divFail" style="display:none">
+                                @TenantMNG.Resource.meter_assign_mess_fail
+                            </div>
+                        }
+                        else if (ViewBag.messgVal == -1)
+                        {
+                            <div class="alert alert-danger" id="divError" style="display:none">
+                                @TenantMNG.Resource.meter_assign_mess_alredy
+                            </div>}
+
+                        <br />
+                        <div class="span12">
+
+                            @for (var i = 0; i < Model.Meters.Count; i++)
+                            {
+
+                                <div class="span6" style="margin-left:0px">
+                                    @Html.CheckBoxFor(m => m.Meters[i].Selected)
+                                    @Html.HiddenFor(m => m.Meters[i].Text)
+                                    @Html.HiddenFor(m => m.Meters[i].Value)
+                                    <span>@Model.Meters[i].Text</span>
+                                </div>
+                            }
+                            <div class="clearfix"></div>
+                            <br />
+                            @Html.HiddenFor(m => m.int_id)
+                            @Html.HiddenFor(m => m.int_tenant_id)
+
+
+                            <input type="submit" id="btnsave"
+                                   value="@TenantMNG.Resource.assign_meter" class="btn btn-success" />
+                            <div class="clearfix"></div>
+                            <br />
+                        </div>
+
+                        <div class="clearfix"></div>
+
+
+
+                        <div class="span12">
+
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

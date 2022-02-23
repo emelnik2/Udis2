@@ -1,0 +1,85 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+
+
+
+@using (Html.BeginForm("SetupTenantEmailInfo", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formemail" }))
+{
+
+    <div class="alert alert-success" id="divSuccess_email" style="display:none">
+       @TenantMNG.Resource.msg_save_email_success
+    </div>
+
+    <div class="alert alert-danger" id="divFail_email" style="display:none">
+        @TenantMNG.Resource.msg_global_fail
+    </div>
+
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.emailsetup.str_from_email, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.emailsetup.str_from_email, new { @class = "span12", @id = "from_email" })
+                @Html.ValidationMessageFor(m => m.emailsetup.str_from_email)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.emailsetup.str_cc_email, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.emailsetup.str_cc_email, new { @class = "span12", @id = "cc_email" })
+                @Html.ValidationMessageFor(m => m.emailsetup.str_cc_email)
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="span5" style="margin-left:0px">
+        <div class="control-group">
+            @Html.LabelFor(m => m.emailsetup.str_bcc_email, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.emailsetup.str_bcc_email, new { @class = "span12", @id = "bcc_email" })
+                @Html.ValidationMessageFor(m => m.emailsetup.str_bcc_email)
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.emailsetup.str_subject, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.emailsetup.str_subject, new { @class = "span12", @id = "subject" })
+                @Html.ValidationMessageFor(m => m.emailsetup.str_subject)
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="control-group">
+        @Html.LabelFor(m => m.emailsetup.str_body, new { @class = "control-label" })
+
+        <div class="controls">
+            @Html.TextAreaFor(m => m.emailsetup.str_body, new { @class = "span11", @id = "body" })
+            @Html.ValidationMessageFor(m => m.emailsetup.str_body)
+        </div>
+    </div>
+
+    <br />
+    @Html.HiddenFor(m => m.emailsetup.int_email_id, new { @id = "email_id" })
+    <div class="form-actions">
+        @*<input type="submit" class="btn btn-success" value="Save" />*@
+        <input type="button" id="btnsaveemail"
+               value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "Tenant", Session["utypeid"].ToString() == "2" ? "PM" : "User", null, new { @class = "btn btn-default" })
+    </div>
+
+
+
+}
+
+
+
+
+
+

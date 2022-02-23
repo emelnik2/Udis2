@@ -1,0 +1,189 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+@{
+    ViewBag.Title = "MeterReading";
+    Layout = "~/Views/Shared/_LayoutTenant.cshtml";
+}
+@section scriptstop
+{
+    <script>
+        $(function () {
+
+            $("#s_date").datepicker({
+                //maxDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+                }
+            });
+
+            $("#e_date").datepicker({
+                // maxDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#s_date").datepicker("option", "maxDate", dt);
+
+
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+
+        });
+
+
+
+    </script>
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Tenant")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.summary</a> </div>
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.current_meter_readings_report @TenantMNG.Resource.report</h5>
+                </div>
+                <div class="widget-content">
+                    @using (Html.BeginForm("MeterReading", "Tenant", FormMethod.Get))
+                    {
+
+
+                        <div class="span3">
+                            @Html.TextBox("s_date", null, new { placeholder = TenantMNG.Resource.begin_on })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("e_date", null, new { placeholder = TenantMNG.Resource.end_on })
+                        </div>
+
+                    }
+
+                    <br />
+
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table" id="table">
+                            <thead>
+                                <tr>
+                                    @*<th>@Html.ActionLink("Date", "Invoice", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+                                    <th>@TenantMNG.Resource.monthly</th>
+                                    <th>@TenantMNG.Resource.tenant</th>
+                                    <th>@TenantMNG.Resource.meter_name</th>
+                                    @*<th>@TenantMNG.Resource.view_all</th>*@
+                                    <th>@TenantMNG.Resource.dec_base_energy</th>
+                                    <th>@TenantMNG.Resource.dec_peak_energy</th>
+                                    <th>@TenantMNG.Resource.dec_inter_energy</th>
+                                    <th>@TenantMNG.Resource.bill_period</th>
+                                    <th>@TenantMNG.Resource.teant_status</th>
+                                    <th>@TenantMNG.Resource.begin_on</th>
+                                    <th>@TenantMNG.Resource.dec_total_ene</th>
+                                    @*<th>@Html.ActionLink("Total Amount", "Summary", new { sortby = ViewBag.SortAmountParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td>@string.Format("{0:MM-dd-yyyy}",user.date_invoice_date)</td>
+                                        <td>@user.tbl_user_master.str_comp_name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).str_meter_id)</td>
+                                        @*<td>@TenantMNG.Core.CommonCls.getaluefactfromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>*@
+                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_base_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_peak_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_inter_energy)</td>
+                                        <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
+                                        <td>@user.bit_tenant_active</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_demanda_facturable)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_total_ene)</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            @*<tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+                                        <td>@user.tbl_user_master.str_comp_name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>
+                                        <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
+                                        <td>@user.tbl_invoice_details.ElementAt(0).dec_peak_energy</td>
+                                        <td>@user.tbl_invoice_details.ElementAt(0).dec_inter_energy</td>
+                                        <td>@user.dec_custome_charges</td>
+                                        <td>@user.dec_demad</td>
+                                        @*<td>@user.dec_TOD_demad</td>
+                                            <td>@user.dec_gas</td>
+                                            <td>@user.dec_water</td>
+                                                    <td>@user.dec_tax_amt</td>
+                                                    <td>@user.dec_total</td>
+                                                    @*<td>@Html.ActionLink("Generate Invoice", "GeneratePDF", new { @id = user.int_invoice_id }, new { @class = "btn btn-warning btn-mini" }) </td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td colspan="8"><b>Total</b></td>
+                                                    <td><span id="sum"></span></td>
+                                                </tr>
+                                                </tbody>*@
+                        </table>
+
+                        @Html.PagedListPager(Model, page => Url.Action("Summary", new { tenantid = Request["tenantid"], page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    @*<script type='text/javascript'>
+        var table = document.getElementById("table"), sumval = 0;
+        debugger;
+        for (var i = 1; i < table.rows.length - 1; i++) {
+            sumval = sumval + parseInt(table.rows[i].cells[8].innerHTML);
+        }
+        $("#sum").append(sumval);
+    </script>
+    <script>
+        var msg = '@ViewBag.Message';
+
+        if (msg && msg.length > 0) {
+
+            $('#pnloption').modal('show');
+        }
+    </script>*@
+}
+
+

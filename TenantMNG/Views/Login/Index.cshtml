@@ -1,0 +1,146 @@
+﻿@model TenantMNG.ViewModel.LoginVM
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@TenantMNG.Core.CommonCls._applicationname : Login </title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/login")
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval");
+
+
+
+    @{Html.EnableClientValidation();}
+    @{Html.EnableUnobtrusiveJavaScript();}
+
+</head>
+<body>
+    <div id="loginbox">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-vertical", @id = "loginform" }))
+        {
+
+            <div class="control-group normal_text"> <h3><img src="~/img/Logo_Tecnobuildings_Small.png" alt="Logo" /></h3></div>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_lg"><i class="icon-user"> </i></span>@Html.TextBoxFor(m => m.str_user_name, new { placeholder = TenantMNG.Resource.usernamplace })
+                        @Html.ValidationMessageFor(m => m.str_user_name)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on bg_ly"><i class="icon-lock"></i></span>@Html.PasswordFor(m => m.str_password, new { placeholder = TenantMNG.Resource.passplace })
+                        @Html.ValidationMessageFor(m => m.str_password)
+                    </div>
+                </div>
+
+            </div>
+            if (ViewBag.isvalid == "False")
+            {
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="alert alert-danger">
+                            Sorry !! Invalid Login.
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="form-actions">
+                <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">@TenantMNG.Resource.lost_password</a></span>
+                <span class="pull-right"><button type="submit" class="btn btn-success"> @TenantMNG.Resource.login</button></span>
+            </div>
+
+        }
+        @using (Html.BeginForm("Forgotpassword", "Login", FormMethod.Post, new { @class = "form-vertical", @id = "recoverform" }))
+        {
+
+            <p class="normal_text">@TenantMNG.Resource.title_password</p>
+
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lo"><i class="icon-envelope"></i></span>@Html.TextBoxFor(m => m.str_user_name, new { placeholder = "Enter User Name or Email id", @id = "txt_uname" })
+                    @Html.ValidationMessageFor(m => m.str_user_name)
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; @TenantMNG.Resource.back_login</a></span>
+                <span class="pull-right"><button type="button" id="btnpassword" class="btn btn-info">@TenantMNG.Resource.recover</button></span>
+            </div>
+
+            <div class="alert alert-success" id="divSuccess" style="display:none">
+                @TenantMNG.Resource.msg_password_success
+            </div>
+
+            <div class="alert alert-danger" id="divFail" style="display:none">
+               @TenantMNG.Resource.msg_password_fail
+            </div>
+        }
+        <div style="text-align:center;color:white;">
+            @{
+                foreach (var i in TenantMNG.LanguageMang.AvailableLanguages)
+                {
+                    @Html.ActionLink(i.LanguageFullName, "ChangeLanguage", "Login", new { lang = i.LanguageCultureName }, null)<text> </text>
+    }
+}
+        </div>
+    </div>
+</body>
+
+
+
+</html>
+<script>
+    $(document).ready(function () {
+
+        //save contact information
+        $("#btnpassword").click(function () {
+            alert('dsd');
+
+            $.validator.unobtrusive.parse("#recoverform");
+            $("#recoverform").validate();
+
+            if ($("#recoverform").valid()) {
+                var options = {};
+                options.url = "/Login/Forgotpassword";
+                options.type = "POST";
+                options.data = JSON.stringify({ 'emailid': $('#txt_uname').val() });
+                options.contentType = "application/json";
+                options.dataType = "json";
+                options.success = function (data) {
+                    debugger;
+                    $('#txt_uname').val('');
+                    alertMessageContact(data);
+                };
+                options.error = function () {
+                    alertMessageContact('0');
+                };
+                $.ajax(options);
+
+            }
+
+        })
+
+    });
+
+    function alertMessageContact(val) {
+        if (val > 0) {
+            $('#divSuccess').show();
+            $('#divFail').hide();
+        }
+        else if (val == 0) {
+            $('#divSuccess').hide();
+            $('#divFail').show();
+        }
+    }
+</script>

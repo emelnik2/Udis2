@@ -1,0 +1,145 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+@{
+
+    ViewBag.Title = "PreviewMeter";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@section scriptstop
+{
+    <script>
+        $(function () {
+
+            $("#s_date").datepicker({
+                //maxDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+                }
+            });
+
+            $("#e_date").datepicker({
+               // maxDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#s_date").datepicker("option", "maxDate", dt);
+
+
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+
+        });
+
+
+
+    </script>
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.current_meter_readings_report</a> </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenant @TenantMNG.Resource.current_meter_readings_report</h5>
+                </div>
+                <div class="widget-content">
+                    @using (Html.BeginForm("PreviewMeter", "PM", FormMethod.Get))
+                    {
+                        SelectList listtenant = ViewBag.TenantDropDown;
+
+
+                        <div class="span3">
+
+                            @Html.DropDownList("int_id", listtenant, " " + TenantMNG.Resource.search_by_tenant)
+
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("s_date", null, new { placeholder = TenantMNG.Resource.begin_on })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("e_date", null, new { placeholder = TenantMNG.Resource.end_on })
+                        </div>
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success" />
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+
+                                @Html.ActionLink(TenantMNG.Resource.clear, "PreviewMeter", "PM", new { @class = "btn btn-mini" })
+
+                            }
+                            @Html.ActionLink(TenantMNG.Resource.export_to_excel, "PreviewExportToExcel", "PM", new { @page = Request["page"], @class = "btn btn-mini btn-info" })
+                        </div>
+                    }
+
+                    <br>
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                @*<th>@Html.ActionLink("Date", "Invoice", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+                                <th>@TenantMNG.Resource.monthly</th>
+                                <th>@TenantMNG.Resource.tenant</th>
+                                <th>@TenantMNG.Resource.meter_name</th>
+                                @*<th>@TenantMNG.Resource.view_all</th>*@
+                                <th>@TenantMNG.Resource.dec_base_energy</th>
+                                <th>@TenantMNG.Resource.dec_peak_energy</th>
+                                <th>@TenantMNG.Resource.dec_inter_energy</th>
+                                <th>@TenantMNG.Resource.bill_period</th>
+                                <th>@TenantMNG.Resource.teant_status</th>
+                                <th>@TenantMNG.Resource.begin_on</th>
+                                <th>@TenantMNG.Resource.dec_total_ene</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                            <tr>
+                                <td>@string.Format("{0:MM-dd-yyyy}", user.date_invoice_date)</td>
+                                @*<td>@user.date_invoice_date.ToString.Format("{}")@*Format("{0:MM-dd-yyyy}", dt.fromdate)*@
+                                <td>@user.tbl_user_master.str_comp_name</td>
+                                <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>
+                                @*<td>@TenantMNG.Core.CommonCls.getaluefactfromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>*@
+                                <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_base_energy)</td>
+                                <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_peak_energy)</td>
+                                <td>@string.Format("{0:0.00}", user.tbl_invoice_details.ElementAt(0).dec_inter_energy)</td>
+                                <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
+                                <td>@user.bit_tenant_active</td>
+                                <td>@string.Format("{0:0.00}",user.dec_demanda_facturable)</td>
+                                <td>@string.Format("{0:0.00}", user.dec_total_ene) </td>
+                                    
+
+</tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("PreviewMeter", "PM", new { tenantid = Request["tenantid"], page }),
+                       new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

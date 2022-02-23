@@ -1,0 +1,74 @@
+﻿@model TenantMNG.ViewModel.TenantMeterVM
+<!-- Modal -->
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@TenantMNG.Resource.select @TenantMNG.Resource.meter</h4>
+    </div>
+    <div class="modal-body">
+
+
+        @using (Html.BeginForm("AssignMeter", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formassignmeter" }))
+        {
+
+            <div class="alert alert-success" id="divSuccess" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_succ
+            </div>
+
+            <div class="alert alert-danger" id="divFail" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_fail
+            </div>
+
+            <div class="alert alert-danger" id="divError" style="display:none">
+                @TenantMNG.Resource.meter_assign_mess_alredy
+            </div>
+
+            @*SelectList listmeter = ViewBag.MeterDropDown;
+
+                <div class="span4">
+                    @Html.DropDownList("meter_id", listmeter, "-- " + TenantMNG.Resource.select + " " + TenantMNG.Resource.meter + " --", new { @class = "span4" })
+                    @Html.ValidationMessageFor(m => m.str_meter_id)
+                </div>*@
+            <br />
+            @*<div class="span4" style="display:none">
+                Html.ListBox("meterlist",new MultiSelectList(Model.Meters,"Value","Text"), new { @class = "listbox" })
+            </div>*@
+            <div class="span6">
+
+                @for (var i = 0; i < Model.Meters.Count; i++)
+                {
+
+                    <div class="span5">
+                        @Html.CheckBoxFor(m => m.Meters[i].Selected)
+                        @Html.HiddenFor(m => m.Meters[i].Text)
+                        @Html.HiddenFor(m => m.Meters[i].Value)
+                        <span>@Model.Meters[i].Text</span>
+                    </div>
+                }
+
+            </div>
+
+
+
+
+
+            <div class="span1">
+                @Html.HiddenFor(m => m.int_id)
+                @Html.HiddenFor(m => m.int_tenant_id)
+
+
+                <input type="button" id="btnsave"
+                       value="@TenantMNG.Resource.assign_meter" class="btn btn-success" />
+
+            </div>
+
+        }
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+    </div>
+</div>
+@*<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>*@

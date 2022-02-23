@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Template</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <style>
+        body {
+            background: #EEE;
+            /* font-size:0.9em !important; */
+        }
+
+        .invoice {
+            width: 970px !important;
+            margin: 50px auto;
+        }
+
+            .invoice .invoice-header {
+                padding: 25px 25px 15px;
+            }
+
+                .invoice .invoice-header h1 {
+                    margin: 0;
+                }
+
+                .invoice .invoice-header .media .media-body {
+                    font-size: .9em;
+                    margin: 0;
+                }
+
+            .invoice .invoice-body {
+                border-radius: 10px;
+                padding: 25px;
+                background: #FFF;
+            }
+
+            .invoice .invoice-footer {
+                padding: 15px;
+                font-size: 0.9em;
+                text-align: center;
+                color: #999;
+            }
+
+        .logo {
+            max-height: 70px;
+            border-radius: 10px;
+        }
+
+        .dl-horizontal {
+            margin: 0;
+        }
+
+            .dl-horizontal dt {
+                /*float: left;*/
+                width: 190px;
+                overflow: hidden;
+                clear: left;
+                text-align: left;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .dl-horizontal dd {
+                margin-left: 120px;
+            }
+
+        .rowamount {
+            padding-top: 15px !important;
+        }
+
+        .rowtotal {
+            font-size: 1.3em;
+        }
+
+        .colfix {
+            width: 12%;
+        }
+
+        .mono {
+            font-family: monospace;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container invoice">
+        <div class="invoice-header">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="#hlogo" height="70" width="200" />
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="#place" height="26" width="26" />
+                        <h5 style="font-size:10px;">2 Lansing Square, Suite 1001 Toronto, ON, M2J 4P8</h5>
+                    </div>
+                    <div class="col-xs-2">
+                        <img src= "#mail"/>
+                        <h5 style="font-size:10px;"> info@accuenergy.com</h5>
+                    </div>
+                    <div class="col-xs-2">
+                        <img src= "#web" height="26" width="26" />
+                        <h5 style="font-size:10px;"> www.accuenergy.com</h5>
+                    </div>
+                    <div class="col-xs-2">
+                        <img src= "#fone" height="26" width="30" />
+                        <h5 style="font-size:10px;">1-877-721-8908<br /> Mon-Fri 9:00am to 5:00pm</h5>
+                    </div>
+                </div>      
+            </div>
+        <div class="invoice-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <h4 style="text-align:right">Statement Date : #Statement</h4>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">AMOUNT DUE: #totalamt </h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4 style="text-align:center">Charges Summary</h4>
+
+                            <table class="table table-bordered table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center rowtotal mono"> On Peak Charges </td>
+                                        <td class="text-center rowtotal mono">#energyusage1 * #energyrate1 </td>
+                                        <td class="text-center rowtotal mono">$#energyamt1</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono"> Mid Peak Charges </td>
+                                        <td class="text-center rowtotal mono">#energyusage2 * #energyrate2</td>
+                                        <td class="text-center rowtotal mono">$#energyamt2</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono">  Off Peak Charges </td>
+                                        <td class="text-center rowtotal mono"> #energyusage3 * #energyrate3</td>
+                                        <td class="text-center rowtotal mono">$#energyamt3</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono">Delivery Charges </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono">  Regulatory Charges </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono">Debt Retirement Charge </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-center rowtotal mono">HST</td>
+                                        <td class="text-center rowtotal mono"></td>
+                                        <td class="text-center rowtotal mono"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center rowtotal mono">  Ontario Clean Energy Benefit </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                        <td class="text-center rowtotal mono"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center rowtotal mono"> Total Charges This Invoice </td>
+                                        <td class="text-center rowtotal mono">&emsp; </td>
+                                        <td class="text-center rowtotal mono">#totalamt</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Meter Reading</h3>
+                </div>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th class="text-center colfix">Current Reading Date</th>
+                            <th class="text-center colfix">Previuos Reading Date</th>
+                            <th class="text-center colfix">Days</th>
+                            <!--<th class="text-center colfix">Tax</th>
+                    <th class="text-center colfix">Total</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">
+                                <span class="mono">#metername</span>
+
+                            </td>
+
+                            <td class="text-right">
+                                <span class="mono">#edate</span>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">#sdate</span>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">#days</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <td class="text-center col-xs-1">Meter Number</td>
+                            <td class="text-center col-xs-1">Meter Type</td>
+                            <td class="text-center col-xs-1">Current Reading</td>
+                            <td class="text-center col-xs-1">Previous Reading</td>
+                            <td class="text-center col-xs-1">Usage</td>
+                            <td class="text-center col-xs-1">Units</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="text-center rowtotal mono">#metername</th>
+                            <th class="text-center rowtotal mono">ELM</th>
+                            <th class="text-center rowtotal mono">#VaueMax</th>
+                            <th class="text-center rowtotal mono">#VaueMin</th>
+                            <th class="text-center rowtotal mono">#usese</th>
+                            <th class="text-center rowtotal mono">kWh</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Payment Method We Accept</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p style="font-size:11px;">Cheque</p>
+                            <p style="font-size:9px;">
+                                Payable to ECCUENERGY <br /><small>
+                                    Please include account number in memo section of cheque
+                                </small>
+                            </p>
+
+                            <p style="font-size:11px;">VISA/MC</p>
+                            <p style="font-size:9px;">
+                                <b> Pay online at www.accuenergy.com</b> <br />
+                            </p>
+                           <p style="font-size:11px;">PAP</p>
+                           <p style="font-size:9px;">
+                               Pre-Authorized Payment Plan
+                               <br /><small>
+                           Save time and avoid late payment charges
+                                  </small>
+                           </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Go Paperless today to  conserve annually</h3>
+                        </div>
+                        <div class="panel-body">
+                <dl class="dl-horizontal">
+            <dt>30 Pounds of wood</dt>
+            <dd> 1. Visit www.accuenergy.com</dd>
+
+            <dt>39 Pounds of CO2</dt>
+            <dd>2. Enter Account Number and  code &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 198Acc56</dd>
+
+
+            <dt>94 Gallons of wasterwater</dt>
+            <dd>3. Suscribe To eBilling</dd>
+            <p style="font-size:9px;"><br />
+             Effective May 1st 2015 your hydro rates are changing. Please visit our website www.accuenergy.com  for  more  information.  For  general  account inquiries please call 1-877-721-8908(Mon-Fri 9:00am to 5:00pm)
+
+            </p>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="invoice-footer">
+                Thank you for choosing our services.
+                <br /> We hope to see you again soon
+            </div>
+        </div>
+
+
+</body>
+</html>
+
+    

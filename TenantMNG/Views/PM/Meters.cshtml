@@ -1,0 +1,291 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using TenantMNG.Core;
+@model IPagedList<TenantMNG.ADO.NET.meter>
+@{
+    ViewBag.Title = "Meters";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.meter_list</a>  </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="select-tenant">
+        <div id="select-tenant-container"></div>
+    </div>
+
+    @*warning message model for detach meter*@
+    <div class="modal hide fade in" id="deatchmeter">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@TenantMNG.Resource.warning</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <div class="alert alert-success" id="divSuccess" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_succ
+                </div>
+
+                <div class="alert alert-danger" id="divFail" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_fail
+                </div>
+
+                <div class="alert alert-danger" id="divError" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_alredy
+                </div>
+
+
+
+                <div class="span4">
+                    @TenantMNG.Resource.war_detch_mess
+                </div>
+
+                <div class="span1">
+
+                    @using (Html.BeginForm("DetachMeterTenant", "PM", FormMethod.Post))
+                    {
+                        <input type="submit" id="btndetach"
+                               value=@TenantMNG.Resource.detach class="btn btn-success" />
+                    }
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hide fade in" id="Addmeter">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@TenantMNG.Resource.warning</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <div class="alert alert-success" id="divSuccess" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_succ
+                </div>
+
+                <div class="alert alert-danger" id="divFail" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_fail
+                </div>
+
+                <div class="alert alert-danger" id="divError" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_alredy
+                </div>
+
+
+
+                <div class="span4">
+                    @TenantMNG.Resource.war_detch_mess
+                </div>
+
+                <div class="span1">
+
+                    @using (Html.BeginForm("DetachMeterTenant", "PM", FormMethod.Post))
+                    {
+                        <input type="submit" id="btndetach"
+                               value=@TenantMNG.Resource.detach class="btn btn-success" />
+                    }
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.meter_list</h5>
+                </div>
+                <div class="widget-content">
+                    @*@Html.ActionLink(TenantMNG.Resource.add_new, "CreateMeter", "PM", null, new { @class = "btn btn-primary" }*@
+
+                    <br />
+
+
+                    @Html.AntiForgeryToken()
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>@TenantMNG.Resource.meter @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.assign_to</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+
+
+                                        <td>@user.name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name)</td>
+
+                                        <td>
+                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.name">@TenantMNG.Resource.detach_meter</a>
+
+                                            }
+                                            else
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
+                                            }
+                                        <td>
+                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
+
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Meters", new { page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptstop {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn').filter('.btn-mini').filter('.btn-success').click(function () {
+
+
+                var url = '@Url.Action("AssignMeterToTenant","PM")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function (data) {
+
+
+                    if (data != 1) {
+
+                        $('#select-tenant-container').html(data);
+                        $('#select-tenant').modal('show');
+                    }
+                    else {
+                        $('#pnlnocontractwarning').modal('show');
+                    }
+
+                });
+
+            })
+
+
+
+            $('.btn').filter('.btn-mini').filter('.btn-danger').click(function () {
+
+                var url = '@Url.Action("DetachMeter","PM")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function () {
+
+                    $('#deatchmeter').modal('show');
+
+
+                });
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+            $(document).on("click", "#btnsave", function (e) {
+
+
+
+
+                //$.validator.unobtrusive.parse("#formassignmeter");
+                //$("#formassignmeter").validate();
+                //if ($("#formassignmeter").valid()) {
+
+                var tenantmeter = {};
+
+                tenantmeter.int_tenant_id = $('#tenant_id').val();
+                tenantmeter.int_id = $('#int_id').val();
+                tenantmeter.str_meter_id = $('#str_meter_id').val();
+
+
+
+                var options = {};
+                options.url = '@Url.Action("AssignMeterToTenant", "PM")';
+                options.type = "POST";
+                options.data = JSON.stringify(tenantmeter),
+                options.contentType = "application/json";
+                options.dataType = "json";
+                options.success = function (data) {
+
+                    alertMessage(data);
+                };
+                options.error = function () {
+                    alertMessage(0);
+                };
+                $.ajax(options);
+                //};
+
+            });
+        });
+
+        function alertMessage(val) {
+            if (val > 0) {
+                $('#divSuccess').show();
+                $('#divFail').hide();
+                $('#divError').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess').hide();
+                $('#divFail').hide();
+                $('#divError').show();
+            }
+            else {
+                $('#divSuccess').hide();
+                $('#divFail').show();
+                $('#divError').hide();
+            }
+        }
+    </script>
+}

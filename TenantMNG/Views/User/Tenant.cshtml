@@ -1,0 +1,160 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+@model IEnumerable<TenantMNG.Models.tbl_user_master>
+
+@{
+    ViewBag.Title = TenantMNG.Core.CommonCls._applicationname + " : Tenant Users List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.tenantuser</a> </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenantuser</h5>
+                </div>
+                <div class="widget-content">
+
+                    @Html.ActionLink(TenantMNG.Resource.add_new, "CreateTenant", "User", new { @class = "btn btn-primary" })
+                    <br />
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="modal hide fade in" id="edit-bill-rate">
+                            <div id="edit-bill-rate-container"></div>
+                        </div>
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.company + " " + TenantMNG.Resource.name, "Tenant", new { sortby = ViewBag.SortNameParameter, page = Request["page"] })</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.contact + " " + TenantMNG.Resource.name, "Tenant", new { sortby = ViewBag.SortContactNameParameter, page = Request["page"] })</th>
+                                    <th>@Html.ActionLink(TenantMNG.Resource.city, "Tenant", new { sortby = ViewBag.SortCityParameter, page = Request["page"] })</th>
+                                    <th>@TenantMNG.Resource.state</th>
+                                    <th>@TenantMNG.Resource.pin_code</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+                                        <td>@user.str_comp_name</td>
+                                        <td>@user.str_contact_name</td>
+                                        <td>@user.str_city</td>
+                                        <td>@user.str_state</td>
+                                        <td>@user.int_pin_code</td>
+                                        <td>
+                                            @Html.ActionLink(TenantMNG.Resource.edit, "EditTenant", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-success" })
+                                            @Html.ActionLink(TenantMNG.Resource.delete, "Delete", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" }) &nbsp;|&nbsp;
+                                            @if (TenantMNG.Core.CommonCls.isEditbillRate(user.int_id))
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.edit_bill_rate</a>}
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @Html.PagedListPager((IPagedList)Model,
+                   page => Url.Action("Tenant", new { page, sortBy = Request["sortBy"], @class = "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" }), new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptstop {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('.btn').filter('.btn-mini').filter('.btn-info').click(function () {
+
+                var url = '@Url.Action("BillRate","User")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function (data) {
+
+                    $('#edit-bill-rate-container').html(data);
+                    $('#edit-bill-rate').modal('show');
+                })
+            })
+
+            $(document).on("click", "#btnsave", function (e) {
+
+
+
+
+                $.validator.unobtrusive.parse("#formeditbill");
+                $("#formeditbill").validate();
+                if ($("#formeditbill").valid()) {
+
+                    var tenantmeter = {};
+
+                    tenantmeter.dec_rate = $('#dec_rate').val();
+                    tenantmeter.dec_seasonal_multi_rate = $('#dec_seasonal_rate').val();
+                    tenantmeter.dec_surcharge_amt = $('#dec_surcharge_amt').val();
+                    tenantmeter.int_id = $('#int_id').val();
+
+                    var options = {};
+                    options.url = "/User/BillRate";
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenantmeter),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+
+                        alertMessage(data);
+                    };
+                    options.error = function () {
+                        alertMessage(0);
+                    };
+                    $.ajax(options);
+                };
+
+            });
+
+        })
+
+        function alertMessage(val) {
+            if (val > 0) {
+                $('#divSuccess').show();
+                $('#divFail').hide();
+                $('#divError').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess').hide();
+                $('#divFail').hide();
+                $('#divError').show();
+            }
+            else {
+                $('#divSuccess').hide();
+                $('#divFail').show();
+                $('#divError').hide();
+            }
+        }
+    </script>
+}
+@Scripts.Render("~/bundles/jqueryval")

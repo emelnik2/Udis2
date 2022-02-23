@@ -1,0 +1,46 @@
+﻿@model TenantMNG.ViewModel.TenantVM
+
+
+
+
+@using (Html.BeginForm("CreateTenantContactInfo", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formcontract" }))
+{
+
+
+    <div class="alert alert-success" id="divSuccess_contract" style="display:none">
+        @TenantMNG.Resource.msg_save_contract_success
+    </div>
+
+    <div class="alert alert-danger" id="divFail_contract" style="display:none">
+        @TenantMNG.Resource.msg_global_fail
+    </div>
+
+
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.tenantcontract.s_date, new { @class = "control-label" })
+
+        <div class="controls">
+            @Html.TextBoxFor(m => m.tenantcontract.s_date, "{0:yyyy/MM/dd}", new { @class = "span11", @id = "s_date" })
+            @*@Html.ValidationMessageFor(m => m.tenantcontract.s_date)*@
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.tenantcontract.e_date, new { @class = "control-label" })
+
+        <div class="controls">
+            @Html.TextBoxFor(m => m.tenantcontract.e_date, "{0:yyyy/MM/dd}", new { @class = "span11", @id = "e_date" })
+            @*@Html.ValidationMessageFor(m => m.tenantcontract.e_date)*@
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.tenantcontract.int_contract_id, new { @id = "contract_id" })
+    @Html.HiddenFor(m => m.user_contact_info.int_id, new { @id = "tenant_id" })
+    <div class="form-actions">
+        @*<input type="submit" class="btn btn-success" value="Save" />*@
+        <input type="button" id="btnsavecontract"
+               value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "Tenant", Session["utypeid"].ToString() == "2" ? "PM" : "User", null, new { @class = "btn btn-default" })
+    </div>
+}

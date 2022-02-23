@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tecnobuildings</title>
+
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" />
+    @*<script>
+            $(document).ready(function () {
+
+                alert("Test");
+
+                $('#navmenu li a').click(function (e) {
+
+                    $('#navmenu li.active').removeClass('active');
+
+                    var $parent = $(this).parent();
+                    $parent.addClass('active');
+                    //e.preventDefault();
+                });
+            });
+
+        </script>*@
+
+    <script>
+        //check only decimal value
+        function isDecimalNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+
+        //check only number value
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
+    @{Html.EnableClientValidation();}
+    @{Html.EnableUnobtrusiveJavaScript();}
+    @RenderSection("scriptstop", required: false)
+
+
+</head>
+<body>
+    <!--Header-part-->
+    <div id="header">
+        <h1><a href="dashboard.html">Tenant Managment</a></h1>
+    </div>
+    <!--close-Header-part-->
+    <!--top-Header-menu-->
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav">
+            <li class="dropdown" id="profile-messages">
+                <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">@TenantMNG.Resource.welcome Admin</span><b class="caret"></b></a>
+              
+                <ul class="dropdown-menu">
+            <li><a href="@Url.Action("Profile","User")"><i class="icon-user"></i> @TenantMNG.Resource.profile</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("ChangePassword","Admin")"><i class="icon-check"></i> @TenantMNG.Resource.changepassword</a></li>
+
+        </ul>
+
+            </li>
+
+           
+            <li class=""><a title="" href="@Url.Action("Logout","Login")"><i class="icon icon-share-alt"></i> <span class="text">@TenantMNG.Resource.logout</span></a></li>
+            <li>@Html.ActionLink("English", "ChangeLanguage", "Admin", new { lang = "en", cnt = ViewContext.RouteData.Values["controller"].ToString(), act = ViewContext.RouteData.Values["action"].ToString() }, null)</li>
+            <li>@Html.ActionLink("Spanish", "ChangeLanguage", "Admin", new { lang = "es", cnt = ViewContext.RouteData.Values["controller"].ToString(), act = ViewContext.RouteData.Values["action"].ToString() }, null)</li>
+
+        </ul>
+    </div>
+
+    <div id="sidebar">
+        @*<a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>*@
+
+        <ul>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.dashboard, "Dashboard", "Admin") </li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "PropertyManager" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.pmuser, "PropertyManager", "User")</li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tenant" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.tenantuser, "Tenant", "User")</li>
+
+        </ul>
+
+    </div>
+    <!--sidebar-menu-->
+
+    <div id="content">
+
+        @RenderBody()
+    </div>
+
+</body>
+
+
+
+@Scripts.Render("~/bundles/bootstrap")
+
+@RenderSection("scripts", required: false)
+
+
+</html>

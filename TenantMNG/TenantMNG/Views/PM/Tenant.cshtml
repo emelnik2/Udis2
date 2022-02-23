@@ -1,0 +1,275 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model IPagedList<TenantMNG.Models.tbl_user_master>
+@{
+    ViewBag.Title = TenantMNG.Core.CommonCls._applicationname + " : Tenant Users List";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" />@TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.tenant</a>  </div>
+
+</div>
+<div class="container-fluid">
+
+
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+
+    <div class="modal hide fade in" id="pnlnocontractwarning">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@TenantMNG.Resource.warning</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="divFail">
+                    @TenantMNG.Resource.msg_no_contract
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*warning message model for detach meter*@
+    <div class="modal hide fade in" id="deatchmeter">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@TenantMNG.Resource.warning</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <div class="alert alert-success" id="divSuccess" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_succ
+                </div>
+
+                <div class="alert alert-danger" id="divFail" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_fail
+                </div>
+
+                <div class="alert alert-danger" id="divError" style="display:none">
+                    @TenantMNG.Resource.meter_assign_mess_alredy
+                </div>
+
+
+
+                <div class="span4">
+                    @TenantMNG.Resource.war_detch_mess
+                </div>
+
+                <div class="span1">
+
+                    @using (Html.BeginForm("DetachMeter", "PM", FormMethod.Post))
+                    {
+                        <input type="submit" id="btndetach"
+                               value=@TenantMNG.Resource.detach class="btn btn-success" />
+                    }
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.tenantuser @TenantMNG.Resource.list</h5>
+                </div>
+                <div class="widget-content">
+                    @Html.ActionLink(TenantMNG.Resource.add_new, "CreateTenant", "User", null, new { @class = "btn btn-primary" })
+                    <br />
+
+
+                    @Html.AntiForgeryToken()
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>@TenantMNG.Resource.company @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.contact @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.city</th>
+                                    <th>@TenantMNG.Resource.state</th>
+                                    <th>@TenantMNG.Resource.pin_code</th>
+                                    <th>@TenantMNG.Resource.assign_meter</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+                                        @*<td> @user.str_comp_name</td>*@
+                                        <td>@Html.ActionLink(user.str_comp_name, "EditTenant", "User", new { @tenantid = user.int_id }, new { @style = "color:blue;" })</td>
+                                        <td>@user.str_contact_name</td>
+                                        <td>@user.str_city</td>
+                                        <td>@user.str_state</td>
+                                        <td>@user.int_pin_code</td>
+                                        <td width="20%">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</td>
+                                        <td>
+                                            @if (TenantMNG.Core.CommonCls.isTenantMeter(user.int_id))
+                                            {
+
+                                                @Html.ActionLink(@TenantMNG.Resource.meter_update, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
+                                                @:&nbsp;
+                                                @*<a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.int_id">@TenantMNG.Resource.meter_update </a>*@
+                                                <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>
+                                                @Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
+                                                @:&nbsp;
+                                                @Html.ActionLink(TenantMNG.Resource.invoice, "Invoice", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.delete, "Delete","User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
+                                                @:&nbsp;
+                                                @Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
+
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Invoice", new { tenantid = Request["tenantid"], page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptstop {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('.btn').filter('.btn-mini').filter('.btn-danger').click(function () {
+
+                var url = '@Url.Action("DetachMeter","PM")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function () {
+
+                    $('#deatchmeter').modal('show');
+
+
+                });
+            });
+
+            $('.btn').filter('.btn-mini').filter('.btn-success').click(function () {
+
+                var url = '@Url.Action("AssignMeter","PM")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function (data) {
+
+
+                    if (data != 1) {
+
+                        $('#edit-person-container').html(data);
+                        $('#edit-person').modal('show');
+                    }
+                    else {
+                        $('#pnlnocontractwarning').modal('show');
+                    }
+
+                });
+            });
+
+            $(document).on("click", "#btnsave", function (e) {
+
+                $.validator.unobtrusive.parse("#formassignmeter");
+                $("#formassignmeter").validate();
+                if ($("#formassignmeter").valid()) {
+
+                    var tenantmeter = {};
+
+                    tenantmeter.int_tenant_id = $('#int_tenant_id').val();
+                    tenantmeter.int_id = $('#int_id').val();
+                    tenantmeter.int_meter_id = $('#meter_id').val();
+                    tenantmeter.MetersID = $('#MetersID').val();
+                    tenantmeter.Meters = $('#meterlist');
+
+                    alert($('#meterlist'));
+
+
+                    var options = {};
+                    options.url ='@Url.Action("AssignMeter","PM")';
+                    options.type = "POST";
+                    options.data = JSON.stringify(tenantmeter),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+                        alertMessage(data);
+                    };
+                    options.error = function () {
+                        alertMessage(0);
+                    };
+                    $.ajax(options);
+                };
+
+            });
+
+
+            $("#edit-person").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+        });
+
+        function alertMessage(val) {
+            if (val > 0) {
+                $('#divSuccess').show();
+                $('#divFail').hide();
+                $('#divError').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess').hide();
+                $('#divFail').hide();
+                $('#divError').show();
+            }
+            else {
+                $('#divSuccess').hide();
+                $('#divFail').show();
+                $('#divError').hide();
+            }
+        }
+    </script>
+
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")

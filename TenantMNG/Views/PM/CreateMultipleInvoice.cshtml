@@ -1,0 +1,224 @@
+﻿@model TenantMNG.ViewModel.TenantEnergyVM
+
+@{
+    ViewBag.Title = "CreateMutipleInvoice";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "PM")" class="tip-bottom">Tenant</a> <a href="#" class="current">@TenantMNG.Resource.create_multi</a> </div>
+
+</div>
+<div class="container-fluid">
+
+
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.create_multi</h5>
+                </div>
+                <div class="widget-content">
+
+                    @using (Html.BeginForm("AddTextbox", "PM", FormMethod.Post))
+                    {
+
+                        if (ViewBag.flag != null)
+                        {
+                            if (ViewBag.flag == "True")
+                            {
+                                <div class="alert alert-success" id="divSuccess">
+                                    Multiple Invoice generated successfully.
+                                </div>
+                            }
+                            else if (ViewBag.flag == "False")
+                            {
+                                <div class="alert alert-danger" id="divFail">
+                                   @TenantMNG.Resource.msg_global_fail
+                                </div>
+                            }
+                        }
+                        <br />
+                        <div id="TextBoxContainer">
+                            <!--Textboxes will be added here -->
+                        </div>
+                        <br />
+                        <input type="submit" value="Submit" class="btn btn-success" />
+                        @Html.HiddenFor(x => x.int_tenant_id)
+                        @Html.HiddenFor(x => x.str_meter_name)
+                        @Html.HiddenFor(x => x.int_invoice_id)
+                        @Html.HiddenFor(x => x.str_inter_s_time)
+                        @Html.HiddenFor(x => x.str_meter_id)
+                        @Html.HiddenFor(x => x.str_peak_s_time)
+                        @Html.HiddenFor(x => x.str_peak_e_time)
+                        @Html.HiddenFor(x => x.dec_peak_energy_rate)
+                        @Html.HiddenFor(x => x.dec_inter_energy_rate)
+                        @Html.HiddenFor(x => x.dec_base_rate)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function GetDynamicTextBox(s_date, e_date) {
+
+
+
+        var div = $("<div class='control-group'/>");
+
+
+
+        var texfromtBox = $("<input />").attr("type", "textbox").attr("name", "fromdate").attr("class", "fromcls span2").attr("style", "margin-right:10px");
+        texfromtBox.val(s_date);
+        div.append(texfromtBox);
+
+        var textotBox = $("<input />").attr("type", "textbox").attr("name", "todate").attr("class", "tocls span2").attr("style", "margin-right:10px");
+        textotBox.val(e_date);
+        div.append(textotBox);
+
+        var textotBox = $("<input />").attr("type", "textbox").attr("name", "paydate").attr("class", "paycls span2").attr("style", "margin-right:10px");
+        textotBox.val("");
+        div.append(textotBox);
+
+        var texcustomeBox = $("<input />").attr("type", "textbox").attr("name", "custome").attr("class", "span2").attr("style", "margin-right:10px").attr("placeholder", "Demanda Facturable");
+        texcustomeBox.val("");
+        div.append(texcustomeBox);
+
+        var texdemandBox = $("<input />").attr("type", "textbox").attr("name", "demand").attr("class", "span2").attr("style", "margin-right:10px").attr("placeholder", "Demanda (kW)");
+        texdemandBox.val("");
+        div.append(texdemandBox);
+
+        var button = $("<input />").attr("type", "button").attr("value", "@TenantMNG.Resource.delete").attr("class", "btn btn-danger");
+        button.attr("onclick", "RemoveTextBox(this)");
+        div.append(button);
+
+        div.append('<br />')
+        return div;
+    }
+    function AddTextBox() {
+
+        var n = $("#int_invoice_id").val();
+        var s_date = $("#str_inter_s_time").val();
+        var period = $("#str_meter_id").val();
+
+        var invoice_s_date = new Date();
+        var invoice_e_date = new Date();
+
+      
+        var div;
+
+        for (i = 0; i <= n; i++) {
+
+
+            if (i == 0) {
+                invoice_s_date = new Date(s_date);
+            }
+            else {
+                invoice_s_date = new Date(invoice_e_date);
+                invoice_s_date.setDate(invoice_s_date.getDate() + 1);
+            }
+
+            invoice_e_date = new Date(invoice_s_date);
+            if (period == 1)
+                invoice_e_date.setDate(invoice_s_date.getDate() + 6);
+            else if (period == 2)
+                invoice_e_date.setDate(invoice_s_date.getDate() + 14);
+            else if (period == 3) {
+
+                invoice_e_date.setMonth(invoice_s_date.getMonth() + 1);
+                invoice_e_date.setDate(invoice_s_date.getDate() - 1);
+
+            }
+
+            var dd = invoice_s_date.getDate();
+            var mm = invoice_s_date.getMonth() + 1;
+            var yy = invoice_s_date.getFullYear();
+
+            var f_s_date = yy + "/" + mm + "/" + dd;
+
+            dd = invoice_e_date.getDate();
+            mm = invoice_e_date.getMonth() + 1;
+            yy = invoice_e_date.getFullYear();
+
+            var f_e_date = yy + "/" + mm + "/" + dd ;
+
+            div = GetDynamicTextBox(f_s_date, f_e_date);
+            $("#TextBoxContainer").append(div);
+        }
+
+        $(".fromcls").datepicker({
+            //minDate: 'today',
+            orientation: "bottom auto",
+            autoclose: true,
+            dateFormat: 'yy/mm/dd', // Set the date format
+            constrainInput: false, // Client can directly modify date in textbox?
+
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+
+                $(".tocls").datepicker("option", "minDate", dt);
+            }
+
+        });
+
+        $(".paycls").datepicker({
+            //minDate: 'today',
+            orientation: "bottom auto",
+            autoclose: true,
+            dateFormat: 'yy/mm/dd', // Set the date format
+            constrainInput: false, // Client can directly modify date in textbox?
+
+
+
+        });
+
+        $(".tocls").datepicker({
+            //minDate: 'today',
+            orientation: "bottom auto",
+            autoclose: true,
+            dateFormat: 'yy/mm/dd', // Set the date format
+            constrainInput: false, // Client can directly modify date in textbox?
+
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+
+                $(".fromcls").datepicker("option", "maxDate", dt);
+            }
+
+        });
+    }
+
+    function RemoveTextBox(button) {
+        $(button).parent().remove();
+    }
+
+    $(function () {
+
+
+
+        var values = eval('@Html.Raw(ViewBag.Values)');
+        if (values != null) {
+            $("#TextBoxContainer").html("");
+            $(values).each(function () {
+                $("#TextBoxContainer").append(GetDynamicTextBox(this));
+            });
+        }
+
+
+    });
+</script>
+@if (ViewBag.callfunction != null)
+{
+    <script type="text/javascript">
+        AddTextBox();
+    </script>
+}
+

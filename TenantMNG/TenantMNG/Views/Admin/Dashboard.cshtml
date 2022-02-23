@@ -1,0 +1,217 @@
+﻿@model TenantMNG.ViewModel.AdminDashboard
+
+@{
+    ViewBag.Title = TenantMNG.Core.CommonCls._applicationname + " : Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "Admin") title="Go to Home" class="tip-bottom">
+<img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.dashboard</a>  </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-dashboard"></i></span>
+                    <h5>@TenantMNG.Resource.dashboard</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>@TenantMNG.Resource.pm_list</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+
+                                    @foreach (var user in Model.tbl_PM)
+                                    {
+
+                                        <div class="new-update clearfix">
+
+                                            <div class="update-done">
+                                                <strong>
+                                                    @Html.ActionLink(user.str_comp_name, "Edit", "User", new { @id = user.int_id }, null)
+
+                                                </strong>
+                                            </div>
+                                            @*<div class="update-date">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</div>
+                    <div class="update-date"><span class="update-day">20</span>jan</div>*@
+                                        </div>
+                                    }
+
+                                    <ul class="recent-posts">
+                                        <li>
+                                            @if (Model.tbl_PM.ToList().Count > 0)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.view_all, "PropertyManager", "User", null, new { @class = "btn btn-warning btn-mini" })
+                                                @*<button class="btn btn-warning btn-mini">View All</button>*@
+                                            }
+                                            else
+                                            {
+                                                <i> @TenantMNG.Resource.sorry_mess</i>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="widget-title">
+                                    <span class="icon">  <img src="~/img/icons/16/piechart.png" /> </span>
+                                    <h5>@TenantMNG.Resource.tenantEngcon</h5>
+                                </div>
+                                <div id="container" style="min-width: 310px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>@TenantMNG.Resource.tenant_list</h5>
+                                </div>
+                                <div class="widget-content nopadding updates">
+
+                                    @foreach (var user in Model.tbl_Tenant)
+                                    {
+
+                                        <div class="new-update clearfix">
+
+                                            <div class="update-done">
+                                                <strong>
+                                                    @Html.ActionLink(user.str_comp_name, "EditTenant", "User", new { @tenantid = user.int_id }, null)
+                                                </strong>
+                                            </div>
+                                            <div class="update-date">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</div>
+                                            @*<div class="update-date"><span class="update-day">20</span>jan</div>*@
+                                        </div>
+                                    }
+                                    <ul class="recent-posts">
+                                        <li>
+                                            @if (Model.tbl_Tenant.ToList().Count > 0)
+                                            {
+                                                @Html.ActionLink(TenantMNG.Resource.view_all, "Tenant", "User", null, new { @class = "btn btn-warning btn-mini" })
+                                                @*<button class="btn btn-warning btn-mini">View All</button>*@
+                                            }
+                                            else
+                                            {
+                                                <i> @TenantMNG.Resource.sorry_mess</i>
+                                            }
+
+
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script>
+
+            $(function () {
+                const tenetsNames = [];
+                var dataPoints = [];
+                var options = {};
+                options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                options.data = { int_id:null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    debugger;
+                    var series = new Array();
+                    for (var i in datajson) {
+                        var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
+                        series.push(serie);
+                    }
+                    DrawPieChart(series);
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+            });
+
+            $(function () {
+                $("#ddl_tenant").change(function () {
+                    var options = {};
+                    options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                    options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                options.type = "GET";
+                options.contentType = 'application/json; charset=utf-8';
+                options.dataType = "json";
+                options.success = function (datajson) {
+                    var series = new Array();
+                    for (var i in datajson) {
+                        var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
+                        series.push(serie);
+                    }
+                    DrawPieChart(series);
+
+                };
+                options.error = function () {
+                    alert('error');
+                };
+                $.ajax(options);
+                });
+            });
+
+            function DrawPieChart(series) {
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Consumo de los Inquilinos'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+
+                    series: [{
+
+                        name: 'Share',
+                        data: series
+
+                    }]
+                });
+            }
+    </script>
+}

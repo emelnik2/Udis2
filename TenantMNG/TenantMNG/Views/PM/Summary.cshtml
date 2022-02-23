@@ -1,0 +1,210 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using System.Collections.Generic;
+
+@model IPagedList<TenantMNG.Models.tbl_invoice>
+@{
+    ViewBag.Title = "Summary";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@section scriptstop
+{
+    <script>
+        $(function () {
+
+            $("#s_date").datepicker({
+                //maxDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#e_date").datepicker("option", "minDate", dt);
+
+                }
+            });
+
+            $("#e_date").datepicker({
+                // maxDate: 'today',
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#s_date").datepicker("option", "maxDate", dt);
+
+
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#select-tenant").on("hidden.bs.modal", function () {
+
+                document.location.reload();
+
+            });
+
+
+        });
+
+
+
+    </script>
+}
+
+
+@*<div class="modal hide fade in" id="pnloption">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Option for Invoice</h4>
+            </div>
+            <div class="modal-body">
+                <p>What you like to do ?</p>
+
+                @using (Html.BeginForm("Download", "PM", FormMethod.Get))
+                {
+                    <a class="btn btn-primary" href="https://drive.google.com/viewerng/viewer?
+    url=http://energymeters.xcesslogic.com/pdf/invoice.pdf?
+    pid=explorer&efh=false&a=v&chrome=false&embedded=true" target="_new">Preview</a>
+                    <input type="submit" class="btn btn-primary" value="Download" />
+                }
+            </div>
+        </div>
+
+    </div>*@
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.summary</a> </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="edit-person">
+        <div id="edit-person-container"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.summary @TenantMNG.Resource.report</h5>
+                </div>
+                <div class="widget-content">
+
+                    @using (Html.BeginForm("Summary", "PM", FormMethod.Get))
+                    {
+                        SelectList listtenant = ViewBag.TenantDropDown;
+
+                        <div class="span3">
+
+                            @Html.DropDownList("int_id", listtenant, " " + TenantMNG.Resource.search_by_tenant)
+
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("s_date", null, new { placeholder = TenantMNG.Resource.begin_on })
+                        </div>
+                        <div class="span3">
+                            @Html.TextBox("e_date", null, new { placeholder = TenantMNG.Resource.end_on })
+                        </div>
+                        <div class="span3">
+                            <input type="submit" value="@TenantMNG.Resource.search" class="btn btn-mini btn-success" />
+                            @if (ViewBag._iscleardisplay == true)
+                            {
+                                @Html.ActionLink(TenantMNG.Resource.clear, "Summary", "PM", new { @class = "btn btn-mini" })
+
+                            }
+                            @Html.ActionLink(TenantMNG.Resource.export_to_excel, "SummaryExportToExcel", "PM", new { @page = Request["page"], @class = "btn btn-mini btn-info" })
+
+                        </div>
+
+
+                    }
+
+                    <br />
+
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-bordered data-table" id="table">
+                            <thead>
+                                <tr>
+                                    @*<th>@Html.ActionLink("Date", "Invoice", new { sortby = ViewBag.SortDateParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+                                    <th>@TenantMNG.Resource.tenant</th>
+                                    <th>@TenantMNG.Resource.meter_name</th>
+                                    <th>@TenantMNG.Resource.bill_period</th>
+                                    <th>@TenantMNG.Resource.peak_energy</th>
+                                    <th>@TenantMNG.Resource.inter_energy</th>
+                                    <th>@TenantMNG.Resource.cust_energy</th>
+                                    <th>@TenantMNG.Resource.demand</th>
+                                    <th>@TenantMNG.Resource.tax</th>
+                                    <th>@TenantMNG.Resource.total_amt</th>
+                                     @*<th>@Html.ActionLink("Total Amount", "Summary", new { sortby = ViewBag.SortAmountParameter, page = Request["page"], tenantid = Request["tenantid"] })</th>*@
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag._abc != null)
+                                {
+
+                                    foreach (var dt in ViewBag._abc)
+                                    {
+                                <tr class="gradex">
+                                    <td>@dt.Name</td>
+                                    <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(dt.meterid)</td>
+                                    <td>@string.Format("{0:MM-dd-yyyy}", dt.fromdate) TO @string.Format("{0:MM-dd-yyyy}", dt.todate)</td>
+                                    <td>@string.Format("{0:0.00}",dt.peakenergy)</td>
+                                    <td>@string.Format("{0:0.00}",dt.interenergy)</td>
+                                    <td>@string.Format("{0:0.00}",dt.customecharges)</td>
+                                    <td>@string.Format("{0:0.00}",dt.decdemad)</td>
+                                    <td>@string.Format("{0:0.00}",dt.dectaxamt)</td>
+                                    @*<td>@dt.dectotal</td>*@
+                                    <td>@string.Format("{0:0.00}", dt.dectotal) </td>
+                                </tr>
+                                }
+                            }
+                                <tr>
+                                    <td colspan="8"><b>Total</b></td>
+                                    <td><span id="sum"></span></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            @Html.PagedListPager(Model, page => Url.Action("Summary", new { tenantid = Request["tenantid"], page }),
+                                new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                        }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type='text/javascript'>
+        var table = document.getElementById("table"), sumval = 0;
+        debugger;
+        for (var i = 1; i < table.rows.length - 1; i++) {
+            sumval = sumval + parseInt(table.rows[i].cells[8].innerHTML);
+        }
+        $("#sum").append(sumval);
+    </script>
+    <script>
+        var msg = '@ViewBag.Message';
+
+        if (msg && msg.length > 0) {
+
+            $('#pnloption').modal('show');
+        }
+    </script>
+}
