@@ -738,11 +738,11 @@ namespace TenantMNG.Controllers
 
                         if (_ds.Tables[0].Rows.Count > 0)
                         {
-                            decimal peckenergy = Convert.ToDecimal(_ds.Tables[0].Rows[0][0].ToString());
-                            decimal interenergy = Convert.ToDecimal(_ds.Tables[2].Rows[0][0].ToString());
-                            decimal baseenergy = Convert.ToDecimal(_ds.Tables[1].Rows[0][0].ToString());
-                            decimal energiaactiva = Convert.ToDecimal(_ds.Tables[3].Rows[0][0].ToString());
-                            decimal energiareactiva = Convert.ToDecimal(_ds.Tables[4].Rows[0][0].ToString());
+                            decimal peckenergy = (!String.IsNullOrEmpty(_ds.Tables[0].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0].ToString()) : 0;
+                            decimal interenergy = (!String.IsNullOrEmpty(_ds.Tables[2].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0].ToString()) : 0;
+                            decimal baseenergy = (!String.IsNullOrEmpty(_ds.Tables[1].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0].ToString()) : 0;
+                            decimal energiaactiva = (!String.IsNullOrEmpty(_ds.Tables[3].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0].ToString()) : 0;
+                            decimal energiareactiva = (!String.IsNullOrEmpty(_ds.Tables[4].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0].ToString()) : 0;
 
                             dt.Rows.Add(m, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
                                 objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),

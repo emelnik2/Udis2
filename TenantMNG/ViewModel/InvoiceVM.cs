@@ -78,10 +78,13 @@ namespace TenantMNG.ViewModel
 
         public Nullable<decimal> dec_base_amt { get; set; }
 
+        [Display(Name = "demanda_base", ResourceType = typeof(Resource))]
         public Nullable<decimal> demanda_base { get; set; }
 
+        [Display(Name = "demanda_intermedia", ResourceType = typeof(Resource))]
         public Nullable<decimal> demanda_intermedia { get; set; }
 
+        [Display(Name = "demanda_punta", ResourceType = typeof(Resource))]
         public Nullable<decimal> demanda_punta { get; set; }
 
         public Nullable<decimal> energia_activa { get; set; }

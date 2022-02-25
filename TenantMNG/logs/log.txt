@@ -934,3 +934,5 @@ ERROR 2021-12-23 21:13:41,141 76891ms TenantBAL              ice_details_insert 
 ERROR 2021-12-23 21:13:41,258 77008ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
 ERROR 2021-12-24 20:28:56,819 421339ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
 ERROR 2021-12-24 20:29:16,501 441021ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
+ERROR 2022-02-24 17:45:06,796 52257ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2022-02-24 17:47:00,242 165703ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.

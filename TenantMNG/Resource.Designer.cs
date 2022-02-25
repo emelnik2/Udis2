@@ -178,6 +178,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        public static string capacidad {
+            get {
+                return ResourceManager.GetString("capacidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the Capacity rate.
         /// </summary>
         public static string capacidad_enter_amount {
@@ -291,6 +300,15 @@ namespace TenantMNG {
         public static string contract_details {
             get {
                 return ResourceManager.GetString("contract_details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CRE related services.
+        /// </summary>
+        public static string cre_servicios_conexos {
+            get {
+                return ResourceManager.GetString("cre_servicios_conexos", resourceCulture);
             }
         }
         
@@ -660,6 +678,15 @@ namespace TenantMNG {
         public static string distribucion {
             get {
                 return ResourceManager.GetString("distribucion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distribution $kW.
+        /// </summary>
+        public static string distribución {
+            get {
+                return ResourceManager.GetString("distribución", resourceCulture);
             }
         }
         

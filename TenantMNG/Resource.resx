@@ -858,4 +858,13 @@
   <data name="precio_transmision" xml:space="preserve">
     <value>Price for Transmission</value>
   </data>
+  <data name="distribución" xml:space="preserve">
+    <value>Distribution $kW</value>
+  </data>
+  <data name="capacidad" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="cre_servicios_conexos" xml:space="preserve">
+    <value>CRE related services</value>
+  </data>
 </root>
