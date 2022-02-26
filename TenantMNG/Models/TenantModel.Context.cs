@@ -27,7 +27,8 @@ namespace TenantMNG.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<UDI> UDIS { get; set; }
+        public virtual DbSet<tbl_invoice> tbl_invoice { get; set; }
+        public virtual DbSet<tbl_invoice_details> tbl_invoice_details { get; set; }
         public virtual DbSet<tbl_pm_billing_hours> tbl_pm_billing_hours { get; set; }
         public virtual DbSet<tbl_template> tbl_template { get; set; }
         public virtual DbSet<tbl_tenant_billing_info> tbl_tenant_billing_info { get; set; }
@@ -39,8 +40,7 @@ namespace TenantMNG.Models
         public virtual DbSet<tbl_user_type> tbl_user_type { get; set; }
         public virtual DbSet<tbl_zone_master> tbl_zone_master { get; set; }
         public virtual DbSet<tblMVCChart> tblMVCCharts { get; set; }
-        public virtual DbSet<tbl_invoice> tbl_invoice { get; set; }
-        public virtual DbSet<tbl_invoice_details> tbl_invoice_details { get; set; }
+        public virtual DbSet<UDI> UDIS { get; set; }
     
         public virtual ObjectResult<Nullable<decimal>> tbl_insert_zone(string str_decription, string str_override, Nullable<bool> bit_status)
         {
@@ -166,7 +166,7 @@ namespace TenantMNG.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_detach_tenant_meter", int_idParameter, str_meter_idParameter);
         }
     
-        public virtual int usp_insert_invoice(ObjectParameter int_id, Nullable<int> int_tenant_id, Nullable<bool> bit_tenant_active, Nullable<System.DateTime> date_s_bill_date, Nullable<System.DateTime> date_e_bill_date, Nullable<decimal> dec_total, Nullable<decimal> dec_tax_amt, Nullable<bool> bit_is_editable, Nullable<System.DateTime> date_pay_date, Nullable<decimal> suministro, Nullable<decimal> distribución, Nullable<decimal> tarifa_transmision, Nullable<decimal> operación_cenace, Nullable<decimal> capacidad, Nullable<decimal> cre_servicios_conexos)
+        public virtual int usp_insert_invoice(ObjectParameter int_id, Nullable<int> int_tenant_id, Nullable<bool> bit_tenant_active, Nullable<System.DateTime> date_s_bill_date, Nullable<System.DateTime> date_e_bill_date, Nullable<decimal> dec_total, Nullable<decimal> dec_tax_amt, Nullable<bool> bit_is_editable, Nullable<System.DateTime> date_pay_date, Nullable<decimal> suministro, Nullable<decimal> distribucion, Nullable<decimal> tarifa_transmision, Nullable<decimal> operacion_cenace, Nullable<decimal> capacidad, Nullable<decimal> cre_servicios_conexos, Nullable<decimal> precio_suministro, Nullable<decimal> precio_distribucion, Nullable<decimal> precio_transmision, Nullable<decimal> precio_cenace, Nullable<decimal> precio_energia, Nullable<decimal> precio_capacidad, Nullable<decimal> precio_cre_servicios_conexos, Nullable<decimal> precio_dos_porciento_baja_tension, Nullable<decimal> precio_decuento_bonificacion)
         {
             var int_tenant_idParameter = int_tenant_id.HasValue ?
                 new ObjectParameter("int_tenant_id", int_tenant_id) :
@@ -204,17 +204,17 @@ namespace TenantMNG.Models
                 new ObjectParameter("suministro", suministro) :
                 new ObjectParameter("suministro", typeof(decimal));
     
-            var distribuciónParameter = distribución.HasValue ?
-                new ObjectParameter("distribución", distribución) :
-                new ObjectParameter("distribución", typeof(decimal));
+            var distribucionParameter = distribucion.HasValue ?
+                new ObjectParameter("distribucion", distribucion) :
+                new ObjectParameter("distribucion", typeof(decimal));
     
             var tarifa_transmisionParameter = tarifa_transmision.HasValue ?
                 new ObjectParameter("tarifa_transmision", tarifa_transmision) :
                 new ObjectParameter("tarifa_transmision", typeof(decimal));
     
-            var operación_cenaceParameter = operación_cenace.HasValue ?
-                new ObjectParameter("operación_cenace", operación_cenace) :
-                new ObjectParameter("operación_cenace", typeof(decimal));
+            var operacion_cenaceParameter = operacion_cenace.HasValue ?
+                new ObjectParameter("operacion_cenace", operacion_cenace) :
+                new ObjectParameter("operacion_cenace", typeof(decimal));
     
             var capacidadParameter = capacidad.HasValue ?
                 new ObjectParameter("capacidad", capacidad) :
@@ -224,7 +224,43 @@ namespace TenantMNG.Models
                 new ObjectParameter("cre_servicios_conexos", cre_servicios_conexos) :
                 new ObjectParameter("cre_servicios_conexos", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insert_invoice", int_id, int_tenant_idParameter, bit_tenant_activeParameter, date_s_bill_dateParameter, date_e_bill_dateParameter, dec_totalParameter, dec_tax_amtParameter, bit_is_editableParameter, date_pay_dateParameter, suministroParameter, distribuciónParameter, tarifa_transmisionParameter, operación_cenaceParameter, capacidadParameter, cre_servicios_conexosParameter);
+            var precio_suministroParameter = precio_suministro.HasValue ?
+                new ObjectParameter("precio_suministro", precio_suministro) :
+                new ObjectParameter("precio_suministro", typeof(decimal));
+    
+            var precio_distribucionParameter = precio_distribucion.HasValue ?
+                new ObjectParameter("precio_distribucion", precio_distribucion) :
+                new ObjectParameter("precio_distribucion", typeof(decimal));
+    
+            var precio_transmisionParameter = precio_transmision.HasValue ?
+                new ObjectParameter("precio_transmision", precio_transmision) :
+                new ObjectParameter("precio_transmision", typeof(decimal));
+    
+            var precio_cenaceParameter = precio_cenace.HasValue ?
+                new ObjectParameter("precio_cenace", precio_cenace) :
+                new ObjectParameter("precio_cenace", typeof(decimal));
+    
+            var precio_energiaParameter = precio_energia.HasValue ?
+                new ObjectParameter("precio_energia", precio_energia) :
+                new ObjectParameter("precio_energia", typeof(decimal));
+    
+            var precio_capacidadParameter = precio_capacidad.HasValue ?
+                new ObjectParameter("precio_capacidad", precio_capacidad) :
+                new ObjectParameter("precio_capacidad", typeof(decimal));
+    
+            var precio_cre_servicios_conexosParameter = precio_cre_servicios_conexos.HasValue ?
+                new ObjectParameter("precio_cre_servicios_conexos", precio_cre_servicios_conexos) :
+                new ObjectParameter("precio_cre_servicios_conexos", typeof(decimal));
+    
+            var precio_dos_porciento_baja_tensionParameter = precio_dos_porciento_baja_tension.HasValue ?
+                new ObjectParameter("precio_dos_porciento_baja_tension", precio_dos_porciento_baja_tension) :
+                new ObjectParameter("precio_dos_porciento_baja_tension", typeof(decimal));
+    
+            var precio_decuento_bonificacionParameter = precio_decuento_bonificacion.HasValue ?
+                new ObjectParameter("precio_decuento_bonificacion", precio_decuento_bonificacion) :
+                new ObjectParameter("precio_decuento_bonificacion", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_insert_invoice", int_id, int_tenant_idParameter, bit_tenant_activeParameter, date_s_bill_dateParameter, date_e_bill_dateParameter, dec_totalParameter, dec_tax_amtParameter, bit_is_editableParameter, date_pay_dateParameter, suministroParameter, distribucionParameter, tarifa_transmisionParameter, operacion_cenaceParameter, capacidadParameter, cre_servicios_conexosParameter, precio_suministroParameter, precio_distribucionParameter, precio_transmisionParameter, precio_cenaceParameter, precio_energiaParameter, precio_capacidadParameter, precio_cre_servicios_conexosParameter, precio_dos_porciento_baja_tensionParameter, precio_decuento_bonificacionParameter);
         }
     
         public virtual int usp_insert_invoice_details(string str_meter_id, Nullable<int> int_invoice_id, Nullable<decimal> dec_peak_energy, Nullable<decimal> dec_peak_energy_rate, Nullable<decimal> dec_peak_energy_amt, Nullable<decimal> dec_inter_energy, Nullable<decimal> dec_inter_energy_rate, Nullable<decimal> dec_inter_energy_amt, Nullable<decimal> dec_base_energy, Nullable<decimal> dec_base_rate, Nullable<decimal> dec_base_amt, Nullable<decimal> demanda_base, Nullable<decimal> demanda_intermedia, Nullable<decimal> demanda_punta, Nullable<decimal> energia_activa, Nullable<decimal> energia_reactiva)
@@ -625,7 +661,7 @@ namespace TenantMNG.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_update_bill_rate", int_idParameter, dec_rateParameter, dec_seasonal_rateParameter, dec_surcharge_amtParameter);
         }
     
-        public virtual int usp_update_invoice(Nullable<int> int_id, Nullable<bool> bit_tenant_active, Nullable<System.DateTime> date_s_bill_date, Nullable<System.DateTime> date_e_bill_date, Nullable<decimal> dec_total, Nullable<decimal> dec_tax_amt, Nullable<System.DateTime> date_pay_date, Nullable<decimal> suministro, Nullable<decimal> distribución, Nullable<decimal> tarifa_transmision, Nullable<decimal> operación_cenace, Nullable<decimal> capacidad, Nullable<decimal> cre_servicios_conexos, Nullable<int> int_tenant_id)
+        public virtual int usp_update_invoice(Nullable<int> int_id, Nullable<bool> bit_tenant_active, Nullable<System.DateTime> date_s_bill_date, Nullable<System.DateTime> date_e_bill_date, Nullable<decimal> dec_total, Nullable<decimal> dec_tax_amt, Nullable<System.DateTime> date_pay_date, Nullable<decimal> suministro, Nullable<decimal> distribucion, Nullable<decimal> tarifa_transmision, Nullable<decimal> operacion_cenace, Nullable<decimal> capacidad, Nullable<decimal> cre_servicios_conexos, Nullable<decimal> precio_suministro, Nullable<decimal> precio_distribucion, Nullable<decimal> precio_transmision, Nullable<decimal> precio_cenace, Nullable<decimal> precio_energia, Nullable<decimal> precio_capacidad, Nullable<decimal> precio_cre_servicios_conexos, Nullable<decimal> precio_dos_porciento_baja_tension, Nullable<decimal> precio_decuento_bonificacion, Nullable<int> int_tenant_id)
         {
             var int_idParameter = int_id.HasValue ?
                 new ObjectParameter("int_id", int_id) :
@@ -659,17 +695,17 @@ namespace TenantMNG.Models
                 new ObjectParameter("suministro", suministro) :
                 new ObjectParameter("suministro", typeof(decimal));
     
-            var distribuciónParameter = distribución.HasValue ?
-                new ObjectParameter("distribución", distribución) :
-                new ObjectParameter("distribución", typeof(decimal));
+            var distribucionParameter = distribucion.HasValue ?
+                new ObjectParameter("distribucion", distribucion) :
+                new ObjectParameter("distribucion", typeof(decimal));
     
             var tarifa_transmisionParameter = tarifa_transmision.HasValue ?
                 new ObjectParameter("tarifa_transmision", tarifa_transmision) :
                 new ObjectParameter("tarifa_transmision", typeof(decimal));
     
-            var operación_cenaceParameter = operación_cenace.HasValue ?
-                new ObjectParameter("operación_cenace", operación_cenace) :
-                new ObjectParameter("operación_cenace", typeof(decimal));
+            var operacion_cenaceParameter = operacion_cenace.HasValue ?
+                new ObjectParameter("operacion_cenace", operacion_cenace) :
+                new ObjectParameter("operacion_cenace", typeof(decimal));
     
             var capacidadParameter = capacidad.HasValue ?
                 new ObjectParameter("capacidad", capacidad) :
@@ -679,11 +715,47 @@ namespace TenantMNG.Models
                 new ObjectParameter("cre_servicios_conexos", cre_servicios_conexos) :
                 new ObjectParameter("cre_servicios_conexos", typeof(decimal));
     
+            var precio_suministroParameter = precio_suministro.HasValue ?
+                new ObjectParameter("precio_suministro", precio_suministro) :
+                new ObjectParameter("precio_suministro", typeof(decimal));
+    
+            var precio_distribucionParameter = precio_distribucion.HasValue ?
+                new ObjectParameter("precio_distribucion", precio_distribucion) :
+                new ObjectParameter("precio_distribucion", typeof(decimal));
+    
+            var precio_transmisionParameter = precio_transmision.HasValue ?
+                new ObjectParameter("precio_transmision", precio_transmision) :
+                new ObjectParameter("precio_transmision", typeof(decimal));
+    
+            var precio_cenaceParameter = precio_cenace.HasValue ?
+                new ObjectParameter("precio_cenace", precio_cenace) :
+                new ObjectParameter("precio_cenace", typeof(decimal));
+    
+            var precio_energiaParameter = precio_energia.HasValue ?
+                new ObjectParameter("precio_energia", precio_energia) :
+                new ObjectParameter("precio_energia", typeof(decimal));
+    
+            var precio_capacidadParameter = precio_capacidad.HasValue ?
+                new ObjectParameter("precio_capacidad", precio_capacidad) :
+                new ObjectParameter("precio_capacidad", typeof(decimal));
+    
+            var precio_cre_servicios_conexosParameter = precio_cre_servicios_conexos.HasValue ?
+                new ObjectParameter("precio_cre_servicios_conexos", precio_cre_servicios_conexos) :
+                new ObjectParameter("precio_cre_servicios_conexos", typeof(decimal));
+    
+            var precio_dos_porciento_baja_tensionParameter = precio_dos_porciento_baja_tension.HasValue ?
+                new ObjectParameter("precio_dos_porciento_baja_tension", precio_dos_porciento_baja_tension) :
+                new ObjectParameter("precio_dos_porciento_baja_tension", typeof(decimal));
+    
+            var precio_decuento_bonificacionParameter = precio_decuento_bonificacion.HasValue ?
+                new ObjectParameter("precio_decuento_bonificacion", precio_decuento_bonificacion) :
+                new ObjectParameter("precio_decuento_bonificacion", typeof(decimal));
+    
             var int_tenant_idParameter = int_tenant_id.HasValue ?
                 new ObjectParameter("int_tenant_id", int_tenant_id) :
                 new ObjectParameter("int_tenant_id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_update_invoice", int_idParameter, bit_tenant_activeParameter, date_s_bill_dateParameter, date_e_bill_dateParameter, dec_totalParameter, dec_tax_amtParameter, date_pay_dateParameter, suministroParameter, distribuciónParameter, tarifa_transmisionParameter, operación_cenaceParameter, capacidadParameter, cre_servicios_conexosParameter, int_tenant_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_update_invoice", int_idParameter, bit_tenant_activeParameter, date_s_bill_dateParameter, date_e_bill_dateParameter, dec_totalParameter, dec_tax_amtParameter, date_pay_dateParameter, suministroParameter, distribucionParameter, tarifa_transmisionParameter, operacion_cenaceParameter, capacidadParameter, cre_servicios_conexosParameter, precio_suministroParameter, precio_distribucionParameter, precio_transmisionParameter, precio_cenaceParameter, precio_energiaParameter, precio_capacidadParameter, precio_cre_servicios_conexosParameter, precio_dos_porciento_baja_tensionParameter, precio_decuento_bonificacionParameter, int_tenant_idParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> usp_update_pm_billing_hours(Nullable<int> int_pm_id, string str_peak_s_time_m, string str_peak_e_time_m, string str_inter_s_time_1_m, string str_inter_e_time_1_m, string str_inter_s_time_2_m, string str_inter_e_time_2_m, string str_base_s_time_m, string str_base_e_time_m, string str_base_s_time_sat, string str_base_e_time_sat, string str_inter_s_time_sat, string str_inter_e_time_sat, string str_inter_s_time_2_sat, string str_inter_e_time_2_sat, string str_peak_s_time_sat, string str_peak_e_time_sat, string str_base_s_time_sun, string str_base_e_time_sun, string str_inter_s_time_sun, string str_inter_e_time_sun)

@@ -1269,9 +1269,9 @@ namespace TenantMNG {
         /// <summary>
         ///   Looks up a localized string similar to CENACE Operating Rate.
         /// </summary>
-        public static string operación_cenace {
+        public static string operacion_cenace {
             get {
-                return ResourceManager.GetString("operación_cenace", resourceCulture);
+                return ResourceManager.GetString("operacion_cenace", resourceCulture);
             }
         }
         

@@ -95,17 +95,17 @@ namespace TenantMNG.ViewModel
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "distribucion_enter_amount")]
         public Nullable<decimal> suministro { get; set; }
 
-        [Display(Name = "distribución", ResourceType = typeof(Resource))]
+        [Display(Name = "distribucion", ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "distribucion_enter_amount")]
-        public Nullable<decimal> distribución { get; set; }
+        public Nullable<decimal> distribucion { get; set; }
 
         [Display(Name = "tarifa_transmision", ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "transmision_enter_amount")]
         public Nullable<decimal> tarifa_transmision { get; set; }
 
-        [Display(Name = "operación_cenace", ResourceType = typeof(Resource))]
+        [Display(Name = "operacion_cenace", ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "cencace_enter_amount")]
-        public Nullable<decimal> operación_cenace { get; set; }
+        public Nullable<decimal> operacion_cenace { get; set; }
 
         [Display(Name = "capacidad", ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "capacidad_enter_amount")]

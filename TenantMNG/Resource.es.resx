@@ -810,7 +810,7 @@
   <data name="distribucion" xml:space="preserve">
     <value>Distribución $kW</value>
   </data>
-  <data name="operación_cenace" xml:space="preserve">
+  <data name="operacion_cenace" xml:space="preserve">
     <value>Operación del CENACE</value>
   </data>
   <data name="suministro" xml:space="preserve">

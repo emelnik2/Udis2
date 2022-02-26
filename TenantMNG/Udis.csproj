@@ -323,6 +323,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TenantModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDI.cs">
+      <DependentUpon>TenantModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UdisModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -338,9 +341,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TenantModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDI.cs">
-      <DependentUpon>TenantModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MyController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -673,6 +673,7 @@
       <DependentUpon>TenantModel.edmx</DependentUpon>
       <LastGenOutput>TenantModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\TenantModel.edmx.sql" />
     <Content Include="Models\TenantModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TenantModel.edmx</DependentUpon>

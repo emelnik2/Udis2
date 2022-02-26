@@ -17,13 +17,13 @@ namespace TenantMNG.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_user_master()
         {
+            this.tbl_invoice = new HashSet<tbl_invoice>();
             this.tbl_pm_billing_hours = new HashSet<tbl_pm_billing_hours>();
             this.tbl_tenant_billing_info = new HashSet<tbl_tenant_billing_info>();
             this.tbl_tenant_contract = new HashSet<tbl_tenant_contract>();
             this.tbl_tenant_email_setup = new HashSet<tbl_tenant_email_setup>();
             this.tbl_tenant_meter = new HashSet<tbl_tenant_meter>();
             this.tbl_tenant_settings = new HashSet<tbl_tenant_settings>();
-            this.tbl_invoice = new HashSet<tbl_invoice>();
         }
     
         public int int_id { get; set; }
@@ -46,6 +46,8 @@ namespace TenantMNG.Models
         public Nullable<int> int_invoice_period { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_invoice> tbl_invoice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_pm_billing_hours> tbl_pm_billing_hours { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_tenant_billing_info> tbl_tenant_billing_info { get; set; }
@@ -58,7 +60,5 @@ namespace TenantMNG.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_tenant_settings> tbl_tenant_settings { get; set; }
         public virtual tbl_user_type tbl_user_type { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_invoice> tbl_invoice { get; set; }
     }
 }

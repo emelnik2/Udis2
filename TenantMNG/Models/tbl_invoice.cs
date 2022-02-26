@@ -31,9 +31,9 @@ namespace TenantMNG.Models
         public Nullable<bool> bit_is_editable { get; set; }
         public Nullable<System.DateTime> date_pay_date { get; set; }
         public Nullable<decimal> suministro { get; set; }
-        public Nullable<decimal> distribución { get; set; }
+        public Nullable<decimal> distribucion { get; set; }
         public Nullable<decimal> tarifa_transmision { get; set; }
-        public Nullable<decimal> operación_cenace { get; set; }
+        public Nullable<decimal> operacion_cenace { get; set; }
         public Nullable<decimal> capacidad { get; set; }
         public Nullable<decimal> cre_servicios_conexos { get; set; }
         public Nullable<decimal> precio_suministro { get; set; }

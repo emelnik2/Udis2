@@ -160,10 +160,12 @@
 
             // Cálculo de Distribucion
             var maxdemanda = Math.max($('#demanda_base').val(), $('#demanda_intermedia').val(), $('#demanda_punta').val());
-            var periodo_dias = $('#date_e_bill_date').getTime() - $('#date_s_bill_date').getTime();
+            var start_date = new Date($('#date_s_bill_date').val());
+            var end_date = new Date($('#date_e_bill_date').val());
+            var periodo_dias = Math.floor((end_date.getTime() - start_date.getTime()) / (1000 * 60 * 60 * 24));
             var demanda_cargo = Math.round((transmision_base + transmision_intermedia + transmision_punta) / (24 * periodo_dias * 0.57));
             var mindemanda = Math.min(maxdemanda, demanda_cargo);
-            var distribucion = $('#distribución').val() * mindemanda;
+            var distribucion = $('#distribucion').val() * mindemanda;
 
             // Cálculo de Transmision
             var precio_tranmisionbase = transmision_base * $('#tarifa_transmision').val();
@@ -172,9 +174,9 @@
             var transmision = precio_tranmisionbase + precio_tranmisionintermedia + precio_tranmisionpunta;
 
             // Cálculo CENACE
-            var precio_cenace_base = transmision_base * $('#operación_cenace').val();
-            var precio_cenace_intermedia = transmision_intermedia * $('#operación_cenace').val();
-            var precio_cenace_punta = transmision_punta * $('#operación_cenace').val();
+            var precio_cenace_base = transmision_base * $('#operacion_cenace').val();
+            var precio_cenace_intermedia = transmision_intermedia * $('#operacion_cenace').val();
+            var precio_cenace_punta = transmision_punta * $('#operacion_cenace').val();
             var cenace = precio_cenace_base + precio_cenace_intermedia + precio_cenace_punta;
 
             // Cálculo de Energía
@@ -184,7 +186,7 @@
             var energia = precio_energiabase + precio_energiaintermedia + precio_energiapunta;
 
             // Cálculo de Capacidad
-            var capacidad = Math.min(demanda_punta, demanda_cargo) * $('#capacidad').val();
+            var capacidad = Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val();
 
             // Cálculo CRE Servicios Conexos (SCnMEM)
             var precio_sc_base = transmision_base * $('#cre_servicios_conexos').val();
@@ -192,7 +194,7 @@
             var precio_sc_punta = transmision_punta * $('#cre_servicios_conexos').val();
             var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
 
-            // Cálculo de % de Binificación
+            // Cálculo de % de Bonificación
             var factor_de_potencia = energiaactiva / Math.sqrt((energiaactiva ** 2) + (energiareactiva ** 2));
             var porciento_bonificacion = (factor_de_potencia > 0.9) ? Math.round((-1 / 4) * (1 - (0.9 / factor_de_potencia)) * 100, 1) : 0;
 
@@ -395,10 +397,10 @@
 
                         <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.distribución, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.distribucion, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.distribución, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                                    @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
 
                                 </div>
                             </div>
@@ -419,10 +421,10 @@
 
                         <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.operación_cenace, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.operacion_cenace, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.operación_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                                    @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
 
                                 </div>
                             </div>

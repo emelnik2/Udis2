@@ -434,9 +434,9 @@ namespace TenantMNG.Controllers
                     objvm.dec_peak_energy_rate = objvm1.dec_peak_energy_rate;
                     objvm.dec_inter_energy_rate = objvm1.dec_inter_energy_rate;
                     objvm.suministro = objvm1.suministro;
-                    objvm.distribución = objvm1.distribución;
+                    objvm.distribucion = objvm1.distribucion;
                     objvm.tarifa_transmision = objvm1.tarifa_transmision;
-                    objvm.operación_cenace = objvm1.operación_cenace;
+                    objvm.operacion_cenace = objvm1.operacion_cenace;
                     objvm.capacidad = objvm1.capacidad;
                     objvm.cre_servicios_conexos = objvm1.cre_servicios_conexos;
                     objvm.demanda_base = objvm1.demanda_base;

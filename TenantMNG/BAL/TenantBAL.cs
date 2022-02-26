@@ -179,9 +179,9 @@ namespace TenantMNG.BAL
 
                             new SqlParameter("@date_pay_date",invoice.date_pay_date),
                             new SqlParameter("@suministro",invoice.suministro),
-                            new SqlParameter("@distribución",invoice.distribución),
+                            new SqlParameter("@distribucion",invoice.distribucion),
                             new SqlParameter("@tarifa_transmision",invoice.tarifa_transmision),
-                            new SqlParameter("@operación_cenace",invoice.operación_cenace),
+                            new SqlParameter("@operacion_cenace",invoice.operacion_cenace),
                             new SqlParameter("@capacidad",invoice.capacidad),
                             new SqlParameter("@cre_servicios_conexos",invoice.cre_servicios_conexos),
                             new SqlParameter("@precio_suministro",invoice.precio_suministro),
@@ -196,7 +196,7 @@ namespace TenantMNG.BAL
 
                 };
 
-                    dbcnx.Database.ExecuteSqlCommand("usp_insert_invoice @int_id out,@int_tenant_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total,@dec_tax_amt,@bit_is_editable,@date_pay_date,@suministro,@distribución,@tarifa_transmision,@operación_cenace,@capacidad,@cre_servicios_conexos", param);
+                    dbcnx.Database.ExecuteSqlCommand("usp_insert_invoice @int_id out,@int_tenant_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total,@dec_tax_amt,@bit_is_editable,@date_pay_date,@suministro,@distribucion,@tarifa_transmision,@operacion_cenace,@capacidad,@cre_servicios_conexos", param);
 
                     _lVal = Convert.ToInt32(param[0].Value);
                 }
@@ -625,16 +625,16 @@ namespace TenantMNG.BAL
                             new SqlParameter("@date_pay_date",invoice.date_pay_date),
 
                             new SqlParameter("@suministro",invoice.suministro),
-                            new SqlParameter("@distribución",invoice.distribución),
+                            new SqlParameter("@distribucion",invoice.distribucion),
                             new SqlParameter("@tarifa_transmision",invoice.tarifa_transmision),
-                            new SqlParameter("@operación_cenace",invoice.operación_cenace),
+                            new SqlParameter("@operacion_cenace",invoice.operacion_cenace),
                             new SqlParameter("@capacidad",invoice.capacidad),
                             new SqlParameter("@cre_servicios_conexos",invoice.cre_servicios_conexos),
 
                             new SqlParameter("@int_tenant_id",invoice.int_tenant_id),
                 };
 
-                            _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_invoice @int_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total,@dec_tax_amt,@date_pay_date,@suministro,@distribución,@tarifa_transmision,@operación_cenace,@capacidad,@cre_servicios_conexos,@int_tenant_id", param);
+                            _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_invoice @int_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total,@dec_tax_amt,@date_pay_date,@suministro,@distribucion,@tarifa_transmision,@operacion_cenace,@capacidad,@cre_servicios_conexos,@int_tenant_id", param);
 
 
                 }

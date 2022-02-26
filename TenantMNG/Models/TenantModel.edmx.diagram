@@ -5,17 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="af1361a205bd4608ba300d5f0daf4f20" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_TenantMNGModel.UDI" Width="1.5" PointX="0.5" PointY="4" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_pm_billing_hours" Width="1.5" PointX="7.875" PointY="4.875" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_template" Width="1.5" PointX="8.625" PointY="20.75" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_billing_info" Width="1.5" PointX="10.875" PointY="16.375" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_contract" Width="1.5" PointX="7.875" PointY="25.75" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_email_setup" Width="1.5" PointX="8" PointY="17.5" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_meter" Width="1.5" PointX="7.875" PointY="28.5" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_settings" Width="1.5" PointX="7.875" PointY="31.625" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_user_master" Width="1.5" PointX="5.625" PointY="13.625" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_user_type" Width="1.5" PointX="3.375" PointY="15.75" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_zone_master" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_invoice" Width="1.5" PointX="5" PointY="28" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_invoice_details" Width="1.5" PointX="7.25" PointY="28.875" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_pm_billing_hours" Width="1.5" PointX="5" PointY="4.625" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_template" Width="1.5" PointX="1.5" PointY="10.25" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_billing_info" Width="1.5" PointX="7.25" PointY="13.25" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_contract" Width="1.5" PointX="5" PointY="25.25" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_email_setup" Width="1.5" PointX="5" PointY="21.875" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_meter" Width="1.5" PointX="5" PointY="18.875" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tenant_settings" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_user_master" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_user_type" Width="1.5" PointX="0.5" PointY="15.875" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_zone_master" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tblMVCChart" Width="1.5" PointX="2.5" PointY="0.5" />
+        <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_invoice_details_tbl_invoice" />
+        <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_invoice_tbl_user_master" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_pm_billing_hours_tbl_user_master" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_tenant_billing_info_tbl_template" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_tenant_billing_info_tbl_user_master" />
@@ -24,12 +28,8 @@
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_tenant_meter_tbl_user_master" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_tenant_settings_tbl_user_master" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_user_master_tbl_user_type" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tblMVCChart" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_invoice" Width="1.5" PointX="11.5" PointY="0.625" />
-        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_invoice_details" Width="1.5" PointX="11.5" PointY="9" />
-        <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_invoice_details_tbl_invoice" />
-        <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_invoice_tbl_user_master" />
-        </Diagram>
+        <EntityTypeShape EntityType="DB_TenantMNGModel.UDI" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
