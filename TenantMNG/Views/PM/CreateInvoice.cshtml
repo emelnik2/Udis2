@@ -156,7 +156,7 @@
         function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva) {
 
             // Cálculo Suministro
-            var suministro = $('#suministro').val();
+            var suministro = Number($('#suministro').val());
 
             // Cálculo de Distribucion
             var maxdemanda = Math.max($('#demanda_base').val(), $('#demanda_intermedia').val(), $('#demanda_punta').val());
