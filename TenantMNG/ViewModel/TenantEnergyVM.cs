@@ -46,5 +46,11 @@ namespace TenantMNG.ViewModel
 
         public decimal dec_base_rate { get; set; }
 
+        public decimal demanda_base { get; set; }
+
+        public decimal demanda_intermedia { get; set; }
+
+        public decimal demanda_punta { get; set; }
+
     }
 }

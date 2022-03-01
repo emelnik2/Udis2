@@ -936,3 +936,87 @@ ERROR 2021-12-24 20:28:56,819 421339ms TenantBAL              ice_details_insert
 ERROR 2021-12-24 20:29:16,501 441021ms TenantBAL              ice_details_insert - La cadena de entrada no tiene el formato correcto.
 ERROR 2022-02-24 17:45:06,796 52257ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
 ERROR 2022-02-24 17:47:00,242 165703ms PMController           getEnerge          - La cadena de entrada no tiene el formato correcto.
+ERROR 2022-02-28 20:01:43,349 13880ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:01:43,486 14017ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:03:06,663 16135ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:03:06,803 16275ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:04:06,115 14706ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:04:06,299 14890ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:06:07,711 13533ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:06:07,839 13660ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:06:32,102 37923ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:06:32,192 38013ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:32:07,565 12515ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:32:07,731 12681ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:33:51,702 17460ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:33:51,863 17621ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:35:11,459 11769ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:35:11,604 11913ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:35:20,531 20841ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:35:20,594 20904ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:37:28,561 19032ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:37:28,681 19152ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:38:26,678 18184ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:38:26,795 18301ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:42:05,814 10453ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:42:05,989 10628ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:45:46,162 230801ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:45:48,682 233321ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:47:38,787 69878ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:49:38,398 102643ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:50:11,535 135781ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 20:58:54,234 487105ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:05:07,633 20963ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:05:07,826 21157ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:15:01,487 116808ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:23:19,327 15145ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:23:19,442 15259ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:26:28,977 12497ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:26:29,084 12603ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:27:03,532 47052ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:27:06,433 49953ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:32:58,296 12087ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:32:58,410 12201ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index
+ERROR 2022-02-28 21:39:46,933 83336ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
+Nombre del parámetro: index

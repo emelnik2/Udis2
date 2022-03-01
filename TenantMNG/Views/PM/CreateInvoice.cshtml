@@ -108,6 +108,10 @@
             tenantenergy.dec_inter_energy_rate = $('#dec_inter_energy_rate').val();
             tenantenergy.dec_base_rate = $('#dec_base_rate').val();
 
+            tenantenergy.demanda_base = $('#demanda_base').val();
+            tenantenergy.demanda_intermedia = $('#demanda_intermedia').val();
+            tenantenergy.demanda_punta = $('#demanda_punta').val();
+
 
             var options = {};
             options.url = '@Url.Action("getEnerge", "PM")';

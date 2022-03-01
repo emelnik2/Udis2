@@ -306,13 +306,13 @@ namespace TenantMNG.Controllers
                         objvm.dec_peak_energy = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy"].ToString());
                         objvm.dec_peak_energy_amt = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_amt"].ToString());
                         objvm.dec_peak_energy_rate = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_rate"].ToString());
-                        //objvm.str_meter_id = Convert.ToInt32(dt.Rows[i]["int_meter_id"].ToString());
                         objvm.str_meter_id = dt.Rows[i]["str_meter_id"].ToString();
 
                         objvm.demanda_base = Convert.ToDecimal(dt.Rows[i]["demanda_base"].ToString());
                         objvm.demanda_intermedia = Convert.ToDecimal(dt.Rows[i]["demanda_intermedia"].ToString());
-                        objvm.demanda_punta = Convert.ToDecimal(dt.Rows[i]["energia_activa"].ToString());
-                        objvm.demanda_punta = Convert.ToDecimal(dt.Rows[i]["energia_reactiva"].ToString());
+                        objvm.demanda_punta = Convert.ToDecimal(dt.Rows[i]["demanda_punta"].ToString());
+                        objvm.energia_activa = Convert.ToDecimal(dt.Rows[i]["energia_activa"].ToString());
+                        objvm.energia_reactiva = Convert.ToDecimal(dt.Rows[i]["energia_reactiva"].ToString());
 
                         objbal.tenant_invoice_details_insert(objvm);
                     }
@@ -695,7 +695,7 @@ namespace TenantMNG.Controllers
 
 
 
-                dt.Columns.AddRange(new DataColumn[13] { new DataColumn("metername", typeof(string)),
+                dt.Columns.AddRange(new DataColumn[16] { new DataColumn("metername", typeof(string)),
                             new DataColumn("dec_peak_energy", typeof(decimal)),
                             new DataColumn("dec_peak_energy_rate",typeof(decimal)),
                             new DataColumn("dec_peak_energy_amt",typeof(decimal)),
@@ -705,8 +705,11 @@ namespace TenantMNG.Controllers
                             new DataColumn("dec_base_energy",typeof(decimal)),
                             new DataColumn("dec_base_rate",typeof(decimal)),
                             new DataColumn("dec_base_amt",typeof(decimal)),
-                            new DataColumn("energiaactiva",typeof(decimal)),
-                            new DataColumn("energiareactiva",typeof(decimal)),
+                            new DataColumn("demanda_base",typeof(decimal)),
+                            new DataColumn("demanda_intermedia",typeof(decimal)),
+                            new DataColumn("demanda_punta",typeof(decimal)),
+                            new DataColumn("energia_activa",typeof(decimal)),
+                            new DataColumn("energia_reactiva",typeof(decimal)),
                             new DataColumn("str_meter_id",typeof(string)),});
 
 
@@ -746,7 +749,7 @@ namespace TenantMNG.Controllers
 
                             dt.Rows.Add(m, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
                                 objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),
-                                energiaactiva, energiareactiva, _meteridarray[i]);
+                                objvm.demanda_base, objvm.demanda_intermedia, objvm.demanda_punta, energiaactiva, energiareactiva, _meteridarray[i]);
                         }
 
                         i++;

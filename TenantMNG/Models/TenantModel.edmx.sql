@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/26/2022 15:02:31
+-- Date Created: 02/28/2022 21:21:07
 -- Generated from EDMX file: C:\Users\EduardoM\source\repos\Udis\TenantMNG\Models\TenantModel.edmx
 -- --------------------------------------------------
 

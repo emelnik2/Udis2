@@ -144,18 +144,20 @@
 
                         }
                         <div class="clearfix"></div>
-                        <div class="span5" style="margin-left:0px">
+
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.date_s_bill_date, new { @class = "control-label" })
 
                                 <div class="controls">
 
-                                    @Html.TextBoxFor(m => m.date_s_bill_date, "{0:yyyy/MM/dd}", new { @class = "span12" })
+                                    @Html.TextBoxFor(m => m.date_s_bill_date, "{0:yyyy/MM/dd}", new { @class = "span8" })
                                     @Html.ValidationMessageFor(m => m.date_s_bill_date)
 
                                 </div>
                             </div>
                         </div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.date_e_bill_date, new { @class = "control-label" })
@@ -167,8 +169,10 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="clearfix"></div>
-                        <div class="span5" style="margin-left:0px">
+
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.date_pay_date, new { @class = "control-label" })
 
@@ -179,7 +183,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.dec_base_rate, new { @class = "control-label" })
 
@@ -191,28 +195,6 @@
                         </div>
 
                         <div class="clearfix"></div>
-                        @*<div style="display:none">
-                <div class="span5" style="margin-left:0px">
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.dec_prev_peak_energy, new { @class = "control-label" })
-
-                        <div class="controls">
-                            @Html.TextBoxFor(m => m.dec_prev_peak_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) (Kwh)
-
-                        </div>
-                    </div>
-                </div>
-                <div class="span5">
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.dec_prev_inter_energy, new { @class = "control-label" })
-
-                        <div class="controls">
-                            @Html.TextBoxFor(m => m.dec_prev_inter_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
 
                         <div class="span5">
                             <div class="control-group">
@@ -224,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.dec_peak_energy_rate, new { @class = "control-label" })
 
@@ -234,28 +216,6 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div style="display:none">
-                <div class="span5" style="margin-left:0px">
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.dec_current_peak_energy, new { @class = "control-label" })
-
-                        <div class="controls">
-                            @Html.TextBoxFor(m => m.dec_current_peak_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) (Kwh)
-
-                        </div>
-                    </div>
-                </div>
-                <div class="span5">
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.dec_current_inter_energy, new { @class = "control-label" })
-
-                        <div class="controls">
-                            @Html.TextBoxFor(m => m.dec_current_inter_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
 
                         <div class="clearfix"></div>
 
@@ -270,7 +230,7 @@
                             </div>
                         </div>
 
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.demanda_intermedia, new { @class = "control-label" })
 
@@ -294,7 +254,7 @@
                             </div>
                         </div>
 
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.suministro, new { @class = "control-label" })
 
@@ -318,7 +278,7 @@
                             </div>
                         </div>
 
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.tarifa_transmision, new { @class = "control-label" })
 
@@ -342,20 +302,7 @@
                             </div>
                         </div>
 
-                        <div class="span5" style="margin-left:0px">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5" style="margin-left:0px">
+                        <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.cre_servicios_conexos, new { @class = "control-label" })
 
@@ -366,17 +313,18 @@
                             </div>
                         </div>
 
-                        <div class="span5" style="margin-left:0px">
+                        <div class="clearfix"></div>
+
+                        <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.dec_total, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_total, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
+                                    @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
 
                                 </div>
                             </div>
                         </div>
-
 
                         <br />
 
