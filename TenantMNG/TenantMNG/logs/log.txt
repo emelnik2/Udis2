@@ -729,3 +729,10 @@ Parameter name: xValue
 ERROR 2018-09-24 08:22:33,046 15886ms PMController           bindData           - Data points insertion error. Number of X values is less than Y values
 Parameter name: xValue
 ERROR 2018-09-24 22:18:29,043 369411ms PMController           bindData           - Series data points do not support values of type System.Collections.ArrayList only values of these types can be used: Double, Decimal, Single, int, long, uint, ulong, String, DateTime, short, ushort.
+ERROR 2022-04-12 08:47:25,439 113478ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 08:48:38,278 186317ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 09:00:06,033 99711ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 09:05:15,674 16881ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 09:05:35,471 36678ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 09:05:39,905 41113ms LoginController        Index              - The underlying provider failed on Open.
+ERROR 2022-04-12 09:05:45,872 47079ms LoginController        Index              - The underlying provider failed on Open.

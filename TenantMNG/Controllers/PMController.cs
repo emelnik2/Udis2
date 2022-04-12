@@ -169,7 +169,7 @@ namespace TenantMNG.Controllers
         }
 
         [HttpGet] // this action result returns the partial containing the modal
-        public ActionResult DetachMeter(int id)
+        public ActionResult DetachMeter(string id)
         {
             Session["tenant_id"] = id;
             Session["meter_id"] = id;

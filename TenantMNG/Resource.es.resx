@@ -406,7 +406,7 @@
     <value>Alarma</value>
   </data>
   <data name="assign_to" xml:space="preserve">
-    <value>Asignar a</value>
+    <value>Asignado a</value>
   </data>
   <data name="create_multi" xml:space="preserve">
     <value>Crear una factura múltiple</value>
@@ -860,5 +860,11 @@
   </data>
   <data name="cre_servicios_conexos" xml:space="preserve">
     <value>CRE Servicios conexos</value>
+  </data>
+  <data name="assign_or_delete_meter" xml:space="preserve">
+    <value>Asignar / Eliminar Medidor</value>
+  </data>
+  <data name="reassign_meter" xml:space="preserve">
+    <value>Reasignar Medidor</value>
   </data>
 </root>

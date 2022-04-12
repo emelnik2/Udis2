@@ -777,4 +777,10 @@
   <data name="tenantEngcon" xml:space="preserve">
     <value>Tenant Energy Consumption</value>
   </data>
+  <data name="assign_or_delete_meter" xml:space="preserve">
+    <value>Assign / Detelet Meter</value>
+  </data>
+  <data name="reassign_meter" xml:space="preserve">
+    <value>Reassign Meter</value>
+  </data>
 </root>

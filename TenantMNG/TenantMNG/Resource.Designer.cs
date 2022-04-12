@@ -19,7 +19,7 @@ namespace TenantMNG {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -93,6 +93,15 @@ namespace TenantMNG {
         public static string assign_meter {
             get {
                 return ResourceManager.GetString("assign_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign / Detelet Meter.
+        /// </summary>
+        public static string assign_or_delete_meter {
+            get {
+                return ResourceManager.GetString("assign_or_delete_meter", resourceCulture);
             }
         }
         
@@ -1263,6 +1272,15 @@ namespace TenantMNG {
         public static string property {
             get {
                 return ResourceManager.GetString("property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reassign Meter.
+        /// </summary>
+        public static string reassign_meter {
+            get {
+                return ResourceManager.GetString("reassign_meter", resourceCulture);
             }
         }
         

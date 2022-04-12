@@ -409,7 +409,7 @@
     <value>Alarm</value>
   </data>
   <data name="assign_to" xml:space="preserve">
-    <value>Assign To</value>
+    <value>Assigned to</value>
   </data>
   <data name="create_multi" xml:space="preserve">
     <value>Create Multiple Invoice</value>
@@ -866,5 +866,11 @@
   </data>
   <data name="cre_servicios_conexos" xml:space="preserve">
     <value>CRE related services</value>
+  </data>
+  <data name="assign_or_delete_meter" xml:space="preserve">
+    <value>Assign / Detelet Meter</value>
+  </data>
+  <data name="reassign_meter" xml:space="preserve">
+    <value>Reassign Meter</value>
   </data>
 </root>

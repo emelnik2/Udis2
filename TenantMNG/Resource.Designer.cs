@@ -97,7 +97,16 @@ namespace TenantMNG {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assign To.
+        ///   Looks up a localized string similar to Assign / Detelet Meter.
+        /// </summary>
+        public static string assign_or_delete_meter {
+            get {
+                return ResourceManager.GetString("assign_or_delete_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigned to.
         /// </summary>
         public static string assign_to {
             get {
@@ -1488,6 +1497,15 @@ namespace TenantMNG {
         public static string property {
             get {
                 return ResourceManager.GetString("property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reassign Meter.
+        /// </summary>
+        public static string reassign_meter {
+            get {
+                return ResourceManager.GetString("reassign_meter", resourceCulture);
             }
         }
         

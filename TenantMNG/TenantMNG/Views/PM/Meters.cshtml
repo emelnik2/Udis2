@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TenantMNG.ADO.NET.meter>
+﻿@using PagedList.Mvc
+@using PagedList
+@using TenantMNG.Core;
+@model IPagedList<TenantMNG.ADO.NET.meter>
 @{
     ViewBag.Title = "Meters";
     Layout = "~/Views/Shared/_LayoutPM.cshtml";
@@ -119,7 +122,7 @@
                 </div>
                 <div class="widget-content">
                     @*@Html.ActionLink(TenantMNG.Resource.add_new, "CreateMeter", "PM", null, new { @class = "btn btn-primary" }*@
-                 
+
                     <br />
 
 
@@ -137,42 +140,45 @@
                         <table class="table table-bordered data-table">
                             <thead>
                                 <tr>
-                                    <th>@TenantMNG.Resource.meter @TenantMNG.Resource.name</th>
+                                    <th>@TenantMNG.Resource.meter</th>
                                     <th>@TenantMNG.Resource.assign_to</th>
-                                    <th></th>
+                                    <th>@TenantMNG.Resource.assign_or_delete_meter</th>
+                                    <th>@TenantMNG.Resource.reassign_meter</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var user in Model)
                                 {
-                                <tr class="gradeX">
+                                    <tr class="gradeX">
 
 
-                                    <td>@user.name</td>
-                                    <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.ID)</td>
+                                        <td>@user.name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.ID)</td>
 
-                                    <td>
-                                        @if (TenantMNG.Core.CommonCls.isMeterTenant(user.ID))
-                                        {
-                                            <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.ID">@TenantMNG.Resource.detach_meter</a>
+                                        <td>
+                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.ID))
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.ID">@TenantMNG.Resource.detach_meter</a>
 
-                                        }
-                                        else
-                                        {
-                                            <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.ID">@TenantMNG.Resource.assign_meter</a>
-                                        }
-                                    <td>
-                                        @if (TenantMNG.Core.CommonCls.isMeterTenant(user.ID))
-                                        
-                                        {
-                                            <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.ID">@TenantMNG.Resource.assign_meter</a>
-                                        }
+                                            }
+                                            else
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.ID">@TenantMNG.Resource.assign_meter</a>
+                                            }
+                                        <td>
+                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.ID))
 
-                                    </td>
-                                </tr>
+                                            {
+                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.ID">@TenantMNG.Resource.assign_meter</a>
+                                            }
+
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Meters", new { page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
                     }
                 </div>
             </div>

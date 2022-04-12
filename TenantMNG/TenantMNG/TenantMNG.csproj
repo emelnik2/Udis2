@@ -606,6 +606,8 @@
     <Content Include="img\larrow.png" />
     <Content Include="img\line.png" />
     <Content Include="img\logo.png" />
+    <Content Include="img\Logo_Tecnobuildings.png" />
+    <Content Include="img\Logo_Tecnobuildings_Small.png" />
     <Content Include="img\menu-active.png" />
     <Content Include="img\rarrow.png" />
     <Content Include="img\saturation.png" />

@@ -774,4 +774,10 @@
   <data name="tenant_consumption_report" xml:space="preserve">
     <value>Reporte de Consumo de Inquilinos</value>
   </data>
+  <data name="assign_or_delete_meter" xml:space="preserve">
+    <value>Asignar / Eliminar Medidor</value>
+  </data>
+  <data name="reassign_meter" xml:space="preserve">
+    <value>Reasignar Medidor</value>
+  </data>
 </root>
