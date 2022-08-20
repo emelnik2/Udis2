@@ -89,6 +89,7 @@ namespace TenantMNG.ViewModel
 
         public Nullable<decimal> energia_activa { get; set; }
 
+        [Display(Name = "energia_reactiva", ResourceType = typeof(Resource))]
         public Nullable<decimal> energia_reactiva { get; set; }
 
         [Display(Name = "suministro", ResourceType = typeof(Resource))]
@@ -141,6 +142,15 @@ namespace TenantMNG.ViewModel
 
         [Display(Name = "precio_decuento_bonificacion", ResourceType = typeof(Resource))]
         public Nullable<decimal> precio_decuento_bonificacion { get; set; }
+
+        [Display(Name = "energia_base", ResourceType = typeof(Resource))]
+        public Nullable<decimal> energia_base { get; set; }
+
+        [Display(Name = "energia_intermedia", ResourceType = typeof(Resource))]
+        public Nullable<decimal> energia_intermedia { get; set; }
+
+        [Display(Name = "energia_punta", ResourceType = typeof(Resource))]
+        public Nullable<decimal> energia_punta { get; set; }
 
     }
 }

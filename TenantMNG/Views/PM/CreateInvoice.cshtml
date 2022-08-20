@@ -27,7 +27,7 @@
 
                     var period = $("#int_invoice_period").val();
 
-                    period = 1;
+                    period = 3;
 
                     if (period == 1)
                         dt.setDate(dt.getDate() + 7);
@@ -159,6 +159,24 @@
 
         function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva) {
 
+            
+            //Checar si energia base, intermedia, punta y energia reactiva tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
+            //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
+            if (!$('#energia_base').val())
+                $('#energia_base').val(Number(transmision_base).toFixed(2));
+            if (!$('#energia_intermedia').val())
+                $('#energia_intermedia').val(Number(transmision_intermedia).toFixed(2));
+            if (!$('#energia_punta').val())
+                $('#energia_punta').val(Number(transmision_punta).toFixed(2));
+            if (!$('#energia_reactiva').val())
+                $('#energia_reactiva').val(Number(energiareactiva).toFixed(2));
+
+            var energia_base = $('#energia_base').val();
+            var energia_intermedia = $('#energia_intermedia').val();
+            var energia_punta = $('#energia_punta').val();
+            var energia_reactiva = $('#energia_reactiva').val();
+
+
             // Cálculo Suministro
             var suministro = Number($('#suministro').val());
 
@@ -167,35 +185,35 @@
             var start_date = new Date($('#date_s_bill_date').val());
             var end_date = new Date($('#date_e_bill_date').val());
             var periodo_dias = Math.floor((end_date.getTime() - start_date.getTime()) / (1000 * 60 * 60 * 24));
-            var demanda_cargo = Math.round((transmision_base + transmision_intermedia + transmision_punta) / (24 * periodo_dias * 0.57));
+            var demanda_cargo = Math.round((energia_base + energia_intermedia + energia_punta) / (24 * periodo_dias * 0.57));
             var mindemanda = Math.min(maxdemanda, demanda_cargo);
             var distribucion = $('#distribucion').val() * mindemanda;
 
-            // Cálculo de Transmision
-            var precio_tranmisionbase = transmision_base * $('#tarifa_transmision').val();
-            var precio_tranmisionintermedia = transmision_intermedia * $('#tarifa_transmision').val();
-            var precio_tranmisionpunta = transmision_punta * $('#tarifa_transmision').val();
+            // Cálculo de Transmision (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_tranmisionbase = energia_base * $('#tarifa_transmision').val();
+            var precio_tranmisionintermedia = energia_intermedia * $('#tarifa_transmision').val();
+            var precio_tranmisionpunta = energia_punta * $('#tarifa_transmision').val();
             var transmision = precio_tranmisionbase + precio_tranmisionintermedia + precio_tranmisionpunta;
 
-            // Cálculo CENACE
-            var precio_cenace_base = transmision_base * $('#operacion_cenace').val();
-            var precio_cenace_intermedia = transmision_intermedia * $('#operacion_cenace').val();
-            var precio_cenace_punta = transmision_punta * $('#operacion_cenace').val();
+            // Cálculo CENACE (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_cenace_base = energia_base * $('#operacion_cenace').val();
+            var precio_cenace_intermedia = energia_intermedia * $('#operacion_cenace').val();
+            var precio_cenace_punta = energia_punta * $('#operacion_cenace').val();
             var cenace = precio_cenace_base + precio_cenace_intermedia + precio_cenace_punta;
 
-            // Cálculo de Energía
-            var precio_energiabase = transmision_base * $('#dec_base_rate').val();
-            var precio_energiaintermedia = transmision_intermedia * $('#dec_inter_energy_rate').val();
-            var precio_energiapunta = transmision_punta * $('#dec_peak_energy_rate').val();
+            // Cálculo de Energía (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_energiabase = energia_base * $('#dec_base_rate').val();
+            var precio_energiaintermedia = energia_intermedia * $('#dec_inter_energy_rate').val();
+            var precio_energiapunta = energia_punta * $('#dec_peak_energy_rate').val();
             var energia = precio_energiabase + precio_energiaintermedia + precio_energiapunta;
 
             // Cálculo de Capacidad
             var capacidad = Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val();
 
-            // Cálculo CRE Servicios Conexos (SCnMEM)
-            var precio_sc_base = transmision_base * $('#cre_servicios_conexos').val();
-            var precio_sc_intermedia = transmision_intermedia * $('#cre_servicios_conexos').val();
-            var precio_sc_punta = transmision_punta * $('#cre_servicios_conexos').val();
+            // Cálculo CRE Servicios Conexos (SCnMEM) (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_sc_base = energia_base * $('#cre_servicios_conexos').val();
+            var precio_sc_intermedia = energia_intermedia * $('#cre_servicios_conexos').val();
+            var precio_sc_punta = energia_punta * $('#cre_servicios_conexos').val();
             var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
 
             // Cálculo de % de Bonificación
@@ -316,6 +334,43 @@
 
                         <div class="span5">
                             <div class="control-group">
+                                @Html.LabelFor(m => m.energia_base, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.energia_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="span5">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.energia_intermedia, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.energia_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span5">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.energia_punta, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.energia_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="span5">
+                            <div class="control-group">
                                 @Html.LabelFor(m => m.dec_base_rate, new { @class = "control-label" })
 
                                 <div class="controls">
@@ -324,8 +379,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="clearfix"></div>
 
                         <div class="span5">
                             <div class="control-group">
@@ -338,6 +391,8 @@
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.dec_peak_energy_rate, new { @class = "control-label" })
@@ -348,8 +403,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="clearfix"></div>
 
                         <div class="span5">
                             <div class="control-group">
@@ -362,6 +415,8 @@
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.demanda_intermedia, new { @class = "control-label" })
@@ -372,8 +427,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="clearfix"></div>
 
                         <div class="span5">
                             <div class="control-group">
@@ -386,6 +439,8 @@
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.suministro, new { @class = "control-label" })
@@ -396,8 +451,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="clearfix"></div>
 
                         <div class="span5">
                             <div class="control-group">
@@ -410,6 +463,8 @@
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.tarifa_transmision, new { @class = "control-label" })
@@ -420,8 +475,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="clearfix"></div>
 
                         <div class="span5">
                             <div class="control-group">
@@ -434,6 +487,8 @@
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.cre_servicios_conexos, new { @class = "control-label" })
@@ -445,14 +500,25 @@
                             </div>
                         </div>
 
-                        <div class="clearfix"></div>
-
                         <div class="span5">
                             <div class="control-group">
                                 @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
 
                                 <div class="controls">
                                     @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="span5">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.energia_reactiva, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
 
                                 </div>
                             </div>
@@ -649,7 +715,7 @@
                         @Html.HiddenFor(m => m.str_peak_e_time)
                         @Html.HiddenFor(m => m.str_peak_s_time)
                         @Html.HiddenFor(m => m.energia_activa)
-                        @Html.HiddenFor(m => m.energia_reactiva)
+                        //@Html.HiddenFor(m => m.energia_reactiva)
                         <div class="form-actions">
                             @*<input type="submit" class="btn btn-success" value="Save" />*@
                             <input type="submit" id="btnsave"

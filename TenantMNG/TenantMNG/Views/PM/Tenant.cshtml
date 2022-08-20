@@ -153,7 +153,7 @@
                                 }
                             </tbody>
                         </table>
-                        @Html.PagedListPager(Model, page => Url.Action("Invoice", new { tenantid = Request["tenantid"], page }),
+                        @Html.PagedListPager(Model, page => Url.Action("Tenant", new { tenantid = Request["tenantid"], page }),
                             new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
                     }
                 </div>

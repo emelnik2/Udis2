@@ -91,7 +91,8 @@
                 </div>
                 <div class="widget-content">
                     @Html.ActionLink(TenantMNG.Resource.add_new, "CreateTenant", "User", null, new { @class = "btn btn-primary" })
-                    @Html.ActionLink(TenantMNG.Resource.create_invoices, "CreateInvoices", "PM", null, new { @class = "btn btn-warning" })
+                    @*Html.ActionLink(TenantMNG.Resource.create_invoices, "CreateInvoices", "PM", null, new { @class = "btn btn-warning" })*@
+                    <button type="button" class="btn btn-warning disabled">@TenantMNG.Resource.create_invoices</button>
                     <br />
 
 
@@ -164,6 +165,7 @@
 </div>
 @section scriptstop {
     <script type="text/javascript">
+
         $(document).ready(function () {
 
 

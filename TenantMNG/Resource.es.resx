@@ -867,4 +867,13 @@
   <data name="reassign_meter" xml:space="preserve">
     <value>Reasignar Medidor</value>
   </data>
+  <data name="energia_base" xml:space="preserve">
+    <value>Energía Base</value>
+  </data>
+  <data name="energia_intermedia" xml:space="preserve">
+    <value>Energía Intermedia</value>
+  </data>
+  <data name="energia_punta" xml:space="preserve">
+    <value>Energia Punta</value>
+  </data>
 </root>

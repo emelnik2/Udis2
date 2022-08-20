@@ -541,9 +541,9 @@
     <Content Include="ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap-wysihtml5.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="ckeditor\chartist.min.js" />
     <Content Include="Content\chartist.min.css" />

@@ -772,6 +772,33 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Energy.
+        /// </summary>
+        public static string energia_base {
+            get {
+                return ResourceManager.GetString("energia_base", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intermediate Energy.
+        /// </summary>
+        public static string energia_intermedia {
+            get {
+                return ResourceManager.GetString("energia_intermedia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peak Energy.
+        /// </summary>
+        public static string energia_punta {
+            get {
+                return ResourceManager.GetString("energia_punta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reactive Energy.
         /// </summary>
         public static string energia_reactiva {
