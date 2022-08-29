@@ -4,413 +4,446 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DB_TenantMNGModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DB_TenantMNGModelStoreContainer">
-    <EntitySet Name="tbl_invoice" EntityType="DB_TenantMNGModel.Store.tbl_invoice" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_invoice_details" EntityType="DB_TenantMNGModel.Store.tbl_invoice_details" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_pm_billing_hours" EntityType="DB_TenantMNGModel.Store.tbl_pm_billing_hours" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_template" EntityType="DB_TenantMNGModel.Store.tbl_template" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_tenant_billing_info" EntityType="DB_TenantMNGModel.Store.tbl_tenant_billing_info" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_tenant_contract" EntityType="DB_TenantMNGModel.Store.tbl_tenant_contract" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_tenant_email_setup" EntityType="DB_TenantMNGModel.Store.tbl_tenant_email_setup" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_tenant_meter" EntityType="DB_TenantMNGModel.Store.tbl_tenant_meter" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_tenant_settings" EntityType="DB_TenantMNGModel.Store.tbl_tenant_settings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_user_master" EntityType="DB_TenantMNGModel.Store.tbl_user_master" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_user_type" EntityType="DB_TenantMNGModel.Store.tbl_user_type" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tbl_zone_master" EntityType="DB_TenantMNGModel.Store.tbl_zone_master" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="tblMVCCharts" EntityType="DB_TenantMNGModel.Store.tblMVCCharts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UDIS" EntityType="DB_TenantMNGModel.Store.UDIS" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_tbl_invoice_details_tbl_invoice" Association="DB_TenantMNGModel.Store.FK_tbl_invoice_details_tbl_invoice">
-      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
-      <End Role="tbl_invoice_details" EntitySet="tbl_invoice_details" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_invoice_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_invoice_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_pm_billing_hours_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_pm_billing_hours_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_pm_billing_hours" EntitySet="tbl_pm_billing_hours" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_billing_info_tbl_template" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_billing_info_tbl_template">
-      <End Role="tbl_template" EntitySet="tbl_template" />
-      <End Role="tbl_tenant_billing_info" EntitySet="tbl_tenant_billing_info" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_billing_info_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_billing_info_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_tenant_billing_info" EntitySet="tbl_tenant_billing_info" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_contract_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_contract_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_tenant_contract" EntitySet="tbl_tenant_contract" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_email_setup_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_email_setup_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_tenant_email_setup" EntitySet="tbl_tenant_email_setup" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_meter_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_meter_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_tenant_meter" EntitySet="tbl_tenant_meter" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_tenant_settings_tbl_user_master" Association="DB_TenantMNGModel.Store.FK_tbl_tenant_settings_tbl_user_master">
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-      <End Role="tbl_tenant_settings" EntitySet="tbl_tenant_settings" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_user_master_tbl_user_type" Association="DB_TenantMNGModel.Store.FK_tbl_user_master_tbl_user_type">
-      <End Role="tbl_user_type" EntitySet="tbl_user_type" />
-      <End Role="tbl_user_master" EntitySet="tbl_user_master" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="tbl_invoice">
-    <Key>
-      <PropertyRef Name="int_invoice_id" />
-    </Key>
-    <Property Name="int_invoice_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="date_invoice_date" Type="datetime" Nullable="true" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="bit_tenant_active" Type="bit" Nullable="true" />
-    <Property Name="date_s_bill_date" Type="datetime" Nullable="true" />
-    <Property Name="date_e_bill_date" Type="datetime" Nullable="true" />
-    <Property Name="dec_total" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_tax_amt" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="bit_is_editable" Type="bit" Nullable="true" />
-    <Property Name="date_pay_date" Type="datetime" Nullable="true" />
-    <Property Name="suministro" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="distribucion" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="tarifa_transmision" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="operacion_cenace" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="capacidad" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="cre_servicios_conexos" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_suministro" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_distribucion" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_transmision" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_cenace" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_energia" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_capacidad" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_cre_servicios_conexos" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_dos_porciento_baja_tension" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="precio_decuento_bonificacion" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-  </EntityType>
-  <EntityType Name="tbl_invoice_details">
-    <Key>
-      <PropertyRef Name="int_id" />
-    </Key>
-    <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="str_meter_id" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="int_invoice_id" Type="int" Nullable="true" />
-    <Property Name="dec_peak_energy" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_peak_energy_rate" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_peak_energy_amt" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_inter_energy" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_inter_energy_rate" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_inter_energy_amt" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_base_energy" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_base_rate" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="dec_base_amt" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="demanda_base" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="demanda_intermedia" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="demanda_punta" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="energia_activa" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-    <Property Name="energia_reactiva" Type="decimal" Nullable="true" Precision="15" Scale="5" />
-  </EntityType>
-  <EntityType Name="tbl_pm_billing_hours">
-    <Key>
-      <PropertyRef Name="int_rate_id" />
-    </Key>
-    <Property Name="int_rate_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_pm_id" Type="int" Nullable="true" />
-    <Property Name="str_peak_s_time_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_peak_e_time_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_s_time_1_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_e_time_1_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_s_time_2_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_e_time_2_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_s_time_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_e_time_m" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_s_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_e_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_s_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_e_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_s_time_sun" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_base_e_time_sun" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_s_time_sun" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_e_time_sun" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_s_time_2_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_inter_e_time_2_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_peak_s_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="str_peak_e_time_sat" Type="nvarchar" Nullable="true" MaxLength="20" />
-  </EntityType>
-  <EntityType Name="tbl_template">
-    <Key>
-      <PropertyRef Name="int_temp_id" />
-    </Key>
-    <Property Name="int_temp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="str_temp_name" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_body" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_tenant_billing_info">
-    <Key>
-      <PropertyRef Name="int_id" />
-    </Key>
-    <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="int_template_id" Type="int" Nullable="true" />
-    <Property Name="dec_rate" Type="decimal" Nullable="true" Precision="12" Scale="5" />
-    <Property Name="bit_is_seasonal_rate" Type="bit" Nullable="true" />
-    <Property Name="dec_seasonal_multi_rate" Type="decimal" Nullable="false" Precision="12" Scale="5" />
-    <Property Name="bit_is_surchare" Type="bit" Nullable="true" />
-    <Property Name="dec_surcharge_amt" Type="decimal" Nullable="true" Precision="12" Scale="5" />
-    <Property Name="str_min_billable_over" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="str_charge_tenant_min" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="str_charge_tenant_max" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="bit_is_consolidate_zone" Type="bit" Nullable="false" />
-    <Property Name="bit_is_print" Type="bit" Nullable="false" />
-    <Property Name="bit_is_file" Type="bit" Nullable="false" />
-    <Property Name="int_type" Type="int" Nullable="false" />
-    <Property Name="str_email" Type="nvarchar" Nullable="true" MaxLength="150" />
-  </EntityType>
-  <EntityType Name="tbl_tenant_contract">
-    <Key>
-      <PropertyRef Name="int_contract_id" />
-    </Key>
-    <Property Name="int_contract_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="s_date" Type="datetime" Nullable="true" />
-    <Property Name="e_date" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_tenant_email_setup">
-    <Key>
-      <PropertyRef Name="int_email_id" />
-    </Key>
-    <Property Name="int_email_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="str_from_email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_cc_email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_bcc_email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_subject" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_body" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_tenant_meter">
-    <Key>
-      <PropertyRef Name="int_id" />
-    </Key>
-    <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="str_meter_id" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="date_assign_date" Type="datetime" Nullable="true" />
-    <Property Name="date_detach_date" Type="datetime" Nullable="true" />
-    <Property Name="bit_is_assign" Type="bit" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_tenant_settings">
-    <Key>
-      <PropertyRef Name="int_id" />
-    </Key>
-    <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="int_tenant_id" Type="int" Nullable="true" />
-    <Property Name="dec_demanda_facturable" Type="decimal" Nullable="true" Precision="12" Scale="5" />
-    <Property Name="dec_total_ene" Type="decimal" Nullable="true" Precision="12" Scale="5" />
-  </EntityType>
-  <EntityType Name="tbl_user_master">
-    <Key>
-      <PropertyRef Name="int_id" />
-    </Key>
-    <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="str_comp_name" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_contact_name" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_add_1" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_add_2" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_city" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="str_state" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="int_pin_code" Type="int" Nullable="true" />
-    <Property Name="str_country" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="str_email" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="int_user_type_id" Type="int" Nullable="true" />
-    <Property Name="str_user_name" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_password" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="int_pm_id" Type="int" Nullable="true" />
-    <Property Name="date_created" Type="datetime" Nullable="true" />
-    <Property Name="dec_last_peak_energy" Type="decimal" Nullable="true" Precision="10" Scale="1" />
-    <Property Name="dec_last_inter_energy" Type="decimal" Nullable="true" Precision="10" Scale="1" />
-    <Property Name="int_invoice_period" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_user_type">
-    <Key>
-      <PropertyRef Name="int_type_id" />
-    </Key>
-    <Property Name="int_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="str_type" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="bit_active" Type="bit" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tbl_zone_master">
-    <Key>
-      <PropertyRef Name="int_zone_id" />
-    </Key>
-    <Property Name="int_zone_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="str_description" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="str_override" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="bit_status" Type="bit" Nullable="true" />
-  </EntityType>
-  <EntityType Name="tblMVCCharts">
-    <Key>
-      <PropertyRef Name="ChartID" />
-    </Key>
-    <Property Name="ChartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Growth_Year" Type="int" Nullable="true" />
-    <Property Name="Growth_Value" Type="float" Nullable="true" />
-  </EntityType>
-  <EntityType Name="UDIS">
-    <Key>
-      <PropertyRef Name="id_medidor" />
-      <PropertyRef Name="CFE_MeterID" />
-      <PropertyRef Name="tipo_lectura" />
-      <PropertyRef Name="valor" />
-      <PropertyRef Name="fecha_ocurrencia" />
-    </Key>
-    <Property Name="id_medidor" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="CFE_MeterID" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="tipo_lectura" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="valor" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="fecha_ocurrencia" Type="datetime" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_tbl_invoice_details_tbl_invoice">
-    <End Role="tbl_invoice" Type="DB_TenantMNGModel.Store.tbl_invoice" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_invoice_details" Type="DB_TenantMNGModel.Store.tbl_invoice_details" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_invoice">
-        <PropertyRef Name="int_invoice_id" />
-      </Principal>
-      <Dependent Role="tbl_invoice_details">
-        <PropertyRef Name="int_invoice_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_invoice_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_invoice" Type="DB_TenantMNGModel.Store.tbl_invoice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_invoice">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_pm_billing_hours_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_pm_billing_hours" Type="DB_TenantMNGModel.Store.tbl_pm_billing_hours" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_pm_billing_hours">
-        <PropertyRef Name="int_pm_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_billing_info_tbl_template">
-    <End Role="tbl_template" Type="DB_TenantMNGModel.Store.tbl_template" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_billing_info" Type="DB_TenantMNGModel.Store.tbl_tenant_billing_info" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_template">
-        <PropertyRef Name="int_temp_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_billing_info">
-        <PropertyRef Name="int_template_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_billing_info_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_billing_info" Type="DB_TenantMNGModel.Store.tbl_tenant_billing_info" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_billing_info">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_contract_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_contract" Type="DB_TenantMNGModel.Store.tbl_tenant_contract" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_contract">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_email_setup_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_email_setup" Type="DB_TenantMNGModel.Store.tbl_tenant_email_setup" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_email_setup">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_meter_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_meter" Type="DB_TenantMNGModel.Store.tbl_tenant_meter" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_meter">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_tenant_settings_tbl_user_master">
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_tenant_settings" Type="DB_TenantMNGModel.Store.tbl_tenant_settings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_master">
-        <PropertyRef Name="int_id" />
-      </Principal>
-      <Dependent Role="tbl_tenant_settings">
-        <PropertyRef Name="int_tenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tbl_user_master_tbl_user_type">
-    <End Role="tbl_user_type" Type="DB_TenantMNGModel.Store.tbl_user_type" Multiplicity="0..1" />
-    <End Role="tbl_user_master" Type="DB_TenantMNGModel.Store.tbl_user_master" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_user_type">
-        <PropertyRef Name="int_type_id" />
-      </Principal>
-      <Dependent Role="tbl_user_master">
-        <PropertyRef Name="int_user_type_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="DB_TenantMNGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_invoice">
+          <Key>
+            <PropertyRef Name="int_invoice_id" />
+          </Key>
+          <Property Name="int_invoice_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_meter_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_invoice_date" Type="date" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="bit_tenant_active" Type="bit" />
+          <Property Name="date_s_bill_date" Type="date" />
+          <Property Name="date_e_bill_date" Type="date" />
+          <Property Name="dec_total" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_tax_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="bit_is_editable" Type="bit" />
+          <Property Name="date_pay_date" Type="date" />
+          <Property Name="suministro" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="distribucion" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="tarifa_transmision" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="operacion_cenace" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="capacidad" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="cre_servicios_conexos" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_suministro" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_distribucion" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_transmision" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_cenace" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_energia" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_capacidad" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_cre_servicios_conexos" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_dos_porciento_baja_tension" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="precio_decuento_bonificacion" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_base" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_intermedia" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_punta" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="energia_activa" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="energia_reactiva" Type="decimal" Precision="15" Scale="5" />
+        </EntityType>
+        <EntityType Name="tbl_invoice_details">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_meter_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="int_invoice_id" Type="int" />
+          <Property Name="dec_peak_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_energy" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_amt" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_base" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_intermedia" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_punta" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="energia_activa" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="energia_reactiva" Type="decimal" Precision="15" Scale="5" />
+        </EntityType>
+        <EntityType Name="tbl_pm_billing_hours">
+          <Key>
+            <PropertyRef Name="int_rate_id" />
+          </Key>
+          <Property Name="int_rate_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_pm_id" Type="int" />
+          <Property Name="str_peak_s_time_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_peak_e_time_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_s_time_1_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_e_time_1_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_s_time_2_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_e_time_2_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_s_time_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_e_time_m" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_s_time_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_e_time_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_s_time_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_e_time_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_s_time_sun" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_base_e_time_sun" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_s_time_sun" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_e_time_sun" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_s_time_2_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_inter_e_time_2_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_peak_s_time_sat" Type="nvarchar" MaxLength="20" />
+          <Property Name="str_peak_e_time_sat" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_template">
+          <Key>
+            <PropertyRef Name="int_temp_id" />
+          </Key>
+          <Property Name="int_temp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_temp_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_body" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_tenant_billing_info">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="int_template_id" Type="int" />
+          <Property Name="dec_rate" Type="decimal" Precision="12" Scale="5" />
+          <Property Name="bit_is_seasonal_rate" Type="bit" />
+          <Property Name="dec_seasonal_multi_rate" Type="decimal" Precision="12" Scale="5" Nullable="false" />
+          <Property Name="bit_is_surchare" Type="bit" />
+          <Property Name="dec_surcharge_amt" Type="decimal" Precision="12" Scale="5" />
+          <Property Name="str_min_billable_over" Type="nvarchar" MaxLength="10" />
+          <Property Name="str_charge_tenant_min" Type="nvarchar" MaxLength="10" />
+          <Property Name="str_charge_tenant_max" Type="nvarchar" MaxLength="10" />
+          <Property Name="bit_is_consolidate_zone" Type="bit" Nullable="false" />
+          <Property Name="bit_is_print" Type="bit" Nullable="false" />
+          <Property Name="bit_is_file" Type="bit" Nullable="false" />
+          <Property Name="int_type" Type="int" Nullable="false" />
+          <Property Name="str_email" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tbl_tenant_contract">
+          <Key>
+            <PropertyRef Name="int_contract_id" />
+          </Key>
+          <Property Name="int_contract_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="s_date" Type="date" />
+          <Property Name="e_date" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_tenant_email_setup">
+          <Key>
+            <PropertyRef Name="int_email_id" />
+          </Key>
+          <Property Name="int_email_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="str_from_email" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_cc_email" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_bcc_email" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_subject" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_body" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_tenant_meter">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="str_meter_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_assign_date" Type="date" />
+          <Property Name="date_detach_date" Type="date" />
+          <Property Name="bit_is_assign" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_tenant_settings">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_tenant_id" Type="int" />
+          <Property Name="dec_demanda_facturable" Type="decimal" Precision="12" Scale="5" />
+          <Property Name="dec_total_ene" Type="decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="tbl_user_master">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_comp_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_contact_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_add_1" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_add_2" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_city" Type="nvarchar" MaxLength="100" />
+          <Property Name="str_state" Type="nvarchar" MaxLength="50" />
+          <Property Name="int_pin_code" Type="int" />
+          <Property Name="str_country" Type="nvarchar" MaxLength="50" />
+          <Property Name="str_email" Type="nvarchar" MaxLength="150" />
+          <Property Name="int_user_type_id" Type="int" />
+          <Property Name="str_user_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_password" Type="nvarchar" MaxLength="20" />
+          <Property Name="int_pm_id" Type="int" />
+          <Property Name="date_created" Type="date" />
+          <Property Name="dec_last_peak_energy" Type="decimal" Precision="10" Scale="1" />
+          <Property Name="dec_last_inter_energy" Type="decimal" Precision="10" Scale="1" />
+          <Property Name="int_invoice_period" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_user_type">
+          <Key>
+            <PropertyRef Name="int_type_id" />
+          </Key>
+          <Property Name="int_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="bit_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_zone_master">
+          <Key>
+            <PropertyRef Name="int_zone_id" />
+          </Key>
+          <Property Name="int_zone_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str_description" Type="nvarchar" MaxLength="150" />
+          <Property Name="str_override" Type="nvarchar" MaxLength="100" />
+          <Property Name="bit_status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Udis.dbo.tblMVCCharts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblMVCCharts">
+          <Key>
+            <PropertyRef Name="ChartID" />
+          </Key>
+          <Property Name="ChartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Growth_Year" Type="int" />
+          <Property Name="Growth_Value" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Udis">
+          <Key>
+            <PropertyRef Name="id_medidor" />
+            <PropertyRef Name="CFE_MeterID" />
+            <PropertyRef Name="tipo_lectura" />
+            <PropertyRef Name="valor" />
+            <PropertyRef Name="fecha_ocurrencia" />
+          </Key>
+          <Property Name="id_medidor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CFE_MeterID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo_lectura" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_ocurrencia" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbl_invoice_details_tbl_invoice">
+          <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_invoice_details" Type="Self.tbl_invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_invoice">
+              <PropertyRef Name="int_invoice_id" />
+            </Principal>
+            <Dependent Role="tbl_invoice_details">
+              <PropertyRef Name="int_invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_invoice_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_invoice">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_pm_billing_hours_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_pm_billing_hours" Type="Self.tbl_pm_billing_hours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_pm_billing_hours">
+              <PropertyRef Name="int_pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_billing_info_tbl_template">
+          <End Role="tbl_template" Type="Self.tbl_template" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_billing_info" Type="Self.tbl_tenant_billing_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_template">
+              <PropertyRef Name="int_temp_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_billing_info">
+              <PropertyRef Name="int_template_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_billing_info_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_billing_info" Type="Self.tbl_tenant_billing_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_billing_info">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_contract_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_contract" Type="Self.tbl_tenant_contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_contract">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_email_setup_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_email_setup" Type="Self.tbl_tenant_email_setup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_email_setup">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_meter_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_meter" Type="Self.tbl_tenant_meter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_meter">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_tenant_settings_tbl_user_master">
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_tenant_settings" Type="Self.tbl_tenant_settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_master">
+              <PropertyRef Name="int_id" />
+            </Principal>
+            <Dependent Role="tbl_tenant_settings">
+              <PropertyRef Name="int_tenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_user_master_tbl_user_type">
+          <End Role="tbl_user_type" Type="Self.tbl_user_type" Multiplicity="0..1" />
+          <End Role="tbl_user_master" Type="Self.tbl_user_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user_type">
+              <PropertyRef Name="int_type_id" />
+            </Principal>
+            <Dependent Role="tbl_user_master">
+              <PropertyRef Name="int_user_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_TenantMNGModelStoreContainer">
+          <EntitySet Name="tbl_invoice" EntityType="Self.tbl_invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_invoice_details" EntityType="Self.tbl_invoice_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_pm_billing_hours" EntityType="Self.tbl_pm_billing_hours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_template" EntityType="Self.tbl_template" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tenant_billing_info" EntityType="Self.tbl_tenant_billing_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tenant_contract" EntityType="Self.tbl_tenant_contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tenant_email_setup" EntityType="Self.tbl_tenant_email_setup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tenant_meter" EntityType="Self.tbl_tenant_meter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tenant_settings" EntityType="Self.tbl_tenant_settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user_master" EntityType="Self.tbl_user_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user_type" EntityType="Self.tbl_user_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_zone_master" EntityType="Self.tbl_zone_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMVCCharts" EntityType="Self.tblMVCCharts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblMVCCharts].[ChartID] AS [ChartID], 
+    [tblMVCCharts].[Growth_Year] AS [Growth_Year], 
+    [tblMVCCharts].[Growth_Value] AS [Growth_Value]
+    FROM [dbo].[tblMVCCharts] AS [tblMVCCharts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Udis" EntityType="Self.Udis" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Udis].[id_medidor] AS [id_medidor], 
+    [Udis].[CFE_MeterID] AS [CFE_MeterID], 
+    [Udis].[tipo_lectura] AS [tipo_lectura], 
+    [Udis].[valor] AS [valor], 
+    [Udis].[fecha_ocurrencia] AS [fecha_ocurrencia]
+    FROM [dbo].[Udis] AS [Udis]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbl_invoice_details_tbl_invoice" Association="Self.FK_tbl_invoice_details_tbl_invoice">
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+            <End Role="tbl_invoice_details" EntitySet="tbl_invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_invoice_tbl_user_master" Association="Self.FK_tbl_invoice_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_pm_billing_hours_tbl_user_master" Association="Self.FK_tbl_pm_billing_hours_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_pm_billing_hours" EntitySet="tbl_pm_billing_hours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_billing_info_tbl_template" Association="Self.FK_tbl_tenant_billing_info_tbl_template">
+            <End Role="tbl_template" EntitySet="tbl_template" />
+            <End Role="tbl_tenant_billing_info" EntitySet="tbl_tenant_billing_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_billing_info_tbl_user_master" Association="Self.FK_tbl_tenant_billing_info_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_tenant_billing_info" EntitySet="tbl_tenant_billing_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_contract_tbl_user_master" Association="Self.FK_tbl_tenant_contract_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_tenant_contract" EntitySet="tbl_tenant_contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_email_setup_tbl_user_master" Association="Self.FK_tbl_tenant_email_setup_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_tenant_email_setup" EntitySet="tbl_tenant_email_setup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_meter_tbl_user_master" Association="Self.FK_tbl_tenant_meter_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_tenant_meter" EntitySet="tbl_tenant_meter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_tenant_settings_tbl_user_master" Association="Self.FK_tbl_tenant_settings_tbl_user_master">
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+            <End Role="tbl_tenant_settings" EntitySet="tbl_tenant_settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_user_master_tbl_user_type" Association="Self.FK_tbl_user_master_tbl_user_type">
+            <End Role="tbl_user_type" EntitySet="tbl_user_type" />
+            <End Role="tbl_user_master" EntitySet="tbl_user_master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_TenantMNGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -806,6 +839,21 @@
           <Property Name="precio_decuento_bonificacion" Type="Decimal" Precision="15" Scale="5" />
           <NavigationProperty Name="tbl_invoice_details" Relationship="DB_TenantMNGModel.FK_tbl_invoice_details_tbl_invoice" FromRole="tbl_invoice" ToRole="tbl_invoice_details" />
           <NavigationProperty Name="tbl_user_master" Relationship="DB_TenantMNGModel.FK_tbl_invoice_tbl_user_master" FromRole="tbl_invoice" ToRole="tbl_user_master" />
+          <Property Name="str_meter_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dec_peak_energy" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_amt" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_amt" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_energy" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_amt" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_base" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_intermedia" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="demanda_punta" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="energia_activa" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="energia_reactiva" Type="Decimal" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="tbl_invoice_details">
           <Key>
@@ -1153,7 +1201,22 @@
     <EntitySetMapping Name="tbl_invoice">
       <EntityTypeMapping TypeName="IsTypeOf(DB_TenantMNGModel.tbl_invoice)">
         <MappingFragment StoreEntitySet="tbl_invoice">
-          <ScalarProperty Name="int_invoice_id" ColumnName="int_invoice_id" />
+          <ScalarProperty Name="energia_reactiva" ColumnName="energia_reactiva" />
+                <ScalarProperty Name="energia_activa" ColumnName="energia_activa" />
+                <ScalarProperty Name="demanda_punta" ColumnName="demanda_punta" />
+                <ScalarProperty Name="demanda_intermedia" ColumnName="demanda_intermedia" />
+                <ScalarProperty Name="demanda_base" ColumnName="demanda_base" />
+                <ScalarProperty Name="dec_base_amt" ColumnName="dec_base_amt" />
+                <ScalarProperty Name="dec_base_rate" ColumnName="dec_base_rate" />
+                <ScalarProperty Name="dec_base_energy" ColumnName="dec_base_energy" />
+                <ScalarProperty Name="dec_inter_energy_amt" ColumnName="dec_inter_energy_amt" />
+                <ScalarProperty Name="dec_inter_energy_rate" ColumnName="dec_inter_energy_rate" />
+                <ScalarProperty Name="dec_inter_energy" ColumnName="dec_inter_energy" />
+                <ScalarProperty Name="dec_peak_energy_amt" ColumnName="dec_peak_energy_amt" />
+                <ScalarProperty Name="dec_peak_energy_rate" ColumnName="dec_peak_energy_rate" />
+                <ScalarProperty Name="dec_peak_energy" ColumnName="dec_peak_energy" />
+                <ScalarProperty Name="str_meter_id" ColumnName="str_meter_id" />
+                <ScalarProperty Name="int_invoice_id" ColumnName="int_invoice_id" />
           <ScalarProperty Name="date_invoice_date" ColumnName="date_invoice_date" />
           <ScalarProperty Name="int_tenant_id" ColumnName="int_tenant_id" />
           <ScalarProperty Name="bit_tenant_active" ColumnName="bit_tenant_active" />
@@ -1360,17 +1423,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UDIS">
-      <EntityTypeMapping TypeName="IsTypeOf(DB_TenantMNGModel.UDI)">
-        <MappingFragment StoreEntitySet="UDIS">
-          <ScalarProperty Name="id_medidor" ColumnName="id_medidor" />
-          <ScalarProperty Name="CFE_MeterID" ColumnName="CFE_MeterID" />
-          <ScalarProperty Name="tipo_lectura" ColumnName="tipo_lectura" />
-          <ScalarProperty Name="valor" ColumnName="valor" />
-          <ScalarProperty Name="fecha_ocurrencia" ColumnName="fecha_ocurrencia" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <EntitySetMapping Name="UDIS">
+            <EntityTypeMapping TypeName="IsTypeOf(DB_TenantMNGModel.UDI)">
+              <MappingFragment StoreEntitySet="Udis">
+                <ScalarProperty Name="fecha_ocurrencia" ColumnName="fecha_ocurrencia" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="tipo_lectura" ColumnName="tipo_lectura" />
+                <ScalarProperty Name="CFE_MeterID" ColumnName="CFE_MeterID" />
+                <ScalarProperty Name="id_medidor" ColumnName="id_medidor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

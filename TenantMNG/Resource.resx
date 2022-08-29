@@ -882,4 +882,10 @@
   <data name="energia_punta" xml:space="preserve">
     <value>Peak Energy</value>
   </data>
+  <data name="invoice_meters" xml:space="preserve">
+    <value>Invoice Meters</value>
+  </data>
+  <data name="create_invoice" xml:space="preserve">
+    <value>Create Invoice</value>
+  </data>
 </root>

@@ -331,6 +331,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Invoice.
+        /// </summary>
+        public static string create_invoice {
+            get {
+                return ResourceManager.GetString("create_invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Invoices.
         /// </summary>
         public static string create_invoices {
@@ -966,6 +975,15 @@ namespace TenantMNG {
         public static string invoice {
             get {
                 return ResourceManager.GetString("invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice Meters.
+        /// </summary>
+        public static string invoice_meters {
+            get {
+                return ResourceManager.GetString("invoice_meters", resourceCulture);
             }
         }
         

@@ -162,11 +162,11 @@
                                     <td>@dt.Name</td>
                                     <td>@dt.strmeterid</td>
                                     <td>@string.Format("{0:MM-dd-yyyy}", dt.fromdate) TO @string.Format("{0:MM-dd-yyyy}", dt.todate)</td>
-                                    <td>@string.Format("{0:0.00}",dt.peakenergy)</td>
-                                    <td>@string.Format("{0:0.00}",dt.interenergy)</td>
-                                    <td>@string.Format("{0:0.00}",dt.customecharges)</td>
-                                    <td>@string.Format("{0:0.00}",dt.decdemad)</td>
-                                    <td>@string.Format("{0:0.00}",dt.dectaxamt)</td>
+                                    <td>@string.Format("{0:0.00}", dt.peakenergy)</td>
+                                    <td>@string.Format("{0:0.00}", dt.interenergy)</td>
+                                    @*<td>@string.Format("{0:0.00}",dt.customecharges)</td>*@
+                                    @*<td>@string.Format("{0:0.00}", dt.decdemad)</td>*@
+                                    <td>@string.Format("{0:0.00}", dt.dectaxamt)</td>
                                     @*<td>@dt.dectotal</td>*@
                                     <td>@string.Format("{0:0.00}", dt.dectotal) </td>
                                 </tr>

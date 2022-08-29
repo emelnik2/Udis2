@@ -92,7 +92,7 @@
                 <div class="widget-content">
                     @Html.ActionLink(TenantMNG.Resource.add_new, "CreateTenant", "User", null, new { @class = "btn btn-primary" })
                     @*Html.ActionLink(TenantMNG.Resource.create_invoices, "CreateInvoices", "PM", null, new { @class = "btn btn-warning" })*@
-                    <button type="button" class="btn btn-warning disabled">@TenantMNG.Resource.create_invoices</button>
+                    @*<button type="button" class="btn btn-warning disabled">@TenantMNG.Resource.create_invoices</button>)*@
                     <br />
 
 
@@ -140,7 +140,7 @@
                                                 <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>
                                                 @Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
                                                 @:&nbsp;
-                                                @Html.ActionLink(TenantMNG.Resource.invoice, "Invoice", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });
+                                                @*Html.ActionLink(TenantMNG.Resource.invoice, "Invoice", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
                                             }
                                             else
                                             {

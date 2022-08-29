@@ -194,13 +194,34 @@ namespace TenantMNG.BAL
                             new SqlParameter("@precio_dos_porciento_baja_tension",invoice.precio_dos_porciento_baja_tension),
                             new SqlParameter("@precio_decuento_bonificacion",invoice.precio_decuento_bonificacion),
 
+                            new SqlParameter("@str_meter_id", invoice.str_meter_id),
+                            new SqlParameter("@dec_peak_energy", invoice.dec_peak_energy),
+                            new SqlParameter("@dec_peak_energy_rate", invoice.dec_peak_energy_rate),
+                            new SqlParameter("@dec_peak_energy_amt", invoice.dec_peak_energy_amt),
+
+                            new SqlParameter("@dec_inter_energy", invoice.dec_inter_energy),
+                            new SqlParameter("@dec_inter_energy_rate", invoice.dec_inter_energy_rate),
+                            new SqlParameter("@dec_inter_energy_amt", invoice.dec_inter_energy_amt),
+
+                            new SqlParameter("@dec_base_energy", invoice.dec_base_energy),
+                            new SqlParameter("@dec_base_rate", invoice.dec_base_rate),
+                            new SqlParameter("@dec_base_amt", invoice.dec_base_amt),
+
+                            new SqlParameter("@demanda_base", invoice.demanda_base),
+                            new SqlParameter("@demanda_intermedia", invoice.demanda_intermedia),
+                            new SqlParameter("@demanda_punta", invoice.demanda_punta),
+                            new SqlParameter("@energia_activa", invoice.energia_activa),
+                            new SqlParameter("@energia_reactiva", invoice.energia_reactiva),
+
                 };
 
                     dbcnx.Database.ExecuteSqlCommand("usp_insert_invoice @int_id out,@int_tenant_id,@bit_tenant_active,@date_s_bill_date," +
                         "@date_e_bill_date,@dec_total,@dec_tax_amt,@bit_is_editable,@date_pay_date,@suministro,@distribucion," +
                         "@tarifa_transmision,@operacion_cenace,@capacidad,@cre_servicios_conexos,@precio_suministro,@precio_distribucion," +
                         "@precio_transmision,@precio_cenace,@precio_energia,@precio_capacidad,@precio_cre_servicios_conexos," +
-                        "@precio_dos_porciento_baja_tension,@precio_decuento_bonificacion", param);
+                        "@precio_dos_porciento_baja_tension,@precio_decuento_bonificacion,@str_meter_id,@dec_peak_energy,@dec_peak_energy_rate," +
+                        "@dec_peak_energy_amt,@dec_inter_energy,@dec_inter_energy_rate,@dec_inter_energy_amt,@dec_base_energy," +
+                        "@dec_base_rate,@dec_base_amt,@demanda_base,@demanda_intermedia,@demanda_punta,@energia_activa,@energia_reactiva", param);
 
                     _lVal = Convert.ToInt32(param[0].Value);
                 }

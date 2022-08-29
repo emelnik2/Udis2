@@ -1,0 +1,77 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using TenantMNG.Core;
+@model IPagedList<TenantMNG.ADO.NET.meter>
+@{
+    ViewBag.Title = "Meters";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href=@Url.Action("Dashboard", "PM") title="Go to Home" class="tip-bottom"><img src="~/img/icons/16/home.png" /> @TenantMNG.Resource.home</a> <a href="#" class="current">@TenantMNG.Resource.meter_list</a>  </div>
+
+</div>
+<div class="container-fluid">
+    <div class="modal hide fade in" id="select-tenant">
+        <div id="select-tenant-container"></div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.meter_list</h5>
+                </div>
+                <div class="widget-content">
+                    @*@Html.ActionLink(TenantMNG.Resource.add_new, "CreateMeter", "PM", null, new { @class = "btn btn-primary" }*@
+
+                    <br />
+
+
+                    @Html.AntiForgeryToken()
+                    <br />
+                    @if (Model.ToList().Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            @TenantMNG.Resource.sorry_mess
+                        </div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>@TenantMNG.Resource.meter</th>
+                                    <th>@TenantMNG.Resource.assign_to</th>
+                                    <th>@TenantMNG.Resource.create_invoice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr class="gradeX">
+
+
+                                        <td>@user.name</td>
+                                        <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name)</td>
+
+                                        <td>
+                                            @if (!String.Equals(TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name), Resource.not_assign)) { 
+                                                @Html.ActionLink(TenantMNG.Resource.create_invoice, "CreateInvoice", "PM", new { @strmeterid = user.name }, new { @class = "btn btn-mini btn-info" })
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("InvoiceMeters", new { page }),
+                            new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                    }
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

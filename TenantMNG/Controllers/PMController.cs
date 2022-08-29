@@ -203,17 +203,17 @@ namespace TenantMNG.Controllers
 
         
         [HttpGet]
-        public ActionResult CreateInvoice(string tenantid)
+        public ActionResult CreateInvoice(string strmeterid)
         {
             InvoiceVM _objvm = new InvoiceVM();
             try
             {
-                int id = Convert.ToInt32(tenantid);
-                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.int_tenant_id == id && x.bit_is_assign == true).FirstOrDefault();
-                if (_tenantmeter != null)
+                int id = 0;
+                var _tenantid = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == strmeterid && x.bit_is_assign == true).FirstOrDefault();
+                if (_tenantid != null)
                 {
-
                     _objvm.int_invoice_id = 0;
+                    id = Convert.ToInt32(Convert.ToInt32(_tenantid.int_tenant_id));
 
                     var _tenantbillinginfo = _dbc.tbl_tenant_billing_info.Where(x => x.int_tenant_id == id).SingleOrDefault();
 
@@ -254,6 +254,7 @@ namespace TenantMNG.Controllers
                 }
                 ViewBag._erromsg = -1;
                 _objvm.int_tenant_id = id;
+                _objvm.str_meter_id = strmeterid;
                 return View(_objvm);
             }
             catch (Exception ex)
@@ -272,8 +273,34 @@ namespace TenantMNG.Controllers
             {
                 TenantBAL objbal = new TenantBAL();
 
-                //objvm.dec_prev_inter_energy = 0;
-                //objvm.dec_prev_peak_energy = 0;
+                DataTable dt = (DataTable)Session["tenantDT"];
+                //objvm = new InvoiceVM();
+                objbal = new TenantBAL();
+
+                /*for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    //objvm.int_invoice_id = _lVal;
+                    objvm.dec_base_amt = Convert.ToDecimal(dt.Rows[i]["dec_base_amt"].ToString());
+                    objvm.dec_base_energy = Convert.ToDecimal(dt.Rows[i]["dec_base_energy"].ToString());
+                    objvm.dec_base_rate = Convert.ToDecimal(dt.Rows[i]["dec_base_rate"].ToString());
+
+                    objvm.dec_inter_energy = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy"].ToString());
+                    objvm.dec_inter_energy_amt = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy_amt"].ToString());
+                    objvm.dec_inter_energy_rate = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy_rate"].ToString());
+
+                    objvm.dec_peak_energy = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy"].ToString());
+                    objvm.dec_peak_energy_amt = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_amt"].ToString());
+                    objvm.dec_peak_energy_rate = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_rate"].ToString());
+                    objvm.str_meter_id = dt.Rows[i]["str_meter_id"].ToString();
+
+                    objvm.demanda_base = Convert.ToDecimal(dt.Rows[i]["demanda_base"].ToString());
+                    objvm.demanda_intermedia = Convert.ToDecimal(dt.Rows[i]["demanda_intermedia"].ToString());
+                    objvm.demanda_punta = Convert.ToDecimal(dt.Rows[i]["demanda_punta"].ToString());
+                    objvm.energia_activa = Convert.ToDecimal(dt.Rows[i]["energia_activa"].ToString());
+                    objvm.energia_reactiva = Convert.ToDecimal(dt.Rows[i]["energia_reactiva"].ToString());
+
+                    objbal.tenant_invoice_details_insert(objvm);
+                }*/
 
                 if (objvm.int_invoice_id == 0)
                 {
@@ -286,37 +313,11 @@ namespace TenantMNG.Controllers
                     _lVal = objbal.tenant_invoice_update(objvm);
                 }
 
-                if (_lVal > 0)
+                
+                /*if (_lVal > 0)
                 {
-                    DataTable dt = (DataTable)Session["tenantDT"];
-                    objvm = new InvoiceVM();
-                    objbal = new TenantBAL();
 
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        objvm.int_invoice_id = _lVal;
-                        objvm.dec_base_amt = Convert.ToDecimal(dt.Rows[i]["dec_base_amt"].ToString());
-                        objvm.dec_base_energy = Convert.ToDecimal(dt.Rows[i]["dec_base_energy"].ToString());
-                        objvm.dec_base_rate = Convert.ToDecimal(dt.Rows[i]["dec_base_rate"].ToString());
-
-                        objvm.dec_inter_energy = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy"].ToString());
-                        objvm.dec_inter_energy_amt = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy_amt"].ToString());
-                        objvm.dec_inter_energy_rate = Convert.ToDecimal(dt.Rows[i]["dec_inter_energy_rate"].ToString());
-
-                        objvm.dec_peak_energy = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy"].ToString());
-                        objvm.dec_peak_energy_amt = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_amt"].ToString());
-                        objvm.dec_peak_energy_rate = Convert.ToDecimal(dt.Rows[i]["dec_peak_energy_rate"].ToString());
-                        objvm.str_meter_id = dt.Rows[i]["str_meter_id"].ToString();
-
-                        objvm.demanda_base = Convert.ToDecimal(dt.Rows[i]["demanda_base"].ToString());
-                        objvm.demanda_intermedia = Convert.ToDecimal(dt.Rows[i]["demanda_intermedia"].ToString());
-                        objvm.demanda_punta = Convert.ToDecimal(dt.Rows[i]["demanda_punta"].ToString());
-                        objvm.energia_activa = Convert.ToDecimal(dt.Rows[i]["energia_activa"].ToString());
-                        objvm.energia_reactiva = Convert.ToDecimal(dt.Rows[i]["energia_reactiva"].ToString());
-
-                        objbal.tenant_invoice_details_insert(objvm);
-                    }
-                }
+                }*/
 
             }
             catch (Exception ex)
@@ -660,17 +661,18 @@ namespace TenantMNG.Controllers
         [HttpPost]
         public string getEnerge(TenantEnergyVM objvm)
         {
+                        
             System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string json = string.Empty;
-            string _meterid = "", _metername = "";
+            //string json = string.Empty;
+            string _meterid = "";
             DataTable dt = new DataTable();
+            
             try
             {
 
-                DB_TenantMNGEntities _dbctenant = new DB_TenantMNGEntities();
-
-
-                var _tenantmeter = _dbctenant.tbl_tenant_meter.Where(x => x.int_tenant_id == objvm.int_tenant_id).ToList();
+                
+                //DB_TenantMNGEntities _dbctenant = new DB_TenantMNGEntities();
+                /*var _tenantmeter = _dbctenant.tbl_tenant_meter.Where(x => x.int_tenant_id == objvm.int_tenant_id).ToList();
 
                 if (_tenantmeter != null && _tenantmeter.Count > 0)
                 {
@@ -679,19 +681,21 @@ namespace TenantMNG.Controllers
                         _meterid = _meterid + "," + m.str_meter_id.ToString();
 
                     }
-                }
+                }*/
 
-                UdisEntities _dbc = new UdisEntities();
+                _meterid = objvm.str_meter_id;
+
+               UdisEntities _dbc = new UdisEntities();
 
                 string[] _meteridarray = _meterid.ToString().Trim(',').Split(',');
 
 
-                foreach (var m in _meteridarray)
+                /*foreach (var m in _meteridarray)
                 {
                     var _tenantmetername = _dbc.UDIS.Where(x => x.CFE_MeterID == m).OrderByDescending(p => p.fecha_ocurrencia).FirstOrDefault();
 
                     _metername = _metername + "," + _tenantmetername.CFE_MeterID;
-                }
+                }*/
 
 
 
@@ -714,47 +718,47 @@ namespace TenantMNG.Controllers
 
 
 
-                if (string.IsNullOrEmpty(_metername) == false)
+                if (string.IsNullOrEmpty(_meterid) == false)
                 {
 
 
 
-                    var _hours = (from t1 in _dbctenant.tbl_pm_billing_hours
+                    /*var _hours = (from t1 in _dbctenant.tbl_pm_billing_hours
                                   let t2s = from t2 in _dbctenant.tbl_user_master
                                             where t2.int_id == objvm.int_tenant_id
                                             select t2.int_pm_id
 
                                   where t2s.Contains(t1.int_pm_id)
 
-                                  select t1).FirstOrDefault();
+                                  select t1).FirstOrDefault();*/
 
                     MeterCLS obj = new MeterCLS();
 
 
-                    string[] _mname = _metername.Trim(',').Split(',');
+                    //string[] _mname = _metername.Trim(',').Split(',');
 
-                    int i = 0;
-                    foreach (var m in _mname)
+                    //int i = 0;
+                    //foreach (var m in _mname)
+                    //{
+
+                    DataSet _ds = obj.getTenantEnergy(_meterid, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString());
+
+                    if (_ds.Tables[0].Rows.Count > 0)
                     {
+                        decimal peckenergy = (!String.IsNullOrEmpty(_ds.Tables[0].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0].ToString()) : 0;
+                        decimal interenergy = (!String.IsNullOrEmpty(_ds.Tables[2].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0].ToString()) : 0;
+                        decimal baseenergy = (!String.IsNullOrEmpty(_ds.Tables[1].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0].ToString()) : 0;
+                        decimal energiaactiva = (!String.IsNullOrEmpty(_ds.Tables[3].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0].ToString()) : 0;
+                        decimal energiareactiva = (!String.IsNullOrEmpty(_ds.Tables[4].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0].ToString()) : 0;
 
-                        DataSet _ds = obj.getTenantEnergy(m, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString());
+                        dt.Rows.Add(_meterid, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
+                            objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),
+                            objvm.demanda_base, objvm.demanda_intermedia, objvm.demanda_punta, energiaactiva, energiareactiva, _meteridarray[0]);
+                     }
 
-                        if (_ds.Tables[0].Rows.Count > 0)
-                        {
-                            decimal peckenergy = (!String.IsNullOrEmpty(_ds.Tables[0].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0].ToString()) : 0;
-                            decimal interenergy = (!String.IsNullOrEmpty(_ds.Tables[2].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0].ToString()) : 0;
-                            decimal baseenergy = (!String.IsNullOrEmpty(_ds.Tables[1].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0].ToString()) : 0;
-                            decimal energiaactiva = (!String.IsNullOrEmpty(_ds.Tables[3].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0].ToString()) : 0;
-                            decimal energiareactiva = (!String.IsNullOrEmpty(_ds.Tables[4].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0].ToString()) : 0;
+                     //i++;
 
-                            dt.Rows.Add(m, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
-                                objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),
-                                objvm.demanda_base, objvm.demanda_intermedia, objvm.demanda_punta, energiaactiva, energiareactiva, _meteridarray[i]);
-                        }
-
-                        i++;
-
-                    }
+                    
 
                 }
 
@@ -782,7 +786,7 @@ namespace TenantMNG.Controllers
             //return Json(dt, JsonRequestBehavior.AllowGet);
         }
 
-      
+
         [HttpGet]
         public ActionResult Invoice(int tenantid, int? page, string sortBy)
         {
@@ -2014,6 +2018,29 @@ namespace TenantMNG.Controllers
             }
             return View();
         }
+
+        [SessionCheck]
+        [HttpGet]
+        public ActionResult InvoiceMeters(int? page)
+        {
+            try
+            {
+
+
+                MeterCLS _meter = new MeterCLS();
+                DataSet ds = _meter.getMeter();
+
+                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("CFE_MeterID") });
+
+                return View(_meterlist.ToList().ToPagedList(page ?? 1, CommonCls._pagesize));
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return View();
+        }
+
 
         [SessionCheck]
         [HttpGet] // this action result returns the partial containing the modal

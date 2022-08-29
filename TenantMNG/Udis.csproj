@@ -877,6 +877,7 @@
     <Content Include="Views\Tenant\TenantActivity.cshtml" />
     <Content Include="Views\PM\Piechart.cshtml" />
     <Content Include="Views\PM\CreateInvoices.cshtml" />
+    <Content Include="Views\PM\InvoiceMeters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

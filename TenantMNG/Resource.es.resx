@@ -876,4 +876,10 @@
   <data name="energia_punta" xml:space="preserve">
     <value>Energia Punta</value>
   </data>
+  <data name="invoice_meters" xml:space="preserve">
+    <value>Facturar Medidores</value>
+  </data>
+  <data name="create_invoice" xml:space="preserve">
+    <value>Facturar</value>
+  </data>
 </root>

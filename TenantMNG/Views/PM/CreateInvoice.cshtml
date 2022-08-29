@@ -134,9 +134,9 @@
 
 
 
-                    row += "<tr><td>" + item.metername + "</td><td>" + item.dec_peak_energy + "</td><td>" + item.dec_peak_energy_rate + "</td><td>" + item.energiaactiva + "</td>";
-                    row += "<td>" + item.dec_inter_energy + "</td><td>" + item.dec_inter_energy_rate + "</td><td>" + item.energiareactiva + "</td>";
-                    row += "<td>" + item.dec_base_energy + "</td><td>" + item.dec_base_rate + "</td><td>" + item.dec_base_amt + "</td></tr>";
+                    //row += "<tr><td>" + item.metername + "</td><td>" + item.dec_peak_energy + "</td><td>" + item.dec_peak_energy_rate + "</td><td>" + item.energiaactiva + "</td>";
+                    //row += "<td>" + item.dec_inter_energy + "</td><td>" + item.dec_inter_energy_rate + "</td><td>" + item.energiareactiva + "</td>";
+                    //row += "<td>" + item.dec_base_energy + "</td><td>" + item.dec_base_rate + "</td><td>" + item.dec_base_amt + "</td></tr>";
 
                     //_totalamt = _totalamt + (item.dec_base_amt + item.dec_peak_energy_amt + item.dec_inter_energy_amt);
                     transmision_base = transmision_base + item.dec_base_energy;
@@ -147,7 +147,7 @@
 
                 });
                 $("#contacts").html(row);
-                $("#datatable_orders").show();
+                //$("#datatable_orders").show();
 
                 finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva);
             };
@@ -159,22 +159,27 @@
 
         function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva) {
 
+            var energia_activa = 0;
             
             //Checar si energia base, intermedia, punta y energia reactiva tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
-            if (!$('#energia_base').val())
-                $('#energia_base').val(Number(transmision_base).toFixed(2));
-            if (!$('#energia_intermedia').val())
-                $('#energia_intermedia').val(Number(transmision_intermedia).toFixed(2));
-            if (!$('#energia_punta').val())
-                $('#energia_punta').val(Number(transmision_punta).toFixed(2));
+            if (!$('#dec_base_energy').val())
+                $('#dec_base_energy').val(Number(transmision_base));
+            if (!$('#dec_inter_energy').val())
+                $('#dec_inter_energy').val(Number(transmision_intermedia));
+            if (!$('#dec_peak_energy').val())
+                $('#dec_peak_energy').val(Number(transmision_punta));
             if (!$('#energia_reactiva').val())
-                $('#energia_reactiva').val(Number(energiareactiva).toFixed(2));
+                $('#energia_reactiva').val(Number(energiareactiva));
 
-            var energia_base = $('#energia_base').val();
-            var energia_intermedia = $('#energia_intermedia').val();
-            var energia_punta = $('#energia_punta').val();
-            var energia_reactiva = $('#energia_reactiva').val();
+            var dec_base_energy = Number($('#dec_base_energy').val());
+            var dec_inter_energy = Number($('#dec_inter_energy').val());
+            var dec_peak_energy = Number($('#dec_peak_energy').val());
+                                    
+            if (!Number.isNaN(energiaactiva))
+                energia_activa = energiaactiva;
+            else
+                energia_activa = dec_base_energy + dec_inter_energy + dec_peak_energy;
 
 
             // Cálculo Suministro
@@ -185,39 +190,39 @@
             var start_date = new Date($('#date_s_bill_date').val());
             var end_date = new Date($('#date_e_bill_date').val());
             var periodo_dias = Math.floor((end_date.getTime() - start_date.getTime()) / (1000 * 60 * 60 * 24));
-            var demanda_cargo = Math.round((energia_base + energia_intermedia + energia_punta) / (24 * periodo_dias * 0.57));
+            var demanda_cargo = Math.round((dec_base_energy + dec_inter_energy + dec_peak_energy) / (24 * periodo_dias * 0.57));
             var mindemanda = Math.min(maxdemanda, demanda_cargo);
             var distribucion = $('#distribucion').val() * mindemanda;
 
             // Cálculo de Transmision (cambié energía por transmisión, ya que tienen los mismos valores)
-            var precio_tranmisionbase = energia_base * $('#tarifa_transmision').val();
-            var precio_tranmisionintermedia = energia_intermedia * $('#tarifa_transmision').val();
-            var precio_tranmisionpunta = energia_punta * $('#tarifa_transmision').val();
+            var precio_tranmisionbase = dec_base_energy * $('#tarifa_transmision').val();
+            var precio_tranmisionintermedia = dec_inter_energy * $('#tarifa_transmision').val();
+            var precio_tranmisionpunta = dec_peak_energy * $('#tarifa_transmision').val();
             var transmision = precio_tranmisionbase + precio_tranmisionintermedia + precio_tranmisionpunta;
 
             // Cálculo CENACE (cambié energía por transmisión, ya que tienen los mismos valores)
-            var precio_cenace_base = energia_base * $('#operacion_cenace').val();
-            var precio_cenace_intermedia = energia_intermedia * $('#operacion_cenace').val();
-            var precio_cenace_punta = energia_punta * $('#operacion_cenace').val();
+            var precio_cenace_base = dec_base_energy * $('#operacion_cenace').val();
+            var precio_cenace_intermedia = dec_inter_energy * $('#operacion_cenace').val();
+            var precio_cenace_punta = dec_peak_energy * $('#operacion_cenace').val();
             var cenace = precio_cenace_base + precio_cenace_intermedia + precio_cenace_punta;
 
             // Cálculo de Energía (cambié energía por transmisión, ya que tienen los mismos valores)
-            var precio_energiabase = energia_base * $('#dec_base_rate').val();
-            var precio_energiaintermedia = energia_intermedia * $('#dec_inter_energy_rate').val();
-            var precio_energiapunta = energia_punta * $('#dec_peak_energy_rate').val();
+            var precio_energiabase = dec_base_energy * $('#dec_base_rate').val();
+            var precio_energiaintermedia = dec_inter_energy * $('#dec_inter_energy_rate').val();
+            var precio_energiapunta = dec_peak_energy * $('#dec_peak_energy_rate').val();
             var energia = precio_energiabase + precio_energiaintermedia + precio_energiapunta;
 
             // Cálculo de Capacidad
             var capacidad = Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val();
 
             // Cálculo CRE Servicios Conexos (SCnMEM) (cambié energía por transmisión, ya que tienen los mismos valores)
-            var precio_sc_base = energia_base * $('#cre_servicios_conexos').val();
-            var precio_sc_intermedia = energia_intermedia * $('#cre_servicios_conexos').val();
-            var precio_sc_punta = energia_punta * $('#cre_servicios_conexos').val();
+            var precio_sc_base = dec_base_energy * $('#cre_servicios_conexos').val();
+            var precio_sc_intermedia = dec_inter_energy * $('#cre_servicios_conexos').val();
+            var precio_sc_punta = dec_peak_energy * $('#cre_servicios_conexos').val();
             var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
 
             // Cálculo de % de Bonificación
-            var factor_de_potencia = energiaactiva / Math.sqrt((energiaactiva ** 2) + (energiareactiva ** 2));
+            var factor_de_potencia = energia_activa / Math.sqrt((energia_activa ** 2) + (energiareactiva ** 2));
             var porciento_bonificacion = (factor_de_potencia > 0.9) ? Math.round((-1 / 4) * (1 - (0.9 / factor_de_potencia)) * 100, 1) : 0;
 
             // Total de la Factura
@@ -230,27 +235,38 @@
             finalamount = finalamount + taxval;
 
 
-            $('#precio_suministro').val(Number(suministro).toFixed(2));
+            $('#precio_suministro').val(Number(suministro));
 
-            $('#precio_distribucion').val(Number(distribucion).toFixed(2));
+            $('#precio_distribucion').val(Number(distribucion));
 
-            $('#precio_transmision').val(Number(transmision).toFixed(2));
+            $('#precio_transmision').val(Number(transmision));
 
-            $('#precio_cenace').val(Number(cenace).toFixed(2));
+            $('#precio_cenace').val(Number(cenace));
 
-            $('#precio_energia').val(Number(energia).toFixed(2));
+            $('#precio_energia').val(Number(energia));
 
-            $('#precio_capacidad').val(Number(capacidad).toFixed(2));
+            $('#precio_capacidad').val(Number(capacidad));
 
-            $('#precio_cre_servicios_conexos').val(Number(servicios_conexos).toFixed(2));
+            $('#precio_cre_servicios_conexos').val(Number(servicios_conexos));
 
-            $('#precio_dos_porciento_baja_tension').val(Number(dos_porciento_baja_tension).toFixed(2));
+            $('#precio_dos_porciento_baja_tension').val(Number(dos_porciento_baja_tension));
 
-            $('#precio_decuento_bonificacion').val(Number(decuento_bonificacion).toFixed(2));
+            $('#precio_decuento_bonificacion').val(Number(decuento_bonificacion));
 
-            $('#dec_tax_amt').val(Number(taxval).toFixed(2));
+            $('#dec_tax_amt').val(Number(taxval));
 
-            $('#dec_total').val(Number(finalamount + taxval).toFixed(2));
+            $('#dec_total').val(Number(finalamount + taxval));
+
+            $('#dec_base_amt').val(Number(precio_energiabase));
+
+            $('#dec_inter_energy_amt').val(Number(precio_energiaintermedia));
+
+            $('#dec_peak_energy_amt').val(Number(precio_energiapunta));
+
+            $('#energia_activa').val(Number(energiaactiva));
+            
+
+
             //}
         }
     </script>
@@ -267,7 +283,7 @@
             <div class="widget-box">
                 <div class="widget-title">
                     <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>@TenantMNG.Resource.tenant @TenantMNG.Resource.invoice</h5>
+                    <h5>Facturaci&oacute;n Medidor  <B>@Model.str_meter_id</B></h5>
                 </div>
                 <div class="widget-content nopadding">
                     @using (Html.BeginForm("CreateInvoice", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formcontact" }))
@@ -334,10 +350,10 @@
 
                         <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.energia_base, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.dec_base_energy, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.energia_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                                    @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
                                 </div>
                             </div>
@@ -347,10 +363,10 @@
 
                         <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.energia_intermedia, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.dec_inter_energy, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.energia_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                                    @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
                                 </div>
                             </div>
@@ -358,10 +374,10 @@
 
                         <div class="span5">
                             <div class="control-group">
-                                @Html.LabelFor(m => m.energia_punta, new { @class = "control-label" })
+                                @Html.LabelFor(m => m.dec_peak_energy, new { @class = "control-label" })
 
                                 <div class="controls">
-                                    @Html.TextBoxFor(m => m.energia_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                                    @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
                                 </div>
                             </div>
@@ -708,6 +724,7 @@
 
                         // @Html.HiddenFor(m => m.int_meter_id)
                         @Html.HiddenFor(m => m.int_tenant_id)
+                        @Html.HiddenFor(m => m.str_meter_id)
                         @Html.HiddenFor(m => m.int_invoice_period)
                         @Html.HiddenFor(m => m.bit_tenant_active)
                         @Html.HiddenFor(m => m.str_inter_e_time)
@@ -716,6 +733,10 @@
                         @Html.HiddenFor(m => m.str_peak_s_time)
                         @Html.HiddenFor(m => m.energia_activa)
                         //@Html.HiddenFor(m => m.energia_reactiva)
+                        @Html.HiddenFor(m => m.dec_base_amt)
+                        @Html.HiddenFor(m => m.dec_inter_energy_amt)
+                        @Html.HiddenFor(m => m.dec_peak_energy_amt)
+
                         <div class="form-actions">
                             @*<input type="submit" class="btn btn-success" value="Save" />*@
                             <input type="submit" id="btnsave"

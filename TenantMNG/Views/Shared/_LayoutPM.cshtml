@@ -84,6 +84,7 @@
         <ul>
 
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.dashboard, "Dashboard", "PM") </li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Invoice Meters" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.invoice_meters, "InvoiceMeters", "PM") </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tenant" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.tenant, "Tenant", "PM") </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "TenantActivity" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.tenant_actitivy_log, "TenantActivity", "PM")</li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Alarm" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.alarm, "Alarm", "PM")</li>

@@ -1020,3 +1020,13 @@ ERROR 2022-02-28 21:32:58,410 12201ms PMController           nsumptionReportNEW 
 Nombre del parámetro: index
 ERROR 2022-02-28 21:39:46,933 83336ms PMController           nsumptionReportNEW - El argumento especificado está fuera del intervalo de valores válidos.
 Nombre del parámetro: index
+ERROR 2022-08-24 10:45:16,022 24918ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:45:25,741 34636ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:45:31,313 40209ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:45:42,196 51091ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:45:55,916 64811ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:46:36,247 105142ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:53:36,428 13700ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:53:59,783 37056ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 10:57:27,625 244898ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.
+ERROR 2022-08-24 11:10:00,982 998255ms LoginController        Index              - An error occurred while preparing the command definition. See the inner exception for details.

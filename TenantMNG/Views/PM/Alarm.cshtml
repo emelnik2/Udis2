@@ -74,7 +74,7 @@
                                         <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
                                         <td>@string.Format("{0:0.00}", user.tbl_invoice_details.ElementAt(0).dec_peak_energy)</td>
                                         <td>@string.Format("{0:0.00}", user.tbl_invoice_details.ElementAt(0).dec_inter_energy)</td>
-                                        <td>@string.Format("{0:0.00}",user.dec_custome_charges)</td>
+                                        @*<td>@string.Format("{0:0.00}",user.dec_custome_charges)</td>*@
                                         @*<td>@user.dec_demad</td>*@
                                         <td>@string.Format("{0:0.00}",user.dec_tax_amt)</td>
 

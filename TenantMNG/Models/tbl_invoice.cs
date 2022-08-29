@@ -45,6 +45,21 @@ namespace TenantMNG.Models
         public Nullable<decimal> precio_cre_servicios_conexos { get; set; }
         public Nullable<decimal> precio_dos_porciento_baja_tension { get; set; }
         public Nullable<decimal> precio_decuento_bonificacion { get; set; }
+        public string str_meter_id { get; set; }
+        public Nullable<decimal> dec_peak_energy { get; set; }
+        public Nullable<decimal> dec_peak_energy_rate { get; set; }
+        public Nullable<decimal> dec_peak_energy_amt { get; set; }
+        public Nullable<decimal> dec_inter_energy { get; set; }
+        public Nullable<decimal> dec_inter_energy_rate { get; set; }
+        public Nullable<decimal> dec_inter_energy_amt { get; set; }
+        public Nullable<decimal> dec_base_energy { get; set; }
+        public Nullable<decimal> dec_base_rate { get; set; }
+        public Nullable<decimal> dec_base_amt { get; set; }
+        public Nullable<decimal> demanda_base { get; set; }
+        public Nullable<decimal> demanda_intermedia { get; set; }
+        public Nullable<decimal> demanda_punta { get; set; }
+        public Nullable<decimal> energia_activa { get; set; }
+        public Nullable<decimal> energia_reactiva { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_invoice_details> tbl_invoice_details { get; set; }
