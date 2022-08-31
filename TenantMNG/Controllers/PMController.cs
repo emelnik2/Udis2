@@ -325,7 +325,7 @@ namespace TenantMNG.Controllers
                 log.Error(ex.Message);
             }
             ViewBag._erromsg = _lVal;
-            return View();
+            return View(objvm);
         }
 
         [SessionCheck]
@@ -995,11 +995,11 @@ namespace TenantMNG.Controllers
                     for (int i = 0; i < list.Count; i++)
                     {
                         dt.Rows.Add(list[i].tbl_user_master.str_comp_name,
-                            @TenantMNG.Core.CommonCls.getMeterNamefromId(list[i].tbl_invoice_details.ElementAt(0).str_meter_id),
+                            @TenantMNG.Core.CommonCls.getMeterNamefromId(list[i].str_meter_id),
                            //list[i]@TenantMNG.Core.CommonCls.getMeterNamefromId(dt.meterid).getMeterName(int tenantid),
                            list[i].date_s_bill_date.Value.ToString("dd/MM/yyyy") + " To " + list[i].date_e_bill_date.Value.ToString("dd/MM/yyyy"),
-                           string.Format("{0:0.00}", list[i].tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                          string.Format("{0:0.00}", list[i].tbl_invoice_details.ElementAt(0).dec_inter_energy),
+                           string.Format("{0:0.00}", list[i].dec_peak_energy),
+                          string.Format("{0:0.00}", list[i].dec_inter_energy),
                            //string.Format("{0:0.00}", list[i].dec_custome_charges),
                           //string.Format("{0:0.00}", list[i].dec_demad),
                            string.Format("{0:0.00}", list[i].dec_tax_amt),
@@ -1115,7 +1115,7 @@ namespace TenantMNG.Controllers
                               list[i].bit_tenant_active == true ? "Active" : "InActive",
                             list[i].date_s_bill_date.Value.ToString("dd/MM/yyyy") + " To " + list[i].date_e_bill_date.Value.ToString("dd/MM/yyyy"),
                            //string.Format("{0:0.00}", list[i].tbl_invoice_details.ElementAt(0).dec_base_energy),
-                           string.Format("{0:0.00}", list[i].tbl_invoice_details.ElementAt(0).dec_peak_energy),
+                           string.Format("{0:0.00}", list[i].dec_peak_energy),
                            null,
                            null,
                            null,
@@ -1378,19 +1378,19 @@ namespace TenantMNG.Controllers
                         html = html.Replace("#VaueMin", string.Format("{0:0 }", objuser1.ElementAt(0).minObject.VALUE));
                         html = html.Replace("#usese", a.ToString());
                         html = html.Replace("#days", _invoice.date_e_bill_date.Value.Date.Subtract(_invoice.date_s_bill_date.Value.Date).TotalDays.ToString());
-                        html = html.Replace("#energyusage1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy) + " kWh");
-                        html = html.Replace("#energyrate1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy_rate));
-                        html = html.Replace("#energyamt1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy_rate));
-                        html = html.Replace("#energyusage2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy) + " kWh");
-                        html = html.Replace("#energyrate2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy_rate));
+                        html = html.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
+                        html = html.Replace("#energyrate1", CommonCls.DoFormat(_invoice.dec_peak_energy_rate));
+                        html = html.Replace("#energyamt1", CommonCls.DoFormat(_invoice.dec_peak_energy * _invoice.dec_peak_energy_rate));
+                        html = html.Replace("#energyusage2", CommonCls.DoFormat(_invoice.dec_inter_energy) + " kWh");
+                        html = html.Replace("#energyrate2", CommonCls.DoFormat(_invoice.dec_inter_energy_rate));
 
-                        html = html.Replace("#energyamt2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy_rate));
+                        html = html.Replace("#energyamt2", CommonCls.DoFormat(_invoice.dec_inter_energy * _invoice.dec_inter_energy_rate));
 
-                        html = html.Replace("#energyusage3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_energy) + " kWh");
-                        html = html.Replace("#energyrate3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_rate));
-                        html = html.Replace("#energyamt3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_base_rate));
+                        html = html.Replace("#energyusage3", CommonCls.DoFormat(_invoice.dec_base_energy) + " kWh");
+                        html = html.Replace("#energyrate3", CommonCls.DoFormat(_invoice.dec_base_rate));
+                        html = html.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_energy * _invoice.dec_base_rate));
 
-                        html = html.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.tbl_invoice_details.ElementAt(0).str_meter_id));
+                        html = html.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
                         html = html.Replace("#name", _invoice.tbl_user_master.str_comp_name);
                         html = html.Replace("#billperiod", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy") + " AL " + _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
                         html = html.Replace("#billdate", _invoice.date_invoice_date.Value.ToString("dd/MM/yyyy"));
@@ -1448,34 +1448,34 @@ namespace TenantMNG.Controllers
 
                         decimal _totalenergyamt = 0, _totalenergy = 0;
 
-                        var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == forpdf).ToList();
+                        //var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == forpdf).ToList();
 
-                        if (_invoicedetails != null)
-                        {
+                        //if (_invoicedetails != null)
+                        //{
 
-                            foreach (var details in _invoicedetails)
-                            {
-                                meterlisthtml = System.IO.File.ReadAllText(path);
+                        //    foreach (var details in _invoicedetails)
+                        //    {
+                        meterlisthtml = System.IO.File.ReadAllText(path);
 
-                                meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(details.str_meter_id));
+                        meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
 
-                                meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(details.dec_peak_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate1", details.dec_peak_energy_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(details.dec_peak_energy_amt));
-                                meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(details.dec_inter_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate2", details.dec_inter_energy_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(details.dec_inter_energy_amt));
-                                meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(details.dec_base_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate3", details.dec_base_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(details.dec_base_amt));
-                                meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value));
-                                meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value));
-                                replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
-                                _totalenergyamt = _totalenergyamt + (details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value);
-                                _totalenergy = _totalenergy + (details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value);
+                        meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
+                        meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
+                        meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(_invoice.dec_peak_energy_amt));
+                        meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(_invoice.dec_inter_energy) + " kWh");
+                        meterlisthtml = meterlisthtml.Replace("#energyrate2", _invoice.dec_inter_energy_rate.ToString());
+                        meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(_invoice.dec_inter_energy_amt));
+                        meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(_invoice.dec_base_energy) + " kWh");
+                        meterlisthtml = meterlisthtml.Replace("#energyrate3", _invoice.dec_base_rate.ToString());
+                        meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_amt));
+                        meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value));
+                        meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value));
+                        replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
+                        _totalenergyamt = _totalenergyamt + (_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value);
+                        _totalenergy = _totalenergy + (_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value);
 
-                            }
-                        }
+                        //    }
+                        //}
 
                         html = html.Replace("#meterid", replacemeterlist);
 
@@ -1533,9 +1533,9 @@ namespace TenantMNG.Controllers
                 string cdnFilePath = path + filename;
 
                 //DataSet ds = new DataSet();
-                string ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(ConnectionString))
-                {
+                //string ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
+                //using (SqlConnection con = new SqlConnection(ConnectionString))
+                //{
                     
                     //Cambiamos toda la basura de código de los hindúes, por algo más eficiente
                     //Todo este código comentado a continuación es de ellos
@@ -1556,10 +1556,13 @@ namespace TenantMNG.Controllers
                         uobj.VALUE = Convert.ToDecimal(ds.Tables[0].Rows[i]["VALUE"].ToString());
                         userlist.Add(uobj);
                     }*/
-                    var _invoice = _dbc.tbl_invoice.Where(x => x.int_invoice_id == id).FirstOrDefault();
-                    var _invoicedet = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
 
-                    con.Open();
+                var _invoice = _dbc.tbl_invoice.Where(x => x.int_invoice_id == id).FirstOrDefault();
+                var _previousinvoice = _dbc.tbl_invoice.Where(x => (x.str_meter_id == _invoice.str_meter_id) && (x.date_invoice_date < _invoice.date_invoice_date)).FirstOrDefault();
+
+                    //var _invoicedet = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
+
+                    //con.Open();
 
                     /*var objuser = userlist.Where(x => x.TENETID == _invoice.int_tenant_id).ToList();
                     var chartgroup = from ins in objuser
@@ -1574,223 +1577,229 @@ namespace TenantMNG.Controllers
                     var objuser1 = chartgroup.ToList();
                     //   var a = Convert.ToInt32(objuser1.ElementAt(0).maxObject.VALUE) - Convert.ToInt32(objuser1.ElementAt(0).minObject.VALUE);
                     TimeSpan timeSpan = _invoice.date_e_bill_date.Value.Subtract(_invoice.date_s_bill_date.Value);*/
-                    if (_invoice != null)
+
+                if (_invoice != null && _previousinvoice != null)
+                {
+
+                    #region  Dynamic table
+                        
+                    var meterReadingsString = "";
+                    int currentReading = Convert.ToInt32(_invoice.dec_base_energy);
+                    int previousReading = Convert.ToInt32(_previousinvoice.dec_base_energy);
+
+                    //var _invoicedet = objuser1.ToList();
+                    /*if (_invoicedet != null)
                     {
+                        SqlCommand cmd = new SqlCommand("[getLastMeterReading]", con);
 
-                        #region  Dynamic table
-                        //var _invoicedet = objuser1.ToList();
-                        var meterReadingsString = "";
-                        if (_invoicedet != null)
+                        cmd.Parameters.Add(new SqlParameter("@meterName", ""));
+                        cmd.Parameters.Add(new SqlParameter("@monthDate", null));
+                        cmd.Parameters.Add(new SqlParameter("@lastMeterReading", SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output });
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        foreach (var invoice in _invoicedet)
                         {
-                            SqlCommand cmd = new SqlCommand("[getLastMeterReading]", con);
-
-                            cmd.Parameters.Add(new SqlParameter("@meterName", ""));
-                            cmd.Parameters.Add(new SqlParameter("@monthDate", null));
-                            cmd.Parameters.Add(new SqlParameter("@lastMeterReading", SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output });
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            foreach (var invoice in _invoicedet)
-                            {
 
 
-                                // Leer valor del medidor del mes en curso
-                                //cmd.Parameters["@meterName"].Value = CommonCls.getMeterNamefromId(invoice.str_meter_id);
-                                cmd.Parameters["@meterName"].Value = invoice.str_meter_id;
-                                cmd.Parameters["@monthDate"].Value = _invoice.date_e_bill_date;
+                            // Leer valor del medidor del mes en curso
+                            //cmd.Parameters["@meterName"].Value = CommonCls.getMeterNamefromId(invoice.str_meter_id);
+                            cmd.Parameters["@meterName"].Value = invoice.str_meter_id;
+                            cmd.Parameters["@monthDate"].Value = _invoice.date_e_bill_date;
                                 
-                                cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
 
-                                int currentReading;
-                                if (int.TryParse(Convert.ToString(cmd.Parameters["@lastMeterReading"].Value), out currentReading) == false)
-                                    currentReading = 0;
+                            int currentReading;
+                            if (int.TryParse(Convert.ToString(cmd.Parameters["@lastMeterReading"].Value), out currentReading) == false)
+                                currentReading = 0;
 
-                                // Leer valor del medidor del mes anterior
-                                cmd.Parameters["@monthDate"].Value = Convert.ToDateTime(_invoice.date_s_bill_date).AddDays(-1);
+                            // Leer valor del medidor del mes anterior
+                            cmd.Parameters["@monthDate"].Value = Convert.ToDateTime(_invoice.date_s_bill_date).AddDays(-1);
 
-                                cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
 
-                                int previousReading;
-                                if (int.TryParse(Convert.ToString(cmd.Parameters["@lastMeterReading"].Value), out previousReading) == false)
-                                    previousReading = 0;
+                            int previousReading;
+                            if (int.TryParse(Convert.ToString(cmd.Parameters["@lastMeterReading"].Value), out previousReading) == false)
+                                previousReading = 0;*/
 
-                                var total = currentReading - previousReading;
-                                meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + CommonCls.getMeterNamefromId(invoice.str_meter_id) + "</td>" +
-                                  "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", currentReading) + "</td>" +
-                                  "<td style ='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0 }", previousReading) + "</td>" +
-                                  "<td style ='font-size:10px; text-align:center;'colspan='4'>" + total.ToString() + "</td>" +
-                                  "<td style ='font-size:10px; text-align:center;'colspan='4'>" + "kWh" + "</td></tr>";
+                    var total = currentReading - previousReading;
+                        meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + CommonCls.getMeterNamefromId(_invoice.str_meter_id) + "</td>" +
+                            "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", currentReading) + "</td>" +
+                            "<td style ='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0 }", previousReading) + "</td>" +
+                            "<td style ='font-size:10px; text-align:center;'colspan='4'>" + total.ToString() + "</td>" +
+                            "<td style ='font-size:10px; text-align:center;'colspan='4'>" + "kWh" + "</td></tr>";
 
-                            }
-                        }
-                        html = html.Replace("#read", meterReadingsString);
+                            //}
+                         //}
+                    html = html.Replace("#read", meterReadingsString);
 
-                        con.Close();
+                        //con.Close();
 
-                        #endregion
+                    #endregion
 
-                        CharterColumn(_invoice.int_tenant_id, id);
-                        string address = _invoice.tbl_user_master.str_add_1 + "<br>" + _invoice.tbl_user_master.str_add_2 + "<br>" + _invoice.tbl_user_master.str_city + "<br>" + _invoice.tbl_user_master.str_state + "<br>" + _invoice.tbl_user_master.str_country;
-                        html = html.Replace("#address", address);
-                        html = html.Replace("#Piso", _invoice.tbl_user_master.str_add_2);
-                        html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#sdate", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#Statement", _invoice.date_pay_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#monthname", _invoice.date_pay_date.Value.ToString("MMMM"));
-                        html = html.Replace("#Tenantname", _invoice.tbl_user_master.str_comp_name);
-                        //html = html.Replace("#VaueMax", string.Format("{0:0}", objuser1.ElementAt(0).maxObject.VALUE));
-                        //html = html.Replace("#VaueMin", string.Format("{0:0 }", objuser1.ElementAt(0).minObject.VALUE));
-                        //html = html.Replace("#usese", string.Format("{0:0 }", _invoice.dec_total_ene));
-                        //html = html.Replace("#VaueMax",objuser.ToString());
-                        //html = html.Replace("#VaueMin", objuser1.ToString());
-                        html = html.Replace("#TenantAdd1", _invoice.tbl_user_master.str_add_1);
-                        html = html.Replace("#TenantAdd2", _invoice.tbl_user_master.str_add_2);
-                        html = html.Replace("#TCity", _invoice.tbl_user_master.str_city);
-                        html = html.Replace("#TS", _invoice.tbl_user_master.str_state);
-                        html = html.Replace("#TC", _invoice.tbl_user_master.str_country);
-                        html = html.Replace("#days", _invoice.date_e_bill_date.Value.Date.Subtract(_invoice.date_s_bill_date.Value.Date).TotalDays.ToString());
-                        html = html.Replace("#energyusage1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy) + " kWh");
-                        html = html.Replace("#energyrate1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy_rate));
-                        html = html.Replace("#energyamt1", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_peak_energy_rate));
-                        html = html.Replace("#energyusage2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy) + " kWh");
-                        html = html.Replace("#energyrate2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy_rate));
+                    CharterColumn(_invoice.int_tenant_id, id);
+                    string address = _invoice.tbl_user_master.str_add_1 + "<br>" + _invoice.tbl_user_master.str_add_2 + "<br>" + _invoice.tbl_user_master.str_city + "<br>" + _invoice.tbl_user_master.str_state + "<br>" + _invoice.tbl_user_master.str_country;
+                    html = html.Replace("#address", address);
+                    html = html.Replace("#Piso", _invoice.tbl_user_master.str_add_2);
+                    html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#sdate", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#Statement", _invoice.date_pay_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#monthname", _invoice.date_pay_date.Value.ToString("MMMM"));
+                    html = html.Replace("#Tenantname", _invoice.tbl_user_master.str_comp_name);
+                    //html = html.Replace("#VaueMax", string.Format("{0:0}", objuser1.ElementAt(0).maxObject.VALUE));
+                    //html = html.Replace("#VaueMin", string.Format("{0:0 }", objuser1.ElementAt(0).minObject.VALUE));
+                    //html = html.Replace("#usese", string.Format("{0:0 }", _invoice.dec_total_ene));
+                    //html = html.Replace("#VaueMax",objuser.ToString());
+                    //html = html.Replace("#VaueMin", objuser1.ToString());
+                    html = html.Replace("#TenantAdd1", _invoice.tbl_user_master.str_add_1);
+                    html = html.Replace("#TenantAdd2", _invoice.tbl_user_master.str_add_2);
+                    html = html.Replace("#TCity", _invoice.tbl_user_master.str_city);
+                    html = html.Replace("#TS", _invoice.tbl_user_master.str_state);
+                    html = html.Replace("#TC", _invoice.tbl_user_master.str_country);
+                    html = html.Replace("#days", _invoice.date_e_bill_date.Value.Date.Subtract(_invoice.date_s_bill_date.Value.Date).TotalDays.ToString());
+                    html = html.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
+                    html = html.Replace("#energyrate1", CommonCls.DoFormat(_invoice.dec_peak_energy_rate));
+                    html = html.Replace("#energyamt1", CommonCls.DoFormat(_invoice.dec_peak_energy * _invoice.dec_peak_energy_rate));
+                    html = html.Replace("#energyusage2", CommonCls.DoFormat(_invoice.dec_inter_energy) + " kWh");
+                    html = html.Replace("#energyrate2", CommonCls.DoFormat(_invoice.dec_inter_energy_rate));
 
-                        html = html.Replace("#energyamt2", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_inter_energy_rate));
-                        html = html.Replace("#meternam", CommonCls.getMeterNamefromId(_invoice.tbl_invoice_details.ElementAt(0).str_meter_id));
-                        html = html.Replace("#energyusage3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_energy) + " kWh");
-                        html = html.Replace("#energyrate3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_rate));
-                        html = html.Replace("#energyamt3", CommonCls.DoFormat(_invoice.tbl_invoice_details.ElementAt(0).dec_base_energy * _invoice.tbl_invoice_details.ElementAt(0).dec_base_rate));
+                    html = html.Replace("#energyamt2", CommonCls.DoFormat(_invoice.dec_inter_energy * _invoice.dec_inter_energy_rate));
+                    html = html.Replace("#meternam", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
+                    html = html.Replace("#energyusage3", CommonCls.DoFormat(_invoice.dec_base_energy) + " kWh");
+                    html = html.Replace("#energyrate3", CommonCls.DoFormat(_invoice.dec_base_rate));
+                    html = html.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_energy * _invoice.dec_base_rate));
 
-                        html = html.Replace("#name", _invoice.tbl_user_master.str_comp_name);
-                        html = html.Replace("#billperiod", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy") + " AL " + _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#billdate", _invoice.date_invoice_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#paydate", _invoice.date_pay_date.Value.ToString("dd/MM/yyyy"));
-                        html = html.Replace("#invno", _invoice.int_invoice_id.ToString());
-                        //html = html.Replace("#customcharge", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
-                        //html = html.Replace("#customtitle", string.IsNullOrEmpty(_invoice.str_custome_charge_desc) ? "Cargo personalizado" : _invoice.str_custome_charge_desc);
+                    html = html.Replace("#name", _invoice.tbl_user_master.str_comp_name);
+                    html = html.Replace("#billperiod", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy") + " AL " + _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#billdate", _invoice.date_invoice_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#paydate", _invoice.date_pay_date.Value.ToString("dd/MM/yyyy"));
+                    html = html.Replace("#invno", _invoice.int_invoice_id.ToString());
+                    //html = html.Replace("#customcharge", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
+                    //html = html.Replace("#customtitle", string.IsNullOrEmpty(_invoice.str_custome_charge_desc) ? "Cargo personalizado" : _invoice.str_custome_charge_desc);
 
-                        //html = html.Replace("#opingpeakkw", CommonCls.DoFormat(_invoice.dec_prev_peack_energy) + " kWh");
-                        //html = html.Replace("#closingpeakkw", CommonCls.DoFormat(_invoice.dec_current_peack_energy) + " kWh");
-                        //html = html.Replace("#opingintermediatekWh", CommonCls.DoFormat(_invoice.dec_prev_peack_energy) + " kWh");
-                        //html = html.Replace("#closingintermediatekWh", CommonCls.DoFormat(_invoice.dec_current_inter_energy) + " kWh");
-                        html = html.Replace("#energytype1", "Peak Energy");
+                    //html = html.Replace("#opingpeakkw", CommonCls.DoFormat(_invoice.dec_prev_peack_energy) + " kWh");
+                    //html = html.Replace("#closingpeakkw", CommonCls.DoFormat(_invoice.dec_current_peack_energy) + " kWh");
+                    //html = html.Replace("#opingintermediatekWh", CommonCls.DoFormat(_invoice.dec_prev_peack_energy) + " kWh");
+                    //html = html.Replace("#closingintermediatekWh", CommonCls.DoFormat(_invoice.dec_current_inter_energy) + " kWh");
+                    html = html.Replace("#energytype1", "Peak Energy");
 
-                        html = html.Replace("#demandtier1", "Tier 1");
-                        //html = html.Replace("#demandusage", CommonCls.DoFormat(_invoice.dec_demad) + " kWh");
-                        html = html.Replace("#demandrate", "$0");
-                        html = html.Replace("#demandamt", "$0");
+                    html = html.Replace("#demandtier1", "Tier 1");
+                    //html = html.Replace("#demandusage", CommonCls.DoFormat(_invoice.dec_demad) + " kWh");
+                    html = html.Replace("#demandrate", "$0");
+                    html = html.Replace("#demandamt", "$0");
 
-                        //html = html.Replace("#chargedesc1", _invoice.str_custome_charge_desc);
-                        html = html.Replace("#chargetype1", "Flat Type");
-                        //html = html.Replace("#customeunit1", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
-                        html = html.Replace("#customerate1", "$0");
-                        //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
+                    //html = html.Replace("#chargedesc1", _invoice.str_custome_charge_desc);
+                    html = html.Replace("#chargetype1", "Flat Type");
+                    //html = html.Replace("#customeunit1", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
+                    html = html.Replace("#customerate1", "$0");
+                    //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
 
-                        //html = html.Replace("#chargedesc2", "IVA 16%");
-                        html = html.Replace("#chargetype2", "Percentage");
-                        html = html.Replace("#customamt2", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
-                        html = html.Replace("#charturl", "I");
-                        //html = html.Replace("#demanfacturabledamt", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable_amount));
-                        //html = html.Replace("#buildingtotal", "$" + _invoice.dec_total_ene.ToString());
-                        //html = html.Replace("#demandfinalamt", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable_amount));
+                    //html = html.Replace("#chargedesc2", "IVA 16%");
+                    html = html.Replace("#chargetype2", "Percentage");
+                    html = html.Replace("#customamt2", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
+                    html = html.Replace("#charturl", "I");
+                    //html = html.Replace("#demanfacturabledamt", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable_amount));
+                    //html = html.Replace("#buildingtotal", "$" + _invoice.dec_total_ene.ToString());
+                    //html = html.Replace("#demandfinalamt", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable_amount));
 
-                        //decimal _finaltotal = _totalenergyamt + _totalfacturable + _invoice.dec_tax_amt.Value;
+                    //decimal _finaltotal = _totalenergyamt + _totalfacturable + _invoice.dec_tax_amt.Value;
 
-                        html = html.Replace("#preciosuministro", "$" + CommonCls.DoFormat(_invoice.precio_suministro));
-                        html = html.Replace("#preciodistribucion", "$" + CommonCls.DoFormat(_invoice.precio_distribucion));
-                        html = html.Replace("#preciotransmision", "$" + CommonCls.DoFormat(_invoice.precio_transmision));
-                        html = html.Replace("#preciocenace", "$" + CommonCls.DoFormat(_invoice.precio_cenace));
-                        html = html.Replace("#precioenergia", "$" + CommonCls.DoFormat(_invoice.precio_energia));
-                        html = html.Replace("#preciocapacidad", "$" + CommonCls.DoFormat(_invoice.precio_capacidad));
-                        html = html.Replace("#preciocreserviciosconexos", "$" + CommonCls.DoFormat(_invoice.precio_cre_servicios_conexos));
-                        html = html.Replace("#preciodosporcientobajatension", "$" + CommonCls.DoFormat(_invoice.precio_dos_porciento_baja_tension));
-                        html = html.Replace("#preciodecuentobonificacion", "$" + CommonCls.DoFormat(_invoice.precio_decuento_bonificacion));
+                    html = html.Replace("#preciosuministro", "$" + CommonCls.DoFormat(_invoice.precio_suministro));
+                    html = html.Replace("#preciodistribucion", "$" + CommonCls.DoFormat(_invoice.precio_distribucion));
+                    html = html.Replace("#preciotransmision", "$" + CommonCls.DoFormat(_invoice.precio_transmision));
+                    html = html.Replace("#preciocenace", "$" + CommonCls.DoFormat(_invoice.precio_cenace));
+                    html = html.Replace("#precioenergia", "$" + CommonCls.DoFormat(_invoice.precio_energia));
+                    html = html.Replace("#preciocapacidad", "$" + CommonCls.DoFormat(_invoice.precio_capacidad));
+                    html = html.Replace("#preciocreserviciosconexos", "$" + CommonCls.DoFormat(_invoice.precio_cre_servicios_conexos));
+                    html = html.Replace("#preciodosporcientobajatension", "$" + CommonCls.DoFormat(_invoice.precio_dos_porciento_baja_tension));
+                    html = html.Replace("#preciodecuentobonificacion", "$" + CommonCls.DoFormat(_invoice.precio_decuento_bonificacion));
 
-                        html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
-                        html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
+                    html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
 
-                        html = html.Replace("#totalamt", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#totalamt", "$" + CommonCls.DoFormat(_invoice.dec_total));
 
-                        path = Server.MapPath("~/Template/meterlist.html");
-                        string replacemeterlist = string.Empty;
-                        string meterlisthtml = string.Empty;
+                    path = Server.MapPath("~/Template/meterlist.html");
+                    string replacemeterlist = string.Empty;
+                    string meterlisthtml = string.Empty;
 
-                        decimal _totalenergyamt = 0, _totalenergy = 0;
+                    decimal _totalenergyamt = 0, _totalenergy = 0;
 
-                        var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
-                        //var invoicecarge = "";
-                        if (_invoicedetails != null)
-                        {
+                    //var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
+                    //var invoicecarge = "";
+                    //if (_invoicedetails != null)
+                    //{
 
-                            foreach (var details in _invoicedetails)
-                            {
-                                meterlisthtml = System.IO.File.ReadAllText(path);
+                    //        foreach (var details in _invoicedetails)
+                    //        {
+                    
+                    meterlisthtml = System.IO.File.ReadAllText(path);
 
-                                meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(details.str_meter_id));
-                                //html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
-                                meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(details.dec_peak_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate1", details.dec_peak_energy_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(details.dec_peak_energy_amt));
-                                meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(details.dec_inter_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate2", details.dec_inter_energy_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(details.dec_inter_energy_amt));
-                                meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(details.dec_base_energy) + " kWh");
-                                meterlisthtml = meterlisthtml.Replace("#energyrate3", details.dec_base_rate.ToString());
-                                meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(details.dec_base_amt));
-                                meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value));
-                                meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value));
-                                replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
-                                _totalenergyamt = _totalenergyamt + (details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value);
-                                _totalenergy = _totalenergy + (details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value);
+                    meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
+                    //html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(_invoice.dec_peak_energy_amt));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(_invoice.dec_inter_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate2", _invoice.dec_inter_energy_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(_invoice.dec_inter_energy_amt));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(_invoice.dec_base_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate3", _invoice.dec_base_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_amt));
+                    meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value));
+                    meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value));
+                    replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
+                    _totalenergyamt = _totalenergyamt + (_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value);
+                    _totalenergy = _totalenergy + (_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value);
 
-                            }
-                        }
+                    //        }
+                    //    }
 
-                        html = html.Replace("#meteridd", replacemeterlist);
+                    html = html.Replace("#meteridd", replacemeterlist);
 
-                        html = html.Replace("#sumofamount", "$" + CommonCls.DoFormat(_totalenergyamt));
-                        //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable));
-                        //html = html.Replace("#Charge5", "$" + CommonCls.DoFormat(5 * _totalenergyamt / 100));
-                        //html = html.Replace("#strcustomcharges", string.IsNullOrEmpty(_invoice.str_custome_charge_desc) ? "Cargos personalizados" : _invoice.str_custome_charge_desc);
-                        //html = html.Replace("#Charge5", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
+                    html = html.Replace("#sumofamount", "$" + CommonCls.DoFormat(_totalenergyamt));
+                    //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable));
+                    //html = html.Replace("#Charge5", "$" + CommonCls.DoFormat(5 * _totalenergyamt / 100));
+                    //html = html.Replace("#strcustomcharges", string.IsNullOrEmpty(_invoice.str_custome_charge_desc) ? "Cargos personalizados" : _invoice.str_custome_charge_desc);
+                    //html = html.Replace("#Charge5", "$" + CommonCls.DoFormat(_invoice.dec_custome_charges));
                         
 
-                        html = html.Replace("#chargedesc2", "16");
-                        html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
+                    html = html.Replace("#chargedesc2", "16");
+                    html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
                         
 
-                        html = html.Replace("#totalenergy", CommonCls.DoFormat(_totalenergy) + " kWh");
-                        //_totalwithtax = _totalwithtax + (Convert.ToDecimal(_totalenergyamt) + _invoice.dec_tax_amt.Value + _invoice.dec_custome_charges + (5 * _totalenergyamt / 100) + 16);
-                        //  html = html.Replace("#ToPayAmount", CommonCls.DoFormat(5 *_totalenergyamt/100)+_invoice.dec_demanda_facturable + _totalenergyamt + "16");
+                    html = html.Replace("#totalenergy", CommonCls.DoFormat(_totalenergy) + " kWh");
+                    //_totalwithtax = _totalwithtax + (Convert.ToDecimal(_totalenergyamt) + _invoice.dec_tax_amt.Value + _invoice.dec_custome_charges + (5 * _totalenergyamt / 100) + 16);
+                    //  html = html.Replace("#ToPayAmount", CommonCls.DoFormat(5 *_totalenergyamt/100)+_invoice.dec_demanda_facturable + _totalenergyamt + "16");
 
-                        //html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_total   withtax));
+                    //html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_total   withtax));
 
-                        html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
 
-                        path = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~/");
+                    path = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~/");
 
-                        html = html.Replace("#FooterImg", path + "/PDF/charts.jpg");
-                        html = html.Replace("#place", path + "/PDF/place.png");
-                        html = html.Replace("#hlogo", path + "/PDF/Logo_Tecnobuildings.png");
-                        html = html.Replace("#mail", path + "/PDF/mail.png");
-                        html = html.Replace("#web", path + "/PDF/web.png");
-                        html = html.Replace("#fone", path + "/PDF/fone.png");
-                        html = html.Replace("#graph", path + "/PDF/graph.png");
-                        html = html.Replace("#qr", path + "/PDF/qr.png");
-                        html = html.Replace("#barimg", path + "/PDF/barimg.png");
-                        html = html.Replace("#barc", path + "/PDF/barcode.jpg");
+                    html = html.Replace("#FooterImg", path + "/PDF/charts.jpg");
+                    html = html.Replace("#place", path + "/PDF/place.png");
+                    html = html.Replace("#hlogo", path + "/PDF/Logo_Tecnobuildings.png");
+                    html = html.Replace("#mail", path + "/PDF/mail.png");
+                    html = html.Replace("#web", path + "/PDF/web.png");
+                    html = html.Replace("#fone", path + "/PDF/fone.png");
+                    html = html.Replace("#graph", path + "/PDF/graph.png");
+                    html = html.Replace("#qr", path + "/PDF/qr.png");
+                    html = html.Replace("#barimg", path + "/PDF/barimg.png");
+                    html = html.Replace("#barc", path + "/PDF/barcode.jpg");
 
 
-                        if (System.IO.File.Exists(cdnFilePath))
-                        {
-                            System.IO.File.Delete(cdnFilePath);
-                        }
+                    if (System.IO.File.Exists(cdnFilePath))
+                    {
+                        System.IO.File.Delete(cdnFilePath);
+                    }
 
                     (new NReco.PdfGenerator.HtmlToPdfConverter()).GeneratePdf(html.ToString(), null, cdnFilePath);
 
 
 
-                    }
                 }
+                
             }
 
             catch (Exception ex)
@@ -2298,11 +2307,11 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  meterid = empg.Max(x => x.tbl_invoice_details.ElementAt(0).str_meter_id),
+                                  meterid = empg.Max(x => x.str_meter_id),
                                   fromdate = empg.Min(x => x.date_s_bill_date),
                                   todate = empg.Max(x => x.date_e_bill_date),
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
                                   //customecharges = empg.Sum(x => x.dec_custome_charges),
                                   //decdemad = empg.Sum(x => x.dec_demad),
                                   dectaxamt = empg.Sum(x => x.dec_tax_amt),
@@ -2449,9 +2458,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                                  };
 
@@ -2534,9 +2543,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
 
                                      //invoicedate = empg.Max(x => x.date_e_bill_date),
@@ -2657,11 +2666,11 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  meterid = empg.Max(x => x.tbl_invoice_details.ElementAt(0).str_meter_id),
+                                  meterid = empg.Max(x => x.str_meter_id),
                                   fromdate = empg.Min(x => x.date_s_bill_date),
                                   todate = empg.Max(x => x.date_e_bill_date),
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
                                   //customecharges = empg.Sum(x => x.dec_custome_charges),
                                   //decdemad = empg.Sum(x => x.dec_demad),
                                   dectaxamt = empg.Sum(x => x.dec_tax_amt),
@@ -2839,9 +2848,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                                  };
 
@@ -2921,9 +2930,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key.str_comp_name,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Key.date_invoice_date.Value.Month.ToString()
                                  };
 
@@ -2997,9 +3006,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                                  };
 
@@ -3079,9 +3088,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key.str_comp_name,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Key.date_invoice_date.Value.Month.ToString()
                                  };
 

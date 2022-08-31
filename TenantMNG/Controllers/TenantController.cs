@@ -119,11 +119,11 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  meterid = empg.Max(x => x.tbl_invoice_details.ElementAt(0).str_meter_id),
+                                  meterid = empg.Max(x => x.str_meter_id),
                                   fromdate = empg.Min(x => x.date_s_bill_date),
                                   todate = empg.Max(x => x.date_e_bill_date),
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
                                   //customecharges = empg.Sum(x => x.dec_custome_charges),
                                   //decdemad = empg.Sum(x => x.dec_demad),
                                   dectaxamt = empg.Sum(x => x.dec_tax_amt),
@@ -213,11 +213,11 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  meterid = empg.Max(x => x.tbl_invoice_details.ElementAt(0).str_meter_id),
+                                  meterid = empg.Max(x => x.str_meter_id),
                                   fromdate = empg.Min(x => x.date_s_bill_date),
                                   todate = empg.Max(x => x.date_e_bill_date),
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
                                   //customecharges = empg.Sum(x => x.dec_custome_charges),
                                   //decdemad = empg.Sum(x => x.dec_demad),
                                   dectaxamt = empg.Sum(x => x.dec_tax_amt),
@@ -269,9 +269,9 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                  baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
+                                  baseenergy = empg.Sum(x => x.dec_base_energy),
                                   invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                               };
                 var data = bygroup.ToList();
@@ -336,9 +336,9 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
 
                                      //invoicedate = empg.Max(x => x.date_e_bill_date),
@@ -406,9 +406,9 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                  baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
+                                  baseenergy = empg.Sum(x => x.dec_base_energy),
                                   invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                               };
                 var data = bygroup.ToList();
@@ -477,9 +477,9 @@ namespace TenantMNG.Controllers
                               {
 
                                   Name = empg.Key,
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                  baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
+                                  baseenergy = empg.Sum(x => x.dec_base_energy),
                                   invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                               };
                 var data = bygroup.ToList();
@@ -544,9 +544,9 @@ namespace TenantMNG.Controllers
                               select new
                               {
                                   Name = empg.Key.str_comp_name,
-                                  peakenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_peak_energy),
-                                  interenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_inter_energy),
-                                  baseenergy = empg.Sum(x => x.tbl_invoice_details.ElementAt(0).dec_base_energy),
+                                  peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                  interenergy = empg.Sum(x => x.dec_inter_energy),
+                                  baseenergy = empg.Sum(x => x.dec_base_energy),
                                   invoicedate = empg.Key.date_invoice_date.Value.Month.ToString()
                               };
                 var data = bygroup.ToList();
@@ -728,38 +728,38 @@ namespace TenantMNG.Controllers
 
                     decimal _totalenergyamt = 0, _totalenergy = 0;
 
-                    var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
+                    //var _invoicedetails = _dbc.tbl_invoice_details.Where(x => x.int_invoice_id == id).ToList();
 
-                    if (_invoicedetails != null)
-                    {
+                    //if (_invoicedetails != null)
+                    //{
 
-                        foreach (var details in _invoicedetails)
-                        {
-                            meterlisthtml = System.IO.File.ReadAllText(path);
+                        //foreach (var details in _invoicedetails)
+                        //{
+                    meterlisthtml = System.IO.File.ReadAllText(path);
 
-                            meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(details.str_meter_id));
+                    meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
 
-                            meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(details.dec_peak_energy) + " kWh");
-                            meterlisthtml = meterlisthtml.Replace("#energyrate1", details.dec_peak_energy_rate.ToString());
-                            meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(details.dec_peak_energy_amt));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt1", CommonCls.DoFormat(_invoice.dec_peak_energy_amt));
 
-                            meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(details.dec_inter_energy) + " kWh");
-                            meterlisthtml = meterlisthtml.Replace("#energyrate2", details.dec_inter_energy_rate.ToString());
-                            meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(details.dec_inter_energy_amt));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage2", CommonCls.DoFormat(_invoice.dec_inter_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate2", _invoice.dec_inter_energy_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt2", CommonCls.DoFormat(_invoice.dec_inter_energy_amt));
 
-                            meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(details.dec_base_energy) + " kWh");
-                            meterlisthtml = meterlisthtml.Replace("#energyrate3", details.dec_base_rate.ToString());
-                            meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(details.dec_base_amt));
+                    meterlisthtml = meterlisthtml.Replace("#energyusage3", CommonCls.DoFormat(_invoice.dec_base_energy) + " kWh");
+                    meterlisthtml = meterlisthtml.Replace("#energyrate3", _invoice.dec_base_rate.ToString());
+                    meterlisthtml = meterlisthtml.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_amt));
 
-                            meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value));
-                            meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value));
+                    meterlisthtml = meterlisthtml.Replace("#totaluse", CommonCls.DoFormat(_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value));
+                    meterlisthtml = meterlisthtml.Replace("#toalamt", CommonCls.DoFormat(_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value));
 
-                            replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
-                            _totalenergyamt = _totalenergyamt + (details.dec_peak_energy_amt.Value + details.dec_inter_energy_amt.Value + details.dec_base_amt.Value);
-                            _totalenergy = _totalenergy + (details.dec_peak_energy.Value + details.dec_inter_energy.Value + details.dec_base_energy.Value);
+                    replacemeterlist = replacemeterlist + "<br/>" + meterlisthtml;
+                    _totalenergyamt = _totalenergyamt + (_invoice.dec_peak_energy_amt.Value + _invoice.dec_inter_energy_amt.Value + _invoice.dec_base_amt.Value);
+                    _totalenergy = _totalenergy + (_invoice.dec_peak_energy.Value + _invoice.dec_inter_energy.Value + _invoice.dec_base_energy.Value);
 
-                        }
-                    }
+                    //    }
+                    //}
 
                     html = html.Replace("#meterid", replacemeterlist);
 
