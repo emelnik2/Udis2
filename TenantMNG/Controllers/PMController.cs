@@ -1490,7 +1490,7 @@ namespace TenantMNG.Controllers
 
                     html = html.Replace("#FooterImg", path + "/PDF/charts.jpg");
                     html = html.Replace("#place", path + "/PDF/place.png");
-                    html = html.Replace("#hlogo", path + "/PDF/Logo_Tecnobuildings.png");
+                    html = html.Replace("#hlogo", path + "/PDF/puerta-polanco-logo.png");
                     html = html.Replace("#mail", path + "/PDF/mail.png");
                     html = html.Replace("#web", path + "/PDF/web.png");
                     html = html.Replace("#fone", path + "/PDF/fone.png");
@@ -1578,14 +1578,20 @@ namespace TenantMNG.Controllers
                     //   var a = Convert.ToInt32(objuser1.ElementAt(0).maxObject.VALUE) - Convert.ToInt32(objuser1.ElementAt(0).minObject.VALUE);
                     TimeSpan timeSpan = _invoice.date_e_bill_date.Value.Subtract(_invoice.date_s_bill_date.Value);*/
 
-                if (_invoice != null && _previousinvoice != null)
+                if (_invoice != null)
                 {
 
+                    int previousReading = 0;
+
                     #region  Dynamic table
-                        
+
                     var meterReadingsString = "";
                     int currentReading = Convert.ToInt32(_invoice.dec_base_energy);
-                    int previousReading = Convert.ToInt32(_previousinvoice.dec_base_energy);
+                    if (_previousinvoice != null)
+                    { 
+                         previousReading = Convert.ToInt32(_previousinvoice.dec_base_energy);
+                    }
+                    
 
                     //var _invoicedet = objuser1.ToList();
                     /*if (_invoicedet != null)
@@ -1779,7 +1785,7 @@ namespace TenantMNG.Controllers
 
                     html = html.Replace("#FooterImg", path + "/PDF/charts.jpg");
                     html = html.Replace("#place", path + "/PDF/place.png");
-                    html = html.Replace("#hlogo", path + "/PDF/Logo_Tecnobuildings.png");
+                    html = html.Replace("#hlogo", path + "/PDF/puerta-polanco-logo.png");
                     html = html.Replace("#mail", path + "/PDF/mail.png");
                     html = html.Replace("#web", path + "/PDF/web.png");
                     html = html.Replace("#fone", path + "/PDF/fone.png");
