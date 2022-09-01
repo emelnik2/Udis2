@@ -118,7 +118,7 @@
                                         @*<td><input id="ckechbox" type="checkbox" onchange="Checkbox(@user.int_invoice_id)" /></td>*@
                                         <td>@string.Format("{0:MM-dd-yyyy}", user.date_invoice_date)</td>
                                         <td>@user.tbl_user_master.str_comp_name</td>
-                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).str_meter_id)</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.str_meter_id)</td>
                                         <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
                                         <td>@string.Format("{0:0.00}", user.dec_tax_amt)</td>
                                         <td>@string.Format("{0:0.00}", user.dec_total)</td>

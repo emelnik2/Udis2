@@ -119,11 +119,11 @@
                                     <tr>
                                         <td>@string.Format("{0:MM-dd-yyyy}",user.date_invoice_date)</td>
                                         <td>@user.tbl_user_master.str_comp_name</td>
-                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.tbl_invoice_details.ElementAt(0).str_meter_id)</td>
+                                        <td>@TenantMNG.Core.CommonCls.getMeterNamefromId(user.str_meter_id)</td>
                                         @*<td>@TenantMNG.Core.CommonCls.getaluefactfromId(user.tbl_invoice_details.ElementAt(0).int_meter_id)</td>*@
-                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_base_energy)</td>
-                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_peak_energy)</td>
-                                        <td>@string.Format("{0:0.00}",user.tbl_invoice_details.ElementAt(0).dec_inter_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_base_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_peak_energy)</td>
+                                        <td>@string.Format("{0:0.00}",user.dec_inter_energy)</td>
                                         <td>@string.Format("{0:MM-dd-yyyy}", user.date_s_bill_date) TO @string.Format("{0:MM-dd-yyyy}", user.date_e_bill_date)</td>
                                         <td>@user.bit_tenant_active</td>
                                         @*<td>@string.Format("{0:0.00}",user.dec_demanda_facturable)</td>*@
