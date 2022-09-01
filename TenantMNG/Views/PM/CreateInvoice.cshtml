@@ -160,6 +160,7 @@
         function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva) {
 
             var energia_activa = 0;
+            var energia_reactiva = 0;
             
             //Checar si energia base, intermedia, punta y energia reactiva tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
@@ -181,20 +182,24 @@
             else
                 energia_activa = dec_base_energy + dec_inter_energy + dec_peak_energy;
 
-
+            if (!Number.isNaN(energiareactiva))
+                energia_reactiva = energiareactiva;
+            else
+                energia_reactiva = Number($('#energia_reactiva').val());
 
             // Cálculo de Distribucion
             var maxdemanda = Math.max($('#demanda_base').val(), $('#demanda_intermedia').val(), $('#demanda_punta').val());
             var start_date = new Date($('#date_s_bill_date').val());
             var end_date = new Date($('#date_e_bill_date').val());
             var periodo_dias = Math.floor((end_date.getTime() - start_date.getTime()) / (1000 * 60 * 60 * 24));
-            var dias_mes = new Date(end_date.getFullYear(), end_date.getMonth(), 0).getDate();
-            var demanda_cargo = Math.round((dec_base_energy + dec_inter_energy + dec_peak_energy) / (24 * periodo_dias * 0.57));
+            var dias_mes = new Date(end_date.getFullYear(), end_date.getMonth() + 1, 0).getDate();
+            var factor_mes = roundUp((periodo_dias / dias_mes), 4);
+            var demanda_cargo = roundUp(((dec_base_energy + dec_inter_energy + dec_peak_energy) / (24 * periodo_dias * 0.57)), 0);
             var mindemanda = Math.min(maxdemanda, demanda_cargo);
-            var distribucion = $('#distribucion').val() * mindemanda;
+            var distribucion = $('#distribucion').val() * mindemanda * factor_mes;
 
             // Cálculo Suministro
-            var suministro = Number($('#suministro').val()) * Math.round(periodo_dias / dias_mes);
+            var suministro = Number($('#suministro').val()) * factor_mes;
 
             // Cálculo de Transmision (cambié energía por transmisión, ya que tienen los mismos valores)
             var precio_tranmisionbase = dec_base_energy * $('#tarifa_transmision').val();
@@ -215,7 +220,7 @@
             var energia = precio_energiabase + precio_energiaintermedia + precio_energiapunta;
 
             // Cálculo de Capacidad
-            var capacidad = Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val();
+            var capacidad = (Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val()) * factor_mes;
 
             // Cálculo CRE Servicios Conexos (SCnMEM) (cambié energía por transmisión, ya que tienen los mismos valores)
             var precio_sc_base = dec_base_energy * $('#cre_servicios_conexos').val();
@@ -224,53 +229,62 @@
             var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
 
             // Cálculo de % de Bonificación
-            var factor_de_potencia = energia_activa / Math.sqrt((energia_activa ** 2) + (energiareactiva ** 2));
-            var porciento_bonificacion = (factor_de_potencia > 0.9) ? Math.round((-1 / 4) * (1 - (0.9 / factor_de_potencia)) * 100, 1) : 0;
+            var factor_de_potencia = roundUp((energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))), 4);
+            var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (roundUp((25 * (1 - (0.9 / factor_de_potencia))), 1)) : 0;
+            var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? roundUp((60 * ((0.9 / factor_de_potencia) - 1)),1) : 0));
 
             // Total de la Factura
             var dos_porciento_baja_tension = (suministro + distribucion + transmision + cenace + energia + capacidad + servicios_conexos) * 0.02;
-            var energia_total = (suministro + distribucion + transmision + cenace + energia + capacidad + servicios_conexos + dos_porciento_baja_tension);
-            var decuento_bonificacion = porciento_bonificacion * (energia_total / 100);
+            var calculo_energia = (distribucion + transmision + cenace + energia + capacidad + servicios_conexos);
+            var energia_total = (calculo_energia + suministro);
+            var bonificacion_factor_potencia = porciento_bonificacion * (energia_total / 100);
+            var penalizacion_factor_potencia = energia_total * (penalizacion_factor_de_potencia / 100);
 
-            var finalamount = energia_total - decuento_bonificacion;
+            var finalamount = calculo_energia + bonificacion_factor_potencia + penalizacion_factor_potencia + suministro;
             var taxval = ((finalamount) * 16) / 100;
             finalamount = finalamount + taxval;
 
 
-            $('#precio_suministro').val(Number(suministro));
+            $('#precio_suministro').val(Number(suministro).toFixed(2));
 
-            $('#precio_distribucion').val(Number(distribucion));
+            $('#precio_distribucion').val(Number(distribucion).toFixed(2));
 
-            $('#precio_transmision').val(Number(transmision));
+            $('#precio_transmision').val(Number(transmision).toFixed(2));
 
-            $('#precio_cenace').val(Number(cenace));
+            $('#precio_cenace').val(Number(cenace).toFixed(2));
 
-            $('#precio_energia').val(Number(energia));
+            $('#precio_energia').val(Number(energia).toFixed(2));
 
-            $('#precio_capacidad').val(Number(capacidad));
+            $('#precio_capacidad').val(Number(capacidad).toFixed(2));
 
-            $('#precio_cre_servicios_conexos').val(Number(servicios_conexos));
+            $('#precio_cre_servicios_conexos').val(Number(servicios_conexos).toFixed(2));
 
-            $('#precio_dos_porciento_baja_tension').val(Number(dos_porciento_baja_tension));
+            $('#precio_dos_porciento_baja_tension').val(Number(dos_porciento_baja_tension).toFixed(2));
 
-            $('#precio_decuento_bonificacion').val(Number(decuento_bonificacion));
+            $('#precio_decuento_bonificacion').val(Number(bonificacion_factor_potencia).toFixed(2));
 
-            $('#dec_tax_amt').val(Number(taxval));
+            $('#dec_tax_amt').val(Number(taxval).toFixed(2));
 
-            $('#dec_total').val(Number(finalamount + taxval));
+            $('#dec_total').val(Number(finalamount).toFixed(2));
 
-            $('#dec_base_amt').val(Number(precio_energiabase));
+            $('#dec_base_amt').val(Number(precio_energiabase).toFixed(2));
 
-            $('#dec_inter_energy_amt').val(Number(precio_energiaintermedia));
+            $('#dec_inter_energy_amt').val(Number(precio_energiaintermedia).toFixed(2));
 
-            $('#dec_peak_energy_amt').val(Number(precio_energiapunta));
+            $('#dec_peak_energy_amt').val(Number(precio_energiapunta).toFixed(2));
 
-            $('#energia_activa').val(Number(energia_activa));
+            $('#energia_activa').val(Number(energia_activa).toFixed(2));
             
 
 
             //}
         }
+
+        function roundUp(number, digits) {
+            var factor = Math.pow(10, digits);
+            return Math.ceil(number * factor) / factor
+        }
+
     </script>
 }
 
