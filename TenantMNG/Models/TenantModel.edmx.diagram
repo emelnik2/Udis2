@@ -29,6 +29,7 @@
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_tenant_settings_tbl_user_master" />
         <AssociationConnector Association="DB_TenantMNGModel.FK_tbl_user_master_tbl_user_type" />
         <EntityTypeShape EntityType="DB_TenantMNGModel.UDI" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_TenantMNGModel.tbl_tarifas" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

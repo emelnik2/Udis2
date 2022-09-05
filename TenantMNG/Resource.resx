@@ -888,4 +888,22 @@
   <data name="create_invoice" xml:space="preserve">
     <value>Create Invoice</value>
   </data>
+  <data name="mes_tarifas" xml:space="preserve">
+    <value>Select the month the rates apply to</value>
+  </data>
+  <data name="enter_rates" xml:space="preserve">
+    <value>Enter CFE Rates</value>
+  </data>
+  <data name="invoice_meter" xml:space="preserve">
+    <value>Meter Invoice</value>
+  </data>
+  <data name="save_rates" xml:space="preserve">
+    <value>Save Rates</value>
+  </data>
+  <data name="tarifas_failure" xml:space="preserve">
+    <value>Error while saving CFE rates. Pleae try again later</value>
+  </data>
+  <data name="tarifas_success" xml:space="preserve">
+    <value>CFE rates saved successfully</value>
+  </data>
 </root>

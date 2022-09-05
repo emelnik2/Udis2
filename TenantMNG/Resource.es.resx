@@ -882,4 +882,22 @@
   <data name="create_invoice" xml:space="preserve">
     <value>Facturar</value>
   </data>
+  <data name="mes_tarifas" xml:space="preserve">
+    <value>Seleccione el mes en que aplican las tarifas</value>
+  </data>
+  <data name="enter_rates" xml:space="preserve">
+    <value>Tarifas CFE</value>
+  </data>
+  <data name="invoice_meter" xml:space="preserve">
+    <value>Facturar Medidor</value>
+  </data>
+  <data name="save_rates" xml:space="preserve">
+    <value>Guardar Tarifas</value>
+  </data>
+  <data name="tarifas_failure" xml:space="preserve">
+    <value>Ocurrió un error al intentar guardar las tarifas. Intente más tarde</value>
+  </data>
+  <data name="tarifas_success" xml:space="preserve">
+    <value>Las tarifas de la CFE se guardaron exitosamente</value>
+  </data>
 </root>

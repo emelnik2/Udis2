@@ -234,6 +234,46 @@ namespace TenantMNG.BAL
             return _lVal;
         }
 
+        public int rates_insert_update (TarifasVM tarifas)
+        {
+
+            int _lVal = 0;
+            try
+            {
+                using (DB_TenantMNGEntities dbcnx = new DB_TenantMNGEntities())
+                {
+                    SqlParameter[] param =
+                {
+                        new SqlParameter("@int_tarifas_id", SqlDbType.Int){Direction=System.Data.ParameterDirection.Output},
+
+                        new SqlParameter("@suministro", tarifas.suministro),
+                        new SqlParameter("@distribucion", tarifas.distribucion),
+                        new SqlParameter("@tarifa_transmision", tarifas.tarifa_transmision),
+                        new SqlParameter("@operacion_cenace", tarifas.operacion_cenace),
+
+                        new SqlParameter("@dec_base_rate", tarifas.dec_base_rate),
+                        new SqlParameter("@dec_inter_energy_rate", tarifas.dec_inter_energy_rate),
+                        new SqlParameter("@dec_peak_energy_rate", tarifas.dec_peak_energy_rate),
+
+                        new SqlParameter("@capacidad", tarifas.capacidad),
+                        new SqlParameter("@cre_servicios_conexos", tarifas.cre_servicios_conexos),
+                        new SqlParameter("@mes_tarifas", tarifas.mes_tarifas),
+                };
+                    _lVal = dbcnx.Database.ExecuteSqlCommand("usp_insert_update_rates @int_tarifas_id out,@suministro,@distribucion," +
+                        "@tarifa_transmision,@operacion_cenace,@dec_base_rate,@dec_inter_energy_rate,@dec_peak_energy_rate," +
+                        "@capacidad,@cre_servicios_conexos,@mes_tarifas", param);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return _lVal;
+
+        }
+
         public int tenant_invoice_details_insert(InvoiceVM invoice)
         {
             int _lVal = 0;

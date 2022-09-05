@@ -99,6 +99,22 @@
           <Property Name="str_peak_s_time_sat" Type="nvarchar" MaxLength="20" />
           <Property Name="str_peak_e_time_sat" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="tbl_tarifas">
+          <Key>
+            <PropertyRef Name="int_tarifas_id" />
+          </Key>
+          <Property Name="int_tarifas_id" Type="int" Nullable="false" />
+          <Property Name="suministro" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="distribucion" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="tarifa_transmision" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="operacion_cenace" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_rate" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="capacidad" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="cre_servicios_conexos" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="mes_tarifas" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_template">
           <Key>
             <PropertyRef Name="int_temp_id" />
@@ -377,6 +393,7 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
           <EntitySet Name="tbl_invoice" EntityType="Self.tbl_invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_invoice_details" EntityType="Self.tbl_invoice_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_pm_billing_hours" EntityType="Self.tbl_pm_billing_hours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tarifas" EntityType="Self.tbl_tarifas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_template" EntityType="Self.tbl_template" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_tenant_billing_info" EntityType="Self.tbl_tenant_billing_info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_tenant_contract" EntityType="Self.tbl_tenant_contract" Schema="dbo" store:Type="Tables" />
@@ -800,6 +817,7 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
             <End Role="tbl_user_master" EntitySet="tbl_user_master" />
           </AssociationSet>
           <EntitySet Name="UDIS" EntityType="DB_TenantMNGModel.UDI" />
+          <EntitySet Name="tbl_tarifas" EntityType="DB_TenantMNGModel.tbl_tarifas" />
           </EntityContainer>
         <ComplexType Name="spProcEnergyLog_Result">
           <Property Type="Int32" Name="TENETID" Nullable="true" />
@@ -1186,11 +1204,27 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
             <PropertyRef Name="valor" />
             <PropertyRef Name="fecha_ocurrencia" />
           </Key>
-          <Property Name="id_medidor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CFE_MeterID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tipo_lectura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="valor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_medidor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CFE_MeterID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_lectura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_ocurrencia" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="tbl_tarifas">
+          <Key>
+            <PropertyRef Name="int_tarifas_id" />
+          </Key>
+          <Property Name="int_tarifas_id" Type="Int32" Nullable="false" />
+          <Property Name="suministro" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="distribucion" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="tarifa_transmision" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="operacion_cenace" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_base_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_inter_energy_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="dec_peak_energy_rate" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="capacidad" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="cre_servicios_conexos" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="mes_tarifas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1431,6 +1465,23 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
                 <ScalarProperty Name="tipo_lectura" ColumnName="tipo_lectura" />
                 <ScalarProperty Name="CFE_MeterID" ColumnName="CFE_MeterID" />
                 <ScalarProperty Name="id_medidor" ColumnName="id_medidor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_tarifas">
+            <EntityTypeMapping TypeName="DB_TenantMNGModel.tbl_tarifas">
+              <MappingFragment StoreEntitySet="tbl_tarifas">
+                <ScalarProperty Name="mes_tarifas" ColumnName="mes_tarifas" />
+                <ScalarProperty Name="cre_servicios_conexos" ColumnName="cre_servicios_conexos" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="dec_peak_energy_rate" ColumnName="dec_peak_energy_rate" />
+                <ScalarProperty Name="dec_inter_energy_rate" ColumnName="dec_inter_energy_rate" />
+                <ScalarProperty Name="dec_base_rate" ColumnName="dec_base_rate" />
+                <ScalarProperty Name="operacion_cenace" ColumnName="operacion_cenace" />
+                <ScalarProperty Name="tarifa_transmision" ColumnName="tarifa_transmision" />
+                <ScalarProperty Name="distribucion" ColumnName="distribucion" />
+                <ScalarProperty Name="suministro" ColumnName="suministro" />
+                <ScalarProperty Name="int_tarifas_id" ColumnName="int_tarifas_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

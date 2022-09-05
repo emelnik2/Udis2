@@ -1,0 +1,156 @@
+﻿@model TenantMNG.ViewModel.InvoiceVM
+
+
+@using (Html.BeginForm("_ModifyRates", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formtarifas" }))
+{
+
+    if (ViewBag._erromsg >= 1)
+    {
+        <div class="alert alert-success">
+            @TenantMNG.Resource.tarifas_success
+        </div>}
+    else if (ViewBag._erromsg == 0)
+    {
+
+        <div class="alert alert-danger">
+            @TenantMNG.Resource.tarifas_failure
+        </div>}
+    else if (ViewBag._erromsg == -2)
+    {
+        <div class="alert alert-danger">
+            @TenantMNG.Resource.tarifas_failure
+        </div>
+
+    }
+    <div class="clearfix"></div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.dec_base_rate, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.dec_base_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.dec_inter_energy_rate, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.dec_inter_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.dec_peak_energy_rate, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.dec_peak_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.suministro, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.suministro, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.distribucion, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.tarifa_transmision, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.tarifa_transmision, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" })
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.operacion_cenace, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.cre_servicios_conexos, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.capacidad, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.mes_tarifas, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.DropDownListFor(m => m.tarifassetting.mes_tarifas, new SelectList(Enum.GetValues(typeof(TenantMNG.ViewModel.InvoiceVM.Meses))));
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <br />
+    @Html.HiddenFor(m => m.tarifassetting.int_tarifas_id)
+
+    <div class="form-actions">
+        <input type="submit" id="btnsave"
+               value="@TenantMNG.Resource.save_rates" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "InvoiceMeters", "PM", new { @class = "btn btn-default" })
+    </div>
+}
+
+

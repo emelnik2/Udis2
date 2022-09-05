@@ -161,7 +161,7 @@
 
             var energia_activa = 0;
             var energia_reactiva = 0;
-            
+
             //Checar si energia base, intermedia, punta y energia reactiva tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
             if (!$('#dec_base_energy').val())
@@ -176,7 +176,7 @@
             var dec_base_energy = Number($('#dec_base_energy').val());
             var dec_inter_energy = Number($('#dec_inter_energy').val());
             var dec_peak_energy = Number($('#dec_peak_energy').val());
-                                    
+
             if (!Number.isNaN(energiaactiva))
                 energia_activa = energiaactiva;
             else
@@ -274,7 +274,7 @@
             $('#dec_peak_energy_amt').val(Number(precio_energiapunta).toFixed(2));
 
             $('#energia_activa').val(Number(energia_activa).toFixed(2));
-            
+
 
 
             //}
@@ -292,6 +292,7 @@
     <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "PM")" class="tip-bottom">@TenantMNG.Resource.tenant</a> <a href="#" class="current">@TenantMNG.Resource.create_single</a> </div>
 
 </div>
+
 <div class="container-fluid">
 
     <div class="row-fluid">
@@ -302,473 +303,25 @@
                     <h5>Facturaci&oacute;n Medidor  <B>@Model.str_meter_id</B></h5>
                 </div>
                 <div class="widget-content nopadding">
-                    @using (Html.BeginForm("CreateInvoice", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formcontact" }))
-                    {
 
-                        if (ViewBag._erromsg >= 1)
-                        {
-                            <div class="alert alert-success">
-                                @TenantMNG.Resource.invoice_success
-                            </div>}
-                        else if (ViewBag._erromsg == 0)
-                        {
+                    @Html.AntiForgeryToken()
 
-                            <div class="alert alert-danger">
-                                @TenantMNG.Resource.invoce_failure
-                            </div>}
-                        else if (ViewBag._erromsg == -2)
-                        {
-                            <div class="alert alert-danger">
-                                @TenantMNG.Resource.invoce_failure
-                            </div>
+                    <div class="widget-title">
+                        <ul class="nav nav-tabs" id="tabsinvoice">
+                            <li class="active"><a data-toggle="tab" href="#tab1">@TenantMNG.Resource.invoice_meters</a></li>
+                            <li><a id="a1" data-toggle="tab" href="#tab2">@TenantMNG.Resource.enter_rates</a></li>
+                        </ul>
+                    </div>
 
-                        }
-
-                        <div class="clearfix"></div>
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.date_s_bill_date, new { @class = "control-label" })
-
-                                <div class="controls">
-
-                                    @Html.TextBoxFor(m => m.date_s_bill_date, "{0:yyyy/MM/dd}", new { @class = "span8" })
-                                    @Html.ValidationMessageFor(m => m.date_s_bill_date)
-
-                                </div>
-                            </div>
+                    <div class="widget-content tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            @Html.Partial("_CreateInvoice", Model)
                         </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.date_e_bill_date, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.date_e_bill_date, "{0:yyyy/MM/dd}", new { @class = "span8" })
-                                    @Html.ValidationMessageFor(m => m.date_e_bill_date)
-
-                                </div>
-                            </div>
+                        <div id="tab2" class="tab-pane">
+                            @Html.Partial("_ModifyRates", Model)
                         </div>
+                    </div>
 
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.date_pay_date, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.date_pay_date, "{0:yyyy/MM/dd}", new { @class = "span8" })
-                                    @Html.ValidationMessageFor(m => m.date_pay_date)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_base_energy, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_inter_energy, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_peak_energy, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_base_rate, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_base_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_inter_energy_rate, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_inter_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_peak_energy_rate, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_peak_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.demanda_base, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.demanda_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.demanda_intermedia, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.demanda_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.demanda_punta, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.demanda_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.suministro, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.suministro, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.distribucion, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.tarifa_transmision, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.tarifa_transmision, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.operacion_cenace, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.cre_servicios_conexos, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.energia_reactiva, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_suministro, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_suministro, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_distribucion, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_transmision, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_transmision, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_cenace, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_energia, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_energia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_capacidad, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_cre_servicios_conexos, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_dos_porciento_baja_tension, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_dos_porciento_baja_tension, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.precio_decuento_bonificacion, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.precio_decuento_bonificacion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_tax_amt, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_tax_amt, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="span5">
-                            <div class="control-group">
-                                @Html.LabelFor(m => m.dec_total, new { @class = "control-label" })
-
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.dec_total, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="clearfix"></div>
-
-                        <div class="span11">
-                            <br />
-                            <table class="table table-striped table-bordered table-hover" id="datatable_orders" style="display:none">
-                                <thead>
-                                    <tr role="row" class="heading">
-                                        <th width="15%">
-                                            @Resource.meter_name
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.peak_energy
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.dec_peak_energy_rate
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.energia_activa
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.dec_inter_energy
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.dec_inter_energy_rate
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.energia_reactiva
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.dec_base_energy
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.dec_base_rate
-                                        </th>
-                                        <th width="10%">
-                                            @Resource.final_amout
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="contacts"></tbody>
-                            </table>
-                        </div>
-                        <div class="clearfix"></div>
-                        <br />
-
-                        @Html.HiddenFor(m => m.int_invoice_id)
-
-                        // @Html.HiddenFor(m => m.int_meter_id)
-                        @Html.HiddenFor(m => m.int_tenant_id)
-                        @Html.HiddenFor(m => m.str_meter_id)
-                        @Html.HiddenFor(m => m.int_invoice_period)
-                        @Html.HiddenFor(m => m.bit_tenant_active)
-                        @Html.HiddenFor(m => m.str_inter_e_time)
-                        @Html.HiddenFor(m => m.str_inter_s_time)
-                        @Html.HiddenFor(m => m.str_peak_e_time)
-                        @Html.HiddenFor(m => m.str_peak_s_time)
-                        @Html.HiddenFor(m => m.energia_activa)
-                        //@Html.HiddenFor(m => m.energia_reactiva)
-                        @Html.HiddenFor(m => m.dec_base_amt)
-                        @Html.HiddenFor(m => m.dec_inter_energy_amt)
-                        @Html.HiddenFor(m => m.dec_peak_energy_amt)
-
-                        <div class="form-actions">
-                            @*<input type="submit" class="btn btn-success" value="Save" />*@
-                            <input type="submit" id="btnsave"
-                                   value="@TenantMNG.Resource.save_info" class="btn btn-success" />
-                            @if (Request["reqt"] == null)
-                            {
-                                @Html.ActionLink(TenantMNG.Resource.cancel, "Tenant", "User", new { @class = "btn btn-default" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink(TenantMNG.Resource.cancel, "Alarm", "PM", new { @class = "btn btn-default" })
-                            }
-
-                        </div>
-
-                    }
                 </div>
             </div>
         </div>

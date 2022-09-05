@@ -330,6 +330,64 @@ namespace TenantMNG.Controllers
 
         [SessionCheck]
         [HttpGet]
+        public ActionResult _ModifyRates()
+        {
+            TarifasVM _tarifasvm = new TarifasVM();
+
+            var tarifas = _dbc.tbl_tarifas.FirstOrDefault();
+
+            try
+            {
+
+                if (tarifas != null)
+                {
+                    _tarifasvm.dec_base_rate = tarifas.dec_base_rate;
+                    _tarifasvm.dec_inter_energy_rate = tarifas.dec_inter_energy_rate;
+                    _tarifasvm.dec_peak_energy_rate = tarifas.dec_peak_energy_rate;
+                    _tarifasvm.suministro = tarifas.suministro;
+                    _tarifasvm.distribucion = tarifas.distribucion;
+                    _tarifasvm.tarifa_transmision = tarifas.tarifa_transmision;
+                    _tarifasvm.operacion_cenace = tarifas.operacion_cenace;
+                    _tarifasvm.capacidad = tarifas.capacidad;
+                    _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
+                    _tarifasvm.mes_tarifas = _tarifasvm.mes_tarifas;
+                }
+                ViewBag._erromsg = -1;
+                return View(_tarifasvm);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult _ModifyRates(TarifasVM _tarifasvm)
+        {
+            TenantBAL objbal = new TenantBAL();
+
+            int _lVal = 0;
+            ViewBag._erromsg = 0;
+
+            try
+            {
+                if (_tarifasvm.int_tarifas_id == 0)
+                {
+                    _lVal = objbal.rates_insert_update(_tarifasvm);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            ViewBag._erromsg = _lVal;
+            return View(_tarifasvm);
+        }
+
+        [SessionCheck]
+        [HttpGet]
         public ActionResult CreateInvoices()
         {
             InvoiceVM _objvm = new InvoiceVM();

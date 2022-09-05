@@ -844,6 +844,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter CFE Rates.
+        /// </summary>
+        public static string enter_rates {
+            get {
+                return ResourceManager.GetString("enter_rates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export To Excel.
         /// </summary>
         public static string export_to_excel {
@@ -979,6 +988,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meter Invoice.
+        /// </summary>
+        public static string invoice_meter {
+            get {
+                return ResourceManager.GetString("invoice_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice Meters.
         /// </summary>
         public static string invoice_meters {
@@ -1047,6 +1065,15 @@ namespace TenantMNG {
         public static string manager {
             get {
                 return ResourceManager.GetString("manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the month the rates apply to.
+        /// </summary>
+        public static string mes_tarifas {
+            get {
+                return ResourceManager.GetString("mes_tarifas", resourceCulture);
             }
         }
         
@@ -1609,6 +1636,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Rates.
+        /// </summary>
+        public static string save_rates {
+            get {
+                return ResourceManager.GetString("save_rates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string search {
@@ -1947,6 +1983,24 @@ namespace TenantMNG {
         public static string tarifa_transmision {
             get {
                 return ResourceManager.GetString("tarifa_transmision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while saving CFE rates. Pleae try again later.
+        /// </summary>
+        public static string tarifas_failure {
+            get {
+                return ResourceManager.GetString("tarifas_failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CFE rates saved successfully.
+        /// </summary>
+        public static string tarifas_success {
+            get {
+                return ResourceManager.GetString("tarifas_success", resourceCulture);
             }
         }
         

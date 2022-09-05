@@ -41,6 +41,7 @@ namespace TenantMNG.Models
         public virtual DbSet<tbl_zone_master> tbl_zone_master { get; set; }
         public virtual DbSet<tblMVCChart> tblMVCCharts { get; set; }
         public virtual DbSet<UDI> UDIS { get; set; }
+        public virtual DbSet<tbl_tarifas> tbl_tarifas { get; set; }
     
         public virtual ObjectResult<Nullable<decimal>> tbl_insert_zone(string str_decription, string str_override, Nullable<bool> bit_status)
         {

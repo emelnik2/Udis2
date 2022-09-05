@@ -291,6 +291,9 @@
     <Compile Include="Models\tbl_pm_billing_hours.cs">
       <DependentUpon>TenantModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_tarifas.cs">
+      <DependentUpon>TenantModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_template.cs">
       <DependentUpon>TenantModel.tt</DependentUpon>
     </Compile>
@@ -367,6 +370,7 @@
     <Compile Include="ViewModel\EmailSetupVM.cs" />
     <Compile Include="ViewModel\EnergyViewModel.cs" />
     <Compile Include="ViewModel\InvoiceDetailsVM.cs" />
+    <Compile Include="ViewModel\TarifasVM.cs" />
     <Compile Include="ViewModel\InvoiceVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\MeterVM.cs" />
@@ -878,6 +882,8 @@
     <Content Include="Views\PM\Piechart.cshtml" />
     <Content Include="Views\PM\CreateInvoices.cshtml" />
     <Content Include="Views\PM\InvoiceMeters.cshtml" />
+    <Content Include="Views\Shared\_ModifyRates.cshtml" />
+    <Content Include="Views\Shared\_CreateInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
