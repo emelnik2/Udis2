@@ -153,23 +153,5 @@ namespace TenantMNG.ViewModel
 
         [Display(Name = "energia_punta", ResourceType = typeof(Resource))]
         public Nullable<decimal> energia_punta { get; set; }
-
-        public enum Meses
-        {
-            Enero,
-            Febrero,
-            Marzo,
-            Abril,
-            Mayo,
-            Junio,
-            Julio,
-            Agosto,
-            Septiembre,
-            Octubre,
-            Noviembre,
-            Diciembre
-
-
-        }
     }
 }

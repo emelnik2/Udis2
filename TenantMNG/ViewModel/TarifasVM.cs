@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TenantMNG.ViewModel
 {
@@ -45,6 +46,8 @@ namespace TenantMNG.ViewModel
         [Display(Name = "cre_servicios_conexos", ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "servicios_conexos_enter_amount")]
         public Nullable<decimal> cre_servicios_conexos { get; set; }
+
+        public IEnumerable<SelectListItem> Meses { get; set; }
 
     }
 

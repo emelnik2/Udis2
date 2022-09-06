@@ -126,7 +126,7 @@
             @Html.LabelFor(m => m.tarifassetting.mes_tarifas, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.DropDownListFor(m => m.tarifassetting.mes_tarifas, new SelectList(Enum.GetValues(typeof(TenantMNG.ViewModel.InvoiceVM.Meses))));
+                @Html.DropDownListFor(m => m.tarifassetting.mes_tarifas, (SelectList)Model.tarifassetting.Meses);
             </div>
         </div>
     </div>
