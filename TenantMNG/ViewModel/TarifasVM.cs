@@ -11,7 +11,7 @@ namespace TenantMNG.ViewModel
         public int int_tarifas_id { get; set; }
 
         [Display(Name = "mes_tarifas", ResourceType = typeof(Resource))]
-        public Nullable<System.DateTime> mes_tarifas { get; set; }
+        public String mes_tarifas { get; set; }
 
         [Display(Name = "dec_base_rate", ResourceType = typeof(Resource))]
         public Nullable<decimal> dec_base_rate { get; set; }

@@ -5,9 +5,19 @@
     Layout = "~/Views/Shared/_LayoutPM.cshtml";
 }
 
+<style>
+    .adisabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
 @section scriptstop
 {
     <script>
+
         $(function () {
 
 
@@ -84,12 +94,70 @@
 
             });
 
-
         });
 
+        $(document).ready(function () {
+
+            $("#btnsaverates").click(function (e) {
+                $.validator.unobtrusive.parse("#formtarifas");
+                $("#formtarifas").validate();
+                if ($("#formtarifas").valid()) {
+                    var tarifas = {};
+                    tarifas.dec_base_rate = $('#tarifassetting_dec_base_rate').val();
+                    tarifas.dec_inter_energy_rate = $('#tarifassetting_dec_inter_energy_rate').val();
+                    tarifas.dec_peak_energy_rate = $('#tarifassetting_dec_peak_energy_rate').val();
+                    tarifas.suministro = $('#tarifassetting_suministro').val();
+                    tarifas.distribucion = $('#tarifassetting_distribucion').val();
+                    tarifas.tarifa_transmision = $('#tarifassetting_tarifa_transmision').val();
+                    tarifas.operacion_cenace = $('#tarifassetting_operacion_cenace').val();
+                    tarifas.cre_servicios_conexos = $('#tarifassetting_cre_servicios_conexos').val();
+                    tarifas.capacidad = $('#tarifassetting_capacidad').val();
+                    tarifas.mes_tarifas = $('#tarifassetting_mes_tarifas').val();
+                    tarifas.int_tarifas_id = $('#tarifassetting_int_tarifas_id').val();
+
+                    var options = {};
+                    options.url =  '@Url.Action("_ModifyRates", "PM")'
+                    options.type = "POST";
+                    options.data = JSON.stringify(tarifas),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+                        $('#dec_base_rate').val(Number(tarifas.dec_base_rate));
+                        $('#dec_inter_energy_rate').val(Number(tarifas.dec_inter_energy_rate));
+                        $('#dec_peak_energy_rate').val(Number(tarifas.dec_peak_energy_rate));
+                        $('#suministro').val(Number(tarifas.suministro));
+                        $('#distribucion').val(Number(tarifas.distribucion));
+                        $('#tarifa_transmision').val(Number(tarifas.tarifa_transmision));
+                        $('#operacion_cenace').val(Number(tarifas.operacion_cenace));
+                        $('#cre_servicios_conexos').val(Number(tarifas.cre_servicios_conexos));
+                        $('#capacidad').val(Number(tarifas.capacidad));
+
+                        alertRates(data);
+                    };
+                    options.error = function () {
+                          alertRates(0);
+                    };
+                    $.ajax(options);
+
+                }
+                e.stopImmediatePropagation();
+                return false;
+            });
+        });
+
+        function alertRates(val) {
+            if (val > 0) {
+                $('#divSuccess_rates').show();
+                $('#divFail_rates').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_rates').hide();
+                $('#divFail_rates').show();
+            }
+        }
+
         function getEnergyData() {
-
-
 
 
             var tenantenergy = {};
@@ -327,5 +395,7 @@
         </div>
     </div>
 </div>
+
+
 @Scripts.Render("~/bundles/jqueryval")
 

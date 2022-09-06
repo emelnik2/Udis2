@@ -87,14 +87,14 @@
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Invoice Meters" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.invoice_meters, "InvoiceMeters", "PM") </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tenant" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.tenant, "Tenant", "PM") </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "TenantActivity" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.tenant_actitivy_log, "TenantActivity", "PM")</li>
-            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Alarm" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.alarm, "Alarm", "PM")</li>
+            @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Alarm" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.alarm, "Alarm", "PM")</li>*@
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Meters" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.meter, "Meters", "PM")</li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Summary" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.summary, "Summary", "PM")</li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Meter Readings Report" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.current_meter_readings_report, "PreviewMeter", "PM")</li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tenant consumption Report" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.tenant_consumption_report, "TenantconsumptionReport", "PM")</li>
             @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Charts" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.charts, "Chartsformonth", "PM")</li>*@
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EnergyManagement" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.EnergyManagement, "GetEnergy", "PM")</li>
-            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Charts" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.charts, "Chart", "PM")</li>
+            @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Charts" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.charts, "Chart", "PM")</li>*@
         </ul>
 
     </div>

@@ -201,7 +201,7 @@ namespace TenantMNG.Controllers
             return RedirectToAction("Meters");
         }
 
-        
+        [SessionCheck]
         [HttpGet]
         public ActionResult CreateInvoice(string strmeterid)
         {
@@ -209,23 +209,34 @@ namespace TenantMNG.Controllers
             try
             {
                 int id = 0;
+
                 var _tenantid = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == strmeterid && x.bit_is_assign == true).FirstOrDefault();
+                var tarifas = _dbc.tbl_tarifas.FirstOrDefault();
+
                 if (_tenantid != null)
                 {
                     _objvm.int_invoice_id = 0;
                     id = Convert.ToInt32(Convert.ToInt32(_tenantid.int_tenant_id));
 
-                    var _tenantbillinginfo = _dbc.tbl_tenant_billing_info.Where(x => x.int_tenant_id == id).SingleOrDefault();
+                    //var _tenantbillinginfo = _dbc.tbl_tenant_billing_info.Where(x => x.int_tenant_id == id).SingleOrDefault();
+                    var _ratesinfo = _dbc.tbl_tarifas.FirstOrDefault();
 
-                    if (_tenantbillinginfo != null)
+                    if (_ratesinfo != null)
                     {
-                        _objvm.dec_peak_energy_rate = _tenantbillinginfo.dec_seasonal_multi_rate;
-                        _objvm.dec_inter_energy_rate = _tenantbillinginfo.dec_surcharge_amt;
-                        _objvm.dec_base_rate = _tenantbillinginfo.dec_rate;
+                        _objvm.suministro = _ratesinfo.suministro;
+                        _objvm.distribucion = _ratesinfo.distribucion;
+                        _objvm.tarifa_transmision = _ratesinfo.tarifa_transmision;
+                        _objvm.operacion_cenace = _ratesinfo.operacion_cenace;
+                        _objvm.dec_base_rate = _ratesinfo.dec_base_rate;
+                        _objvm.dec_inter_energy_rate = _ratesinfo.dec_inter_energy_rate;
+                        _objvm.dec_peak_energy_rate = _ratesinfo.dec_peak_energy_rate;
+                        _objvm.capacidad = _ratesinfo.capacidad;
+                        _objvm.cre_servicios_conexos = _ratesinfo.cre_servicios_conexos;
+
                     }
                     int _uid = Convert.ToInt32(Session["uid"].ToString());
                     var _pmbillingtime = _dbc.tbl_pm_billing_hours.Where(x => x.int_pm_id == _uid).SingleOrDefault();
-                    if (_pmbillingtime != null)
+                    if (_pmbillingtime != null && _ratesinfo != null)
                     {
 
                         _objvm.str_inter_e_time = _pmbillingtime.str_inter_e_time_1_m;
@@ -234,10 +245,28 @@ namespace TenantMNG.Controllers
                         _objvm.str_peak_e_time = _pmbillingtime.str_peak_e_time_m;
                         _objvm.str_peak_s_time = _pmbillingtime.str_peak_s_time_m;
 
-                        _objvm.int_invoice_period = _tenantbillinginfo.tbl_user_master.int_invoice_period;
+                        //_objvm.int_invoice_period = _tenantbillinginfo.tbl_user_master.int_invoice_period;
+                        _objvm.int_invoice_period = 3;
                     }
 
-                    var _pmsetting = _dbc.tbl_tenant_settings.Where(x => x.int_tenant_id == id).SingleOrDefault();
+                    if (tarifas != null)
+                    {
+                        var _tarifasvm = new TarifasVM();
+                        _tarifasvm.dec_base_rate = tarifas.dec_base_rate;
+                        _tarifasvm.dec_inter_energy_rate = tarifas.dec_inter_energy_rate;
+                        _tarifasvm.dec_peak_energy_rate = tarifas.dec_peak_energy_rate;
+                        _tarifasvm.suministro = tarifas.suministro;
+                        _tarifasvm.distribucion = tarifas.distribucion;
+                        _tarifasvm.tarifa_transmision = tarifas.tarifa_transmision;
+                        _tarifasvm.operacion_cenace = tarifas.operacion_cenace;
+                        _tarifasvm.capacidad = tarifas.capacidad;
+                        _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
+                        _tarifasvm.mes_tarifas = _tarifasvm.mes_tarifas;
+
+                        _objvm.tarifassetting = _tarifasvm;
+                    }
+
+                    //var _pmsetting = _dbc.tbl_tenant_settings.Where(x => x.int_tenant_id == id).SingleOrDefault();
 
                     // This section not used anymore in current version
                     /* if (_pmsetting != null)
@@ -328,7 +357,6 @@ namespace TenantMNG.Controllers
             return View(objvm);
         }
 
-        [SessionCheck]
         [HttpGet]
         public ActionResult _ModifyRates()
         {
@@ -382,8 +410,8 @@ namespace TenantMNG.Controllers
             {
                 log.Error(ex.Message);
             }
-            ViewBag._erromsg = _lVal;
-            return View(_tarifasvm);
+            //ViewBag._erromsg = _lVal;
+            return Json(_lVal.ToString(), JsonRequestBehavior.AllowGet);
         }
 
         [SessionCheck]

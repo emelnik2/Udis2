@@ -4,24 +4,14 @@
 @using (Html.BeginForm("_ModifyRates", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "formtarifas" }))
 {
 
-    if (ViewBag._erromsg >= 1)
-    {
-        <div class="alert alert-success">
-            @TenantMNG.Resource.tarifas_success
-        </div>}
-    else if (ViewBag._erromsg == 0)
-    {
+    <div class="alert alert-success" id="divSuccess_rates" style="display:none">
+        @TenantMNG.Resource.tarifas_success
+    </div>
 
-        <div class="alert alert-danger">
-            @TenantMNG.Resource.tarifas_failure
-        </div>}
-    else if (ViewBag._erromsg == -2)
-    {
-        <div class="alert alert-danger">
-            @TenantMNG.Resource.tarifas_failure
-        </div>
+    <div class="alert alert-danger" id="divFail_rates" style="display:none">
+        @TenantMNG.Resource.tarifas_failure
+    </div>
 
-    }
     <div class="clearfix"></div>
 
     <div class="span5">
@@ -147,7 +137,7 @@
     @Html.HiddenFor(m => m.tarifassetting.int_tarifas_id)
 
     <div class="form-actions">
-        <input type="submit" id="btnsave"
+        <input type="submit" id="btnsaverates"
                value="@TenantMNG.Resource.save_rates" class="btn btn-success" />
         @Html.ActionLink(TenantMNG.Resource.cancel, "InvoiceMeters", "PM", new { @class = "btn btn-default" })
     </div>
