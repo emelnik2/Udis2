@@ -1848,7 +1848,7 @@ namespace TenantMNG.Controllers
                     
                     meterlisthtml = System.IO.File.ReadAllText(path);
 
-                    meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
+                    //meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
                     //html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
                     meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
                     meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
@@ -1870,6 +1870,32 @@ namespace TenantMNG.Controllers
 
                     html = html.Replace("#meteridd", replacemeterlist);
 
+                    html = html.Replace("#Meterid", _invoice.str_meter_id);
+
+                    html = html.Replace("#suministrorate", CommonCls.DoFormat(_invoice.suministro));
+
+                    html = html.Replace("#distribucionrate", CommonCls.DoFormat(_invoice.distribucion));
+
+                    html = html.Replace("#transmisionrate", CommonCls.DoFormat(_invoice.tarifa_transmision));
+
+                    html = html.Replace("#ocenacerate", CommonCls.DoFormat(_invoice.operacion_cenace));
+
+                    html = html.Replace("#energybase", CommonCls.DoFormat(_invoice.dec_base_energy));
+                    html = html.Replace("#energybrate", CommonCls.DoFormat(_invoice.dec_base_rate));
+                    html = html.Replace("#benergytotal", CommonCls.DoFormat(_invoice.dec_base_amt));
+
+                    html = html.Replace("#energyintermedia", CommonCls.DoFormat(_invoice.dec_inter_energy));
+                    html = html.Replace("#energyirate", CommonCls.DoFormat(_invoice.dec_inter_energy_rate));
+                    html = html.Replace("#ienergytotal", CommonCls.DoFormat(_invoice.dec_inter_energy_amt));
+
+                    html = html.Replace("#energypunta", CommonCls.DoFormat(_invoice.dec_peak_energy));
+                    html = html.Replace("#energyprate", CommonCls.DoFormat(_invoice.dec_peak_energy_rate));
+                    html = html.Replace("#penergytotal", CommonCls.DoFormat(_invoice.dec_peak_energy_amt));
+
+                    html = html.Replace("#capacidadrate", CommonCls.DoFormat(_invoice.capacidad));
+
+                    html = html.Replace("#serviciosconexosrate", CommonCls.DoFormat(_invoice.cre_servicios_conexos));
+                    
                     html = html.Replace("#sumofamount", "$" + CommonCls.DoFormat(_totalenergyamt));
                     //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable));
                     //html = html.Replace("#Charge5", "$" + CommonCls.DoFormat(5 * _totalenergyamt / 100));
