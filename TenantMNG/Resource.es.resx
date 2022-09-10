@@ -900,4 +900,19 @@
   <data name="tarifas_success" xml:space="preserve">
     <value>Las tarifas de la CFE se guardaron exitosamente</value>
   </data>
+  <data name="invoice_summary" xml:space="preserve">
+    <value>Resumen de Facturación</value>
+  </data>
+  <data name="select_month" xml:space="preserve">
+    <value>Seleccionar Mes</value>
+  </data>
+  <data name="no_invoices_summary" xml:space="preserve">
+    <value>No existen facturas para este período</value>
+  </data>
+  <data name="summary_fail" xml:space="preserve">
+    <value>Ocurrió un error, intente de nuevo</value>
+  </data>
+  <data name="summary_success" xml:space="preserve">
+    <value>Reporte generado con éxito</value>
+  </data>
 </root>

@@ -18,6 +18,10 @@
         <div id="edit-person-container"></div>
     </div>
 
+    <div class="modal hide fade in" id="invoice-summary">
+        <div id="invoice-summary-container"></div>
+    </div>
+
     <div class="modal hide fade in" id="pnlnocontractwarning">
         <div class="modal-content">
             <div class="modal-header">
@@ -29,6 +33,26 @@
                     @TenantMNG.Resource.msg_no_contract
                 </div>
             </div>
+        </div>
+
+    </div>
+
+    <div class="modal hide fade in" id="downloadviewsummary">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@TenantMNG.Resource.select_option</h4>
+            </div>
+            <div class="modal-body">
+                <p>@TenantMNG.Resource.what_like_to_do</p>
+
+                @using (Html.BeginForm("DownloadSummary", "PM", FormMethod.Get))
+                {
+                    @Html.ActionLink(Resource.preview, "ViewPDF", new { controller = "PM" }, new { target = "_blank", @class = "btn btn-info" })
+                    <input type="submit" class="btn btn-primary" value="@TenantMNG.Resource.download" />
+                }
+            </div>
+
         </div>
 
     </div>
@@ -140,14 +164,14 @@
                                                 <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>
                                                 @Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
                                                 @:&nbsp;
-                                                @*Html.ActionLink(TenantMNG.Resource.invoice, "Invoice", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
+                                                @*Html.ActionLink(TenantMNG.Resource.invoice_summary, "InvoiceSummary", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
+                                                <a id="invoicesummary" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.invoice_summary</a>
                                             }
                                             else
                                             {
                                                 @Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
                                                 @:&nbsp;
                                                 @Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
-
                                             }
 
                                         </td>
@@ -206,6 +230,30 @@
                 });
             });
 
+            $('.btn').filter('.btn-mini').filter('.btn-info').click(function () {
+
+
+                var url = '@Url.Action("InvoiceSummary", "PM")'; // the url to the controller
+                var id = $(this).attr('data-target-id'); // the id that's given to each button in the list
+
+
+
+                $.get(url + '/' + id, function (data) {
+
+
+                    if (data != 1) {
+
+                        $('#invoice-summary-container').html(data);
+                        $('#invoice-summary').modal('show');
+                    }
+                    else {
+                        $('#pnlnocontractwarning').modal('show');
+                    }
+
+                });
+
+            });
+
             $(document).on("click", "#btnsave", function (e) {
 
                 $.validator.unobtrusive.parse("#formassignmeter");
@@ -241,6 +289,30 @@
 
             });
 
+            $(document).on("click", "#btnsavesummary", function (e) {
+
+                var invoice = {};
+
+                invoice.int_tenant_id = $('#int_tenant_id').val();
+                invoice.monthnumber = $('#monthnumber').val();
+
+
+                var options = {};
+                options.url = '@Url.Action("InvoiceSummary", "PM")';
+                options.type = "POST";
+                options.data = JSON.stringify(invoice),
+                options.contentType = "application/json";
+                options.dataType = "json";
+                options.success = function (data) {
+                    alertMessageSummary(data);
+                };
+                options.error = function () {
+                    alertMessageSummary(0);
+                };
+                $.ajax(options);
+
+            });
+
 
             $("#edit-person").on("hidden.bs.modal", function () {
 
@@ -265,6 +337,26 @@
                 $('#divSuccess').hide();
                 $('#divFail').show();
                 $('#divError').hide();
+            }
+        }
+
+        function alertMessageSummary(val) {
+            if (val > 0) {
+                //$('#divSuccessSummary').show();
+                //$('#divFailSummary').hide();
+                //$('#divErrorSummary').hide();
+                $('#invoice-summary').modal('hide');
+                $('#downloadviewsummary').modal('show');
+            }
+            else if (val == -1) {
+                $('#divSuccessSummary').hide();
+                $('#divFailSummary').hide();
+                $('#divErrorSummary').show();
+            }
+            else {
+                $('#divSuccessSummary').hide();
+                $('#divFailSummary').show();
+                $('#divErrorSummary').hide();
             }
         }
     </script>

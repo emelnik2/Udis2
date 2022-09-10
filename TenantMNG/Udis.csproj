@@ -884,6 +884,7 @@
     <Content Include="Views\PM\InvoiceMeters.cshtml" />
     <Content Include="Views\Shared\_ModifyRates.cshtml" />
     <Content Include="Views\Shared\_CreateInvoice.cshtml" />
+    <Content Include="Views\Shared\_Invoicesummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

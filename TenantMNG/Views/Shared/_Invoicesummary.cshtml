@@ -1,0 +1,48 @@
+﻿@model TenantMNG.ViewModel.InvoiceVM
+<!-- Modal -->
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@TenantMNG.Resource.invoice_summary</h4>
+    </div>
+    <div class="modal-body">
+
+
+        @using (Html.BeginForm("InvoiceSummary", "PM", FormMethod.Post, new { @class = "form-horizontal", @id = "forminvoicesummary" }))
+        {
+            <div class="alert alert-success" id="divSuccessSummary" style="display:none">
+                @TenantMNG.Resource.summary_success
+            </div>
+
+            <div class="alert alert-danger" id="divFailSummary" style="display:none">
+                @TenantMNG.Resource.summary_fail
+            </div>
+
+            <div class="alert alert-danger" id="divErrorSummary" style="display:none">
+                @TenantMNG.Resource.no_invoices_summary
+            </div>
+
+            SelectList meses = ViewBag.MesesDropDown;
+
+            <div class="span4">
+                @Html.DropDownList("monthnumber", meses, new { @class = "span4" })
+                @*Html.ValidationMessageFor(m => m.int_tenant_id)*@
+            </div>
+
+            <div class="span1">
+                @Html.HiddenFor(m => m.int_tenant_id)
+
+                <input type="button" id="btnsavesummary"
+                       value="@TenantMNG.Resource.select_month" class="btn btn-success" />
+
+
+            </div>
+
+        }
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@TenantMNG.Resource.close</button>
+    </div>
+</div>

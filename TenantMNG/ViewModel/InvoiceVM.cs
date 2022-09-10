@@ -14,6 +14,8 @@ namespace TenantMNG.ViewModel
         public Nullable<System.DateTime> date_invoice_date { get; set; }
         public string str_meter_id { get; set; }
 
+        public int monthnumber { get; set; }
+
         [Display(Name = "int_tenant_id", ResourceType = typeof(Resource))]
         public Nullable<int> int_tenant_id { get; set; }
         public Nullable<bool> bit_tenant_active { get; set; }

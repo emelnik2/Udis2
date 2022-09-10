@@ -1625,7 +1625,70 @@ namespace TenantMNG.Controllers
 
         }
 
-        //get order inoice report 
+
+        private void generateSummaryPDF(InvoiceVM _invoicesvm)
+        {
+            try
+            {
+                var invoices = _dbc.tbl_invoice.Where(x => x.int_tenant_id == _invoicesvm.int_tenant_id && x.date_e_bill_date.Value.Month == _invoicesvm.monthnumber).ToList();
+                var tenant = _dbc.tbl_user_master.Where(x => x.int_id == _invoicesvm.int_tenant_id).FirstOrDefault();
+
+                string path = Server.MapPath("~/Template/ResumenGeneral.html");
+                string html = System.IO.File.ReadAllText(path);
+                string filename = "Resumen_" + tenant.str_comp_name + (DateTime.Now).ToString("yyyyMMddmm") + ".PDF";
+
+                Session["summaryfilename"] = filename;
+                ViewBag.summaryfilename = filename;
+
+                var date = Convert.ToDateTime(invoices.FirstOrDefault().date_e_bill_date);
+                var mes = date.ToString("MMMM", CultureInfo.CreateSpecificCulture("es"));
+                var anio = Convert.ToString(date.Year);
+
+                path = HttpContext.Server.MapPath("~/PDF/");
+                string cdnFilePath = path + filename;
+
+                var invoicehtmldata = "";
+
+                html = html.Replace("#hlogo", path + "puerta-polanco-logo.png");
+
+                decimal total = 0;
+
+                foreach (var invoice in invoices)
+                {
+                    tenant = _dbc.tbl_user_master.Where(x => x.int_id == invoice.int_tenant_id).FirstOrDefault();
+
+                    invoicehtmldata += "<tr><td>" + tenant.str_comp_name + "</td>" +
+                        "<td>" + Convert.ToString(Convert.ToDouble(invoice.dec_tax_amt) / .16) + "</td>" +
+                        "<td>" + Convert.ToString(invoice.dec_tax_amt) + "</td>" +
+                        "<td>" + Convert.ToString(invoice.dec_total) + "</td>" + "</tr>";
+
+                    total = total + Convert.ToDecimal(invoice.dec_total);
+                }
+
+                html = html.Replace("#invoicedata", invoicehtmldata);
+
+                var totalhtml = "<tr><td></td><td></td><td></td><td>" + total + "</td></tr>";
+
+                html = html.Replace("#totales", totalhtml);
+
+                html = html.Replace("#Mes", mes);
+                html = html.Replace("#Anio", anio);
+
+                if (System.IO.File.Exists(cdnFilePath))
+                {
+                    System.IO.File.Delete(cdnFilePath);
+                }
+
+                    (new NReco.PdfGenerator.HtmlToPdfConverter()).GeneratePdf(html.ToString(), null, cdnFilePath);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message.ToString());
+            }
+        }
+
+        //get order invoice report 
         private void bindData(int id)
         {
 
@@ -2125,6 +2188,23 @@ namespace TenantMNG.Controllers
 
 
         }
+
+        public FileResult DownloadSummary()
+        {
+            try
+            {
+                string fileName = Session["summaryfilename"].ToString();
+                string filenamepath = Server.MapPath("~/PDF/" + fileName);
+                byte[] fileBytes = System.IO.File.ReadAllBytes(filenamepath);
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
         public FileResult DownloadbyID(int forpdf)
         {
 
@@ -2258,6 +2338,62 @@ namespace TenantMNG.Controllers
 
             return Json(_lval, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult InvoiceSummary(int id)
+        {
+            InvoiceVM _invoices = new InvoiceVM();
+
+            _invoices.int_tenant_id = id;
+
+            ViewBag.MesesDropDown = new SelectList(new List<SelectListItem>()
+{
+                                new SelectListItem(){ Value="1", Text="Enero"},
+                                new SelectListItem(){ Value="2", Text="Febrero"},
+                                new SelectListItem(){ Value="3", Text="Marzo"},
+                                new SelectListItem(){ Value="4", Text="Abril"},
+                                new SelectListItem(){ Value="5", Text="Mayo"},
+                                new SelectListItem(){ Value="6", Text="Junio"},
+                                new SelectListItem(){ Value="7", Text="Julio"},
+                                new SelectListItem(){ Value="8", Text="Agosto"},
+                                new SelectListItem(){ Value="9", Text="Septiembre"},
+                                new SelectListItem(){ Value="10", Text="Octubre"},
+                                new SelectListItem(){ Value="11", Text="Noviembre"},
+                                new SelectListItem(){ Value="12", Text="Diciembre"},
+                            },
+                            "Value",
+                            "Text");
+
+
+            return PartialView("_Invoicesummary", _invoices);
+        }
+
+        [HttpPost]
+        public ActionResult InvoiceSummary (InvoiceVM _invoicevm)
+        {
+            int _lval = 1;
+
+            try
+            {
+                var invoices = _dbc.tbl_invoice.Where(x => x.int_tenant_id == _invoicevm.int_tenant_id && x.date_e_bill_date.Value.Month == _invoicevm.monthnumber);
+
+                if (invoices.ToList().Count > 0)
+                { 
+                    generateSummaryPDF(_invoicevm);
+                }
+                else
+                {
+                    _lval = -1;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return Json(_lval, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public ActionResult AddTextbox(string[] fromdate, string[] todate, string[] paydate, string[] custome, string[] demand, TenantEnergyVM objvm)

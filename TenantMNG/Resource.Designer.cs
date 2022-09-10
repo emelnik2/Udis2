@@ -88,7 +88,7 @@ namespace TenantMNG {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assigned Meter.
+        ///   Looks up a localized string similar to Assign Meter.
         /// </summary>
         public static string assign_meter {
             get {
@@ -1015,6 +1015,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Summary of Invoicing.
+        /// </summary>
+        public static string invoice_summary {
+            get {
+                return ResourceManager.GetString("invoice_summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List.
         /// </summary>
         public static string list {
@@ -1335,6 +1344,15 @@ namespace TenantMNG {
         public static string no_contract_mess {
             get {
                 return ResourceManager.GetString("no_contract_mess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No invoices for this period.
+        /// </summary>
+        public static string no_invoices_summary {
+            get {
+                return ResourceManager.GetString("no_invoices_summary", resourceCulture);
             }
         }
         
@@ -1690,6 +1708,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Month.
+        /// </summary>
+        public static string select_month {
+            get {
+                return ResourceManager.GetString("select_month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Option for.
         /// </summary>
         public static string select_option {
@@ -1965,6 +1992,24 @@ namespace TenantMNG {
         public static string summary {
             get {
                 return ResourceManager.GetString("summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error, please try again later.
+        /// </summary>
+        public static string summary_fail {
+            get {
+                return ResourceManager.GetString("summary_fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary generated successfully.
+        /// </summary>
+        public static string summary_success {
+            get {
+                return ResourceManager.GetString("summary_success", resourceCulture);
             }
         }
         
