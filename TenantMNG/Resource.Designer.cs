@@ -88,6 +88,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the year the rates apply.
+        /// </summary>
+        public static string ano_tarifas {
+            get {
+                return ResourceManager.GetString("ano_tarifas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assign Meter.
         /// </summary>
         public static string assign_meter {

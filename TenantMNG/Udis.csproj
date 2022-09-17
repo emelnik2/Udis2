@@ -683,6 +683,20 @@
       <DependentUpon>TenantModel.edmx</DependentUpon>
       <LastGenOutput>TenantModel.cs</LastGenOutput>
     </Content>
+    <Content Include="PDF\barcode.jpg" />
+    <Content Include="PDF\barimg.png" />
+    <Content Include="PDF\bars.jpg" />
+    <Content Include="PDF\chart.jpg" />
+    <Content Include="PDF\charts.jpg" />
+    <Content Include="PDF\fone.png" />
+    <Content Include="PDF\graph.png" />
+    <Content Include="PDF\hlogo.png" />
+    <Content Include="PDF\Logo_Tecnobuildings.png" />
+    <Content Include="PDF\mail.png" />
+    <Content Include="PDF\place.png" />
+    <Content Include="PDF\puerta-polanco-logo.png" />
+    <Content Include="PDF\qr.png" />
+    <Content Include="PDF\web.png" />
     <Content Include="Scripts\bootstrap-colorpicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
@@ -730,6 +744,49 @@
     <Content Include="Models\UdisModel.edmx.diagram">
       <DependentUpon>UdisModel.edmx</DependentUpon>
     </Content>
+    <Content Include="PDF\Invoice.pdf" />
+    <Content Include="PDF\Invoice_1.PDF" />
+    <Content Include="PDF\Invoice_1022.PDF" />
+    <Content Include="PDF\Invoice_1026.PDF" />
+    <Content Include="PDF\Invoice_1029.PDF" />
+    <Content Include="PDF\Invoice_1030.PDF" />
+    <Content Include="PDF\Invoice_1031.PDF" />
+    <Content Include="PDF\Invoice_1032.PDF" />
+    <Content Include="PDF\Invoice_1033.PDF" />
+    <Content Include="PDF\Invoice_1034.PDF" />
+    <Content Include="PDF\Invoice_1035.PDF" />
+    <Content Include="PDF\Invoice_1036.PDF" />
+    <Content Include="PDF\Invoice_2.PDF" />
+    <Content Include="PDF\Invoice_20.PDF" />
+    <Content Include="PDF\Invoice_2028.PDF" />
+    <Content Include="PDF\Invoice_2029.PDF" />
+    <Content Include="PDF\Invoice_2030.PDF" />
+    <Content Include="PDF\Invoice_2031.PDF" />
+    <Content Include="PDF\Invoice_2032.PDF" />
+    <Content Include="PDF\Invoice_2069.PDF" />
+    <Content Include="PDF\Invoice_2070.PDF" />
+    <Content Include="PDF\Invoice_2073.PDF" />
+    <Content Include="PDF\Invoice_2079.PDF" />
+    <Content Include="PDF\Invoice_2084.PDF" />
+    <Content Include="PDF\Invoice_21.PDF" />
+    <Content Include="PDF\Invoice_22.PDF" />
+    <Content Include="PDF\Invoice_3073.PDF" />
+    <Content Include="PDF\Invoice_3075.PDF" />
+    <Content Include="PDF\Invoice_3076.PDF" />
+    <Content Include="PDF\Invoice_3077.PDF" />
+    <Content Include="PDF\Invoice_3078.PDF" />
+    <Content Include="PDF\Invoice_7622.PDF" />
+    <Content Include="PDF\Invoice_7624.PDF" />
+    <Content Include="PDF\Invoice_7625.PDF" />
+    <Content Include="PDF\Invoice_7626.PDF" />
+    <Content Include="PDF\Invoice_7627.PDF" />
+    <Content Include="PDF\Invoice_7628.PDF" />
+    <Content Include="PDF\Invoice_7638.PDF" />
+    <Content Include="PDF\Invoice_7640.PDF" />
+    <Content Include="PDF\Invoice_7644.PDF" />
+    <Content Include="PDF\Invoice_7649.PDF" />
+    <Content Include="PDF\Invoice_7651.PDF" />
+    <Content Include="PDF\Invoice_7653.PDF" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
@@ -788,6 +845,7 @@
     <Content Include="Template\meterlist.html" />
     <Content Include="Template\NEwInvoice.html" />
     <Content Include="Template\NInvoice.html" />
+    <Content Include="Template\ResumenGeneral.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

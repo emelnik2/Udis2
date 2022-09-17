@@ -105,7 +105,7 @@
             @Html.LabelFor(m => m.dec_base_rate, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_base_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_base_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly"})
 
             </div>
         </div>
@@ -116,7 +116,7 @@
             @Html.LabelFor(m => m.dec_inter_energy_rate, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_inter_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_inter_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -129,7 +129,7 @@
             @Html.LabelFor(m => m.dec_peak_energy_rate, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_peak_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_peak_energy_rate, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -177,7 +177,7 @@
             @Html.LabelFor(m => m.suministro, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.suministro, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.suministro, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -188,7 +188,7 @@
             @Html.LabelFor(m => m.distribucion, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
 
             </div>
         </div>
@@ -201,7 +201,7 @@
             @Html.LabelFor(m => m.tarifa_transmision, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.tarifa_transmision, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.tarifa_transmision, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -212,7 +212,7 @@
             @Html.LabelFor(m => m.operacion_cenace, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
 
             </div>
         </div>
@@ -225,7 +225,7 @@
             @Html.LabelFor(m => m.cre_servicios_conexos, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
 
             </div>
         </div>
@@ -236,7 +236,7 @@
             @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
 
             </div>
         </div>

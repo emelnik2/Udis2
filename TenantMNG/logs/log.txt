@@ -1056,3 +1056,6 @@ ERROR 2022-09-05 22:00:09,566 75554ms TenantBAL              ates_insert_update 
 ERROR 2022-09-06 13:54:39,554 26994ms TenantBAL              ates_insert_update - The parameterized query '(@int_tarifas_id int output,@suministro nvarchar(4000),@distribu' expects the parameter '@suministro', which was not supplied.
 ERROR 2022-09-06 13:57:46,247 23906ms TenantBAL              ates_insert_update - The parameterized query '(@int_tarifas_id int output,@suministro nvarchar(4000),@distribu' expects the parameter '@suministro', which was not supplied.
 ERROR 2022-09-06 15:05:52,325 307498ms TenantBAL              ates_insert_update - The parameterized query '(@int_tarifas_id int output,@suministro nvarchar(4000),@distribu' expects the parameter '@suministro', which was not supplied.
+ERROR 2022-09-11 18:48:39,300 79216ms TenantBAL              ates_insert_update - Procedure or function 'usp_insert_update_rates' expects parameter '@ano_tarifas', which was not supplied.
+ERROR 2022-09-11 18:48:54,710 94627ms TenantBAL              ates_insert_update - Procedure or function 'usp_insert_update_rates' expects parameter '@ano_tarifas', which was not supplied.
+ERROR 2022-09-11 18:49:03,368 103284ms TenantBAL              ates_insert_update - Procedure or function 'usp_insert_update_rates' expects parameter '@ano_tarifas', which was not supplied.

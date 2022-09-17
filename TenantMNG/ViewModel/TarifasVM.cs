@@ -14,6 +14,10 @@ namespace TenantMNG.ViewModel
         [Display(Name = "mes_tarifas", ResourceType = typeof(Resource))]
         public String mes_tarifas { get; set; }
 
+        [Display(Name = "ano_tarifas", ResourceType = typeof(Resource))]
+        public int ano_tarifas { get; set; }
+
+
         [Display(Name = "dec_base_rate", ResourceType = typeof(Resource))]
         public Nullable<decimal> dec_base_rate { get; set; }
 
@@ -48,6 +52,8 @@ namespace TenantMNG.ViewModel
         public Nullable<decimal> cre_servicios_conexos { get; set; }
 
         public IEnumerable<SelectListItem> Meses { get; set; }
+
+        public IEnumerable<SelectListItem> Anios { get; set; }
 
     }
 

@@ -52,17 +52,20 @@
 
 
 
-                    var dd = dt.getDate();
-                    var mm = dt.getMonth() + 1;
+                    //var dd = dt.getDay();
+                    var mm = dt.getMonth();
                     var yy = dt.getFullYear();
 
-                    $("#date_e_bill_date").val(yy + "/" + mm + "/" + dd);
+
+                    $("#date_e_bill_date").val(yy + "/" + mm + "/" + getDaysInMonth(mm, yy));
 
 
 
                     if (($("#date_e_bill_date").val().length > 0) && ($("#date_s_bill_date").val().length > 0))
+                    {
+                        getRatesData();
                         getEnergyData();
-
+                    }
 
 
                 }
@@ -113,6 +116,7 @@
                     tarifas.cre_servicios_conexos = $('#tarifassetting_cre_servicios_conexos').val();
                     tarifas.capacidad = $('#tarifassetting_capacidad').val();
                     tarifas.mes_tarifas = $('#tarifassetting_mes_tarifas').val();
+                    tarifas.ano_tarifas = $('#tarifassetting_ano_tarifas').val();
                     tarifas.int_tarifas_id = $('#tarifassetting_int_tarifas_id').val();
 
                     var options = {};
@@ -155,6 +159,42 @@
                 $('#divSuccess_rates').hide();
                 $('#divFail_rates').show();
             }
+        }
+
+        function getRatesData() {
+            var tarifas = {};
+
+            var dt = new Date($("#date_e_bill_date").val());
+            
+            tarifas.mes_tarifas = toMonthName(dt.getMonth());
+            tarifas.ano_tarifas = dt.getFullYear();
+
+            var options = {};
+            options.url = '@Url.Action("getRates", "PM")';
+            options.type = "POST";
+            options.data = JSON.stringify(tarifas),
+            options.contentType = "application/json";
+            options.dataType = "json";
+            options.success = function (data) {
+
+                $.each(data, function (index, item) {
+
+                    if (item != null) {
+                        $('#dec_base_rate').val(Number(item.dec_base_rate));
+                        $('#dec_inter_energy_rate').val(Number(item.dec_inter_energy_rate));
+                        $('#dec_peak_energy_rate').val(Number(item.dec_peak_energy_rate));
+                        $('#suministro').val(Number(item.suministro));
+                        $('#distribucion').val(Number(item.distribucion));
+                        $('#tarifa_transmision').val(Number(item.tarifa_transmision));
+                        $('#operacion_cenace').val(Number(item.operacion_cenace));
+                        $('#cre_servicios_conexos').val(Number(item.cre_servicios_conexos));
+                        $('#capacidad').val(Number(item.capacidad));
+                    }
+                });
+
+            };
+            $.ajax(options);
+
         }
 
         function getEnergyData() {
@@ -304,7 +344,7 @@
             // Total de la Factura
             var dos_porciento_baja_tension = (suministro + distribucion + transmision + cenace + energia + capacidad + servicios_conexos) * 0.02;
             var calculo_energia = (distribucion + transmision + cenace + energia + capacidad + servicios_conexos);
-            var energia_total = (calculo_energia + suministro);
+            var energia_total = (calculo_energia + suministro + dos_porciento_baja_tension);
             var bonificacion_factor_potencia = porciento_bonificacion * (energia_total / 100);
             var penalizacion_factor_potencia = energia_total * (penalizacion_factor_de_potencia / 100);
 
@@ -351,6 +391,19 @@
         function roundUp(number, digits) {
             var factor = Math.pow(10, digits);
             return Math.ceil(number * factor) / factor
+        }
+
+        function getDaysInMonth(m, y) {
+            return m === 2 ? y & 3 || !(y % 25) && y & 15 ? 28 : 29 : 30 + (m + (m >> 3) & 1);
+        }
+
+        function toMonthName(monthNumber) {
+            const date = new Date();
+            date.setMonth(monthNumber);
+
+            return date.toLocaleString('es-MX', {
+                month: 'long',
+            });
         }
 
     </script>

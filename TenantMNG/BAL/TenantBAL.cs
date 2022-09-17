@@ -258,10 +258,11 @@ namespace TenantMNG.BAL
                         new SqlParameter("@capacidad", tarifas.capacidad),
                         new SqlParameter("@cre_servicios_conexos", tarifas.cre_servicios_conexos),
                         new SqlParameter("@mes_tarifas", tarifas.mes_tarifas),
+                        new SqlParameter("@ano_tarifas", tarifas.ano_tarifas),
                 };
                     _lVal = dbcnx.Database.ExecuteSqlCommand("usp_insert_update_rates @int_tarifas_id out,@suministro,@distribucion," +
                         "@tarifa_transmision,@operacion_cenace,@dec_base_rate,@dec_inter_energy_rate,@dec_peak_energy_rate," +
-                        "@capacidad,@cre_servicios_conexos,@mes_tarifas", param);
+                        "@capacidad,@cre_servicios_conexos,@mes_tarifas,@ano_tarifas", param);
 
                 }
             }

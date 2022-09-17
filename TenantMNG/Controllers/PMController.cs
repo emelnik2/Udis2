@@ -219,7 +219,7 @@ namespace TenantMNG.Controllers
                     id = Convert.ToInt32(Convert.ToInt32(_tenantid.int_tenant_id));
 
                     //var _tenantbillinginfo = _dbc.tbl_tenant_billing_info.Where(x => x.int_tenant_id == id).SingleOrDefault();
-                    var _ratesinfo = _dbc.tbl_tarifas.FirstOrDefault();
+                    /*var _ratesinfo = _dbc.tbl_tarifas.FirstOrDefault();
 
                     if (_ratesinfo != null)
                     {
@@ -233,10 +233,10 @@ namespace TenantMNG.Controllers
                         _objvm.capacidad = _ratesinfo.capacidad;
                         _objvm.cre_servicios_conexos = _ratesinfo.cre_servicios_conexos;
 
-                    }
+                    }*/
                     int _uid = Convert.ToInt32(Session["uid"].ToString());
                     var _pmbillingtime = _dbc.tbl_pm_billing_hours.Where(x => x.int_pm_id == _uid).SingleOrDefault();
-                    if (_pmbillingtime != null && _ratesinfo != null)
+                    if (_pmbillingtime != null /*&& _ratesinfo != null*/)
                     {
 
                         _objvm.str_inter_e_time = _pmbillingtime.str_inter_e_time_1_m;
@@ -264,7 +264,7 @@ namespace TenantMNG.Controllers
                         _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
 
                         var meses = new SelectList(new List<SelectListItem>()
-{
+                        {
                                 new SelectListItem(){ Value="Enero", Text="Enero"},
                                 new SelectListItem(){ Value="Febrero", Text="Febrero"},
                                 new SelectListItem(){ Value="Marzo", Text="Marzo"},
@@ -277,13 +277,25 @@ namespace TenantMNG.Controllers
                                 new SelectListItem(){ Value="Octubre", Text="Octubre"},
                                 new SelectListItem(){ Value="Noviembre", Text="Noviembre"},
                                 new SelectListItem(){ Value="Diciembre", Text="Diciembre"},
-                            },
+                        },
                             "Value",
                             "Text");
 
-                        _tarifasvm.Meses = meses;
+                       
+                        var anios = new SelectList(new List<SelectListItem>()
+                        { 
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year), Text = Convert.ToString(DateTime.Now.Year) },
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year - 1), Text = Convert.ToString(DateTime.Now.Year - 1) },
+                        },
+                            "Value",
+                            "Text");
 
-                        _tarifasvm.mes_tarifas = tarifas.mes_tarifas;
+                    _tarifasvm.Meses = meses;
+                    _tarifasvm.Anios = anios;
+
+                    _tarifasvm.mes_tarifas = tarifas.mes_tarifas;
+                    _tarifasvm.ano_tarifas = Convert.ToInt32(tarifas.ano_tarifas);
+
 
                         _objvm.tarifassetting = _tarifasvm;
                     }
@@ -401,6 +413,7 @@ namespace TenantMNG.Controllers
                     _tarifasvm.capacidad = tarifas.capacidad;
                     _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
                     _tarifasvm.mes_tarifas = _tarifasvm.mes_tarifas;
+                    _tarifasvm.ano_tarifas = _tarifasvm.ano_tarifas;
                 }
                 ViewBag._erromsg = -1;
                 return View(_tarifasvm);
@@ -434,6 +447,26 @@ namespace TenantMNG.Controllers
             }
             //ViewBag._erromsg = _lVal;
             return Json(_lVal.ToString(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string getRates(TarifasVM _tarifasvm)
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+            try
+            {
+                var tarifas = _dbc.tbl_tarifas.Where(x => x.mes_tarifas == _tarifasvm.mes_tarifas && x.ano_tarifas == _tarifasvm.ano_tarifas).ToList();
+
+                return serializer.Serialize(tarifas);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return serializer.Serialize(null);
         }
 
         [SessionCheck]
@@ -3000,6 +3033,19 @@ namespace TenantMNG.Controllers
             embed += "</object>";
 
             string fileName = "Invoice_" + Session["invid"].ToString() + ".pdf";
+            TempData["Embed"] = string.Format(embed, VirtualPathUtility.ToAbsolute("~/PDF/" + fileName));
+
+            return RedirectToAction("invoicepreview", "PM");
+        }
+
+        public ActionResult ViewSummaryPDF()
+        {
+            string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"100%\" height=\"800px\">";
+            embed += "If you are unable to view file, you can download from <a href = \"{0}\">here</a>";
+            embed += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
+            embed += "</object>";
+
+            string fileName = Session["summaryfilename"].ToString();
             TempData["Embed"] = string.Format(embed, VirtualPathUtility.ToAbsolute("~/PDF/" + fileName));
 
             return RedirectToAction("invoicepreview", "PM");

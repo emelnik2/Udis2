@@ -48,7 +48,7 @@
 
                 @using (Html.BeginForm("DownloadSummary", "PM", FormMethod.Get))
                 {
-                    @Html.ActionLink(Resource.preview, "ViewPDF", new { controller = "PM" }, new { target = "_blank", @class = "btn btn-info" })
+                    @Html.ActionLink(Resource.preview, "ViewSummaryPDF", new { controller = "PM" }, new { target = "_blank", @class = "btn btn-info" })
                     <input type="submit" class="btn btn-primary" value="@TenantMNG.Resource.download" />
                 }
             </div>

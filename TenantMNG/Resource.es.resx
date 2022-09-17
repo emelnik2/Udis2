@@ -915,4 +915,7 @@
   <data name="summary_success" xml:space="preserve">
     <value>Reporte generado con éxito</value>
   </data>
+  <data name="ano_tarifas" xml:space="preserve">
+    <value>Seleccione el año en que aplican las tarifas</value>
+  </data>
 </root>

@@ -921,4 +921,7 @@
   <data name="summary_success" xml:space="preserve">
     <value>Summary generated successfully</value>
   </data>
+  <data name="ano_tarifas" xml:space="preserve">
+    <value>Select the year the rates apply</value>
+  </data>
 </root>
