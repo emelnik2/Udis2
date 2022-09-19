@@ -340,6 +340,60 @@ namespace TenantMNG.Controllers
                 //objvm = new InvoiceVM();
                 objbal = new TenantBAL();
 
+                var tarifas = _dbc.tbl_tarifas.FirstOrDefault();
+
+                if (tarifas != null)
+                {
+                    var _tarifasvm = new TarifasVM();
+
+                    _tarifasvm.dec_base_rate = tarifas.dec_base_rate;
+                    _tarifasvm.dec_inter_energy_rate = tarifas.dec_inter_energy_rate;
+                    _tarifasvm.dec_peak_energy_rate = tarifas.dec_peak_energy_rate;
+                    _tarifasvm.suministro = tarifas.suministro;
+                    _tarifasvm.distribucion = tarifas.distribucion;
+                    _tarifasvm.tarifa_transmision = tarifas.tarifa_transmision;
+                    _tarifasvm.operacion_cenace = tarifas.operacion_cenace;
+                    _tarifasvm.capacidad = tarifas.capacidad;
+                    _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
+
+                    var meses = new SelectList(new List<SelectListItem>()
+                        {
+                                new SelectListItem(){ Value="Enero", Text="Enero"},
+                                new SelectListItem(){ Value="Febrero", Text="Febrero"},
+                                new SelectListItem(){ Value="Marzo", Text="Marzo"},
+                                new SelectListItem(){ Value="Abril", Text="Abril"},
+                                new SelectListItem(){ Value="Mayo", Text="Mayo"},
+                                new SelectListItem(){ Value="Junio", Text="Junio"},
+                                new SelectListItem(){ Value="Julio", Text="Julio"},
+                                new SelectListItem(){ Value="Agosto", Text="Agosto"},
+                                new SelectListItem(){ Value="Septiembre", Text="Septiembre"},
+                                new SelectListItem(){ Value="Octubre", Text="Octubre"},
+                                new SelectListItem(){ Value="Noviembre", Text="Noviembre"},
+                                new SelectListItem(){ Value="Diciembre", Text="Diciembre"},
+                        },
+                        "Value",
+                        "Text");
+
+
+                    var anios = new SelectList(new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year), Text = Convert.ToString(DateTime.Now.Year) },
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year - 1), Text = Convert.ToString(DateTime.Now.Year - 1) },
+                        },
+                        "Value",
+                        "Text");
+
+                    _tarifasvm.Meses = meses;
+                    _tarifasvm.Anios = anios;
+
+                    _tarifasvm.mes_tarifas = tarifas.mes_tarifas;
+                    _tarifasvm.ano_tarifas = Convert.ToInt32(tarifas.ano_tarifas);
+
+
+                    objvm.tarifassetting = _tarifasvm;
+                }
+
+
                 /*for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //objvm.int_invoice_id = _lVal;

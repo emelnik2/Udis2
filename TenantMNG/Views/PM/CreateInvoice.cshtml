@@ -101,6 +101,49 @@
 
         $(document).ready(function () {
 
+            $("#btnsave").click(function (e) {
+                $.validator.unobtrusive.parse("#formcontact");
+                $("#formcontact").validate();
+
+                if ($("#formcontact").valid()) {
+                    var precio_suministro = $('#precio_suministro').val();
+                    $('#precio_suministro').val(parseFloat((precio_suministro).replace(/,/g, '')));
+                    var precio_distribucion = $('#precio_distribucion').val();
+                    $('#precio_distribucion').val(parseFloat((precio_distribucion).replace(/,/g, '')));
+                    var precio_transmision = $('#precio_transmision').val();
+                    $('#precio_transmision').val(parseFloat((precio_transmision).replace(/,/g, '')));
+                    var precio_cenace = $('#precio_cenace').val();
+                    $('#precio_cenace').val(parseFloat((precio_cenace).replace(/,/g, '')));
+                    var precio_energia = $('#precio_energia').val();
+                    $('#precio_energia').val(parseFloat((precio_energia).replace(/,/g, '')));
+                    var precio_capacidad = $('#precio_capacidad').val();
+                    $('#precio_capacidad').val(parseFloat((precio_capacidad).replace(/,/g, '')));
+                    var precio_cre_servicios_conexos = $('#precio_cre_servicios_conexos').val();
+                    $('#precio_cre_servicios_conexos').val(parseFloat((precio_cre_servicios_conexos).replace(/,/g, '')));
+                    var precio_dos_porciento_baja_tension = $('#precio_dos_porciento_baja_tension').val();
+                    $('#precio_dos_porciento_baja_tension').val(parseFloat((precio_dos_porciento_baja_tension).replace(/,/g, '')));
+                    var precio_decuento_bonificacion = $('#precio_decuento_bonificacion').val();
+                    $('#precio_decuento_bonificacion').val(parseFloat((precio_decuento_bonificacion).replace(/,/g, '')));
+                    var dec_tax_amt = $('#dec_tax_amt').val();
+                    $('#dec_tax_amt').val(parseFloat((dec_tax_amt).replace(/,/g, '')));
+                    var dec_total = $('#dec_total').val();
+                    $('#dec_total').val(parseFloat((dec_total).replace(/,/g, '')));
+                    var dec_base_amt = $('#dec_base_amt').val();
+                    $('#dec_base_amt').val(parseFloat((dec_base_amt).replace(/,/g, '')));
+                    var dec_inter_energy_amt = $('#dec_inter_energy_amt').val();
+                    $('#dec_inter_energy_amt').val(parseFloat((dec_inter_energy_amt).replace(/,/g, '')));
+                    var dec_peak_energy_amt = $('#dec_peak_energy_amt').val();
+                    $('#dec_peak_energy_amt').val(parseFloat((dec_peak_energy_amt).replace(/,/g, '')));
+                    var energia_activa = $('#energia_activa').val();
+                    $('#energia_activa').val(parseFloat((energia_activa).replace(/,/g, '')));
+
+                    $("#formcontact").submit();
+                    
+                }
+                e.stopImmediatePropagation();
+                return false;
+            });
+
             $("#btnsaverates").click(function (e) {
                 $.validator.unobtrusive.parse("#formtarifas");
                 $("#formtarifas").validate();
@@ -348,40 +391,40 @@
             var bonificacion_factor_potencia = porciento_bonificacion * (energia_total / 100);
             var penalizacion_factor_potencia = energia_total * (penalizacion_factor_de_potencia / 100);
 
-            var finalamount = calculo_energia + bonificacion_factor_potencia + penalizacion_factor_potencia + suministro;
+            var finalamount = dos_porciento_baja_tension + calculo_energia + bonificacion_factor_potencia + penalizacion_factor_potencia + suministro;
             var taxval = ((finalamount) * 16) / 100;
             finalamount = finalamount + taxval;
 
 
-            $('#precio_suministro').val(Number(suministro).toFixed(2));
+            $('#precio_suministro').val(new Intl.NumberFormat().format(Number(suministro).toFixed(2)));
 
-            $('#precio_distribucion').val(Number(distribucion).toFixed(2));
+            $('#precio_distribucion').val(new Intl.NumberFormat().format(Number(distribucion).toFixed(2)));
 
-            $('#precio_transmision').val(Number(transmision).toFixed(2));
+            $('#precio_transmision').val(new Intl.NumberFormat().format(Number(transmision).toFixed(2)));
 
-            $('#precio_cenace').val(Number(cenace).toFixed(2));
+            $('#precio_cenace').val(new Intl.NumberFormat().format(Number(cenace).toFixed(2)));
 
-            $('#precio_energia').val(Number(energia).toFixed(2));
+            $('#precio_energia').val(new Intl.NumberFormat().format(Number(energia).toFixed(2)));
 
-            $('#precio_capacidad').val(Number(capacidad).toFixed(2));
+            $('#precio_capacidad').val(new Intl.NumberFormat().format(Number(capacidad).toFixed(2)));
 
-            $('#precio_cre_servicios_conexos').val(Number(servicios_conexos).toFixed(2));
+            $('#precio_cre_servicios_conexos').val(new Intl.NumberFormat().format(Number(servicios_conexos).toFixed(2)));
 
-            $('#precio_dos_porciento_baja_tension').val(Number(dos_porciento_baja_tension).toFixed(2));
+            $('#precio_dos_porciento_baja_tension').val(new Intl.NumberFormat().format(Number(dos_porciento_baja_tension).toFixed(2)));
 
-            $('#precio_decuento_bonificacion').val(Number(bonificacion_factor_potencia).toFixed(2));
+            $('#precio_decuento_bonificacion').val(new Intl.NumberFormat().format(Number(bonificacion_factor_potencia).toFixed(2)));
 
-            $('#dec_tax_amt').val(Number(taxval).toFixed(2));
+            $('#dec_tax_amt').val(new Intl.NumberFormat().format(Number(taxval).toFixed(2)));
 
-            $('#dec_total').val(Number(finalamount).toFixed(2));
+            $('#dec_total').val(new Intl.NumberFormat().format(Number(finalamount).toFixed(2)));
 
-            $('#dec_base_amt').val(Number(precio_energiabase).toFixed(2));
+            $('#dec_base_amt').val(new Intl.NumberFormat().format(Number(precio_energiabase).toFixed(2)));
 
-            $('#dec_inter_energy_amt').val(Number(precio_energiaintermedia).toFixed(2));
+            $('#dec_inter_energy_amt').val(new Intl.NumberFormat().format(Number(precio_energiaintermedia).toFixed(2)));
 
-            $('#dec_peak_energy_amt').val(Number(precio_energiapunta).toFixed(2));
+            $('#dec_peak_energy_amt').val(new Intl.NumberFormat().format(Number(precio_energiapunta).toFixed(2)));
 
-            $('#energia_activa').val(Number(energia_activa).toFixed(2));
+            $('#energia_activa').val(new Intl.NumberFormat().format(Number(energia_activa).toFixed(2)));
 
 
 

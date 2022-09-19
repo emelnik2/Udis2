@@ -140,7 +140,7 @@
             @Html.LabelFor(m => m.demanda_base, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.demanda_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
             </div>
         </div>
@@ -153,7 +153,7 @@
             @Html.LabelFor(m => m.demanda_intermedia, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.demanda_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
             </div>
         </div>
@@ -164,7 +164,7 @@
             @Html.LabelFor(m => m.demanda_punta, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.demanda_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
             </div>
         </div>
@@ -188,7 +188,7 @@
             @Html.LabelFor(m => m.distribucion, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
+                @Html.TextBoxFor(m => m.distribucion, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -212,7 +212,7 @@
             @Html.LabelFor(m => m.operacion_cenace, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
+                @Html.TextBoxFor(m => m.operacion_cenace, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -225,7 +225,7 @@
             @Html.LabelFor(m => m.cre_servicios_conexos, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
+                @Html.TextBoxFor(m => m.cre_servicios_conexos, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -236,7 +236,7 @@
             @Html.LabelFor(m => m.capacidad, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" }) ($)
+                @Html.TextBoxFor(m => m.capacidad, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -249,7 +249,7 @@
             @Html.LabelFor(m => m.energia_reactiva, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" }) ($)
+                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
 
             </div>
         </div>
@@ -452,12 +452,12 @@
     @Html.HiddenFor(m => m.dec_inter_energy_amt)
     @Html.HiddenFor(m => m.dec_peak_energy_amt)
 
-<div class="form-actions">
-    @*<input type="submit" class="btn btn-success" value="Save" />*@
-    <input type="submit" id="btnsave"
-           value="@TenantMNG.Resource.save_info" class="btn btn-success" />
-    @Html.ActionLink(TenantMNG.Resource.cancel, "InvoiceMeters", "PM", new { @class = "btn btn-default" })
-</div>
+    <div class="form-actions">
+        @*<input type="submit" class="btn btn-success" value="Save" />*@
+        <input type="submit" id="btnsave"
+               value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+        @Html.ActionLink(TenantMNG.Resource.cancel, "InvoiceMeters", "PM", new { @class = "btn btn-default" })
+    </div>
 
 }
 
