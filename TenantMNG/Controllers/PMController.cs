@@ -1585,7 +1585,7 @@ namespace TenantMNG.Controllers
                         html = html.Replace("#energyrate3", CommonCls.DoFormat(_invoice.dec_base_rate));
                         html = html.Replace("#energyamt3", CommonCls.DoFormat(_invoice.dec_base_energy * _invoice.dec_base_rate));
 
-                        html = html.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
+                        html = html.Replace("#metername", _invoice.str_meter_id);
                         html = html.Replace("#name", _invoice.tbl_user_master.str_comp_name);
                         html = html.Replace("#billperiod", _invoice.date_s_bill_date.Value.ToString("dd/MM/yyyy") + " AL " + _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
                         html = html.Replace("#billdate", _invoice.date_invoice_date.Value.ToString("dd/MM/yyyy"));
@@ -1652,7 +1652,7 @@ namespace TenantMNG.Controllers
                         //    {
                         meterlisthtml = System.IO.File.ReadAllText(path);
 
-                        meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
+                        meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
 
                         meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
                         meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
@@ -1745,6 +1745,7 @@ namespace TenantMNG.Controllers
                     tenant = _dbc.tbl_user_master.Where(x => x.int_id == invoice.int_tenant_id).FirstOrDefault();
 
                     invoicehtmldata += "<tr><td>" + tenant.str_comp_name + "</td>" +
+                        "<td>" + invoice.str_meter_id + "</td>" +
                         "<td>" + Convert.ToString(Convert.ToDouble(invoice.dec_tax_amt) / .16) + "</td>" +
                         "<td>" + Convert.ToString(invoice.dec_tax_amt) + "</td>" +
                         "<td>" + Convert.ToString(invoice.dec_total) + "</td>" + "</tr>";
@@ -1754,7 +1755,7 @@ namespace TenantMNG.Controllers
 
                 html = html.Replace("#invoicedata", invoicehtmldata);
 
-                var totalhtml = "<tr><td></td><td></td><td></td><td>" + total + "</td></tr>";
+                var totalhtml = "<tr><td></td><td></td><td></td><td></td><td>" + total + "</td></tr>";
 
                 html = html.Replace("#totales", totalhtml);
 
@@ -1844,10 +1845,10 @@ namespace TenantMNG.Controllers
                     #region  Dynamic table
 
                     var meterReadingsString = "";
-                    int currentReading = Convert.ToInt32(_invoice.dec_base_energy);
+                    int currentReading = Convert.ToInt32(_invoice.dec_base_energy + _invoice.dec_inter_energy + _invoice.dec_peak_energy);
                     if (_previousinvoice != null)
                     { 
-                         previousReading = Convert.ToInt32(_previousinvoice.dec_base_energy);
+                         previousReading = Convert.ToInt32(_previousinvoice.dec_base_energy + _invoice.dec_inter_energy + _invoice.dec_peak_energy);
                     }
                     
 
@@ -1886,7 +1887,7 @@ namespace TenantMNG.Controllers
                                 previousReading = 0;*/
 
                     var total = currentReading - previousReading;
-                        meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + CommonCls.getMeterNamefromId(_invoice.str_meter_id) + "</td>" +
+                        meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + _invoice.str_meter_id + "</td>" +
                             "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", currentReading) + "</td>" +
                             "<td style ='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0 }", previousReading) + "</td>" +
                             "<td style ='font-size:10px; text-align:center;'colspan='4'>" + total.ToString() + "</td>" +
@@ -1998,7 +1999,7 @@ namespace TenantMNG.Controllers
                     
                     meterlisthtml = System.IO.File.ReadAllText(path);
 
-                    //meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
+                    meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
                     //html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
                     meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
                     meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());

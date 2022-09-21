@@ -737,7 +737,7 @@ namespace TenantMNG.Controllers
                         //{
                     meterlisthtml = System.IO.File.ReadAllText(path);
 
-                    meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getMeterNamefromId(_invoice.str_meter_id));
+                    meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
 
                     meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
                     meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
