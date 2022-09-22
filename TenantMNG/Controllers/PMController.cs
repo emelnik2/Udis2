@@ -1624,18 +1624,18 @@ namespace TenantMNG.Controllers
                         //html = html.Replace("#demandfinalamt", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable_amount));
                         //decimal _finaltotal = _totalenergyamt + _totalfacturable + _invoice.dec_tax_amt.Value;
 
-                        html = html.Replace("#preciosuministro", "$" + CommonCls.DoFormat(_invoice.precio_suministro));
-                        html = html.Replace("#preciodistribucion", "$" + CommonCls.DoFormat(_invoice.precio_distribucion));
-                        html = html.Replace("#preciotransmision", "$" + CommonCls.DoFormat(_invoice.precio_transmision));
-                        html = html.Replace("#preciocenace", "$" + CommonCls.DoFormat(_invoice.precio_cenace));
-                        html = html.Replace("#precioenergia", "$" + CommonCls.DoFormat(_invoice.precio_energia));
-                        html = html.Replace("#preciocapacidad", "$" + CommonCls.DoFormat(_invoice.precio_capacidad));
-                        html = html.Replace("#preciocreserviciosconexos", "$" + CommonCls.DoFormat(_invoice.precio_cre_servicios_conexos));
-                        html = html.Replace("#preciodosporcientobajatension", "$" + CommonCls.DoFormat(_invoice.precio_dos_porciento_baja_tension));
-                        html = html.Replace("#preciodecuentobonificacion", "$" + CommonCls.DoFormat(_invoice.precio_decuento_bonificacion));
+                        html = html.Replace("#preciosuministro", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_suministro)));
+                        html = html.Replace("#preciodistribucion", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_distribucion)));
+                        html = html.Replace("#preciotransmision", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_transmision)));
+                        html = html.Replace("#preciocenace", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_cenace)));
+                        html = html.Replace("#precioenergia", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_energia)));
+                        html = html.Replace("#preciocapacidad", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_capacidad)));
+                        html = html.Replace("#preciocreserviciosconexos", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_cre_servicios_conexos)));
+                        html = html.Replace("#preciodosporcientobajatension", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_dos_porciento_baja_tension)));
+                        html = html.Replace("#preciodecuentobonificacion", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.precio_decuento_bonificacion)));
 
-                        html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
-                        html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                        html = html.Replace("#customamt3", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_tax_amt)));
+                        html = html.Replace("#ToPayAmount", "$" + string.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_total)));
 
                         path = Server.MapPath("~/Template/meterlist.html");
                         string replacemeterlist = string.Empty;
@@ -1746,16 +1746,16 @@ namespace TenantMNG.Controllers
 
                     invoicehtmldata += "<tr><td>" + tenant.str_comp_name + "</td>" +
                         "<td>" + invoice.str_meter_id + "</td>" +
-                        "<td>" + Convert.ToString(Convert.ToDouble(invoice.dec_tax_amt) / .16) + "</td>" +
-                        "<td>" + Convert.ToString(invoice.dec_tax_amt) + "</td>" +
-                        "<td>" + Convert.ToString(invoice.dec_total) + "</td>" + "</tr>";
+                        "<td>" + (Convert.ToDouble(invoice.dec_tax_amt) / .16).ToString("N", new CultureInfo("en-US")) + "</td>" +
+                        "<td>" + Convert.ToDecimal(invoice.dec_tax_amt).ToString("N", new CultureInfo("en-US")) + "</td>" +
+                        "<td>" + Convert.ToDecimal(invoice.dec_total).ToString("N", new CultureInfo("en-US")) + "</td>" + "</tr>";
 
                     total = total + Convert.ToDecimal(invoice.dec_total);
                 }
 
                 html = html.Replace("#invoicedata", invoicehtmldata);
 
-                var totalhtml = "<tr><td></td><td></td><td></td><td></td><td>" + total + "</td></tr>";
+                var totalhtml = "<tr><td></td><td></td><td></td><td></td><td>" + Convert.ToDecimal(total).ToString("N", new CultureInfo("en-US")) + "</td></tr>";
 
                 html = html.Replace("#totales", totalhtml);
 
@@ -1968,20 +1968,20 @@ namespace TenantMNG.Controllers
 
                     //decimal _finaltotal = _totalenergyamt + _totalfacturable + _invoice.dec_tax_amt.Value;
 
-                    html = html.Replace("#preciosuministro", "$" + CommonCls.DoFormat(_invoice.precio_suministro));
-                    html = html.Replace("#preciodistribucion", "$" + CommonCls.DoFormat(_invoice.precio_distribucion));
-                    html = html.Replace("#preciotransmision", "$" + CommonCls.DoFormat(_invoice.precio_transmision));
-                    html = html.Replace("#preciocenace", "$" + CommonCls.DoFormat(_invoice.precio_cenace));
-                    html = html.Replace("#precioenergia", "$" + CommonCls.DoFormat(_invoice.precio_energia));
-                    html = html.Replace("#preciocapacidad", "$" + CommonCls.DoFormat(_invoice.precio_capacidad));
-                    html = html.Replace("#preciocreserviciosconexos", "$" + CommonCls.DoFormat(_invoice.precio_cre_servicios_conexos));
-                    html = html.Replace("#preciodosporcientobajatension", "$" + CommonCls.DoFormat(_invoice.precio_dos_porciento_baja_tension));
-                    html = html.Replace("#preciodecuentobonificacion", "$" + CommonCls.DoFormat(_invoice.precio_decuento_bonificacion));
+                    html = html.Replace("#preciosuministro", "$" + Convert.ToDecimal(_invoice.precio_suministro).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciodistribucion", "$" + Convert.ToDecimal(_invoice.precio_distribucion).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciotransmision", "$" + Convert.ToDecimal(_invoice.precio_transmision).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciocenace", "$" + Convert.ToDecimal(_invoice.precio_cenace).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#precioenergia", "$" + Convert.ToDecimal(_invoice.precio_energia).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciocapacidad", "$" + Convert.ToDecimal(_invoice.precio_capacidad).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciocreserviciosconexos", "$" + Convert.ToDecimal(_invoice.precio_cre_servicios_conexos).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciodosporcientobajatension", "$" + Convert.ToDecimal(_invoice.precio_dos_porciento_baja_tension).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#preciodecuentobonificacion", "$" + Convert.ToDecimal(_invoice.precio_decuento_bonificacion).ToString("N", new CultureInfo("en-US")));
 
-                    html = html.Replace("#customamt3", "$" + CommonCls.DoFormat(_invoice.dec_tax_amt));
-                    html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#customamt3", "$" + Convert.ToDecimal(_invoice.dec_tax_amt).ToString("N", new CultureInfo("en-US")));
+                    html = html.Replace("#ToPayAmount", "$" + Convert.ToDecimal(_invoice.dec_total).ToString("N", new CultureInfo("en-US")));
 
-                    html = html.Replace("#totalamt", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#totalamt", "$" + Convert.ToDecimal(_invoice.dec_total).ToString("N", new CultureInfo("en-US")));
 
                     path = Server.MapPath("~/Template/meterlist.html");
                     string replacemeterlist = string.Empty;
@@ -2033,15 +2033,15 @@ namespace TenantMNG.Controllers
 
                     html = html.Replace("#energybase", CommonCls.DoFormat(_invoice.dec_base_energy));
                     html = html.Replace("#energybrate", CommonCls.DoFormat(_invoice.dec_base_rate));
-                    html = html.Replace("#benergytotal", CommonCls.DoFormat(_invoice.dec_base_amt));
+                    html = html.Replace("#benergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_base_amt)));
 
                     html = html.Replace("#energyintermedia", CommonCls.DoFormat(_invoice.dec_inter_energy));
                     html = html.Replace("#energyirate", CommonCls.DoFormat(_invoice.dec_inter_energy_rate));
-                    html = html.Replace("#ienergytotal", CommonCls.DoFormat(_invoice.dec_inter_energy_amt));
+                    html = html.Replace("#ienergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_inter_energy_amt)));
 
                     html = html.Replace("#energypunta", CommonCls.DoFormat(_invoice.dec_peak_energy));
                     html = html.Replace("#energyprate", CommonCls.DoFormat(_invoice.dec_peak_energy_rate));
-                    html = html.Replace("#penergytotal", CommonCls.DoFormat(_invoice.dec_peak_energy_amt));
+                    html = html.Replace("#penergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_peak_energy_amt)));
 
                     html = html.Replace("#capacidadrate", CommonCls.DoFormat(_invoice.capacidad));
 
@@ -2064,7 +2064,7 @@ namespace TenantMNG.Controllers
 
                     //html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_total   withtax));
 
-                    html = html.Replace("#ToPayAmount", "$" + CommonCls.DoFormat(_invoice.dec_total));
+                    html = html.Replace("#ToPayAmount", "$" + String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_total)));
 
                     path = Request.Url.GetLeftPart(UriPartial.Authority) + Url.Content("~/");
 
