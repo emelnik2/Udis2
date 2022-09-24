@@ -42,7 +42,7 @@
             @Html.LabelFor(m => m.date_e_bill_date, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.date_e_bill_date, "{0:yyyy/MM/dd}", new { @class = "span8" })
+                @Html.TextBoxFor(m => m.date_e_bill_date, "{0:yyyy/MM/dd}", new { @class = "span8", @onchange = "getRatesData();" })
                 @Html.ValidationMessageFor(m => m.date_e_bill_date)
 
             </div>

@@ -84,7 +84,11 @@
                     $("#date_s_bill_date").datepicker("option", "maxDate", dt);
 
                     if (($("#date_s_bill_date").val().length > 0) && ($("#date_e_bill_date").val().length > 0))
+                    {
+                        getRatesData();
                         getEnergyData();
+                    }
+                        
                 }// Client can directly modify date in textbox?
             });
 
@@ -380,9 +384,12 @@
             var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
 
             // Cálculo de % de Bonificación
-            var factor_de_potencia = roundUp((energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))), 4);
-            var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (roundUp((25 * (1 - (0.9 / factor_de_potencia))), 1)) : 0;
-            var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? roundUp((60 * ((0.9 / factor_de_potencia) - 1)),1) : 0));
+            //var factor_de_potencia = roundUp((energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))), 4);
+            var factor_de_potencia = (energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))).toFixed(4);
+            //var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (roundUp((25 * (1 - (0.9 / factor_de_potencia))), 1)) : 0;
+            var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (25 * (1 - (0.9 / factor_de_potencia))).toFixed(1) : 0;
+            //var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? roundUp((60 * ((0.9 / factor_de_potencia) - 1)),1) : 0));
+            var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? (60 * ((0.9 / factor_de_potencia) - 1)).toFixed(1) : 0));
 
             // Total de la Factura
             var dos_porciento_baja_tension = (suministro + distribucion + transmision + cenace + energia + capacidad + servicios_conexos) * 0.02;
