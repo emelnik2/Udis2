@@ -918,4 +918,7 @@
   <data name="ano_tarifas" xml:space="preserve">
     <value>Seleccione el año en que aplican las tarifas</value>
   </data>
+  <data name="tenantComparisonConsumption" xml:space="preserve">
+    <value>Comparativo de Consumo de Energía</value>
+  </data>
 </root>

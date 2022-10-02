@@ -2122,6 +2122,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tenant Consumption Comparison.
+        /// </summary>
+        public static string tenantComparisonConsumption {
+            get {
+                return ResourceManager.GetString("tenantComparisonConsumption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tenant Energy Consumption.
         /// </summary>
         public static string tenantEngcon {

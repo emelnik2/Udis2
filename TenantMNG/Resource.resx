@@ -924,4 +924,7 @@
   <data name="ano_tarifas" xml:space="preserve">
     <value>Select the year the rates apply</value>
   </data>
+  <data name="tenantComparisonConsumption" xml:space="preserve">
+    <value>Tenant Consumption Comparison</value>
+  </data>
 </root>

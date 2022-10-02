@@ -2907,9 +2907,10 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key,
-                                     peakenergy = empg.Sum(x => x.dec_peak_energy),
-                                     interenergy = empg.Sum(x => x.dec_inter_energy),
-                                     baseenergy = empg.Sum(x => x.dec_base_energy),
+                                     //peakenergy = empg.Sum(x => x.dec_peak_energy),
+                                     //interenergy = empg.Sum(x => x.dec_inter_energy),
+                                     //baseenergy = empg.Sum(x => x.dec_base_energy),
+                                     invoice_total = empg.Sum(x => x.dec_total),
                                      invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
 
                                      //invoicedate = empg.Max(x => x.date_e_bill_date),
@@ -2925,7 +2926,7 @@ namespace TenantMNG.Controllers
                 {
                     abc = new SummaryViewModel();
                     abc.Name = dt.Name;
-                    abc.totalenergy = dt.interenergy + dt.peakenergy + dt.baseenergy;
+                    abc.totalenergy = dt.invoice_total;
                     if (dt.invoicedate == "5")
                         abc.dateinvoice = "May";
                     if (dt.invoicedate == "1")

@@ -72,12 +72,12 @@
                                         @foreach (var user in Model.tbl_invoice)
                                         {
 
-                                        <tr class="gradeX">
-                                            <td>@string.Format("{0:MMM-dd-yyyy}", user.date_invoice_date)</td>
-                                            <td>@user.dec_total</td>
-                                            <td>@user.tbl_user_master.str_comp_name</td>
+                                            <tr class="gradeX">
+                                                <td>@string.Format("{0:MMM-dd-yyyy}", user.date_invoice_date)</td>
+                                                <td>@user.dec_total</td>
+                                                <td>@user.tbl_user_master.str_comp_name</td>
 
-                                        </tr>
+                                            </tr>
                                         }
                                     </table>
                                     <ul class="recent-posts">
@@ -125,6 +125,16 @@
                                 <span class="icon">
                                     <img src="~/img/icons/16/graph.png" />
                                 </span>
+                                <h5>@TenantMNG.Resource.tenantComparisonConsumption</h5>
+                            </div>
+                            <div id="consumptionchart">
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="widget-title">
+                                <span class="icon">
+                                    <img src="~/img/icons/16/graph.png" />
+                                </span>
                                 <h5>@TenantMNG.Resource.tenantEngcon</h5>
                             </div>
                             <div id="divchart">
@@ -156,6 +166,7 @@
 
                     // Load the Visualization API and the piechart package.
                     google.load('visualization', '1.0', { 'packages': ['corechart'] });
+                    google.charts.load('current', { packages: ['corechart'] });
 
                     // Set a callback to run when the Google Visualization API is loaded.
                     google.setOnLoadCallback(drawChart);
@@ -169,6 +180,8 @@
                     function drawChart() {
 
                         const tenetsNames = [];
+
+                        const monthNames = [];
 
 
                         var data = JSON.stringify({
@@ -188,17 +201,16 @@
                         options.dataType = "json";
                         options.success = function (datajson) {
 
-                            debugger;
                             for (j = 0; j < datajson.length; j++) {
                                 tenetsNames.push(datajson[j].Name);
+                                if (!(monthNames.includes(datajson[j].dateinvoice)))
+                                    monthNames.push(datajson[j].dateinvoice);
                             }
 
                             for (i = 0; i < datajson.length; i++) {
                                 dataPoints[i] = [];
-                                //dataPoints[i][0] = datajson[i].Invoice_No;
                                 dataPoints[i][0] = tenetsNames[i];
                                 dataPoints[i][1] = parseInt(datajson[i].totalenergy);
-
                             }
 
                             // Create the data table.
@@ -224,7 +236,53 @@
                             var chart = new google.visualization.ColumnChart(document.getElementById('divchart'));
                             chart.draw(data, options);
 
+                            //New bar graph
 
+                            dataPoints = [];
+                            //data = new google.visualization.DataTable();
+                            //data.addColumn('string', 'Mes');
+
+                            debugger;
+                            dataPoints[0] = [];
+                            dataPoints[0][0] = "Nombre del Inquilino"
+                            for (j = 1; j <= monthNames.length; j++) {
+                                dataPoints[j] = [];
+                                for (i = 1; i <= datajson.length; i++) {
+                                    dataPoints[0][i] = tenetsNames[i - 1];
+                                }
+                            }
+
+                            dataPoints[0][datajson.length + 1] = { role: 'annotation' };
+
+                            for (j = 1; j <= monthNames.length; j++) {
+                                dataPoints[j][0] = monthNames[j - 1];
+                                for (i = 1; i <= datajson.length; i++) {
+                                    dataPoints[j][i] = parseInt(datajson[i - 1].totalenergy);
+                                }
+                                dataPoints[j][datajson.length + 1] = '';
+                            }
+
+                            data = new google.visualization.arrayToDataTable(dataPoints, false);
+
+
+                            /*var data = google.visualization.arrayToDataTable([
+                                ['American Express', 'Amazon', 'Beat', 'Administración', 'Mantenimiento', { role: 'annotation' }],
+                                ['Septiembre', 2925402.22, 4391259.24, 0, 1423574.49, 21288.42000]
+                            ]);*/
+
+                            var options = {
+                                width: 1100,
+                                height: 400,
+                                legend: { position: 'top', maxLines: 6 },
+                                bar: { groupWidth: '75%' },
+                                isStacked: true
+                            };
+
+
+                            //data.addRows(dataPoints);
+
+                            chart = new google.visualization.ColumnChart(document.getElementById('consumptionchart'));
+                            chart.draw(data, options);
 
                         };
                         options.error = function () {
@@ -278,7 +336,6 @@
                 options.contentType = 'application/json; charset=utf-8';
                 options.dataType = "json";
                 options.success = function (datajson) {
-                    debugger;
                     var series = new Array();
                     for (var i in datajson) {
                         var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
@@ -301,7 +358,6 @@
                 options.contentType = 'application/json; charset=utf-8';
                 options.dataType = "json";
                 options.success = function (datajson) {
-                    debugger;
                     var series = new Array();
                     for (var i in datajson) {
                         var serie = new Array(datajson[i].Name, datajson[i].totalenergy);
@@ -318,7 +374,6 @@
             });
 
             function DrawPieChart(series) {
-                debugger;
 
                 Highcharts.chart('container', {
                     chart: {
