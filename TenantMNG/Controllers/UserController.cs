@@ -766,6 +766,14 @@ namespace TenantMNG.Controllers
             return View();
         }
 
+        [HttpGet] // this action result returns the partial containing the modal
+        public ActionResult DetachMeter(string id)
+        {
+            Session["tenant_id"] = id;
+            Session["meter_id"] = id;
+            return new EmptyResult();
+        }
+
         [HttpPost] // this action result returns the partial containing the modal
         public ActionResult DetachMeterTenant()
         {
@@ -787,7 +795,7 @@ namespace TenantMNG.Controllers
                 int pmid = Convert.ToInt32(Session["uid"].ToString());
 
 
-                var _tenant = _dbc.tbl_user_master.Where(x => x.int_user_type_id == 3 && x.int_pm_id == pmid);
+                var _tenant = _dbc.tbl_user_master.Where(x => x.int_user_type_id == 3);
 
                 var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == id & x.bit_is_assign == true).SingleOrDefault();
 
@@ -832,6 +840,7 @@ namespace TenantMNG.Controllers
                 TenantBAL objbal = new TenantBAL();
 
                 _objvm.bit_is_assign = true;
+                _objvm.multiplier = 1;
 
                 _lval = objbal.tenant_meter_insert(_objvm);
 

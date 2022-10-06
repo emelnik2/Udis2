@@ -144,36 +144,50 @@
                                     <th>@TenantMNG.Resource.assign_to</th>
                                     <th>@TenantMNG.Resource.assign_or_delete_meter</th>
                                     <th>@TenantMNG.Resource.reassign_meter</th>
+                                    <th>@TenantMNG.Resource.multiplicador</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var user in Model)
                                 {
-                                    <tr class="gradeX">
+                                <tr class="gradeX">
 
 
-                                        <td>@user.name</td>
-                                        <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name)</td>
+                                    <td>@user.name</td>
+                                    <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name)</td>
 
-                                        <td>
-                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
-                                            {
-                                                <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.name">@TenantMNG.Resource.detach_meter</a>
+                                    <td>
+                                        @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
+                                        {
+                                            <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.name">@TenantMNG.Resource.detach_meter</a>
 
-                                            }
-                                            else
-                                            {
-                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
-                                            }
-                                        <td>
-                                            @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
+                                        }
+                                        else
+                                        {
+                                            <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
+                                        }
+                                    <td>
+                                        @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
 
-                                            {
-                                                <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
-                                            }
+                                        {
+                                            <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
+                                        }
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("multiplier",
+                                            new SelectList(
+                                                new List<Object> {
+                                                    new { value = 1 , text = "1"  },
+                                                    new { value = 80 , text = "80"  },
+                                                    new { value = 160 , text = "160"  },
+                                                },
+                                            "value",
+                                            "text",
+                                            @user.multiplier
+                                        ), new { @id = @user.name, @class = "multiplier", @disabled = "disabled" })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
