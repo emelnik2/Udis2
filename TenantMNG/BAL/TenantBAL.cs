@@ -135,6 +135,7 @@ namespace TenantMNG.BAL
                            // new SqlParameter("@str_comp_name", user.tb),
                             new SqlParameter("@int_tenant_id", meter.int_tenant_id),
                             new SqlParameter("@str_meter_id", meter.str_meter_id),
+                            new SqlParameter("@multiplicador", meter.multiplier),
                             new SqlParameter("@int_id",SqlDbType.Int){
                              Direction = System.Data.ParameterDirection.Output
                             }
@@ -142,7 +143,40 @@ namespace TenantMNG.BAL
 
                 };
 
-                    dbcnx.Database.ExecuteSqlCommand("usp_insert_tenant_meter @int_tenant_id,@str_meter_id,@int_id out", param);
+                    dbcnx.Database.ExecuteSqlCommand("usp_insert_tenant_meter @int_tenant_id,@str_meter_id,@multiplicador,@int_id out", param);
+
+                    _lVal = Convert.ToInt32(param[2].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return _lVal;
+        }
+
+        public int change_meter_multiplier(TenantMeterVM meter)
+        {
+            int _lVal = 0;
+            try
+            {
+                using (DB_TenantMNGEntities dbcnx = new DB_TenantMNGEntities())
+                {
+                    SqlParameter[] param =
+                {
+                  
+                           // new SqlParameter("@str_comp_name", user.tb),
+                            new SqlParameter("@multiplier", meter.multiplier),
+                            new SqlParameter("@str_meter_id", meter.str_meter_id),
+                            new SqlParameter("@int_id",SqlDbType.Int){
+                             Direction = System.Data.ParameterDirection.Output
+                            }
+
+
+                };
+
+                    dbcnx.Database.ExecuteSqlCommand("usp_update_meter_multiplier @multiplier,@str_meter_id,@int_id out", param);
 
                     _lVal = Convert.ToInt32(param[2].Value);
                 }
@@ -658,7 +692,7 @@ namespace TenantMNG.BAL
                     SqlParameter[] param =
                 {
                             new SqlParameter("@int_id", int_id),
-                             new SqlParameter("@str_meter_id", str_meter_id),
+                            new SqlParameter("@str_meter_id", str_meter_id),
                 };
 
                     _lVal = dbcnx.Database.ExecuteSqlCommand("usp_detach_tenant_meter @int_id,@str_meter_id", param);

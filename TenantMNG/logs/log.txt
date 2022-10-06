@@ -1070,3 +1070,10 @@ ERROR 2022-09-18 14:14:42,367 80504ms TenantBAL              ant_invoice_insert 
 ERROR 2022-09-18 18:05:14,847 95660ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@precio_distribucion', which was not supplied.
 ERROR 2022-09-18 18:19:56,986 82933ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@precio_distribucion', which was not supplied.
 ERROR 2022-09-23 21:04:33,251 194631ms TenantBAL              ant_invoice_insert - The parameterized query '(@int_id int output,@int_tenant_id int,@bit_tenant_active bit,@d' expects the parameter '@precio_distribucion', which was not supplied.
+ERROR 2022-10-05 18:57:25,705 24930ms PMController           Meters             - La columna 'CFE_MeterID' no pertenece a la tabla Table.
+ERROR 2022-10-05 19:03:04,567 20131ms PMController           Meters             - No se puede convertir DBNull.Value al tipo 'System.Int32'. Utilice un tipo que acepte valores NULL.
+ERROR 2022-10-05 19:41:50,427 19569ms PMController           Meters             - La columna 'str_meter_id' no pertenece a la tabla Table.
+ERROR 2022-10-05 19:45:21,713 21018ms PMController           Meters             - No se puede convertir DBNull.Value al tipo 'System.Int32'. Utilice un tipo que acepte valores NULL.
+ERROR 2022-10-05 19:49:46,834 25250ms PMController           Meters             - La columna 'multiplicador' no pertenece a la tabla Table.
+ERROR 2022-10-05 19:52:48,827 51734ms TenantBAL              enant_meter_insert - Column name or number of supplied values does not match table definition.
+ERROR 2022-10-06 10:39:52,210 24611ms PMController           InvoiceMeters      - La columna 'CFE_MeterID' no pertenece a la tabla Table.

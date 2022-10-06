@@ -92,6 +92,7 @@
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.dashboard, "Dashboard", "Admin") </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "PropertyManager" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.pmuser, "PropertyManager", "User")</li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Tenant" ? "active" : "")">@Html.ActionLink(@TenantMNG.Resource.tenantuser, "Tenant", "User")</li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Meters" ? "active" : "")">@Html.ActionLink(TenantMNG.Resource.meter, "Meters", "User")</li>
 
         </ul>
 

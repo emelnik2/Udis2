@@ -2,11 +2,13 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Data;
 using TenantMNG.Models;
 using TenantMNG.BAL;
 using TenantMNG.ViewModel;
 using PagedList;
 using TenantMNG.Core;
+using TenantMNG.ADO.NET;
 using System.Collections.Generic;
 
 namespace TenantMNG.Controllers
@@ -742,7 +744,132 @@ namespace TenantMNG.Controllers
             return Json(_lVal, JsonRequestBehavior.AllowGet);
         }
 
+        [SessionCheck]
+        [HttpGet]
+        public ActionResult Meters(int? page)
+        {
+            try
+            {
 
+                MeterCLS _meter = new MeterCLS();
+                DataSet ds = _meter.getMeter();
+
+                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("str_meter_id"), multiplier = x.Field<int>("multiplicador") });
+
+
+                return View(_meterlist.ToList().ToPagedList(page ?? 1, CommonCls._pagesize));
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return View();
+        }
+
+        [HttpPost] // this action result returns the partial containing the modal
+        public ActionResult DetachMeterTenant()
+        {
+            TenantBAL objbal = new TenantBAL();
+
+            //int _meterid = Convert.ToInt32(Session["meter_id"].ToString());
+            string _meterid = Session["meter_id"].ToString();
+            var _meter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == _meterid && x.bit_is_assign == true).SingleOrDefault();
+            int _lVal = objbal.tenant_detach_meter_tenant(_meter.int_tenant_id, _meterid);
+            return RedirectToAction("Meters");
+        }
+
+        [SessionCheck]
+        [HttpGet] // this action result returns the partial containing the modal
+        public ActionResult AssignMeterToTenant(string id)
+        {
+            try
+            {
+                int pmid = Convert.ToInt32(Session["uid"].ToString());
+
+
+                var _tenant = _dbc.tbl_user_master.Where(x => x.int_user_type_id == 3 && x.int_pm_id == pmid);
+
+                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == id & x.bit_is_assign == true).SingleOrDefault();
+
+                TenantMeterVM _objvm = new TenantMeterVM();
+
+                if (_tenantmeter == null)
+                {
+                    ViewBag.TenantDropDown = new SelectList(_tenant, "int_id", "str_comp_name");
+                    _objvm.int_id = 0;
+
+                }
+                else
+                {
+                    ViewBag.TenantDropDown = new SelectList(_tenant, "int_id", "str_comp_name", _tenantmeter.int_tenant_id);
+                    _objvm.int_id = _tenantmeter.int_id;
+                }
+
+                _objvm.bit_is_assign = true;
+                _objvm.str_meter_id = id;
+
+
+
+                return PartialView("_assigntenant", _objvm);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return PartialView("_assigntenant");
+
+
+        }
+
+        [HttpPost] // this action result returns the partial containing the modal
+        public ActionResult AssignMeterToTenant(TenantMeterVM _objvm)
+        {
+
+
+            int _lval = 0;
+            try
+            {
+                TenantBAL objbal = new TenantBAL();
+
+                _objvm.bit_is_assign = true;
+
+                _lval = objbal.tenant_meter_insert(_objvm);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            ViewBag.issuccess = _lval;
+
+            return Json(_lval, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost] // this action result returns the partial containing the modal
+        public ActionResult ChangeMultiplier(TenantMeterVM _objvm)
+        {
+
+
+            int _lval = 0;
+            try
+            {
+                TenantBAL objbal = new TenantBAL();
+
+                _objvm.bit_is_assign = true;
+
+                _lval = objbal.change_meter_multiplier(_objvm);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            ViewBag.issuccess = _lval;
+
+            return Json(_lval, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Profile()
         {

@@ -21,6 +21,8 @@ namespace TenantMNG.ViewModel
         public List<SelectListItem> Meters { get; set; }
         public int[] MetersID { get; set; }
 
+        public int multiplier { get; set; }
+
 
 
     }

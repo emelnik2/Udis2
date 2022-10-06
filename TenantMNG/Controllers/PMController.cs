@@ -154,6 +154,7 @@ namespace TenantMNG.Controllers
                         _objvm.bit_is_assign = true;
                         //_objvm.str_meter_id = Int32.TryParse(meterid.Value, out mid) ? Int32.Parse(meterid.Value) : (int?)null;
                         _objvm.str_meter_id = meterid.Text;
+                        _objvm.multiplier = 1;
                         _lval = objbal.tenant_meter_insert(_objvm);
                     }
 
@@ -2325,7 +2326,8 @@ namespace TenantMNG.Controllers
                 MeterCLS _meter = new MeterCLS();
                 DataSet ds = _meter.getMeter();
 
-                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("CFE_MeterID") });
+                //var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("CFE_MeterID") });
+                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("str_meter_id"), multiplier = x.Field<int>("multiplicador") });
 
                 return View(_meterlist.ToList().ToPagedList(page ?? 1, CommonCls._pagesize));
             }
@@ -2413,6 +2415,7 @@ namespace TenantMNG.Controllers
                 TenantBAL objbal = new TenantBAL();
 
                 _objvm.bit_is_assign = true;
+                _objvm.multiplier = 1;
 
                 _lval = objbal.tenant_meter_insert(_objvm);
 
@@ -2435,7 +2438,7 @@ namespace TenantMNG.Controllers
             _invoices.int_tenant_id = id;
 
             ViewBag.MesesDropDown = new SelectList(new List<SelectListItem>()
-{
+                            {
                                 new SelectListItem(){ Value="1", Text="Enero"},
                                 new SelectListItem(){ Value="2", Text="Febrero"},
                                 new SelectListItem(){ Value="3", Text="Marzo"},

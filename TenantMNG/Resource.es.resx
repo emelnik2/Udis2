@@ -921,4 +921,7 @@
   <data name="tenantComparisonConsumption" xml:space="preserve">
     <value>Comparativo de Consumo de Energía</value>
   </data>
+  <data name="multiplicador" xml:space="preserve">
+    <value>Multiplicador</value>
+  </data>
 </root>

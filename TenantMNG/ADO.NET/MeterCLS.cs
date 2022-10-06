@@ -5,6 +5,8 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace TenantMNG.ADO.NET
 {
@@ -37,7 +39,15 @@ namespace TenantMNG.ADO.NET
 
         public DataSet getMeter()
         {
-            string query = "SELECT DISTINCT CFE_MeterID FROM UDIS";
+            string query = "SELECT meters.M AS str_meter_id, ISNULL(tbl_tenant_meter.multiplicador, 1 ) AS multiplicador FROM " +
+                            "(SELECT DISTINCT M FROM( " +
+                            "    SELECT  CFE_MeterID as M FROM UDIS " +
+                            "    UNION " + 
+                            "    SELECT str_meter_id as M FROM tbl_tenant_meter " +
+                            ")a) AS meters " +
+                            "LEFT JOIN tbl_tenant_meter " +
+                            "on meters.M = tbl_tenant_meter.str_meter_id " +
+                            "ORDER BY tbl_tenant_meter.str_meter_id ";
             //string query = "SELECT DISTINCT CFE_MeterID FROM udis.summation_sources";
             SqlCommand cm = new SqlCommand(query, cn);
 
@@ -57,6 +67,9 @@ namespace TenantMNG.ADO.NET
         public string name { get; set; }
 
         public int tenant_id { get; set; }
+
+        public int multiplier { get; set; }
+
 
     }
 }

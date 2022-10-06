@@ -1339,6 +1339,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiplier.
+        /// </summary>
+        public static string multiplicador {
+            get {
+                return ResourceManager.GetString("multiplicador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string name {

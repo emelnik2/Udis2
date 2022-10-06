@@ -927,4 +927,7 @@
   <data name="tenantComparisonConsumption" xml:space="preserve">
     <value>Tenant Consumption Comparison</value>
   </data>
+  <data name="multiplicador" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
 </root>
