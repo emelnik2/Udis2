@@ -52,14 +52,18 @@
 
 
 
-                    var dd = dt.getUTCDate() + 10;
+                    //var dd = dt.getUTCDate() + 10;
                     var mm = dt.getUTCMonth() + 1;
                     var yy = dt.getUTCFullYear();
+
+                    var pDate = new Date(dt);
+                    pDate.setDate(dt.getDate() + 10);
+                    var payDate = pDate.toISOString().slice(0, 10);
 
 
                     $("#date_e_bill_date").val(yy + "/" + mm + "/" + getDaysInMonth(mm, yy));
 
-                    $("#date_pay_date").val(yy + "/" + mm + "/" + dd);
+                    $("#date_pay_date").val(payDate);
 
 
 
@@ -405,35 +409,35 @@
             finalamount = finalamount + taxval;
 
 
-            $('#precio_suministro').val(new Intl.NumberFormat('en-IN').format(Number(suministro).toFixed(2)));
+            $('#precio_suministro').val(numberWithCommas(Number(suministro).toFixed(2)));
 
-            $('#precio_distribucion').val(new Intl.NumberFormat('en-IN').format(Number(distribucion).toFixed(2)));
+            $('#precio_distribucion').val(numberWithCommas(Number(distribucion).toFixed(2)));
 
-            $('#precio_transmision').val(new Intl.NumberFormat('en-IN').format(Number(transmision).toFixed(2)));
+            $('#precio_transmision').val(numberWithCommas(Number(transmision).toFixed(2)));
 
-            $('#precio_cenace').val(new Intl.NumberFormat('en-IN').format(Number(cenace).toFixed(2)));
+            $('#precio_cenace').val(numberWithCommas(Number(cenace).toFixed(2)));
 
-            $('#precio_energia').val(new Intl.NumberFormat('en-IN').format(Number(energia).toFixed(2)));
+            $('#precio_energia').val(numberWithCommas(Number(energia).toFixed(2)));
 
-            $('#precio_capacidad').val(new Intl.NumberFormat('en-IN').format(Number(capacidad).toFixed(2)));
+            $('#precio_capacidad').val(numberWithCommas(Number(capacidad).toFixed(2)));
 
-            $('#precio_cre_servicios_conexos').val(new Intl.NumberFormat('en-IN').format(Number(servicios_conexos).toFixed(2)));
+            $('#precio_cre_servicios_conexos').val(numberWithCommas(Number(servicios_conexos).toFixed(2)));
 
-            $('#precio_dos_porciento_baja_tension').val(new Intl.NumberFormat('en-IN').format(Number(dos_porciento_baja_tension).toFixed(2)));
+            $('#precio_dos_porciento_baja_tension').val(numberWithCommas(Number(dos_porciento_baja_tension).toFixed(2)));
 
-            $('#precio_decuento_bonificacion').val(new Intl.NumberFormat('en-IN').format(Number(bonificacion_factor_potencia).toFixed(2)));
+            $('#precio_decuento_bonificacion').val(numberWithCommas(Number(bonificacion_factor_potencia).toFixed(2)));
 
-            $('#dec_tax_amt').val(new Intl.NumberFormat('en-IN').format(Number(taxval).toFixed(2)));
+            $('#dec_tax_amt').val(numberWithCommas(Number(taxval).toFixed(2)));
 
-            $('#dec_total').val(new Intl.NumberFormat('en-IN').format(Number(finalamount).toFixed(2)));
+            $('#dec_total').val(numberWithCommas(Number(finalamount).toFixed(2)));
 
-            $('#dec_base_amt').val(new Intl.NumberFormat('en-IN').format(Number(precio_energiabase).toFixed(2)));
+            $('#dec_base_amt').val(numberWithCommas(Number(precio_energiabase).toFixed(2)));
 
-            $('#dec_inter_energy_amt').val(new Intl.NumberFormat('en-IN').format(Number(precio_energiaintermedia).toFixed(2)));
+            $('#dec_inter_energy_amt').val(numberWithCommas(Number(precio_energiaintermedia).toFixed(2)));
 
-            $('#dec_peak_energy_amt').val(new Intl.NumberFormat('en-IN').format(Number(precio_energiapunta).toFixed(2)));
+            $('#dec_peak_energy_amt').val(numberWithCommas(Number(precio_energiapunta).toFixed(2)));
 
-            $('#energia_activa').val(new Intl.NumberFormat('en-IN').format(Number(energia_activa).toFixed(2)));
+            $('#energia_activa').val(numberWithCommas(Number(energia_activa).toFixed(2)));
 
 
 
