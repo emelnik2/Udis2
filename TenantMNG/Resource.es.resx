@@ -262,7 +262,7 @@
     <value>Tasa de energía base</value>
   </data>
   <data name="dec_seasonal_multi_rate" xml:space="preserve">
-    <value>Tasa de demanda máxima</value>
+    <value>Tasa de demanda punta</value>
   </data>
   <data name="dec_surcharge_amt" xml:space="preserve">
     <value>Tasa de demanda intermedia</value>
@@ -319,7 +319,7 @@
     <value>Medidores</value>
   </data>
   <data name="peak_demand_rate" xml:space="preserve">
-    <value>Tasa de demanda máxima</value>
+    <value>Tasa de demanda punta</value>
   </data>
   <data name="update" xml:space="preserve">
     <value>Actualizar</value>
@@ -370,7 +370,7 @@
     <value>Lo siento, todavía no hay inicio de contrato para este inquilino.</value>
   </data>
   <data name="peak_energy" xml:space="preserve">
-    <value>Energía máxima</value>
+    <value>Energía punta</value>
   </data>
   <data name="preview" xml:space="preserve">
     <value>Visualizar</value>
@@ -433,7 +433,7 @@
     <value>Energía Intermedia Actual</value>
   </data>
   <data name="dec_current_peak_energy" xml:space="preserve">
-    <value>Energía máxima actual</value>
+    <value>Energía punta actual</value>
   </data>
   <data name="dec_custome_charges" xml:space="preserve">
     <value>Cargos personalizados</value>
@@ -451,10 +451,10 @@
     <value>Tasa de energía intermedia</value>
   </data>
   <data name="dec_peak_energy" xml:space="preserve">
-    <value>Energía máxima</value>
+    <value>Energía Punta</value>
   </data>
   <data name="dec_peak_energy_rate" xml:space="preserve">
-    <value>Tasa de energía máxima</value>
+    <value>Tasa de energía punta</value>
   </data>
   <data name="dec_prev_inter_energy" xml:space="preserve">
     <value>Energía Intermedia Anterior</value>

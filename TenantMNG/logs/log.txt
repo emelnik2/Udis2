@@ -1077,3 +1077,4 @@ ERROR 2022-10-05 19:45:21,713 21018ms PMController           Meters             
 ERROR 2022-10-05 19:49:46,834 25250ms PMController           Meters             - La columna 'multiplicador' no pertenece a la tabla Table.
 ERROR 2022-10-05 19:52:48,827 51734ms TenantBAL              enant_meter_insert - Column name or number of supplied values does not match table definition.
 ERROR 2022-10-06 10:39:52,210 24611ms PMController           InvoiceMeters      - La columna 'CFE_MeterID' no pertenece a la tabla Table.
+ERROR 2022-10-06 20:37:17,955 81827ms PMController           InvoiceMeters      - La columna 'CFE_MeterID' no pertenece a la tabla Table.

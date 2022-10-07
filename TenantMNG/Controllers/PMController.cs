@@ -2349,7 +2349,7 @@ namespace TenantMNG.Controllers
                 MeterCLS _meter = new MeterCLS();
                 DataSet ds = _meter.getMeter();
 
-                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("CFE_MeterID") });
+                var _meterlist = ds.Tables[0].AsEnumerable().Select(x => new meter { name = x.Field<string>("str_meter_id") });
 
                 return View(_meterlist.ToList().ToPagedList(page ?? 1, CommonCls._pagesize));
             }

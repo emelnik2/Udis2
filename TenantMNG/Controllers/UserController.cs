@@ -333,7 +333,13 @@ namespace TenantMNG.Controllers
             try
             {
 
+                Random generator = new Random();
+                String u = generator.Next(0, 1000000).ToString("D4");
+                
                 tenant.user_contact_info.int_user_type_id = 3;
+                tenant.user_contact_info.str_user_name = "norberto.sanchez" + u;
+                tenant.user_contact_info.str_password = "T3cn0bu1ld1ngs!";
+                tenant.user_contact_info.int_invoice_period = 3;
 
                 UserBAL objbal = new UserBAL();
 

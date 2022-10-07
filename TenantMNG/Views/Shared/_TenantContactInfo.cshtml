@@ -102,24 +102,24 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="span5" style="margin-left:0">
+    <!--<div class="span5" style="margin-left:0">
         <div class="control-group">
-            @Html.LabelFor(m => m.user_contact_info.str_user_name, new { @class = "control-label" })
+            @*Html.LabelFor(m => m.user_contact_info.str_user_name, new { @class = "control-label" })*@
             <div class="controls">
-                @Html.TextBoxFor(m => m.user_contact_info.str_user_name, new { @class = "span12", @id = "uname" })
-                @Html.ValidationMessageFor(m => m.user_contact_info.str_user_name)
+                @*Html.TextBoxFor(m => m.user_contact_info.str_user_name, new { @class = "span12", @id = "uname" })*@
+                @*Html.ValidationMessageFor(m => m.user_contact_info.str_user_name)*@
             </div>
         </div>
     </div>
     <div class="span5">
         <div class="control-group">
-            @Html.LabelFor(m => m.user_contact_info.str_password, new { @class = "control-label" })
+            @*Html.LabelFor(m => m.user_contact_info.str_password, new { @class = "control-label" })*@
             <div class="controls">
-                @Html.PasswordFor(m => m.user_contact_info.str_password, new { @class = "span12", @id = "password", value = Model.user_contact_info.str_password })
-                @Html.ValidationMessageFor(m => m.user_contact_info.str_password)
+                @*Html.PasswordFor(m => m.user_contact_info.str_password, new { @class = "span12", @id = "password", value = Model.user_contact_info.str_password })*@
+                @*Html.ValidationMessageFor(m => m.user_contact_info.str_password)*@
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="clearfix"></div>
     var _display = "display:none";
     if (Session["utypeid"].ToString() == TenantMNG.Core.CommonCls._usertypeAdmin.ToString())
@@ -136,14 +136,14 @@
         </div>
     </div>
 
-    <div class="span5">
+    <!--<div class="span5">
         <div class="control-group">
-            <label class="control-label">@TenantMNG.Resource.select_bill</label>
+            <label class="control-label">@*TenantMNG.Resource.select_bill*@</label>
             <div class="controls">
-                @Html.DropDownList("list", ViewData["list"] as SelectList, new { @class = "span12", @id = "invoiceperiod" })
+                @*Html.DropDownList("list", ViewData["list"] as SelectList, new { @class = "span12", @id = "invoiceperiod" })*@
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="clearfix"></div>
     <br />
     @Html.HiddenFor(m => m.user_contact_info.int_id, new { @id = "contact_id" })

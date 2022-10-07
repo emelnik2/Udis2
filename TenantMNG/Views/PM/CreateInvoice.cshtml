@@ -35,7 +35,7 @@
 
 
 
-                    var period = $("#int_invoice_period").val();
+                    /*var period = $("#int_invoice_period").val();
 
                     period = 3;
 
@@ -48,16 +48,18 @@
                         dt.setMonth(dt.getMonth() + 1);
                         dt.setDate(dt.getDate() - 1);
 
-                    }
+                    }*/
 
 
 
-                    //var dd = dt.getDay();
-                    var mm = dt.getMonth();
-                    var yy = dt.getFullYear();
+                    var dd = dt.getUTCDate() + 10;
+                    var mm = dt.getUTCMonth() + 1;
+                    var yy = dt.getUTCFullYear();
 
 
                     $("#date_e_bill_date").val(yy + "/" + mm + "/" + getDaysInMonth(mm, yy));
+
+                    $("#date_pay_date").val(yy + "/" + mm + "/" + dd);
 
 
 

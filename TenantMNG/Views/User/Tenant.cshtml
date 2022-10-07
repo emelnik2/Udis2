@@ -63,10 +63,10 @@
                                         <td>@user.int_pin_code</td>
                                         <td>
                                             @Html.ActionLink(TenantMNG.Resource.edit, "EditTenant", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-success" })
-                                            @Html.ActionLink(TenantMNG.Resource.delete, "Delete", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" }) &nbsp;|&nbsp;
-                                            @if (TenantMNG.Core.CommonCls.isEditbillRate(user.int_id))
+                                            @Html.ActionLink(TenantMNG.Resource.delete, "Delete", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })
+                                            @*if (TenantMNG.Core.CommonCls.isEditbillRate(user.int_id))
                                             {
-                                                <a id="assignmeter" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.edit_bill_rate</a>}
+                                                <a id="assignmeter" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.edit_bill_rate</a>}*@
 
                                         </td>
                                     </tr>
