@@ -937,19 +937,24 @@ namespace TenantMNG.Controllers
                     //foreach (var m in _mname)
                     //{
 
-                    DataSet _ds = obj.getTenantEnergy(_meterid, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString());
+                    var multiplier = obj.getMeterMultiplier(_meterid);
+
+                    DataSet _ds = obj.getTenantEnergy(_meterid, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString(), multiplier);
 
                     if (_ds.Tables[0].Rows.Count > 0)
                     {
-                        decimal peckenergy = (!String.IsNullOrEmpty(_ds.Tables[0].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0].ToString()) : 0;
-                        decimal interenergy = (!String.IsNullOrEmpty(_ds.Tables[2].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0].ToString()) : 0;
-                        decimal baseenergy = (!String.IsNullOrEmpty(_ds.Tables[1].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0].ToString()) : 0;
-                        decimal energiaactiva = (!String.IsNullOrEmpty(_ds.Tables[3].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0].ToString()) : 0;
-                        decimal energiareactiva = (!String.IsNullOrEmpty(_ds.Tables[4].Rows[0][0].ToString())) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0].ToString()) : 0;
+                        decimal peckenergy = (!(_ds.Tables[0].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0]) : 0;
+                        decimal interenergy = (!(_ds.Tables[2].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0]) : 0;
+                        decimal baseenergy = (!(_ds.Tables[1].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0]) : 0;
+                        decimal energiaactiva = (!(_ds.Tables[3].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0]) : 0;
+                        decimal energiareactiva = (!(_ds.Tables[4].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0]) : 0;
+                        decimal demanda_base = (!(_ds.Tables[5].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[5].Rows[0][0]) : 0;
+                        decimal demanda_intermedia = (!(_ds.Tables[6].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[6].Rows[0][0]) : 0;
+                        decimal demanda_punta = (!(_ds.Tables[7].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[7].Rows[0][0]) : 0;
 
                         dt.Rows.Add(_meterid, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
                             objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),
-                            objvm.demanda_base, objvm.demanda_intermedia, objvm.demanda_punta, energiaactiva, energiareactiva, _meteridarray[0]);
+                            demanda_base, demanda_intermedia, demanda_punta, energiaactiva, energiareactiva, _meteridarray[0]);
                      }
 
                      //i++;
@@ -2522,7 +2527,9 @@ namespace TenantMNG.Controllers
                     //_ds = obj.getTenantEnergy(objvm.str_meter_name, fromdate[i], todate[i], objvm.str_peak_s_time,
                     //   objvm.str_peak_e_time);
 
-                    _ds = obj.getTenantEnergy(objvm.str_meter_name, fromdate[i], todate[i]);
+                    var multiplier = obj.getMeterMultiplier(objvm.str_meter_name);
+
+                    _ds = obj.getTenantEnergy(objvm.str_meter_name, fromdate[i], todate[i], multiplier);
 
                     string _energy = getPickandIntermediatEnergy(objvm.int_tenant_id, _ds);
                     message = _energy + "\n";

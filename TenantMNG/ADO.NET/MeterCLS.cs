@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using TenantMNG.Models;
 
 namespace TenantMNG.ADO.NET
 {
@@ -15,7 +16,7 @@ namespace TenantMNG.ADO.NET
 
         SqlConnection cn = new SqlConnection(ConfigurationManager.AppSettings["DbConnection"]);
 
-        public DataSet getTenantEnergy(string tablename, string s_date, string e_date)
+        public DataSet getTenantEnergy(string tablename, string s_date, string e_date, int multiplicador)
         {
             string query = "usp_get_meter_reading_new";
             SqlCommand cm = new SqlCommand(query, cn);
@@ -24,6 +25,7 @@ namespace TenantMNG.ADO.NET
             cm.Parameters.AddWithValue("@tb_name", tablename);
             cm.Parameters.AddWithValue("@start_date", s_date);
             cm.Parameters.AddWithValue("@end_date", e_date);
+            cm.Parameters.AddWithValue("@multiplicador", multiplicador);
 
             SqlDataAdapter da = new SqlDataAdapter(cm);
             DataSet ds = new DataSet();
@@ -60,9 +62,18 @@ namespace TenantMNG.ADO.NET
 
         }
 
+        public int getMeterMultiplier (string strmeterid)
+        {
+            DB_TenantMNGEntities _dbc = new DB_TenantMNGEntities();
+
+            var multiplier = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == strmeterid).FirstOrDefault();
+
+            return (int)multiplier.multiplicador;
+        }
+
     }
 
-    public class meter
+    public class meter  
     {
         public string name { get; set; }
 

@@ -176,6 +176,7 @@
           <Property Name="date_assign_date" Type="date" />
           <Property Name="date_detach_date" Type="date" />
           <Property Name="bit_is_assign" Type="bit" />
+          <Property Name="multiplicador" Type="int" />
         </EntityType>
         <EntityType Name="tbl_tenant_settings">
           <Key>
@@ -991,6 +992,7 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
           <Property Name="date_detach_date" Type="DateTime" Precision="0" />
           <Property Name="bit_is_assign" Type="Boolean" />
           <NavigationProperty Name="tbl_user_master" Relationship="DB_TenantMNGModel.FK_tbl_tenant_meter_tbl_user_master" FromRole="tbl_tenant_meter" ToRole="tbl_user_master" />
+          <Property Name="multiplicador" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_tenant_settings">
           <Key>
@@ -1388,7 +1390,8 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
     <EntitySetMapping Name="tbl_tenant_meter">
       <EntityTypeMapping TypeName="IsTypeOf(DB_TenantMNGModel.tbl_tenant_meter)">
         <MappingFragment StoreEntitySet="tbl_tenant_meter">
-          <ScalarProperty Name="int_id" ColumnName="int_id" />
+          <ScalarProperty Name="multiplicador" ColumnName="multiplicador" />
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
           <ScalarProperty Name="int_tenant_id" ColumnName="int_tenant_id" />
           <ScalarProperty Name="str_meter_id" ColumnName="str_meter_id" />
           <ScalarProperty Name="date_assign_date" ColumnName="date_assign_date" />

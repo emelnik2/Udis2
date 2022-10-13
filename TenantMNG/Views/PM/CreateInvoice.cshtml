@@ -288,6 +288,9 @@
                 var transmision_punta = 0;
                 var energiaactiva = 0;
                 var energiareactiva = 0;
+                var demanda_base = 0;
+                var demanda_intermedia = 0;
+                var demanda_punta = 0;
 
 
                 var row = "";
@@ -303,14 +306,17 @@
                     transmision_base = transmision_base + item.dec_base_energy;
                     transmision_intermedia = transmision_intermedia + item.dec_inter_energy;
                     transmision_punta = transmision_punta + item.dec_peak_energy;
-                    energiaactiva = energiaactiva + item.energiaactiva;
-                    energiareactiva = energiareactiva + item.energiareactiva;
+                    energiaactiva = energiaactiva + item.energia_activa;
+                    energiareactiva = energiareactiva + item.energia_reactiva;
+                    demanda_base = demanda_base + item.demanda_base;
+                    demanda_intermedia = demanda_intermedia + item.demanda_intermedia;
+                    demanda_punta = demanda_punta + item.demanda_punta;
 
                 });
                 $("#contacts").html(row);
                 //$("#datatable_orders").show();
 
-                finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva);
+                finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta);
             };
             options.error = function () {
 
@@ -318,12 +324,13 @@
             $.ajax(options);
         }
 
-        function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva) {
+        function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta) {
 
             var energia_activa = 0;
             var energia_reactiva = 0;
 
-            //Checar si energia base, intermedia, punta y energia reactiva tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
+            //Checar si energia base, intermedia, punta, energia reactiva, demandas base, intermedia
+            // y punta tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
             if (!$('#dec_base_energy').val())
                 $('#dec_base_energy').val(Number(transmision_base));
@@ -333,6 +340,14 @@
                 $('#dec_peak_energy').val(Number(transmision_punta));
             if (!$('#energia_reactiva').val())
                 $('#energia_reactiva').val(Number(energiareactiva));
+            if (!$('#energia_activa').val())
+                $('#energia_activa').val(Number(energiaactiva));
+            if (!$('#demanda_base').val())
+                $('#demanda_base').val(Number(demanda_base));
+            if (!$('#demanda_intermedia').val())
+                $('#demanda_intermedia').val(Number(demanda_intermedia));
+            if (!$('#demanda_punta').val())
+                $('#demanda_punta').val(Number(demanda_punta));
 
             var dec_base_energy = Number($('#dec_base_energy').val());
             var dec_inter_energy = Number($('#dec_inter_energy').val());

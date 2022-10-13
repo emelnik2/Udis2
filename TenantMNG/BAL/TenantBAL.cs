@@ -565,14 +565,15 @@ namespace TenantMNG.BAL
 
                     MeterCLS obj = new MeterCLS();
 
-
                     string[] _mname = _metername.Trim(',').Split(',');
 
                     int i = 0;
                     foreach (var m in _mname)
                     {
 
-                        DataSet _ds = obj.getTenantEnergy(m, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString());
+                        var multiplier = obj.getMeterMultiplier(m);
+
+                        DataSet _ds = obj.getTenantEnergy(m, objvm.date_s_bill_date.ToString(), objvm.date_e_bill_date.ToString(), multiplier);
 
                         if (_ds.Tables[0].Rows.Count > 0)
                         {
