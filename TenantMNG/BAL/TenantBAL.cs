@@ -735,12 +735,47 @@ namespace TenantMNG.BAL
                             new SqlParameter("@capacidad",invoice.capacidad),
                             new SqlParameter("@cre_servicios_conexos",invoice.cre_servicios_conexos),
 
-                            new SqlParameter("@int_tenant_id",invoice.int_tenant_id),
+                            new SqlParameter("@precio_suministro",invoice.precio_suministro),
+                            new SqlParameter("@precio_distribucion",invoice.precio_distribucion),
+                            new SqlParameter("@precio_transmision",invoice.precio_transmision),
+                            new SqlParameter("@precio_cenace",invoice.precio_cenace),
+                            new SqlParameter("@precio_energia",invoice.precio_energia),
+                            new SqlParameter("@precio_capacidad",invoice.precio_capacidad),
+                            new SqlParameter("@precio_cre_servicios_conexos",invoice.precio_cre_servicios_conexos),
+                            new SqlParameter("@precio_dos_porciento_baja_tension",invoice.precio_dos_porciento_baja_tension),
+                            new SqlParameter("@precio_decuento_bonificacion",invoice.precio_decuento_bonificacion),
+
+                            new SqlParameter("@str_meter_id", invoice.str_meter_id),
+                            new SqlParameter("@dec_peak_energy", invoice.dec_peak_energy),
+                            new SqlParameter("@dec_peak_energy_rate", invoice.dec_peak_energy_rate),
+                            new SqlParameter("@dec_peak_energy_amt", invoice.dec_peak_energy_amt),
+
+                            new SqlParameter("@dec_inter_energy", invoice.dec_inter_energy),
+                            new SqlParameter("@dec_inter_energy_rate", invoice.dec_inter_energy_rate),
+                            new SqlParameter("@dec_inter_energy_amt", invoice.dec_inter_energy_amt),
+
+                            new SqlParameter("@dec_base_energy", invoice.dec_base_energy),
+                            new SqlParameter("@dec_base_rate", invoice.dec_base_rate),
+                            new SqlParameter("@dec_base_amt", invoice.dec_base_amt),
+
+                            new SqlParameter("@demanda_base", invoice.demanda_base),
+                            new SqlParameter("@demanda_intermedia", invoice.demanda_intermedia),
+                            new SqlParameter("@demanda_punta", invoice.demanda_punta),
+                            new SqlParameter("@energia_activa", invoice.energia_activa),
+                            new SqlParameter("@energia_reactiva", invoice.energia_reactiva),
+
+                            new SqlParameter("@int_tenant_id", invoice.int_tenant_id),
+
                 };
 
-                            _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_invoice @int_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total,@dec_tax_amt,@date_pay_date,@suministro,@distribucion,@tarifa_transmision,@operacion_cenace,@capacidad,@cre_servicios_conexos,@int_tenant_id", param);
-
-
+                            _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_invoice @int_id,@bit_tenant_active,@date_s_bill_date,@date_e_bill_date,@dec_total," +
+                                "@dec_tax_amt,@date_pay_date,@suministro,@distribucion,@tarifa_transmision,@operacion_cenace,@capacidad,@cre_servicios_conexos," +
+                                "@precio_suministro,@precio_distribucion," +
+                                "@precio_transmision,@precio_cenace,@precio_energia,@precio_capacidad,@precio_cre_servicios_conexos," +
+                                "@precio_dos_porciento_baja_tension,@precio_decuento_bonificacion,@str_meter_id,@dec_peak_energy,@dec_peak_energy_rate," +
+                                "@dec_peak_energy_amt,@dec_inter_energy,@dec_inter_energy_rate,@dec_inter_energy_amt,@dec_base_energy," +
+                                "@dec_base_rate,@dec_base_amt,@demanda_base,@demanda_intermedia,@demanda_punta,@energia_activa,@energia_reactiva," +
+                                "@int_tenant_id", param);
                 }
             }
             catch (Exception ex)

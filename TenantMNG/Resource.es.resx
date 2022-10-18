@@ -169,7 +169,7 @@
     <value>Código Postal</value>
   </data>
   <data name="invoice" xml:space="preserve">
-    <value>Facturas</value>
+    <value>Factura</value>
   </data>
   <data name="list" xml:space="preserve">
     <value>Listas de</value>
@@ -923,5 +923,11 @@
   </data>
   <data name="multiplicador" xml:space="preserve">
     <value>Multiplicador</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="delete_invoice_message" xml:space="preserve">
+    <value>¿Está seguro que desea borrar esta factura?</value>
   </data>
 </root>

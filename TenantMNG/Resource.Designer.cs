@@ -70,6 +70,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string actions {
+            get {
+                return ResourceManager.GetString("actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New.
         /// </summary>
         public static string add_new {
@@ -633,6 +642,15 @@ namespace TenantMNG {
         public static string delete {
             get {
                 return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this invoice?.
+        /// </summary>
+        public static string delete_invoice_message {
+            get {
+                return ResourceManager.GetString("delete_invoice_message", resourceCulture);
             }
         }
         

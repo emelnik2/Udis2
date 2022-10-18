@@ -190,6 +190,27 @@ namespace TenantMNG.Controllers
             return RedirectToAction("Tenant");
         }
 
+        [HttpGet] // this action result returns the partial containing the modal
+        public ActionResult DeleteInvoice(string id)
+        {
+            Session["invoice_id"] = id;
+            return new EmptyResult();
+        }
+
+        [HttpPost] // this action result returns the partial containing the modal
+        public ActionResult DeleteInvoice()
+        {
+            UserBAL usrbal = new UserBAL();
+
+            int _id = Convert.ToInt32(Session["invoice_id"].ToString());
+
+            int _lVal = usrbal.invoice_delete(_id);
+
+
+            return RedirectToAction("TenantActivity");
+        }
+
+
         [HttpPost] // this action result returns the partial containing the modal
         public ActionResult DetachMeterTenant()
         {
@@ -432,6 +453,231 @@ namespace TenantMNG.Controllers
                 }
 
                 
+                /*if (_lVal > 0)
+                {
+
+                }*/
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            ViewBag._erromsg = _lVal;
+            return View(objvm);
+        }
+
+        [SessionCheck]
+        [HttpGet]
+        public ActionResult ModifyInvoice(int invoice_id)
+        {
+
+            InvoiceVM _objvm = new InvoiceVM();
+           
+            try
+            {
+                int id = 0;
+
+                var _invoice = _dbc.tbl_invoice.Where(x => x.int_invoice_id == invoice_id).FirstOrDefault();
+                var tarifas = _dbc.tbl_tarifas.FirstOrDefault();
+
+                if (_invoice != null)
+                {
+                    _objvm.int_invoice_id = invoice_id;
+                    id = Convert.ToInt32(Convert.ToInt32(_invoice.int_tenant_id));
+
+                    int _uid = Convert.ToInt32(Session["uid"].ToString());
+                    var _pmbillingtime = _dbc.tbl_pm_billing_hours.Where(x => x.int_pm_id == _uid).SingleOrDefault();
+                    if (_pmbillingtime != null /*&& _ratesinfo != null*/)
+                    {
+
+                        _objvm.str_inter_e_time = _pmbillingtime.str_inter_e_time_1_m;
+                        _objvm.str_inter_s_time = _pmbillingtime.str_inter_s_time_2_m;
+
+                        _objvm.str_peak_e_time = _pmbillingtime.str_peak_e_time_m;
+                        _objvm.str_peak_s_time = _pmbillingtime.str_peak_s_time_m;
+
+                        _objvm.int_invoice_period = 3;
+                    }
+
+                    if (tarifas != null)
+                    {
+                        var _tarifasvm = new TarifasVM();
+
+                        _tarifasvm.dec_base_rate = tarifas.dec_base_rate;
+                        _tarifasvm.dec_inter_energy_rate = tarifas.dec_inter_energy_rate;
+                        _tarifasvm.dec_peak_energy_rate = tarifas.dec_peak_energy_rate;
+                        _tarifasvm.suministro = tarifas.suministro;
+                        _tarifasvm.distribucion = tarifas.distribucion;
+                        _tarifasvm.tarifa_transmision = tarifas.tarifa_transmision;
+                        _tarifasvm.operacion_cenace = tarifas.operacion_cenace;
+                        _tarifasvm.capacidad = tarifas.capacidad;
+                        _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
+
+                        var meses = new SelectList(new List<SelectListItem>()
+                        {
+                                new SelectListItem(){ Value="Enero", Text="Enero"},
+                                new SelectListItem(){ Value="Febrero", Text="Febrero"},
+                                new SelectListItem(){ Value="Marzo", Text="Marzo"},
+                                new SelectListItem(){ Value="Abril", Text="Abril"},
+                                new SelectListItem(){ Value="Mayo", Text="Mayo"},
+                                new SelectListItem(){ Value="Junio", Text="Junio"},
+                                new SelectListItem(){ Value="Julio", Text="Julio"},
+                                new SelectListItem(){ Value="Agosto", Text="Agosto"},
+                                new SelectListItem(){ Value="Septiembre", Text="Septiembre"},
+                                new SelectListItem(){ Value="Octubre", Text="Octubre"},
+                                new SelectListItem(){ Value="Noviembre", Text="Noviembre"},
+                                new SelectListItem(){ Value="Diciembre", Text="Diciembre"},
+                        },
+                            "Value",
+                            "Text");
+
+
+                        var anios = new SelectList(new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year), Text = Convert.ToString(DateTime.Now.Year) },
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year - 1), Text = Convert.ToString(DateTime.Now.Year - 1) },
+                        },
+                            "Value",
+                            "Text");
+
+                        _tarifasvm.Meses = meses;
+                        _tarifasvm.Anios = anios;
+
+                        _tarifasvm.mes_tarifas = tarifas.mes_tarifas;
+                        _tarifasvm.ano_tarifas = Convert.ToInt32(tarifas.ano_tarifas);
+
+
+                        _objvm.tarifassetting = _tarifasvm;
+                    }
+                }
+                
+                ViewBag._erromsg = -1;
+                
+                _objvm.int_tenant_id = id;
+                _objvm.str_meter_id = _invoice.str_meter_id;
+                _objvm.date_s_bill_date = _invoice.date_s_bill_date;
+                _objvm.date_e_bill_date = _invoice.date_e_bill_date;
+                _objvm.date_pay_date = _invoice.date_pay_date;
+                _objvm.dec_base_energy = decimal.Round((decimal)_invoice.dec_base_energy, 0);
+                _objvm.dec_inter_energy = decimal.Round((decimal)_invoice.dec_inter_energy, 0);
+                _objvm.dec_peak_energy = decimal.Round((decimal)_invoice.dec_peak_energy, 0);
+                _objvm.dec_base_rate = _invoice.dec_base_rate;
+                _objvm.dec_inter_energy_rate = _invoice.dec_inter_energy_rate;
+                _objvm.dec_peak_energy_rate = _invoice.dec_peak_energy_rate;
+                _objvm.demanda_base = decimal.Round((decimal)_invoice.demanda_base, 2);
+                _objvm.demanda_intermedia = decimal.Round((decimal)_invoice.demanda_intermedia, 2);
+                _objvm.demanda_punta = decimal.Round((decimal)_invoice.demanda_punta, 2);
+                _objvm.suministro = decimal.Round((decimal)_invoice.suministro, 2);
+                _objvm.distribucion = decimal.Round((decimal)_invoice.distribucion, 2);
+                _objvm.tarifa_transmision = _invoice.tarifa_transmision;
+                _objvm.operacion_cenace = _invoice.operacion_cenace;
+                _objvm.cre_servicios_conexos = _invoice.cre_servicios_conexos;
+                _objvm.capacidad = decimal.Round((decimal)_invoice.capacidad, 2);
+                _objvm.energia_reactiva = decimal.Round((decimal)_invoice.energia_reactiva, 2);
+                _objvm.precio_suministro = decimal.Round((decimal)_invoice.precio_suministro, 2);
+                _objvm.precio_distribucion = decimal.Round((decimal)_invoice.precio_distribucion, 2);
+                _objvm.precio_transmision = decimal.Round((decimal)_invoice.precio_transmision, 2);
+                _objvm.precio_cenace = decimal.Round((decimal)_invoice.precio_cenace, 2);
+                _objvm.precio_energia = decimal.Round((decimal)_invoice.precio_energia, 2);
+                _objvm.precio_capacidad = decimal.Round((decimal)_invoice.precio_capacidad, 2);
+                _objvm.precio_cre_servicios_conexos = decimal.Round((decimal)_invoice.precio_cre_servicios_conexos, 2);
+                _objvm.precio_dos_porciento_baja_tension = decimal.Round((decimal)_invoice.precio_dos_porciento_baja_tension, 2);
+                _objvm.precio_decuento_bonificacion = decimal.Round((decimal)_invoice.precio_decuento_bonificacion, 2);
+                _objvm.dec_tax_amt = decimal.Round((decimal)_invoice.dec_tax_amt, 2);
+                _objvm.dec_total = decimal.Round((decimal)_invoice.dec_total, 2);
+                _objvm.int_tenant_id = _invoice.int_tenant_id;
+                _objvm.bit_tenant_active = _invoice.bit_tenant_active;
+                _objvm.dec_base_amt = _invoice.dec_base_amt;
+                _objvm.dec_inter_energy_amt = _invoice.dec_inter_energy_amt;
+                _objvm.dec_peak_energy_amt = _invoice.dec_peak_energy_amt;
+
+                return View(_objvm);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ModifyInvoice(InvoiceVM objvm)
+        {
+            int _lVal = 0;
+            ViewBag._erromsg = 0;
+            try
+            {
+                TenantBAL objbal = new TenantBAL();
+
+                DataTable dt = (DataTable)Session["tenantDT"];
+                objbal = new TenantBAL();
+
+                var tarifas = _dbc.tbl_tarifas.FirstOrDefault();
+
+                if (tarifas != null)
+                {
+                    var _tarifasvm = new TarifasVM();
+
+                    _tarifasvm.dec_base_rate = tarifas.dec_base_rate;
+                    _tarifasvm.dec_inter_energy_rate = tarifas.dec_inter_energy_rate;
+                    _tarifasvm.dec_peak_energy_rate = tarifas.dec_peak_energy_rate;
+                    _tarifasvm.suministro = tarifas.suministro;
+                    _tarifasvm.distribucion = tarifas.distribucion;
+                    _tarifasvm.tarifa_transmision = tarifas.tarifa_transmision;
+                    _tarifasvm.operacion_cenace = tarifas.operacion_cenace;
+                    _tarifasvm.capacidad = tarifas.capacidad;
+                    _tarifasvm.cre_servicios_conexos = tarifas.cre_servicios_conexos;
+
+                    var meses = new SelectList(new List<SelectListItem>()
+                        {
+                                new SelectListItem(){ Value="Enero", Text="Enero"},
+                                new SelectListItem(){ Value="Febrero", Text="Febrero"},
+                                new SelectListItem(){ Value="Marzo", Text="Marzo"},
+                                new SelectListItem(){ Value="Abril", Text="Abril"},
+                                new SelectListItem(){ Value="Mayo", Text="Mayo"},
+                                new SelectListItem(){ Value="Junio", Text="Junio"},
+                                new SelectListItem(){ Value="Julio", Text="Julio"},
+                                new SelectListItem(){ Value="Agosto", Text="Agosto"},
+                                new SelectListItem(){ Value="Septiembre", Text="Septiembre"},
+                                new SelectListItem(){ Value="Octubre", Text="Octubre"},
+                                new SelectListItem(){ Value="Noviembre", Text="Noviembre"},
+                                new SelectListItem(){ Value="Diciembre", Text="Diciembre"},
+                        },
+                        "Value",
+                        "Text");
+
+
+                    var anios = new SelectList(new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year), Text = Convert.ToString(DateTime.Now.Year) },
+                            new SelectListItem() { Value = Convert.ToString(DateTime.Now.Year - 1), Text = Convert.ToString(DateTime.Now.Year - 1) },
+                        },
+                        "Value",
+                        "Text");
+
+                    _tarifasvm.Meses = meses;
+                    _tarifasvm.Anios = anios;
+
+                    _tarifasvm.mes_tarifas = tarifas.mes_tarifas;
+                    _tarifasvm.ano_tarifas = Convert.ToInt32(tarifas.ano_tarifas);
+
+
+                    objvm.tarifassetting = _tarifasvm;
+                }
+
+                if (objvm.int_invoice_id == 0)
+                {
+                    objvm.bit_tenant_active = true;
+                    objvm.bit_is_editable = true;
+                    _lVal = objbal.tenant_invoice_insert(objvm);
+                }
+                else
+                {
+                    _lVal = objbal.tenant_invoice_update(objvm);
+                }
+
+
                 /*if (_lVal > 0)
                 {
 

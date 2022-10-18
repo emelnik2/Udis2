@@ -1,0 +1,529 @@
+﻿@model TenantMNG.ViewModel.InvoiceVM
+
+@{
+    ViewBag.Title = "ModifyInvoice";
+    Layout = "~/Views/Shared/_LayoutPM.cshtml";
+}
+
+<style>
+    .adisabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+@section scriptstop
+{
+    <script>
+
+        $(function () {
+
+
+            $("#date_s_bill_date").datepicker({
+
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+                onSelect: function (selected) {
+
+                    var dt = new Date(selected);
+
+
+
+
+                    /*var period = $("#int_invoice_period").val();
+
+                    period = 3;
+
+                    if (period == 1)
+                        dt.setDate(dt.getDate() + 7);
+                    else if (period == 2)
+                        dt.setDate(dt.getDate() + 15);
+                    else if (period == 3) {
+
+                        dt.setMonth(dt.getMonth() + 1);
+                        dt.setDate(dt.getDate() - 1);
+
+                    }*/
+
+
+
+                    //var dd = dt.getUTCDate() + 10;
+                    var mm = dt.getUTCMonth() + 1;
+                    var yy = dt.getUTCFullYear();
+
+                    var pDate = new Date(dt);
+                    pDate.setDate(dt.getDate() + 10);
+                    var payDate = pDate.toISOString().slice(0, 10);
+
+
+                    $("#date_e_bill_date").val(yy + "/" + mm + "/" + getDaysInMonth(mm, yy));
+
+                    $("#date_pay_date").val(pDate.getUTCFullYear() + "/" + pDate.getUTCMonth() + "/" + pDate.getUTCDate());
+
+
+
+                    if (($("#date_e_bill_date").val().length > 0) && ($("#date_s_bill_date").val().length > 0))
+                    {
+                        getRatesData();
+                        getEnergyData();
+                    }
+
+
+                }
+            });
+
+            $("#date_e_bill_date").datepicker({
+
+                autoclose: true,
+                orientation: "bottom auto",
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+
+                    $("#date_s_bill_date").datepicker("option", "maxDate", dt);
+
+                    if (($("#date_s_bill_date").val().length > 0) && ($("#date_e_bill_date").val().length > 0))
+                    {
+                        getRatesData();
+                        getEnergyData();
+                    }
+                        
+                }// Client can directly modify date in textbox?
+            });
+
+            $("#date_pay_date").datepicker({
+                minDate: 'today',
+                orientation: "bottom auto",
+                autoclose: true,
+                dateFormat: 'yy/mm/dd', // Set the date format
+                constrainInput: false, // Client can directly modify date in textbox?
+
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            $("#btnsave").click(function (e) {
+                $.validator.unobtrusive.parse("#formcontact");
+                $("#formcontact").validate();
+
+                if ($("#formcontact").valid()) {
+                    var precio_suministro = $('#precio_suministro').val();
+                    $('#precio_suministro').val(parseFloat((precio_suministro).replace(/,/g, '')));
+                    var precio_distribucion = $('#precio_distribucion').val();
+                    $('#precio_distribucion').val(parseFloat((precio_distribucion).replace(/,/g, '')));
+                    var precio_transmision = $('#precio_transmision').val();
+                    $('#precio_transmision').val(parseFloat((precio_transmision).replace(/,/g, '')));
+                    var precio_cenace = $('#precio_cenace').val();
+                    $('#precio_cenace').val(parseFloat((precio_cenace).replace(/,/g, '')));
+                    var precio_energia = $('#precio_energia').val();
+                    $('#precio_energia').val(parseFloat((precio_energia).replace(/,/g, '')));
+                    var precio_capacidad = $('#precio_capacidad').val();
+                    $('#precio_capacidad').val(parseFloat((precio_capacidad).replace(/,/g, '')));
+                    var precio_cre_servicios_conexos = $('#precio_cre_servicios_conexos').val();
+                    $('#precio_cre_servicios_conexos').val(parseFloat((precio_cre_servicios_conexos).replace(/,/g, '')));
+                    var precio_dos_porciento_baja_tension = $('#precio_dos_porciento_baja_tension').val();
+                    $('#precio_dos_porciento_baja_tension').val(parseFloat((precio_dos_porciento_baja_tension).replace(/,/g, '')));
+                    var precio_decuento_bonificacion = $('#precio_decuento_bonificacion').val();
+                    $('#precio_decuento_bonificacion').val(parseFloat((precio_decuento_bonificacion).replace(/,/g, '')));
+                    var dec_tax_amt = $('#dec_tax_amt').val();
+                    $('#dec_tax_amt').val(parseFloat((dec_tax_amt).replace(/,/g, '')));
+                    var dec_total = $('#dec_total').val();
+                    $('#dec_total').val(parseFloat((dec_total).replace(/,/g, '')));
+                    var dec_base_amt = $('#dec_base_amt').val();
+                    $('#dec_base_amt').val(parseFloat((dec_base_amt).replace(/,/g, '')));
+                    var dec_inter_energy_amt = $('#dec_inter_energy_amt').val();
+                    $('#dec_inter_energy_amt').val(parseFloat((dec_inter_energy_amt).replace(/,/g, '')));
+                    var dec_peak_energy_amt = $('#dec_peak_energy_amt').val();
+                    $('#dec_peak_energy_amt').val(parseFloat((dec_peak_energy_amt).replace(/,/g, '')));
+                    var energia_activa = $('#energia_activa').val();
+                    $('#energia_activa').val(parseFloat((energia_activa).replace(/,/g, '')));
+
+                    $("#formcontact").submit();
+                    
+                }
+                e.stopImmediatePropagation();
+                return false;
+            });
+
+            $("#btnsaverates").click(function (e) {
+                $.validator.unobtrusive.parse("#formtarifas");
+                $("#formtarifas").validate();
+                if ($("#formtarifas").valid()) {
+                    var tarifas = {};
+                    tarifas.dec_base_rate = $('#tarifassetting_dec_base_rate').val();
+                    tarifas.dec_inter_energy_rate = $('#tarifassetting_dec_inter_energy_rate').val();
+                    tarifas.dec_peak_energy_rate = $('#tarifassetting_dec_peak_energy_rate').val();
+                    tarifas.suministro = $('#tarifassetting_suministro').val();
+                    tarifas.distribucion = $('#tarifassetting_distribucion').val();
+                    tarifas.tarifa_transmision = $('#tarifassetting_tarifa_transmision').val();
+                    tarifas.operacion_cenace = $('#tarifassetting_operacion_cenace').val();
+                    tarifas.cre_servicios_conexos = $('#tarifassetting_cre_servicios_conexos').val();
+                    tarifas.capacidad = $('#tarifassetting_capacidad').val();
+                    tarifas.mes_tarifas = $('#tarifassetting_mes_tarifas').val();
+                    tarifas.ano_tarifas = $('#tarifassetting_ano_tarifas').val();
+                    tarifas.int_tarifas_id = $('#tarifassetting_int_tarifas_id').val();
+
+                    var options = {};
+                    options.url =  '@Url.Action("_ModifyRates", "PM")'
+                    options.type = "POST";
+                    options.data = JSON.stringify(tarifas),
+                    options.contentType = "application/json";
+                    options.dataType = "json";
+                    options.success = function (data) {
+
+                        $('#dec_base_rate').val(Number(tarifas.dec_base_rate));
+                        $('#dec_inter_energy_rate').val(Number(tarifas.dec_inter_energy_rate));
+                        $('#dec_peak_energy_rate').val(Number(tarifas.dec_peak_energy_rate));
+                        $('#suministro').val(Number(tarifas.suministro));
+                        $('#distribucion').val(Number(tarifas.distribucion));
+                        $('#tarifa_transmision').val(Number(tarifas.tarifa_transmision));
+                        $('#operacion_cenace').val(Number(tarifas.operacion_cenace));
+                        $('#cre_servicios_conexos').val(Number(tarifas.cre_servicios_conexos));
+                        $('#capacidad').val(Number(tarifas.capacidad));
+
+                        alertRates(data);
+                    };
+                    options.error = function () {
+                          alertRates(0);
+                    };
+                    $.ajax(options);
+
+                }
+                e.stopImmediatePropagation();
+                return false;
+            });
+        });
+
+        function alertRates(val) {
+            if (val > 0) {
+                $('#divSuccess_rates').show();
+                $('#divFail_rates').hide();
+            }
+            else if (val == -1) {
+                $('#divSuccess_rates').hide();
+                $('#divFail_rates').show();
+            }
+        }
+
+        function getRatesData() {
+            var tarifas = {};
+
+            var dt = new Date($("#date_e_bill_date").val());
+            
+            tarifas.mes_tarifas = toMonthName(dt.getMonth());
+            tarifas.ano_tarifas = dt.getFullYear();
+
+            var options = {};
+            options.url = '@Url.Action("getRates", "PM")';
+            options.type = "POST";
+            options.data = JSON.stringify(tarifas),
+            options.contentType = "application/json";
+            options.dataType = "json";
+            options.success = function (data) {
+
+                $.each(data, function (index, item) {
+
+                    if (item != null) {
+                        $('#dec_base_rate').val(Number(item.dec_base_rate));
+                        $('#dec_inter_energy_rate').val(Number(item.dec_inter_energy_rate));
+                        $('#dec_peak_energy_rate').val(Number(item.dec_peak_energy_rate));
+                        $('#suministro').val(Number(item.suministro));
+                        $('#distribucion').val(Number(item.distribucion));
+                        $('#tarifa_transmision').val(Number(item.tarifa_transmision));
+                        $('#operacion_cenace').val(Number(item.operacion_cenace));
+                        $('#cre_servicios_conexos').val(Number(item.cre_servicios_conexos));
+                        $('#capacidad').val(Number(item.capacidad));
+                    }
+                });
+
+            };
+            $.ajax(options);
+
+        }
+
+        function getEnergyData() {
+
+
+            var tenantenergy = {};
+
+            tenantenergy.date_s_bill_date = $('#date_s_bill_date').val();
+            tenantenergy.date_e_bill_date = $('#date_e_bill_date').val();
+            tenantenergy.str_meter_id = $('#str_meter_id').val();
+            tenantenergy.str_peak_s_time = $('#str_peak_s_time').val();
+            tenantenergy.str_peak_e_time = $('#str_peak_e_time').val();
+            tenantenergy.str_inter_s_time = $('#str_inter_s_time').val();
+            tenantenergy.str_inter_e_time = $('#str_inter_e_time').val();
+            tenantenergy.int_tenant_id = $('#int_tenant_id').val();
+            tenantenergy.int_invoice_id = $('#int_invoice_id').val();
+
+            tenantenergy.dec_peak_energy_rate = $('#dec_peak_energy_rate').val();
+            tenantenergy.dec_inter_energy_rate = $('#dec_inter_energy_rate').val();
+            tenantenergy.dec_base_rate = $('#dec_base_rate').val();
+
+            tenantenergy.demanda_base = $('#demanda_base').val();
+            tenantenergy.demanda_intermedia = $('#demanda_intermedia').val();
+            tenantenergy.demanda_punta = $('#demanda_punta').val();
+
+
+            var options = {};
+            options.url = '@Url.Action("getEnerge", "PM")';
+            options.type = "POST";
+            options.data = JSON.stringify(tenantenergy),
+            options.contentType = "application/json";
+            options.dataType = "json";
+            options.success = function (data) {
+
+                //var _totalamt = 0;
+                var transmision_base = 0;
+                var transmision_intermedia = 0;
+                var transmision_punta = 0;
+                var energiaactiva = 0;
+                var energiareactiva = 0;
+                var demanda_base = 0;
+                var demanda_intermedia = 0;
+                var demanda_punta = 0;
+
+
+                var row = "";
+                $.each(data, function (index, item) {
+
+
+
+                    //row += "<tr><td>" + item.metername + "</td><td>" + item.dec_peak_energy + "</td><td>" + item.dec_peak_energy_rate + "</td><td>" + item.energiaactiva + "</td>";
+                    //row += "<td>" + item.dec_inter_energy + "</td><td>" + item.dec_inter_energy_rate + "</td><td>" + item.energiareactiva + "</td>";
+                    //row += "<td>" + item.dec_base_energy + "</td><td>" + item.dec_base_rate + "</td><td>" + item.dec_base_amt + "</td></tr>";
+
+                    //_totalamt = _totalamt + (item.dec_base_amt + item.dec_peak_energy_amt + item.dec_inter_energy_amt);
+                    transmision_base = transmision_base + item.dec_base_energy;
+                    transmision_intermedia = transmision_intermedia + item.dec_inter_energy;
+                    transmision_punta = transmision_punta + item.dec_peak_energy;
+                    energiaactiva = energiaactiva + item.energia_activa;
+                    energiareactiva = energiareactiva + item.energia_reactiva;
+                    demanda_base = demanda_base + item.demanda_base;
+                    demanda_intermedia = demanda_intermedia + item.demanda_intermedia;
+                    demanda_punta = demanda_punta + item.demanda_punta;
+
+                });
+                $("#contacts").html(row);
+                //$("#datatable_orders").show();
+
+                finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta);
+            };
+            options.error = function () {
+
+            };
+            $.ajax(options);
+        }
+
+        function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta) {
+
+            var energia_activa = 0;
+            var energia_reactiva = 0;
+
+            //Checar si energia base, intermedia, punta, energia reactiva, demandas base, intermedia
+            // y punta tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
+            //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
+            if (!$('#dec_base_energy').val())
+                $('#dec_base_energy').val(Number(transmision_base));
+            if (!$('#dec_inter_energy').val())
+                $('#dec_inter_energy').val(Number(transmision_intermedia));
+            if (!$('#dec_peak_energy').val())
+                $('#dec_peak_energy').val(Number(transmision_punta));
+            if (!$('#energia_reactiva').val())
+                $('#energia_reactiva').val(Number(energiareactiva));
+            if (!$('#energia_activa').val())
+                $('#energia_activa').val(Number(energiaactiva));
+            if (!$('#demanda_base').val())
+                $('#demanda_base').val(Number(demanda_base));
+            if (!$('#demanda_intermedia').val())
+                $('#demanda_intermedia').val(Number(demanda_intermedia));
+            if (!$('#demanda_punta').val())
+                $('#demanda_punta').val(Number(demanda_punta));
+
+            var dec_base_energy = Number($('#dec_base_energy').val());
+            var dec_inter_energy = Number($('#dec_inter_energy').val());
+            var dec_peak_energy = Number($('#dec_peak_energy').val());
+
+            if (!Number.isNaN(energiaactiva))
+                energia_activa = energiaactiva;
+            else
+                energia_activa = dec_base_energy + dec_inter_energy + dec_peak_energy;
+
+            if (!Number.isNaN(energiareactiva))
+                energia_reactiva = energiareactiva;
+            else
+                energia_reactiva = Number($('#energia_reactiva').val());
+
+            // Cálculo de Distribucion
+            var maxdemanda = Math.max($('#demanda_base').val(), $('#demanda_intermedia').val(), $('#demanda_punta').val());
+            var start_date = new Date($('#date_s_bill_date').val());
+            var end_date = new Date($('#date_e_bill_date').val());
+            var periodo_dias = Math.floor((end_date.getTime() - start_date.getTime()) / (1000 * 60 * 60 * 24));
+            var dias_mes = new Date(end_date.getFullYear(), end_date.getMonth() + 1, 0).getDate();
+            var factor_mes = roundUp((periodo_dias / dias_mes), 4);
+            var demanda_cargo = roundUp(((dec_base_energy + dec_inter_energy + dec_peak_energy) / (24 * periodo_dias * 0.57)), 0);
+            var mindemanda = Math.min(maxdemanda, demanda_cargo);
+            var distribucion = $('#distribucion').val() * mindemanda * factor_mes;
+
+            // Cálculo Suministro
+            var suministro = Number($('#suministro').val()) * factor_mes;
+
+            // Cálculo de Transmision (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_tranmisionbase = dec_base_energy * $('#tarifa_transmision').val();
+            var precio_tranmisionintermedia = dec_inter_energy * $('#tarifa_transmision').val();
+            var precio_tranmisionpunta = dec_peak_energy * $('#tarifa_transmision').val();
+            var transmision = precio_tranmisionbase + precio_tranmisionintermedia + precio_tranmisionpunta;
+
+            // Cálculo CENACE (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_cenace_base = dec_base_energy * $('#operacion_cenace').val();
+            var precio_cenace_intermedia = dec_inter_energy * $('#operacion_cenace').val();
+            var precio_cenace_punta = dec_peak_energy * $('#operacion_cenace').val();
+            var cenace = precio_cenace_base + precio_cenace_intermedia + precio_cenace_punta;
+
+            // Cálculo de Energía (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_energiabase = dec_base_energy * $('#dec_base_rate').val();
+            var precio_energiaintermedia = dec_inter_energy * $('#dec_inter_energy_rate').val();
+            var precio_energiapunta = dec_peak_energy * $('#dec_peak_energy_rate').val();
+            var energia = precio_energiabase + precio_energiaintermedia + precio_energiapunta;
+
+            // Cálculo de Capacidad
+            var capacidad = (Math.min($('#demanda_punta').val(), demanda_cargo) * $('#capacidad').val()) * factor_mes;
+
+            // Cálculo CRE Servicios Conexos (SCnMEM) (cambié energía por transmisión, ya que tienen los mismos valores)
+            var precio_sc_base = dec_base_energy * $('#cre_servicios_conexos').val();
+            var precio_sc_intermedia = dec_inter_energy * $('#cre_servicios_conexos').val();
+            var precio_sc_punta = dec_peak_energy * $('#cre_servicios_conexos').val();
+            var servicios_conexos = precio_sc_base + precio_sc_intermedia + precio_sc_punta;
+
+            // Cálculo de % de Bonificación
+            //var factor_de_potencia = roundUp((energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))), 4);
+            var factor_de_potencia = (energia_activa / Math.sqrt((energia_activa ** 2) + (energia_reactiva ** 2))).toFixed(4);
+            //var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (roundUp((25 * (1 - (0.9 / factor_de_potencia))), 1)) : 0;
+            var porciento_bonificacion = (factor_de_potencia >= 0.9) ? -1 * (25 * (1 - (0.9 / factor_de_potencia))).toFixed(1) : 0;
+            //var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? roundUp((60 * ((0.9 / factor_de_potencia) - 1)),1) : 0));
+            var penalizacion_factor_de_potencia = Math.min(120, ((factor_de_potencia < 0.9) ? (60 * ((0.9 / factor_de_potencia) - 1)).toFixed(1) : 0));
+
+            // Total de la Factura
+            var dos_porciento_baja_tension = (suministro + distribucion + transmision + cenace + energia + capacidad + servicios_conexos) * 0.02;
+            var calculo_energia = (distribucion + transmision + cenace + energia + capacidad + servicios_conexos);
+            var energia_total = (calculo_energia + suministro + dos_porciento_baja_tension);
+            var bonificacion_factor_potencia = porciento_bonificacion * (energia_total / 100);
+            var penalizacion_factor_potencia = energia_total * (penalizacion_factor_de_potencia / 100);
+
+            var finalamount = dos_porciento_baja_tension + calculo_energia + bonificacion_factor_potencia + penalizacion_factor_potencia + suministro;
+            var taxval = ((finalamount) * 16) / 100;
+            finalamount = finalamount + taxval;
+
+
+            $('#precio_suministro').val(numberWithCommas(Number(suministro).toFixed(2)));
+
+            $('#precio_distribucion').val(numberWithCommas(Number(distribucion).toFixed(2)));
+
+            $('#precio_transmision').val(numberWithCommas(Number(transmision).toFixed(2)));
+
+            $('#precio_cenace').val(numberWithCommas(Number(cenace).toFixed(2)));
+
+            $('#precio_energia').val(numberWithCommas(Number(energia).toFixed(2)));
+
+            $('#precio_capacidad').val(numberWithCommas(Number(capacidad).toFixed(2)));
+
+            $('#precio_cre_servicios_conexos').val(numberWithCommas(Number(servicios_conexos).toFixed(2)));
+
+            $('#precio_dos_porciento_baja_tension').val(numberWithCommas(Number(dos_porciento_baja_tension).toFixed(2)));
+
+            $('#precio_decuento_bonificacion').val(numberWithCommas(Number(bonificacion_factor_potencia).toFixed(2)));
+
+            $('#dec_tax_amt').val(numberWithCommas(Number(taxval).toFixed(2)));
+
+            $('#dec_total').val(numberWithCommas(Number(finalamount).toFixed(2)));
+
+            $('#dec_base_amt').val(numberWithCommas(Number(precio_energiabase).toFixed(2)));
+
+            $('#dec_inter_energy_amt').val(numberWithCommas(Number(precio_energiaintermedia).toFixed(2)));
+
+            $('#dec_peak_energy_amt').val(numberWithCommas(Number(precio_energiapunta).toFixed(2)));
+
+            $('#energia_activa').val(numberWithCommas(Number(energia_activa).toFixed(2)));
+
+
+
+            //}
+        }
+
+        function roundUp(number, digits) {
+            var factor = Math.pow(10, digits);
+            return Math.ceil(number * factor) / factor
+        }
+
+        function getDaysInMonth(m, y) {
+            return m === 2 ? y & 3 || !(y % 25) && y & 15 ? 28 : 29 : 30 + (m + (m >> 3) & 1);
+        }
+
+        function toMonthName(monthNumber) {
+            const date = new Date();
+            date.setMonth(monthNumber);
+
+            return date.toLocaleString('es-MX', {
+                month: 'long',
+            });
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+    </script>
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "PM")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "PM")" class="tip-bottom">@TenantMNG.Resource.tenant</a> <a href="#" class="current">@TenantMNG.Resource.create_single</a> </div>
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Facturaci&oacute;n Medidor  <B>@Model.str_meter_id</B></h5>
+                </div>
+                <div class="widget-content nopadding">
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="widget-title">
+                        <ul class="nav nav-tabs" id="tabsinvoice">
+                            <li class="active"><a data-toggle="tab" href="#tab1">@TenantMNG.Resource.invoice_meters</a></li>
+                            <li><a id="a1" data-toggle="tab" href="#tab2">@TenantMNG.Resource.enter_rates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget-content tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            @Html.Partial("_ModifyInvoice", Model)
+                        </div>
+                        <div id="tab2" class="tab-pane">
+                            @Html.Partial("_ModifyRates", Model)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
