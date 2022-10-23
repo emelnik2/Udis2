@@ -332,21 +332,21 @@
             //Checar si energia base, intermedia, punta, energia reactiva, demandas base, intermedia
             // y punta tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
-            if (!$('#dec_base_energy').val())
+            if (!$('#dec_base_energy').val() || $('#dec_base_energy').val() == 0)
                 $('#dec_base_energy').val(Number(transmision_base));
-            if (!$('#dec_inter_energy').val())
+            if (!$('#dec_inter_energy').val() || $('#dec_inter_energy').val() == 0)
                 $('#dec_inter_energy').val(Number(transmision_intermedia));
-            if (!$('#dec_peak_energy').val())
+            if (!$('#dec_peak_energy').val() || $('#dec_peak_energy').val() == 0)
                 $('#dec_peak_energy').val(Number(transmision_punta));
-            if (!$('#energia_reactiva').val())
+            if (!$('#energia_reactiva').val() || $('#energia_reactiva').val() == 0)
                 $('#energia_reactiva').val(Number(energiareactiva));
-            if (!$('#energia_activa').val())
+            if (!$('#energia_activa').val() || $('#energia_activa').val() == 0)
                 $('#energia_activa').val(Number(energiaactiva));
-            if (!$('#demanda_base').val())
+            if (!$('#demanda_base').val() || $('#demanda_base').val() == 0)
                 $('#demanda_base').val(Number(demanda_base));
-            if (!$('#demanda_intermedia').val())
+            if (!$('#demanda_intermedia').val() || $('#demanda_intermedia').val() == 0)
                 $('#demanda_intermedia').val(Number(demanda_intermedia));
-            if (!$('#demanda_punta').val())
+            if (!$('#demanda_punta').val() || $('#demanda_punta').val() == 0)
                 $('#demanda_punta').val(Number(demanda_punta));
 
             var dec_base_energy = Number($('#dec_base_energy').val());

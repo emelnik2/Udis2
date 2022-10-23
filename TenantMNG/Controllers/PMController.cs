@@ -3159,21 +3159,24 @@ namespace TenantMNG.Controllers
                 var invoice = _invoice.ToList();
                 var chartgroup = from ins in invoice
 
-                                 group ins by ins.tbl_user_master.str_comp_name into empg
+                                 group ins by new { invoicedate = ins.date_invoice_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
+                                 orderby empg.Key.invoicedate ascending, empg.Key.str_comp_name ascending
+                                 //group ins by ins.tbl_user_master.str_comp_name into empg
                                  select new
                                  {
-                                     Name = empg.Key,
+                                     Name = empg.Key.str_comp_name,
                                      //peakenergy = empg.Sum(x => x.dec_peak_energy),
                                      //interenergy = empg.Sum(x => x.dec_inter_energy),
                                      //baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoice_total = empg.Sum(x => x.dec_total),
-                                     invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
+                                     //invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
+                                     invoicedate = empg.Key.invoicedate.ToString(),
 
                                      //invoicedate = empg.Max(x => x.date_e_bill_date),
                                      //< td > @strig.Format("{0:MM-dd-yyyy}", dt.fromdate) TO @string.Format("{0:MM-dd-yyyy}", dt.todate) </ td >
 
                                  };
-
+                
 
                 var data = chartgroup.ToList();
                 List<SummaryViewModel> models = new List<SummaryViewModel>();

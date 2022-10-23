@@ -202,12 +202,13 @@
                         options.success = function (datajson) {
 
                             for (j = 0; j < datajson.length; j++) {
-                                tenetsNames.push(datajson[j].Name);
+                                if (!(tenetsNames.includes(datajson[j].Name)))
+                                    tenetsNames.push(datajson[j].Name);
                                 if (!(monthNames.includes(datajson[j].dateinvoice)))
                                     monthNames.push(datajson[j].dateinvoice);
                             }
 
-                            for (i = 0; i < datajson.length; i++) {
+                            for (i = 0; i < tenetsNames.length; i++) {
                                 dataPoints[i] = [];
                                 dataPoints[i][0] = tenetsNames[i];
                                 dataPoints[i][1] = parseInt(datajson[i].totalenergy);
@@ -247,28 +248,29 @@
                             dataPoints[0][0] = "Nombre del Inquilino"
                             for (j = 1; j <= monthNames.length; j++) {
                                 dataPoints[j] = [];
-                                for (i = 1; i <= datajson.length; i++) {
-                                    dataPoints[0][i] = tenetsNames[i - 1];
+                                for (i = 1; i <= tenetsNames.length; i++) {
+                                        dataPoints[0][i] = tenetsNames[i - 1];
                                 }
                             }
 
-                            dataPoints[0][datajson.length + 1] = { role: 'annotation' };
+                            dataPoints[0][tenetsNames.length + 1] = { role: 'annotation' };
 
                             for (j = 1; j <= monthNames.length; j++) {
                                 dataPoints[j][0] = monthNames[j - 1];
-                                for (i = 1; i <= datajson.length; i++) {
-                                    dataPoints[j][i] = parseInt(datajson[i - 1].totalenergy);
+                                for (i = 1; i <= tenetsNames.length; i++) {
+                                    dataPoints[j][i] = energyValue(datajson, dataPoints[j][0], dataPoints[0][i]);
                                 }
-                                dataPoints[j][datajson.length + 1] = '';
+                                dataPoints[j][tenetsNames.length + 1] = '';
                             }
 
-                            data = new google.visualization.arrayToDataTable(dataPoints, false);
+                            //data = new google.visualization.arrayToDataTable(dataPoints, false);
 
 
-                            /*var data = google.visualization.arrayToDataTable([
+                            var data = google.visualization.arrayToDataTable([
                                 ['American Express', 'Amazon', 'Beat', 'Administración', 'Mantenimiento', { role: 'annotation' }],
+                                ['CFE', 8761524.37, 0, 0, 0, 0],
                                 ['Septiembre', 2925402.22, 4391259.24, 0, 1423574.49, 21288.42000]
-                            ]);*/
+                            ]);
 
                             var options = {
                                 width: 1100,
@@ -291,6 +293,17 @@
                         $.ajax(options);
                     }
 
+                    function energyValue (jsonarray, monthname, tenantname)   {
+
+                        var energyvalue = 0;
+
+                        for (k = 0; k < jsonarray.length; k++) {
+                            if ((jsonarray[k].dateinvoice == monthname) && (jsonarray[k].Name == tenantname))
+                                energyvalue = jsonarray[k].totalenergy;
+                        }
+
+                        return energyvalue;
+                    }
 
                     function FillShow() {
                         var tourid = $('#tour_id').val();
