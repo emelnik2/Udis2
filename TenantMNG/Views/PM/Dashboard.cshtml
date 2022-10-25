@@ -155,7 +155,7 @@
     @*<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>*@
 
     @*For Graph*@
-    <script>
+<script>
 
 
                     $(function () {
@@ -179,9 +179,9 @@
                     // draws it.
                     function drawChart() {
 
-                        const tenetsNames = [];
+                        var tenetsNames = [];
 
-                        const monthNames = [];
+                        var monthNames = [];
 
 
                         var data = JSON.stringify({
@@ -193,7 +193,7 @@
                         var dataPoints = [];
 
                         var options = {};
-                        options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                        options.url = '@Url.Action("TenantConsumptionReportPreviousMonth", "PM")';
                         options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
                         options.type = "GET";
 
@@ -237,11 +237,33 @@
                             var chart = new google.visualization.ColumnChart(document.getElementById('divchart'));
                             chart.draw(data, options);
 
-                            //New bar graph
+                        };
+                        options.error = function () {
+                            // alert('error');
+                        };
+                        $.ajax(options);
+
+                        //New bar graph
+
+                        options = {};
+                        options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                        options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
+                        options.type = "GET";
+
+                        options.contentType = "application/json";
+                        options.dataType = "json";
+                        options.success = function (datajson) {
 
                             dataPoints = [];
-                            //data = new google.visualization.DataTable();
-                            //data.addColumn('string', 'Mes');
+                            tenetsNames = [];
+                            monthNames = [];
+
+                            for (j = 0; j < datajson.length; j++) {
+                                if (!(tenetsNames.includes(datajson[j].Name)))
+                                    tenetsNames.push(datajson[j].Name);
+                                if (!(monthNames.includes(datajson[j].dateinvoice)))
+                                    monthNames.push(datajson[j].dateinvoice);
+                            }
 
                             debugger;
                             dataPoints[0] = [];
@@ -331,7 +353,7 @@
                             }
                         });
                     }
-    </script>
+</script>
 
 
     <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>

@@ -3178,29 +3178,29 @@ namespace TenantMNG.Controllers
                     abc.Name = dt.Name;
                     abc.totalenergy = dt.invoice_total;
                     if (dt.invoicedate == "5")
-                        abc.dateinvoice = "May";
+                        abc.dateinvoice = "Mayo";
                     if (dt.invoicedate == "1")
-                        abc.dateinvoice = "january";
+                        abc.dateinvoice = "Enero";
                     if (dt.invoicedate == "2")
-                        abc.dateinvoice = "February";
+                        abc.dateinvoice = "Febrero";
                     if (dt.invoicedate == "3")
-                        abc.dateinvoice = "March";
+                        abc.dateinvoice = "Marzo";
                     if (dt.invoicedate == "4")
-                        abc.dateinvoice = "April";
+                        abc.dateinvoice = "Abril";
                     if (dt.invoicedate == "6")
-                        abc.dateinvoice = "June";
+                        abc.dateinvoice = "Junio";
                     if (dt.invoicedate == "7")
-                        abc.dateinvoice = "July";
+                        abc.dateinvoice = "Julio";
                     if (dt.invoicedate == "8")
-                        abc.dateinvoice = "August";
+                        abc.dateinvoice = "Agosto";
                     if (dt.invoicedate == "9")
-                        abc.dateinvoice = "September";
+                        abc.dateinvoice = "Septiembre";
                     if (dt.invoicedate == "10")
-                        abc.dateinvoice = "October";
+                        abc.dateinvoice = "Octubre";
                     if (dt.invoicedate == "11")
-                        abc.dateinvoice = "November";
+                        abc.dateinvoice = "Noviembre";
                     if (dt.invoicedate == "12")
-                        abc.dateinvoice = "December";
+                        abc.dateinvoice = "Diciembre";
                     models.Add(abc);
                 }
 
