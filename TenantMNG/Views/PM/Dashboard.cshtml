@@ -263,14 +263,14 @@
                                 dataPoints[j][tenetsNames.length + 1] = '';
                             }
 
-                            //data = new google.visualization.arrayToDataTable(dataPoints, false);
+                            data = new google.visualization.arrayToDataTable(dataPoints, false);
 
 
-                            var data = google.visualization.arrayToDataTable([
+                            /*var data = google.visualization.arrayToDataTable([
                                 ['American Express', 'Amazon', 'Beat', 'Administración', 'Mantenimiento', { role: 'annotation' }],
                                 ['CFE', 8761524.37, 0, 0, 0, 0],
                                 ['Septiembre', 2925402.22, 4391259.24, 0, 1423574.49, 21288.42000]
-                            ]);
+                            ]);*/
 
                             var options = {
                                 width: 1100,
@@ -343,7 +343,7 @@
                 const tenetsNames = [];
                 var dataPoints = [];
                 var options = {};
-                options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                options.url = '@Url.Action("TenantConsumptionReportPreviousMonth", "PM")';
                 options.data = { int_id:null, page: null, sortBy: null, s_date: null, tenantid: null, };
                 options.type = "GET";
                 options.contentType = 'application/json; charset=utf-8';
@@ -365,7 +365,7 @@
             $(function () {
                 $("#ddl_tenant").change(function () {
                     var options = {};
-                    options.url = '@Url.Action("TenantconsumptionReportNEW", "PM")';
+                    options.url = '@Url.Action("TenantConsumptionReportPreviousMonth", "PM")';
                     options.data = { int_id: null, page: null, sortBy: null, s_date: null, tenantid: null, };
                 options.type = "GET";
                 options.contentType = 'application/json; charset=utf-8';

@@ -26,5 +26,6 @@ namespace TenantMNG.Models
         public Nullable<decimal> cre_servicios_conexos { get; set; }
         public string mes_tarifas { get; set; }
         public Nullable<int> ano_tarifas { get; set; }
+        public Nullable<decimal> total_cantidad_cfe { get; set; }
     }
 }

@@ -3135,16 +3135,102 @@ namespace TenantMNG.Controllers
             return View();
         }
 
+        public JsonResult TenantConsumptionReportPreviousMonth(string int_id, int? page, string sortBy, string s_date, string tenantid)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var max = new DateTime(today.Year, today.Month, 1); // first of this month
+                var min = max.AddMonths(-1); // first of last month
+
+                var _invoice = (from inv in _dbc.tbl_invoice
+                                where inv.date_invoice_date >= min && inv.date_invoice_date < max
+                                select inv).AsQueryable();
+                UdisEntities _dbmeter = new UdisEntities();
+
+                if (!string.IsNullOrEmpty(int_id))
+                {
+                    int _id = Convert.ToInt32(int_id);
+                    _invoice = _invoice.Where(x => x.int_tenant_id == _id);
+
+                }
+
+                var invoice = _invoice.ToList();
+                var chartgroup = from ins in invoice
+
+                                 group ins by new { invoicedate = ins.date_invoice_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
+                                 orderby empg.Key.str_comp_name ascending
+                                 //group ins by ins.tbl_user_master.str_comp_name into empg
+                                 select new
+                                 {
+                                     Name = empg.Key.str_comp_name,
+                                     invoice_total = empg.Sum(x => x.dec_total),
+                                     invoicedate = empg.Key.invoicedate.ToString(),
+                                 };
+
+
+                var data = chartgroup.ToList();
+                List<SummaryViewModel> models = new List<SummaryViewModel>();
+                SummaryViewModel abc;
+                foreach (var dt in data)
+                {
+                    abc = new SummaryViewModel();
+                    abc.Name = dt.Name;
+                    abc.totalenergy = dt.invoice_total;
+                    if (dt.invoicedate == "5")
+                        abc.dateinvoice = "May";
+                    if (dt.invoicedate == "1")
+                        abc.dateinvoice = "january";
+                    if (dt.invoicedate == "2")
+                        abc.dateinvoice = "February";
+                    if (dt.invoicedate == "3")
+                        abc.dateinvoice = "March";
+                    if (dt.invoicedate == "4")
+                        abc.dateinvoice = "April";
+                    if (dt.invoicedate == "6")
+                        abc.dateinvoice = "June";
+                    if (dt.invoicedate == "7")
+                        abc.dateinvoice = "July";
+                    if (dt.invoicedate == "8")
+                        abc.dateinvoice = "August";
+                    if (dt.invoicedate == "9")
+                        abc.dateinvoice = "September";
+                    if (dt.invoicedate == "10")
+                        abc.dateinvoice = "October";
+                    if (dt.invoicedate == "11")
+                        abc.dateinvoice = "November";
+                    if (dt.invoicedate == "12")
+                        abc.dateinvoice = "December";
+                    models.Add(abc);
+                }
+
+                ViewBag._abc = models;
+
+                bindDropBox();
+                if (!string.IsNullOrEmpty(int_id))
+                    ViewBag._iscleardisplay = true;
+
+                return Json(models, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return Json(null);
+        }
+
         public JsonResult TenantconsumptionReportNEW(string int_id, int? page, string sortBy, string s_date, string tenantid)
         {
             try
             {
 
-                ViewBag.SortDateParameter = sortBy == "Date" ? "Date Desc" : "Date";
-                ViewBag.SortPeackEnergyParameter = sortBy == "PE" ? "PE Desc" : "PE";
-                ViewBag.SortIntermediateEnergyParameter = sortBy == "IE" ? "IE Desc" : "IE";
-                ViewBag.SortAmountParameter = sortBy == "Amount" ? "Amount Desc" : "Amount";
-                var _invoice = _dbc.tbl_invoice.AsQueryable();
+                var today = DateTime.Today;
+                var max = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)); // last day of this month
+                var min = max.AddMonths(-4); // previous 4 months
+
+                var _invoice = (from inv in _dbc.tbl_invoice
+                                where inv.date_invoice_date >= min && inv.date_invoice_date < max
+                                select inv).AsQueryable();
                 UdisEntities _dbmeter = new UdisEntities();
                 //_invoice = _dbc.tbl_invoice.Where(x => x.date_invoice_date.Value.Month == x.date_invoice_date.Value.Month).Take(6);
 
@@ -3165,16 +3251,8 @@ namespace TenantMNG.Controllers
                                  select new
                                  {
                                      Name = empg.Key.str_comp_name,
-                                     //peakenergy = empg.Sum(x => x.dec_peak_energy),
-                                     //interenergy = empg.Sum(x => x.dec_inter_energy),
-                                     //baseenergy = empg.Sum(x => x.dec_base_energy),
                                      invoice_total = empg.Sum(x => x.dec_total),
-                                     //invoicedate = empg.Max(x => x.date_invoice_date.Value.Month.ToString()),
                                      invoicedate = empg.Key.invoicedate.ToString(),
-
-                                     //invoicedate = empg.Max(x => x.date_e_bill_date),
-                                     //< td > @strig.Format("{0:MM-dd-yyyy}", dt.fromdate) TO @string.Format("{0:MM-dd-yyyy}", dt.todate) </ td >
-
                                  };
                 
 

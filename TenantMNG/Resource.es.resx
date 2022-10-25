@@ -930,4 +930,10 @@
   <data name="delete_invoice_message" xml:space="preserve">
     <value>¿Está seguro que desea borrar esta factura?</value>
   </data>
+  <data name="total_cantidad_cfe" xml:space="preserve">
+    <value>Cantidad Total en Recibo CFE</value>
+  </data>
+  <data name="total_cantidad_cfe_enter_amount" xml:space="preserve">
+    <value>Por favor ingrese la cantidad del recibo de CFE</value>
+  </data>
 </root>

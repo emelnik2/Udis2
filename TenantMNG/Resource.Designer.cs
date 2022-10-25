@@ -2203,6 +2203,24 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total amount in the CFE invoice.
+        /// </summary>
+        public static string total_cantidad_cfe {
+            get {
+                return ResourceManager.GetString("total_cantidad_cfe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter the amount of the CFE invoice.
+        /// </summary>
+        public static string total_cantidad_cfe_enter_amount {
+            get {
+                return ResourceManager.GetString("total_cantidad_cfe_enter_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Building Energy.
         /// </summary>
         public static string total_energy {

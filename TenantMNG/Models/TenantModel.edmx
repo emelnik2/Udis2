@@ -115,6 +115,7 @@
           <Property Name="cre_servicios_conexos" Type="decimal" Precision="15" Scale="5" />
           <Property Name="mes_tarifas" Type="nvarchar" MaxLength="50" />
           <Property Name="ano_tarifas" Type="int" />
+          <Property Name="total_cantidad_cfe" Type="decimal" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="tbl_template">
           <Key>
@@ -1229,6 +1230,7 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
           <Property Name="cre_servicios_conexos" Type="Decimal" Precision="15" Scale="5" />
           <Property Name="mes_tarifas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ano_tarifas" Type="Int32" />
+          <Property Name="total_cantidad_cfe" Type="Decimal" Precision="15" Scale="5" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1476,6 +1478,7 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
           <EntitySetMapping Name="tbl_tarifas">
             <EntityTypeMapping TypeName="DB_TenantMNGModel.tbl_tarifas">
               <MappingFragment StoreEntitySet="tbl_tarifas">
+                <ScalarProperty Name="total_cantidad_cfe" ColumnName="total_cantidad_cfe" />
                 <ScalarProperty Name="ano_tarifas" ColumnName="ano_tarifas" />
                 <ScalarProperty Name="mes_tarifas" ColumnName="mes_tarifas" />
                 <ScalarProperty Name="cre_servicios_conexos" ColumnName="cre_servicios_conexos" />

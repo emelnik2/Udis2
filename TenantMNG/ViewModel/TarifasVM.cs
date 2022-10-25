@@ -28,7 +28,7 @@ namespace TenantMNG.ViewModel
         public Nullable<decimal> dec_inter_energy_rate { get; set; }
 
         [Display(Name = "suministro", ResourceType = typeof(Resource))]
-        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "distribucion_enter_amount")]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "suministro_enter_amount")]
         public Nullable<decimal> suministro { get; set; }
 
         [Display(Name = "distribucion", ResourceType = typeof(Resource))]
@@ -54,6 +54,11 @@ namespace TenantMNG.ViewModel
         public IEnumerable<SelectListItem> Meses { get; set; }
 
         public IEnumerable<SelectListItem> Anios { get; set; }
+
+        [Display(Name = "total_cantidad_cfe", ResourceType = typeof(Resource))]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "total_cantidad_cfe_enter_amount")]
+        public Nullable<decimal> total_cantidad_cfe { get; set; }
+
 
     }
 

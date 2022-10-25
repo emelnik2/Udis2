@@ -135,6 +135,17 @@
 
     <div class="span5">
         <div class="control-group">
+            @Html.LabelFor(m => m.tarifassetting.total_cantidad_cfe, new { @class = "control-label" })
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.tarifassetting.total_cantidad_cfe, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)" }) ($)
+
+            </div>
+        </div>
+    </div>
+
+    <div class="span5">
+        <div class="control-group">
             @Html.LabelFor(m => m.tarifassetting.ano_tarifas, new { @class = "control-label" })
 
             <div class="controls">
