@@ -2275,29 +2275,29 @@ namespace TenantMNG.Controllers
 
                     html = html.Replace("#Meterid", _invoice.str_meter_id);
 
-                    html = html.Replace("#suministrorate", CommonCls.DoFormat(_invoice.suministro));
+                    html = html.Replace("#suministrorate", Convert.ToString(_invoice.suministro));
 
-                    html = html.Replace("#distribucionrate", CommonCls.DoFormat(_invoice.distribucion));
+                    html = html.Replace("#distribucionrate", Convert.ToString(_invoice.distribucion));
 
-                    html = html.Replace("#transmisionrate", CommonCls.DoFormat(_invoice.tarifa_transmision));
+                    html = html.Replace("#transmisionrate", Convert.ToString(_invoice.tarifa_transmision));
 
-                    html = html.Replace("#ocenacerate", CommonCls.DoFormat(_invoice.operacion_cenace));
+                    html = html.Replace("#ocenacerate", Convert.ToString(_invoice.operacion_cenace));
 
                     html = html.Replace("#energybase", CommonCls.DoFormat(_invoice.dec_base_energy));
-                    html = html.Replace("#energybrate", CommonCls.DoFormat(_invoice.dec_base_rate));
+                    html = html.Replace("#energybrate", Convert.ToString(_invoice.dec_base_rate));
                     html = html.Replace("#benergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_base_amt)));
 
                     html = html.Replace("#energyintermedia", CommonCls.DoFormat(_invoice.dec_inter_energy));
-                    html = html.Replace("#energyirate", CommonCls.DoFormat(_invoice.dec_inter_energy_rate));
+                    html = html.Replace("#energyirate", Convert.ToString(_invoice.dec_inter_energy_rate));
                     html = html.Replace("#ienergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_inter_energy_amt)));
 
                     html = html.Replace("#energypunta", CommonCls.DoFormat(_invoice.dec_peak_energy));
-                    html = html.Replace("#energyprate", CommonCls.DoFormat(_invoice.dec_peak_energy_rate));
+                    html = html.Replace("#energyprate", Convert.ToString(_invoice.dec_peak_energy_rate));
                     html = html.Replace("#penergytotal", String.Format("{0:n}", CommonCls.DoFormat(_invoice.dec_peak_energy_amt)));
 
-                    html = html.Replace("#capacidadrate", CommonCls.DoFormat(_invoice.capacidad));
+                    html = html.Replace("#capacidadrate", Convert.ToString(_invoice.capacidad));
 
-                    html = html.Replace("#serviciosconexosrate", CommonCls.DoFormat(_invoice.cre_servicios_conexos));
+                    html = html.Replace("#serviciosconexosrate", Convert.ToString(_invoice.cre_servicios_conexos));
                     
                     html = html.Replace("#sumofamount", "$" + CommonCls.DoFormat(_totalenergyamt));
                     //html = html.Replace("#customamt1", "$" + CommonCls.DoFormat(_invoice.dec_demanda_facturable));
@@ -3177,30 +3177,7 @@ namespace TenantMNG.Controllers
                     abc = new SummaryViewModel();
                     abc.Name = dt.Name;
                     abc.totalenergy = dt.invoice_total;
-                    if (dt.invoicedate == "5")
-                        abc.dateinvoice = "Mayo";
-                    if (dt.invoicedate == "1")
-                        abc.dateinvoice = "Enero";
-                    if (dt.invoicedate == "2")
-                        abc.dateinvoice = "Febrero";
-                    if (dt.invoicedate == "3")
-                        abc.dateinvoice = "Marzo";
-                    if (dt.invoicedate == "4")
-                        abc.dateinvoice = "Abril";
-                    if (dt.invoicedate == "6")
-                        abc.dateinvoice = "Junio";
-                    if (dt.invoicedate == "7")
-                        abc.dateinvoice = "Julio";
-                    if (dt.invoicedate == "8")
-                        abc.dateinvoice = "Agosto";
-                    if (dt.invoicedate == "9")
-                        abc.dateinvoice = "Septiembre";
-                    if (dt.invoicedate == "10")
-                        abc.dateinvoice = "Octubre";
-                    if (dt.invoicedate == "11")
-                        abc.dateinvoice = "Noviembre";
-                    if (dt.invoicedate == "12")
-                        abc.dateinvoice = "Diciembre";
+                    abc.dateinvoice = getMonthName(Convert.ToInt32(dt.invoicedate));
                     models.Add(abc);
                 }
 
@@ -3226,11 +3203,26 @@ namespace TenantMNG.Controllers
 
                 var today = DateTime.Today;
                 var max = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)); // last day of this month
-                var min = max.AddMonths(-4); // previous 4 months
+                var min = max.AddMonths(-3); // previous 3 months
+                var previousYear = today.Year;
+                string currentMonth = getMonthName(today.Month);
+                string previousMonth = getMonthName(today.Month -1);
+                string prepreviousMonth = getMonthName(today.Month - 2);
+
+
+                if (((today.Month - 1) < 1) || ((today.Month - 2) < 1))
+                        previousYear = today.Year - 1;
 
                 var _invoice = (from inv in _dbc.tbl_invoice
                                 where inv.date_invoice_date >= min && inv.date_invoice_date < max
                                 select inv).AsQueryable();
+
+                var _cfeAmounts = (from cfe in _dbc.tbl_tarifas
+                                  where (cfe.mes_tarifas == currentMonth || cfe.mes_tarifas == previousMonth
+                                            || cfe.mes_tarifas == prepreviousMonth) && ((cfe.ano_tarifas == today.Year) && 
+                                            (cfe.ano_tarifas == previousYear))
+                                  select cfe).AsQueryable();
+
                 UdisEntities _dbmeter = new UdisEntities();
                 //_invoice = _dbc.tbl_invoice.Where(x => x.date_invoice_date.Value.Month == x.date_invoice_date.Value.Month).Take(6);
 
@@ -3241,8 +3233,8 @@ namespace TenantMNG.Controllers
 
                 }
 
-
                 var invoice = _invoice.ToList();
+                var cfeAmounts = _cfeAmounts.ToList();
                 var chartgroup = from ins in invoice
 
                                  group ins by new { invoicedate = ins.date_invoice_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
@@ -3261,33 +3253,20 @@ namespace TenantMNG.Controllers
                 SummaryViewModel abc;
                 foreach (var dt in data)
                 {
+                    var cfe = cfeAmounts.Where(x => x.mes_tarifas == getMonthName(Convert.ToInt32(dt.invoicedate))).FirstOrDefault();
+                    if ((cfe != null) && (!models.Any(y => y.dateinvoice == "CFE " + cfe.mes_tarifas)))
+                    {
+                        abc = new SummaryViewModel();
+                        abc.dateinvoice = "CFE " + cfe.mes_tarifas;
+                        abc.Name = chartgroup.First().Name;
+                        abc.totalenergy = cfe.total_cantidad_cfe;
+                        models.Add(abc);
+                    }
+
                     abc = new SummaryViewModel();
                     abc.Name = dt.Name;
                     abc.totalenergy = dt.invoice_total;
-                    if (dt.invoicedate == "5")
-                        abc.dateinvoice = "May";
-                    if (dt.invoicedate == "1")
-                        abc.dateinvoice = "january";
-                    if (dt.invoicedate == "2")
-                        abc.dateinvoice = "February";
-                    if (dt.invoicedate == "3")
-                        abc.dateinvoice = "March";
-                    if (dt.invoicedate == "4")
-                        abc.dateinvoice = "April";
-                    if (dt.invoicedate == "6")
-                        abc.dateinvoice = "June";
-                    if (dt.invoicedate == "7")
-                        abc.dateinvoice = "July";
-                    if (dt.invoicedate == "8")
-                        abc.dateinvoice = "August";
-                    if (dt.invoicedate == "9")
-                        abc.dateinvoice = "September";
-                    if (dt.invoicedate == "10")
-                        abc.dateinvoice = "October";
-                    if (dt.invoicedate == "11")
-                        abc.dateinvoice = "November";
-                    if (dt.invoicedate == "12")
-                        abc.dateinvoice = "December";
+                    abc.dateinvoice = getMonthName(Convert.ToInt32(dt.invoicedate));
                     models.Add(abc);
                 }
 
@@ -3304,6 +3283,74 @@ namespace TenantMNG.Controllers
                 log.Error(ex.Message);
             }
             return Json(null);
+        }
+
+        public int getMonthNumber (string monthname)
+        {
+            int monthnumber = 1;
+
+            if (monthname == "Mayo")
+                monthnumber = 5;
+            if (monthname == "Enero")
+                monthnumber = 1;
+            if (monthname == "Febrero")
+                monthnumber = 2;
+            if (monthname == "Marzo")
+                monthnumber = 3;
+            if (monthname == "Abril")
+                monthnumber = 4;
+            if (monthname == "Junio")
+                monthnumber = 6;
+            if (monthname == "Julio")
+                monthnumber = 7;
+            if (monthname == "Agosto")
+                monthnumber = 8;
+            if (monthname == "Septiembre")
+                monthnumber = 9;
+            if (monthname == "Octubre")
+                monthnumber = 10;
+            if (monthname == "Noviembre")
+                monthnumber = 11;
+            if (monthname == "Diciembre")
+                monthnumber = 12;
+
+            return monthnumber;
+        }
+
+        public string getMonthName(int monthnumber)
+        {
+            string monthname = "";
+
+            if (monthnumber.ToString() == "5")
+                monthname = "Mayo";
+            if (monthnumber.ToString() == "1")
+                monthname = "Enero";
+            if (monthnumber.ToString() == "2")
+                monthname = "Febrero";
+            if (monthnumber.ToString() == "3")
+                monthname = "Marzo";
+            if (monthnumber.ToString() == "4")
+                monthname = "Abril";
+            if (monthnumber.ToString() == "6")
+                monthname = "Junio";
+            if (monthnumber.ToString() == "7")
+                monthname = "Julio";
+            if (monthnumber.ToString() == "8")
+                monthname = "Agosto";
+            if (monthnumber.ToString() == "9")
+                monthname = "Septiembre";
+            if (monthnumber.ToString() == "10")
+                monthname = "Octubre";
+            if (monthnumber.ToString() == "11")
+                monthname = "Noviembre";
+            if (monthnumber.ToString() == "12")
+                monthname = "Diciembre";
+            if (monthnumber.ToString() == "0")
+                monthname = "Diciembre";
+            if (monthnumber.ToString() == "-1")
+                monthname = "Noviembre";
+
+            return monthname;
         }
 
         [SessionCheck]

@@ -35,8 +35,10 @@ namespace TenantMNG.ViewModel
         public Decimal? totalenergy { get; set; }
         public Decimal? baseenergy { get; set; }
 
-         public string dateinvoice { get; set; }
+        public string dateinvoice { get; set; }
         public decimal? Value { get; set; }
+
+        public Decimal total_cantidad_cfe { get; set; }
 
 
     }
