@@ -283,7 +283,15 @@
             options.dataType = "json";
             options.success = function (data) {
 
-                //var _totalamt = 0;
+                var energia_punta_lectura_anterior = 0;
+                var energia_punta_lectura_actual = 0;
+                var energia_intermedia_lectura_anterior = 0;
+                var energia_intermedia_lectura_actual = 0;
+                var energia_base_lectura_anterior = 0;
+                var energia_base_lectura_actual = 0;
+                var energia_reactiva_lectura_anterior = 0;
+                var energia_reactiva_lectura_actual = 0;
+
                 var transmision_base = 0;
                 var transmision_intermedia = 0;
                 var transmision_punta = 0;
@@ -304,11 +312,22 @@
                     //row += "<td>" + item.dec_base_energy + "</td><td>" + item.dec_base_rate + "</td><td>" + item.dec_base_amt + "</td></tr>";
 
                     //_totalamt = _totalamt + (item.dec_base_amt + item.dec_peak_energy_amt + item.dec_inter_energy_amt);
-                    transmision_base = transmision_base + item.dec_base_energy;
-                    transmision_intermedia = transmision_intermedia + item.dec_inter_energy;
-                    transmision_punta = transmision_punta + item.dec_peak_energy;
+
+                    energia_punta_lectura_anterior = energia_punta_lectura_anterior + item.energia_punta_lectura_anterior;
+                    energia_punta_lectura_actual = energia_punta_lectura_actual + item.energia_punta_lectura_actual;
+                    energia_intermedia_lectura_anterior = energia_intermedia_lectura_anterior + item.energia_intermedia_lectura_anterior;
+                    energia_intermedia_lectura_actual = energia_intermedia_lectura_actual + item.energia_intermedia_lectura_actual;
+                    energia_base_lectura_anterior = energia_base_lectura_anterior + item.energia_base_lectura_anterior;
+                    energia_base_lectura_actual = energia_base_lectura_actual + item.energia_base_lectura_actual;
+                    energia_reactiva_lectura_anterior = energia_reactiva_lectura_anterior + item.energia_reactiva_lectura_anterior;
+                    energia_reactiva_lectura_actual = energia_reactiva_lectura_actual + item.energia_reactiva_lectura_actual;
+
+
+                    transmision_base = transmision_base + (energia_base_lectura_actual - energia_base_lectura_anterior);
+                    transmision_intermedia = transmision_intermedia + (energia_intermedia_lectura_actual - energia_intermedia_lectura_anterior);
+                    transmision_punta = transmision_punta + (energia_punta_lectura_actual - energia_punta_lectura_anterior);
                     energiaactiva = energiaactiva + item.energia_activa;
-                    energiareactiva = energiareactiva + item.energia_reactiva;
+                    energiareactiva = energiareactiva + (energia_reactiva_lectura_actual - energia_reactiva_lectura_anterior);
                     demanda_base = demanda_base + item.demanda_base;
                     demanda_intermedia = demanda_intermedia + item.demanda_intermedia;
                     demanda_punta = demanda_punta + item.demanda_punta;
@@ -317,7 +336,10 @@
                 $("#contacts").html(row);
                 //$("#datatable_orders").show();
 
-                finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta);
+                finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base,
+                    demanda_intermedia, demanda_punta, energia_punta_lectura_anterior, energia_punta_lectura_actual, energia_intermedia_lectura_anterior,
+                    energia_intermedia_lectura_actual, energia_base_lectura_anterior, energia_base_lectura_actual, energia_reactiva_lectura_anterior,
+                    energia_reactiva_lectura_actual);
             };
             options.error = function () {
 
@@ -325,7 +347,10 @@
             $.ajax(options);
         }
 
-        function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base, demanda_intermedia, demanda_punta) {
+        function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base,
+            demanda_intermedia, demanda_punta, energia_punta_lectura_anterior, energia_punta_lectura_actual, energia_intermedia_lectura_anterior,
+            energia_intermedia_lectura_actual, energia_base_lectura_anterior, energia_base_lectura_actual, energia_reactiva_lectura_anterior,
+            energia_reactiva_lectura_actual) {
 
             var energia_activa = 0;
             var energia_reactiva = 0;
@@ -333,22 +358,40 @@
             //Checar si energia base, intermedia, punta, energia reactiva, demandas base, intermedia
             // y punta tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
+            //Se añade también lectura anterior y lectura actual de energía base, intermedia, punta, energia reactiva
             if (!$('#dec_base_energy').val() || $('#dec_base_energy').val() == 0)
-                $('#dec_base_energy').val(Number(transmision_base));
+                $('#dec_base_energy').val(Number(transmision_base).toFixed(2));
             if (!$('#dec_inter_energy').val() || $('#dec_inter_energy').val() == 0)
-                $('#dec_inter_energy').val(Number(transmision_intermedia));
+                $('#dec_inter_energy').val(Number(transmision_intermedia).toFixed(2));
             if (!$('#dec_peak_energy').val() || $('#dec_peak_energy').val() == 0)
-                $('#dec_peak_energy').val(Number(transmision_punta));
+                $('#dec_peak_energy').val(Number(transmision_punta).toFixed(2));
             if (!$('#energia_reactiva').val() || $('#energia_reactiva').val() == 0)
-                $('#energia_reactiva').val(Number(energiareactiva));
+                $('#energia_reactiva').val(Number(energiareactiva).toFixed(2));
             if (!$('#energia_activa').val() || $('#energia_activa').val() == 0)
-                $('#energia_activa').val(Number(energiaactiva));
+                $('#energia_activa').val(Number(energiaactiva).toFixed(2));
             if (!$('#demanda_base').val() || $('#demanda_base').val() == 0)
-                $('#demanda_base').val(Number(demanda_base));
+                $('#demanda_base').val(Number(demanda_base).toFixed(2));
             if (!$('#demanda_intermedia').val() || $('#demanda_intermedia').val() == 0)
-                $('#demanda_intermedia').val(Number(demanda_intermedia));
+                $('#demanda_intermedia').val(Number(demanda_intermedia).toFixed(2));
             if (!$('#demanda_punta').val() || $('#demanda_punta').val() == 0)
-                $('#demanda_punta').val(Number(demanda_punta));
+                $('#demanda_punta').val(Number(demanda_punta).toFixed(2));
+            if (!$('#lectura_energia_base_anterior').val() || $('#lectura_energia_base_anterior').val() == 0)
+                $('#lectura_energia_base_anterior').val(Number(energia_base_lectura_anterior).toFixed(2));
+            if (!$('#lectura_energia_base_actual').val() || $('#lectura_energia_base_actual').val() == 0)
+                $('#lectura_energia_base_actual').val(Number(energia_base_lectura_actual).toFixed(2));
+            if (!$('#lectura_energia_intermedia_anterior').val() || $('#lectura_energia_intermedia_anterior').val() == 0)
+                $('#lectura_energia_intermedia_anterior').val(Number(energia_intermedia_lectura_anterior).toFixed(2));
+            if (!$('#lectura_energia_intermedia_actual').val() || $('#lectura_energia_intermedia_actual').val() == 0)
+                $('#lectura_energia_intermedia_actual').val(Number(energia_intermedia_lectura_actual).toFixed(2));
+            if (!$('#lectura_energia_punta_anterior').val() || $('#lectura_energia_punta_anterior').val() == 0)
+                $('#lectura_energia_punta_anterior').val(Number(energia_punta_lectura_anterior).toFixed(2));
+            if (!$('#lectura_energia_punta_actual').val() || $('#lectura_energia_punta_actual').val() == 0)
+                $('#lectura_energia_punta_actual').val(Number(energia_punta_lectura_actual).toFixed(2));
+            if (!$('#lectura_energia_reactiva_anterior').val() || $('#lectura_energia_reactiva_anterior').val() == 0)
+                $('#lectura_energia_reactiva_anterior').val(Number(energia_reactiva_lectura_anterior).toFixed(2));
+            if (!$('#lectura_energia_reactiva_actual').val() || $('#lectura_energia_reactiva_actual').val() == 0)
+                $('#lectura_energia_reactiva_actual').val(Number(energia_reactiva_lectura_actual).toFixed(2));
+
 
             var dec_base_energy = Number($('#dec_base_energy').val());
             var dec_inter_energy = Number($('#dec_inter_energy').val());

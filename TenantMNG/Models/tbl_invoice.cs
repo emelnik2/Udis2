@@ -60,6 +60,14 @@ namespace TenantMNG.Models
         public Nullable<decimal> demanda_punta { get; set; }
         public Nullable<decimal> energia_activa { get; set; }
         public Nullable<decimal> energia_reactiva { get; set; }
+        public Nullable<decimal> lectura_energia_base_anterior { get; set; }
+        public Nullable<decimal> lectura_energia_base_actual { get; set; }
+        public Nullable<decimal> lectura_energia_intermedia_anterior { get; set; }
+        public Nullable<decimal> lectura_energia_intermedia_actual { get; set; }
+        public Nullable<decimal> lectura_energia_punta_anterior { get; set; }
+        public Nullable<decimal> lectura_energia_punta_actual { get; set; }
+        public Nullable<decimal> lectura_energia_reactiva_anterior { get; set; }
+        public Nullable<decimal> lectura_energia_reactiva_actual { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_invoice_details> tbl_invoice_details { get; set; }

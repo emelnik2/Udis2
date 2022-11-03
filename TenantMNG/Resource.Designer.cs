@@ -1051,6 +1051,78 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Reading - Base Energy.
+        /// </summary>
+        public static string lectura_energia_base_actual {
+            get {
+                return ResourceManager.GetString("lectura_energia_base_actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Reading - Base Energy.
+        /// </summary>
+        public static string lectura_energia_base_anterior {
+            get {
+                return ResourceManager.GetString("lectura_energia_base_anterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Reading - Intermediate Energy.
+        /// </summary>
+        public static string lectura_energia_intermedia_actual {
+            get {
+                return ResourceManager.GetString("lectura_energia_intermedia_actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Reading - Intermediate Energy.
+        /// </summary>
+        public static string lectura_energia_intermedia_anterior {
+            get {
+                return ResourceManager.GetString("lectura_energia_intermedia_anterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Reading - Peak Energy.
+        /// </summary>
+        public static string lectura_energia_punta_actual {
+            get {
+                return ResourceManager.GetString("lectura_energia_punta_actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Reading - Peak Energy.
+        /// </summary>
+        public static string lectura_energia_punta_anterior {
+            get {
+                return ResourceManager.GetString("lectura_energia_punta_anterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Reading - Reactive Energy.
+        /// </summary>
+        public static string lectura_energia_reactiva_actual {
+            get {
+                return ResourceManager.GetString("lectura_energia_reactiva_actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Reading - Reactive Energy.
+        /// </summary>
+        public static string lectura_energia_reactiva_anterior {
+            get {
+                return ResourceManager.GetString("lectura_energia_reactiva_anterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List.
         /// </summary>
         public static string list {

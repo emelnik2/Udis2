@@ -942,4 +942,28 @@
   <data name="total_cantidad_cfe_enter_amount" xml:space="preserve">
     <value>Please enter the amount of the CFE invoice</value>
   </data>
+  <data name="lectura_energia_base_actual" xml:space="preserve">
+    <value>Current Reading - Base Energy</value>
+  </data>
+  <data name="lectura_energia_base_anterior" xml:space="preserve">
+    <value>Previous Reading - Base Energy</value>
+  </data>
+  <data name="lectura_energia_intermedia_actual" xml:space="preserve">
+    <value>Current Reading - Intermediate Energy</value>
+  </data>
+  <data name="lectura_energia_intermedia_anterior" xml:space="preserve">
+    <value>Previous Reading - Intermediate Energy</value>
+  </data>
+  <data name="lectura_energia_punta_actual" xml:space="preserve">
+    <value>Current Reading - Peak Energy</value>
+  </data>
+  <data name="lectura_energia_punta_anterior" xml:space="preserve">
+    <value>Previous Reading - Peak Energy</value>
+  </data>
+  <data name="lectura_energia_reactiva_actual" xml:space="preserve">
+    <value>Current Reading - Reactive Energy</value>
+  </data>
+  <data name="lectura_energia_reactiva_anterior" xml:space="preserve">
+    <value>Previous Reading - Reactive Energy</value>
+  </data>
 </root>

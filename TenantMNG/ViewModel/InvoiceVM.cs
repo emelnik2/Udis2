@@ -155,5 +155,30 @@ namespace TenantMNG.ViewModel
 
         [Display(Name = "energia_punta", ResourceType = typeof(Resource))]
         public Nullable<decimal> energia_punta { get; set; }
+
+        [Display(Name = "lectura_energia_base_anterior", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_base_anterior { get; set; }
+
+        [Display(Name = "lectura_energia_base_actual", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_base_actual { get; set; }
+
+        [Display(Name = "lectura_energia_intermedia_anterior", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_intermedia_anterior { get; set; }
+
+        [Display(Name = "lectura_energia_intermedia_actual", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_intermedia_actual { get; set; }
+
+        [Display(Name = "lectura_energia_punta_anterior", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_punta_anterior { get; set; }
+
+        [Display(Name = "lectura_energia_punta_actual", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_punta_actual { get; set; }
+
+        [Display(Name = "lectura_energia_reactiva_anterior", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_reactiva_anterior { get; set; }
+
+        [Display(Name = "lectura_energia_reactiva_actual", ResourceType = typeof(Resource))]
+        public Nullable<decimal> lectura_energia_reactiva_actual { get; set; }
+
     }
 }

@@ -49,6 +49,14 @@
           <Property Name="demanda_punta" Type="decimal" Precision="15" Scale="5" />
           <Property Name="energia_activa" Type="decimal" Precision="15" Scale="5" />
           <Property Name="energia_reactiva" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_base_anterior" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_base_actual" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_intermedia_anterior" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_intermedia_actual" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_punta_anterior" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_punta_actual" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_reactiva_anterior" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_reactiva_actual" Type="decimal" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="tbl_invoice_details">
           <Key>
@@ -875,6 +883,14 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
           <Property Name="demanda_punta" Type="Decimal" Precision="15" Scale="5" />
           <Property Name="energia_activa" Type="Decimal" Precision="15" Scale="5" />
           <Property Name="energia_reactiva" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_base_anterior" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_base_actual" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_intermedia_anterior" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_intermedia_actual" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_punta_anterior" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_punta_actual" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_reactiva_anterior" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="lectura_energia_reactiva_actual" Type="Decimal" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="tbl_invoice_details">
           <Key>
@@ -1241,7 +1257,15 @@ warning 6002: The table/view 'Udis.dbo.Udis' does not have a primary key defined
     <EntitySetMapping Name="tbl_invoice">
       <EntityTypeMapping TypeName="IsTypeOf(DB_TenantMNGModel.tbl_invoice)">
         <MappingFragment StoreEntitySet="tbl_invoice">
-          <ScalarProperty Name="energia_reactiva" ColumnName="energia_reactiva" />
+          <ScalarProperty Name="lectura_energia_reactiva_actual" ColumnName="lectura_energia_reactiva_actual" />
+                <ScalarProperty Name="lectura_energia_reactiva_anterior" ColumnName="lectura_energia_reactiva_anterior" />
+                <ScalarProperty Name="lectura_energia_punta_actual" ColumnName="lectura_energia_punta_actual" />
+                <ScalarProperty Name="lectura_energia_punta_anterior" ColumnName="lectura_energia_punta_anterior" />
+                <ScalarProperty Name="lectura_energia_intermedia_actual" ColumnName="lectura_energia_intermedia_actual" />
+                <ScalarProperty Name="lectura_energia_intermedia_anterior" ColumnName="lectura_energia_intermedia_anterior" />
+                <ScalarProperty Name="lectura_energia_base_actual" ColumnName="lectura_energia_base_actual" />
+                <ScalarProperty Name="lectura_energia_base_anterior" ColumnName="lectura_energia_base_anterior" />
+                <ScalarProperty Name="energia_reactiva" ColumnName="energia_reactiva" />
                 <ScalarProperty Name="energia_activa" ColumnName="energia_activa" />
                 <ScalarProperty Name="demanda_punta" ColumnName="demanda_punta" />
                 <ScalarProperty Name="demanda_intermedia" ColumnName="demanda_intermedia" />

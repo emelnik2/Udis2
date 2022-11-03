@@ -936,4 +936,31 @@
   <data name="total_cantidad_cfe_enter_amount" xml:space="preserve">
     <value>Por favor ingrese la cantidad del recibo de CFE</value>
   </data>
+  <data name="lectura_energia_base_actual" xml:space="preserve">
+    <value>Lectura Actual - Energía Base</value>
+  </data>
+  <data name="lectura_energia_base_anterior" xml:space="preserve">
+    <value>Lectura Anterior - Energía Base</value>
+  </data>
+  <data name="lectura_energia_intermedia_actual" xml:space="preserve">
+    <value>Lectura Actual - Energía Intermedia</value>
+  </data>
+  <data name="lectura_energia_intermedia_anterior" xml:space="preserve">
+    <value>Lectura Anterior - Energía Intermedia</value>
+  </data>
+  <data name="lectura_energia_punta_actual" xml:space="preserve">
+    <value>Lectura Actual - Energía Punta</value>
+  </data>
+  <data name="lectura_energia_punta_anterior" xml:space="preserve">
+    <value>Lectura Anterior - Energía Punta</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lectura_energia_reactiva_actual" xml:space="preserve">
+    <value>Lectura Actual - Energía Reactiva</value>
+  </data>
+  <data name="lectura_energia_reactiva_anterior" xml:space="preserve">
+    <value>Lectura Anterior - Energía Reactiva</value>
+  </data>
 </root>

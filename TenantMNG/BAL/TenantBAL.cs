@@ -247,6 +247,14 @@ namespace TenantMNG.BAL
                             new SqlParameter("@energia_activa", invoice.energia_activa),
                             new SqlParameter("@energia_reactiva", invoice.energia_reactiva),
 
+                            new SqlParameter("@lectura_energia_base_anterior", invoice.lectura_energia_base_anterior),
+                            new SqlParameter("@lectura_energia_base_actual", invoice.lectura_energia_base_actual),
+                            new SqlParameter("@lectura_energia_intermedia_anterior", invoice.lectura_energia_intermedia_anterior),
+                            new SqlParameter("@lectura_energia_intermedia_actual", invoice.lectura_energia_intermedia_actual),
+                            new SqlParameter("@lectura_energia_punta_anterior", invoice.lectura_energia_punta_anterior),
+                            new SqlParameter("@lectura_energia_punta_actual", invoice.lectura_energia_punta_actual),
+                            new SqlParameter("@lectura_energia_reactiva_anterior", invoice.lectura_energia_reactiva_anterior),
+                            new SqlParameter("@lectura_energia_reactiva_actual", invoice.lectura_energia_reactiva_actual),
                 };
 
                     dbcnx.Database.ExecuteSqlCommand("usp_insert_invoice @int_id out,@int_tenant_id,@bit_tenant_active,@date_s_bill_date," +
@@ -255,7 +263,9 @@ namespace TenantMNG.BAL
                         "@precio_transmision,@precio_cenace,@precio_energia,@precio_capacidad,@precio_cre_servicios_conexos," +
                         "@precio_dos_porciento_baja_tension,@precio_decuento_bonificacion,@str_meter_id,@dec_peak_energy,@dec_peak_energy_rate," +
                         "@dec_peak_energy_amt,@dec_inter_energy,@dec_inter_energy_rate,@dec_inter_energy_amt,@dec_base_energy," +
-                        "@dec_base_rate,@dec_base_amt,@demanda_base,@demanda_intermedia,@demanda_punta,@energia_activa,@energia_reactiva", param);
+                        "@dec_base_rate,@dec_base_amt,@demanda_base,@demanda_intermedia,@demanda_punta,@energia_activa,@energia_reactiva," +
+                        "@lectura_energia_base_anterior,@lectura_energia_base_actual,@lectura_energia_intermedia_anterior,@lectura_energia_intermedia_actual," +
+                        "@lectura_energia_punta_anterior,@lectura_energia_punta_actual,@lectura_energia_reactiva_anterior,@lectura_energia_reactiva_actual", param);
 
                     _lVal = Convert.ToInt32(param[0].Value);
                 }
@@ -765,6 +775,15 @@ namespace TenantMNG.BAL
                             new SqlParameter("@energia_activa", invoice.energia_activa),
                             new SqlParameter("@energia_reactiva", invoice.energia_reactiva),
 
+                            new SqlParameter("@lectura_energia_base_anterior", invoice.lectura_energia_base_anterior),
+                            new SqlParameter("@lectura_energia_base_actual", invoice.lectura_energia_base_actual),
+                            new SqlParameter("@lectura_energia_intermedia_anterior", invoice.lectura_energia_intermedia_anterior),
+                            new SqlParameter("@lectura_energia_intermedia_actual", invoice.lectura_energia_intermedia_actual),
+                            new SqlParameter("@lectura_energia_punta_anterior", invoice.lectura_energia_punta_anterior),
+                            new SqlParameter("@lectura_energia_punta_actual", invoice.lectura_energia_punta_actual),
+                            new SqlParameter("@lectura_energia_reactiva_anterior", invoice.lectura_energia_reactiva_anterior),
+                            new SqlParameter("@lectura_energia_reactiva_actual", invoice.lectura_energia_reactiva_actual),
+
                             new SqlParameter("@int_tenant_id", invoice.int_tenant_id),
 
                 };
@@ -776,6 +795,8 @@ namespace TenantMNG.BAL
                                 "@precio_dos_porciento_baja_tension,@precio_decuento_bonificacion,@str_meter_id,@dec_peak_energy,@dec_peak_energy_rate," +
                                 "@dec_peak_energy_amt,@dec_inter_energy,@dec_inter_energy_rate,@dec_inter_energy_amt,@dec_base_energy," +
                                 "@dec_base_rate,@dec_base_amt,@demanda_base,@demanda_intermedia,@demanda_punta,@energia_activa,@energia_reactiva," +
+                                "@lectura_energia_base_anterior,@lectura_energia_base_actual,@lectura_energia_intermedia_anterior,@lectura_energia_intermedia_actual," +
+                                "@lectura_energia_punta_anterior,@lectura_energia_punta_actual,@lectura_energia_reactiva_anterior,@lectura_energia_reactiva_actual," +
                                 "@int_tenant_id", param);
                 }
             }

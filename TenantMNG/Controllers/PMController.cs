@@ -1141,21 +1141,22 @@ namespace TenantMNG.Controllers
 
 
 
-                dt.Columns.AddRange(new DataColumn[16] { new DataColumn("metername", typeof(string)),
-                            new DataColumn("dec_peak_energy", typeof(decimal)),
+                dt.Columns.AddRange(new DataColumn[17] { new DataColumn("metername", typeof(string)),
+                            new DataColumn("energia_punta_lectura_anterior", typeof(decimal)),
+                            new DataColumn("energia_punta_lectura_actual", typeof(decimal)),
                             new DataColumn("dec_peak_energy_rate",typeof(decimal)),
-                            new DataColumn("dec_peak_energy_amt",typeof(decimal)),
-                            new DataColumn("dec_inter_energy",typeof(decimal)),
+                            new DataColumn("energia_intermedia_lectura_anterior",typeof(decimal)),
+                            new DataColumn("energia_intermedia_lectura_actual",typeof(decimal)),
                             new DataColumn("dec_inter_energy_rate",typeof(decimal)),
-                            new DataColumn("dec_inter_energy_amt",typeof(decimal)),
-                            new DataColumn("dec_base_energy",typeof(decimal)),
+                            new DataColumn("energia_base_lectura_anterior", typeof(decimal)),
+                            new DataColumn("energia_base_lectura_actual", typeof(decimal)),
                             new DataColumn("dec_base_rate",typeof(decimal)),
-                            new DataColumn("dec_base_amt",typeof(decimal)),
                             new DataColumn("demanda_base",typeof(decimal)),
                             new DataColumn("demanda_intermedia",typeof(decimal)),
                             new DataColumn("demanda_punta",typeof(decimal)),
                             new DataColumn("energia_activa",typeof(decimal)),
-                            new DataColumn("energia_reactiva",typeof(decimal)),
+                            new DataColumn("energia_reactiva_lectura_anterior",typeof(decimal)),
+                            new DataColumn("energia_reactiva_lectura_actual",typeof(decimal)),
                             new DataColumn("str_meter_id",typeof(string)),});
 
 
@@ -1189,18 +1190,22 @@ namespace TenantMNG.Controllers
 
                     if (_ds.Tables[0].Rows.Count > 0)
                     {
-                        decimal peckenergy = (!(_ds.Tables[0].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0]) : 0;
-                        decimal interenergy = (!(_ds.Tables[2].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0]) : 0;
-                        decimal baseenergy = (!(_ds.Tables[1].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0]) : 0;
-                        decimal energiaactiva = (!(_ds.Tables[3].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0]) : 0;
-                        decimal energiareactiva = (!(_ds.Tables[4].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0]) : 0;
-                        decimal demanda_base = (!(_ds.Tables[5].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[5].Rows[0][0]) : 0;
-                        decimal demanda_intermedia = (!(_ds.Tables[6].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[6].Rows[0][0]) : 0;
-                        decimal demanda_punta = (!(_ds.Tables[7].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[7].Rows[0][0]) : 0;
+                        decimal EnergiaBaseLecturaAnterior = (!(_ds.Tables[0].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[0].Rows[0][0]) : 0;
+                        decimal EnergiaBaseLecturaActual = (!(_ds.Tables[1].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[1].Rows[0][0]) : 0;
+                        decimal EnergiaIntermediaLecturaAnterior = (!(_ds.Tables[2].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[2].Rows[0][0]) : 0;
+                        decimal EnergiaIntermediaLecturaActual = (!(_ds.Tables[3].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[3].Rows[0][0]) : 0;
+                        decimal EnergiaPuntaLecturaAnterior = (!(_ds.Tables[4].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[4].Rows[0][0]) : 0;
+                        decimal EnergiaPuntaLecturaActual = (!(_ds.Tables[5].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[5].Rows[0][0]) : 0;
+                        decimal EnergiaReactivaLecturaAnterior = (!(_ds.Tables[6].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[6].Rows[0][0]) : 0;
+                        decimal EnergiaReactivaLecturaActual = (!(_ds.Tables[7].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[7].Rows[0][0]) : 0;
+                        decimal EnergiaActiva = (!(_ds.Tables[8].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[8].Rows[0][0]) : 0;
+                        decimal DemandaBase = (!(_ds.Tables[9].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[9].Rows[0][0]) : 0;
+                        decimal DemandaIntermedia = (!(_ds.Tables[10].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[10].Rows[0][0]) : 0;
+                        decimal DemandaPunta = (!(_ds.Tables[11].Rows[0][0] == DBNull.Value)) ? Convert.ToDecimal(_ds.Tables[11].Rows[0][0]) : 0;
 
-                        dt.Rows.Add(_meterid, peckenergy, objvm.dec_peak_energy_rate, (peckenergy * objvm.dec_peak_energy_rate), interenergy,
-                            objvm.dec_inter_energy_rate, (interenergy * objvm.dec_inter_energy_rate), baseenergy, objvm.dec_base_rate, (baseenergy * objvm.dec_base_rate),
-                            demanda_base, demanda_intermedia, demanda_punta, energiaactiva, energiareactiva, _meteridarray[0]);
+                        dt.Rows.Add(_meterid, EnergiaPuntaLecturaAnterior, EnergiaPuntaLecturaActual, objvm.dec_peak_energy_rate, EnergiaIntermediaLecturaAnterior, EnergiaIntermediaLecturaActual,
+                            objvm.dec_inter_energy_rate, EnergiaBaseLecturaAnterior, EnergiaBaseLecturaActual, objvm.dec_base_rate,
+                            DemandaBase, DemandaIntermedia, DemandaPunta, EnergiaActiva, EnergiaReactivaLecturaAnterior, EnergiaReactivaLecturaActual, _meteridarray[0]);
                      }
 
                      //i++;
@@ -3144,8 +3149,19 @@ namespace TenantMNG.Controllers
                 var min = max.AddMonths(-1); // first of last month
 
                 var _invoice = (from inv in _dbc.tbl_invoice
-                                where inv.date_invoice_date >= min && inv.date_invoice_date < max
+                                where inv.date_e_bill_date >= min && inv.date_e_bill_date < max
                                 select inv).AsQueryable();
+
+                if (_invoice.Count() == 0)
+                {
+                    max = max.AddMonths(-1);
+                    min = max.AddMonths(-2);
+
+                    _invoice = (from inv in _dbc.tbl_invoice
+                                where inv.date_e_bill_date >= min && inv.date_e_bill_date < max
+                                select inv).AsQueryable();
+                }
+
                 UdisEntities _dbmeter = new UdisEntities();
 
                 if (!string.IsNullOrEmpty(int_id))
@@ -3158,7 +3174,7 @@ namespace TenantMNG.Controllers
                 var invoice = _invoice.ToList();
                 var chartgroup = from ins in invoice
 
-                                 group ins by new { invoicedate = ins.date_invoice_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
+                                 group ins by new { invoicedate = ins.date_e_bill_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
                                  orderby empg.Key.str_comp_name ascending
                                  //group ins by ins.tbl_user_master.str_comp_name into empg
                                  select new
@@ -3214,7 +3230,7 @@ namespace TenantMNG.Controllers
                         previousYear = today.Year - 1;
 
                 var _invoice = (from inv in _dbc.tbl_invoice
-                                where inv.date_invoice_date >= min && inv.date_invoice_date < max
+                                where inv.date_e_bill_date >= min && inv.date_e_bill_date < max
                                 select inv).AsQueryable();
 
                 var _cfeAmounts = (from cfe in _dbc.tbl_tarifas
@@ -3237,7 +3253,7 @@ namespace TenantMNG.Controllers
                 var cfeAmounts = _cfeAmounts.ToList();
                 var chartgroup = from ins in invoice
 
-                                 group ins by new { invoicedate = ins.date_invoice_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
+                                 group ins by new { invoicedate = ins.date_e_bill_date.Value.Month, ins.tbl_user_master.str_comp_name } into empg
                                  orderby empg.Key.invoicedate ascending, empg.Key.str_comp_name ascending
                                  //group ins by ins.tbl_user_master.str_comp_name into empg
                                  select new
