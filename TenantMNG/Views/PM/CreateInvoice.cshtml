@@ -50,20 +50,22 @@
 
                     }*/
 
-
-
-                    //var dd = dt.getUTCDate() + 10;
-                    var mm = dt.getUTCMonth() + 1;
-                    var yy = dt.getUTCFullYear();
-
                     var pDate = new Date(dt);
+
                     pDate.setDate(dt.getDate() + 10);
-                    var payDate = pDate.toISOString().slice(0, 10);
+
+                    var payDate = pDate.getFullYear() + '/'
+                        + ('0' + (pDate.getMonth() + 1)).slice(-2) + '/'
+                        + ('0' + pDate.getDate()).slice(-2);
+
+                    var endDate = dt.getFullYear() + '/'
+                        + ('0' + (dt.getMonth() + 1)).slice(-2) + '/'
+                        + ('0' + dt.getDate()).slice(-2);
 
 
-                    $("#date_e_bill_date").val(yy + "/" + mm + "/" + getDaysInMonth(mm, yy));
+                    $("#date_e_bill_date").val(endDate);
 
-                    $("#date_pay_date").val(pDate.getUTCFullYear() + "/" + pDate.getUTCMonth() + "/" + pDate.getUTCDate());
+                    $("#date_pay_date").val(payDate);
 
 
 
