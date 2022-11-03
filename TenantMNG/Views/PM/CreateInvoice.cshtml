@@ -72,7 +72,7 @@
                     if (($("#date_e_bill_date").val().length > 0) && ($("#date_s_bill_date").val().length > 0))
                     {
                         getRatesData();
-                        getEnergyData();
+                        getEnergyData(true);
                     }
 
 
@@ -94,7 +94,7 @@
                     if (($("#date_s_bill_date").val().length > 0) && ($("#date_e_bill_date").val().length > 0))
                     {
                         getRatesData();
-                        getEnergyData();
+                        getEnergyData(true);
                     }
                         
                 }// Client can directly modify date in textbox?
@@ -253,7 +253,9 @@
 
         }
 
-        function getEnergyData() {
+        //cambioFecha me indica que hubo un cambio de fechas, para asegurar que se actualizan las tarifas de UDIS
+
+        function getEnergyData(cambioFecha) {
 
 
             var tenantenergy = {};
@@ -341,7 +343,7 @@
                 finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base,
                     demanda_intermedia, demanda_punta, energia_punta_lectura_anterior, energia_punta_lectura_actual, energia_intermedia_lectura_anterior,
                     energia_intermedia_lectura_actual, energia_base_lectura_anterior, energia_base_lectura_actual, energia_reactiva_lectura_anterior,
-                    energia_reactiva_lectura_actual);
+                    energia_reactiva_lectura_actual, cambioFecha);
             };
             options.error = function () {
 
@@ -352,7 +354,7 @@
         function finalTotal(transmision_base, transmision_intermedia, transmision_punta, energiaactiva, energiareactiva, demanda_base,
             demanda_intermedia, demanda_punta, energia_punta_lectura_anterior, energia_punta_lectura_actual, energia_intermedia_lectura_anterior,
             energia_intermedia_lectura_actual, energia_base_lectura_anterior, energia_base_lectura_actual, energia_reactiva_lectura_anterior,
-            energia_reactiva_lectura_actual) {
+            energia_reactiva_lectura_actual, cambioFecha) {
 
             var energia_activa = 0;
             var energia_reactiva = 0;
@@ -361,37 +363,37 @@
             // y punta tienen valores introducidos por el usuario. Si no, podemos actualizar con los valores en la BD
             //Energia Base, Intermedia y Punta, tienen los mismos valores que Transmisitón Base, Intermedia y Punta y Operación Base, Intermedia y Punta.
             //Se añade también lectura anterior y lectura actual de energía base, intermedia, punta, energia reactiva
-            if (!$('#dec_base_energy').val() || $('#dec_base_energy').val() == 0)
+            if (!$('#dec_base_energy').val() || $('#dec_base_energy').val() == 0 || cambioFecha)
                 $('#dec_base_energy').val(Number(transmision_base).toFixed(2));
-            if (!$('#dec_inter_energy').val() || $('#dec_inter_energy').val() == 0)
+            if (!$('#dec_inter_energy').val() || $('#dec_inter_energy').val() == 0 || cambioFecha)
                 $('#dec_inter_energy').val(Number(transmision_intermedia).toFixed(2));
-            if (!$('#dec_peak_energy').val() || $('#dec_peak_energy').val() == 0)
+            if (!$('#dec_peak_energy').val() || $('#dec_peak_energy').val() == 0 || cambioFecha)
                 $('#dec_peak_energy').val(Number(transmision_punta).toFixed(2));
-            if (!$('#energia_reactiva').val() || $('#energia_reactiva').val() == 0)
+            if (!$('#energia_reactiva').val() || $('#energia_reactiva').val() == 0 || cambioFecha)
                 $('#energia_reactiva').val(Number(energiareactiva).toFixed(2));
-            if (!$('#energia_activa').val() || $('#energia_activa').val() == 0)
+            if (!$('#energia_activa').val() || $('#energia_activa').val() == 0 || cambioFecha)
                 $('#energia_activa').val(Number(energiaactiva).toFixed(2));
-            if (!$('#demanda_base').val() || $('#demanda_base').val() == 0)
+            if (!$('#demanda_base').val() || $('#demanda_base').val() == 0 || cambioFecha)
                 $('#demanda_base').val(Number(demanda_base).toFixed(2));
-            if (!$('#demanda_intermedia').val() || $('#demanda_intermedia').val() == 0)
+            if (!$('#demanda_intermedia').val() || $('#demanda_intermedia').val() == 0 || cambioFecha)
                 $('#demanda_intermedia').val(Number(demanda_intermedia).toFixed(2));
-            if (!$('#demanda_punta').val() || $('#demanda_punta').val() == 0)
+            if (!$('#demanda_punta').val() || $('#demanda_punta').val() == 0 || cambioFecha)
                 $('#demanda_punta').val(Number(demanda_punta).toFixed(2));
-            if (!$('#lectura_energia_base_anterior').val() || $('#lectura_energia_base_anterior').val() == 0)
+            if (!$('#lectura_energia_base_anterior').val() || $('#lectura_energia_base_anterior').val() == 0 || cambioFecha)
                 $('#lectura_energia_base_anterior').val(Number(energia_base_lectura_anterior).toFixed(2));
-            if (!$('#lectura_energia_base_actual').val() || $('#lectura_energia_base_actual').val() == 0)
+            if (!$('#lectura_energia_base_actual').val() || $('#lectura_energia_base_actual').val() == 0 || cambioFecha)
                 $('#lectura_energia_base_actual').val(Number(energia_base_lectura_actual).toFixed(2));
-            if (!$('#lectura_energia_intermedia_anterior').val() || $('#lectura_energia_intermedia_anterior').val() == 0)
+            if (!$('#lectura_energia_intermedia_anterior').val() || $('#lectura_energia_intermedia_anterior').val() == 0 || cambioFecha)
                 $('#lectura_energia_intermedia_anterior').val(Number(energia_intermedia_lectura_anterior).toFixed(2));
-            if (!$('#lectura_energia_intermedia_actual').val() || $('#lectura_energia_intermedia_actual').val() == 0)
+            if (!$('#lectura_energia_intermedia_actual').val() || $('#lectura_energia_intermedia_actual').val() == 0 || cambioFecha)
                 $('#lectura_energia_intermedia_actual').val(Number(energia_intermedia_lectura_actual).toFixed(2));
-            if (!$('#lectura_energia_punta_anterior').val() || $('#lectura_energia_punta_anterior').val() == 0)
+            if (!$('#lectura_energia_punta_anterior').val() || $('#lectura_energia_punta_anterior').val() == 0 || cambioFecha)
                 $('#lectura_energia_punta_anterior').val(Number(energia_punta_lectura_anterior).toFixed(2));
-            if (!$('#lectura_energia_punta_actual').val() || $('#lectura_energia_punta_actual').val() == 0)
+            if (!$('#lectura_energia_punta_actual').val() || $('#lectura_energia_punta_actual').val() == 0 || cambioFecha)
                 $('#lectura_energia_punta_actual').val(Number(energia_punta_lectura_actual).toFixed(2));
-            if (!$('#lectura_energia_reactiva_anterior').val() || $('#lectura_energia_reactiva_anterior').val() == 0)
+            if (!$('#lectura_energia_reactiva_anterior').val() || $('#lectura_energia_reactiva_anterior').val() == 0 || cambioFecha)
                 $('#lectura_energia_reactiva_anterior').val(Number(energia_reactiva_lectura_anterior).toFixed(2));
-            if (!$('#lectura_energia_reactiva_actual').val() || $('#lectura_energia_reactiva_actual').val() == 0)
+            if (!$('#lectura_energia_reactiva_actual').val() || $('#lectura_energia_reactiva_actual').val() == 0 || cambioFecha)
                 $('#lectura_energia_reactiva_actual').val(Number(energia_reactiva_lectura_actual).toFixed(2));
 
 
@@ -399,9 +401,9 @@
             var dec_inter_energy = Number($('#dec_inter_energy').val());
             var dec_peak_energy = Number($('#dec_peak_energy').val());
 
-            if (!Number.isNaN(energiaactiva))
+            /*if (!Number.isNaN(energiaactiva))
                 energia_activa = energiaactiva;
-            else
+            else*/
                 energia_activa = dec_base_energy + dec_inter_energy + dec_peak_energy;
 
             if (!Number.isNaN(energiareactiva))

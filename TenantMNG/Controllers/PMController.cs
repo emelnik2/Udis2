@@ -559,9 +559,9 @@ namespace TenantMNG.Controllers
                 _objvm.date_s_bill_date = _invoice.date_s_bill_date;
                 _objvm.date_e_bill_date = _invoice.date_e_bill_date;
                 _objvm.date_pay_date = _invoice.date_pay_date;
-                _objvm.dec_base_energy = decimal.Round((decimal)_invoice.dec_base_energy, 0);
-                _objvm.dec_inter_energy = decimal.Round((decimal)_invoice.dec_inter_energy, 0);
-                _objvm.dec_peak_energy = decimal.Round((decimal)_invoice.dec_peak_energy, 0);
+                _objvm.dec_base_energy = decimal.Round((decimal)_invoice.dec_base_energy, 2);
+                _objvm.dec_inter_energy = decimal.Round((decimal)_invoice.dec_inter_energy, 2);
+                _objvm.dec_peak_energy = decimal.Round((decimal)_invoice.dec_peak_energy, 2);
                 _objvm.dec_base_rate = _invoice.dec_base_rate;
                 _objvm.dec_inter_energy_rate = _invoice.dec_inter_energy_rate;
                 _objvm.dec_peak_energy_rate = _invoice.dec_peak_energy_rate;
@@ -575,6 +575,14 @@ namespace TenantMNG.Controllers
                 _objvm.cre_servicios_conexos = _invoice.cre_servicios_conexos;
                 _objvm.capacidad = decimal.Round((decimal)_invoice.capacidad, 2);
                 _objvm.energia_reactiva = decimal.Round((decimal)_invoice.energia_reactiva, 2);
+                _objvm.lectura_energia_base_anterior = (_invoice.lectura_energia_base_anterior != null) ? decimal.Round((decimal)_invoice.lectura_energia_base_anterior, 2) : 0;
+                _objvm.lectura_energia_base_actual = (_invoice.lectura_energia_base_actual != null) ? decimal.Round((decimal)_invoice.lectura_energia_base_actual, 2) : 0;
+                _objvm.lectura_energia_intermedia_anterior = (_invoice.lectura_energia_intermedia_anterior != null) ? decimal.Round((decimal)_invoice.lectura_energia_intermedia_anterior, 2) : 0;
+                _objvm.lectura_energia_intermedia_actual = (_invoice.lectura_energia_intermedia_actual != null) ? decimal.Round((decimal)_invoice.lectura_energia_intermedia_actual, 2) : 0;
+                _objvm.lectura_energia_punta_anterior = (_invoice.lectura_energia_punta_anterior != null) ? decimal.Round((decimal)_invoice.lectura_energia_punta_anterior, 2) : 0;
+                _objvm.lectura_energia_punta_actual = (_invoice.lectura_energia_punta_actual != null) ? decimal.Round((decimal)_invoice.lectura_energia_punta_actual, 2) : 0;
+                _objvm.lectura_energia_reactiva_anterior = (_invoice.lectura_energia_reactiva_anterior != null) ? decimal.Round((decimal)_invoice.lectura_energia_reactiva_anterior, 2) : 0;
+                _objvm.lectura_energia_reactiva_actual = (_invoice.lectura_energia_reactiva_actual != null) ? decimal.Round((decimal)_invoice.lectura_energia_reactiva_actual, 2) : 0;
                 _objvm.precio_suministro = decimal.Round((decimal)_invoice.precio_suministro, 2);
                 _objvm.precio_distribucion = decimal.Round((decimal)_invoice.precio_distribucion, 2);
                 _objvm.precio_transmision = decimal.Round((decimal)_invoice.precio_transmision, 2);

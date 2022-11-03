@@ -1080,3 +1080,5 @@ ERROR 2022-10-06 10:39:52,210 24611ms PMController           InvoiceMeters      
 ERROR 2022-10-06 20:37:17,955 81827ms PMController           InvoiceMeters      - La columna 'CFE_MeterID' no pertenece a la tabla Table.
 ERROR 2022-10-12 21:39:38,866 51979ms PMController           getEnerge          - La columna 'demanda_base' ya pertenece a DataTable.
 ERROR 2022-10-12 21:40:06,888 80002ms PMController           getEnerge          - La columna 'demanda_base' ya pertenece a DataTable.
+ERROR 2022-11-02 20:16:10,519 78040ms PMController           ModifyInvoice      - El objeto que acepta valores Null debe tener un valor.
+ERROR 2022-11-02 20:36:34,279 45445ms TenantBAL              ant_invoice_update - The parameterized query '(@int_id int,@bit_tenant_active bit,@date_s_bill_date datetime,@' expects the parameter '@energia_activa', which was not supplied.
