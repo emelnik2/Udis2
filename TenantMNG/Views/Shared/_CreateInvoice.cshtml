@@ -68,7 +68,7 @@
             @Html.LabelFor(m => m.demanda_base, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.demanda_base, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -81,7 +81,7 @@
             @Html.LabelFor(m => m.demanda_intermedia, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.demanda_intermedia, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -92,7 +92,7 @@
             @Html.LabelFor(m => m.demanda_punta, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.demanda_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.demanda_punta, new { @class = "span8", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -105,7 +105,7 @@
             @Html.LabelFor(m => m.lectura_energia_base_anterior, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_base_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_base_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -116,7 +116,7 @@
             @Html.LabelFor(m => m.lectura_energia_base_actual, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_base_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_base_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -128,7 +128,7 @@
             @Html.LabelFor(m => m.dec_base_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -141,7 +141,7 @@
             @Html.LabelFor(m => m.lectura_energia_intermedia_anterior, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_intermedia_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_intermedia_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -152,7 +152,7 @@
             @Html.LabelFor(m => m.lectura_energia_intermedia_actual, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_intermedia_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_intermedia_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -163,7 +163,7 @@
             @Html.LabelFor(m => m.dec_inter_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -176,7 +176,7 @@
             @Html.LabelFor(m => m.lectura_energia_punta_anterior, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_punta_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_punta_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()(false)" })
 
             </div>
         </div>
@@ -187,7 +187,7 @@
             @Html.LabelFor(m => m.lectura_energia_punta_actual, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_punta_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_punta_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()(false)" })
 
             </div>
         </div>
@@ -198,7 +198,7 @@
             @Html.LabelFor(m => m.dec_peak_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>
@@ -211,7 +211,7 @@
             @Html.LabelFor(m => m.lectura_energia_reactiva_anterior, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_reactiva_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_reactiva_anterior, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -222,7 +222,7 @@
             @Html.LabelFor(m => m.lectura_energia_reactiva_actual, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.lectura_energia_reactiva_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.lectura_energia_reactiva_actual, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "calcularEnergias()" })
 
             </div>
         </div>
@@ -233,7 +233,7 @@
             @Html.LabelFor(m => m.energia_reactiva, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData()" })
+                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
 
             </div>
         </div>

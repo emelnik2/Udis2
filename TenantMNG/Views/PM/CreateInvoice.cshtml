@@ -406,9 +406,9 @@
             else*/
                 energia_activa = dec_base_energy + dec_inter_energy + dec_peak_energy;
 
-            if (!Number.isNaN(energiareactiva))
+            /*if (!Number.isNaN(energiareactiva))
                 energia_reactiva = energiareactiva;
-            else
+            else*/
                 energia_reactiva = Number($('#energia_reactiva').val());
 
             // Cálculo de Distribucion
@@ -527,6 +527,16 @@
 
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function calcularEnergias() {
+
+            $('#dec_base_energy').val(Number($('#lectura_energia_base_actual').val() - $('#lectura_energia_base_anterior').val()).toFixed(2));
+            $('#dec_inter_energy').val(Number($('#lectura_energia_intermedia_actual').val() - $('#lectura_energia_intermedia_anterior').val()).toFixed(2));
+            $('#dec_peak_energy').val(Number($('#lectura_energia_punta_actual').val() - $('#lectura_energia_punta_anterior').val()).toFixed(2));
+            $('#energia_reactiva').val(Number($('#lectura_energia_reactiva_actual').val() - $('#lectura_energia_reactiva_anterior').val()).toFixed(2));
+
+            getEnergyData(false);
         }
 
     </script>
