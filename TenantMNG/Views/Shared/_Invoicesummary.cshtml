@@ -25,9 +25,12 @@
 
             SelectList meses = ViewBag.MesesDropDown;
 
-            <div class="span4">
-                @Html.DropDownList("monthnumber", meses, new { @class = "span4" })
-                @*Html.ValidationMessageFor(m => m.int_tenant_id)*@
+            <div class="span2">
+                @Html.DropDownList("monthnumber", meses, new { @class = "span2" })
+            </div>
+
+            <div class="span2">
+                @Html.DropDownList("anio", ViewBag.AniosDropDown as List<SelectListItem>, new { @class = "span2" })
             </div>
 
             <div class="span1">

@@ -16,6 +16,8 @@ namespace TenantMNG.ViewModel
 
         public int monthnumber { get; set; }
 
+        public int anio { get; set; }
+
         [Display(Name = "int_tenant_id", ResourceType = typeof(Resource))]
         public Nullable<int> int_tenant_id { get; set; }
         public Nullable<bool> bit_tenant_active { get; set; }

@@ -2756,6 +2756,27 @@ namespace TenantMNG.Controllers
                             "Value",
                             "Text");
 
+            var _invoice = _dbc.tbl_invoice.AsQueryable();
+
+            var invoice = _invoice.ToList();
+            
+            var anios = (from yrs in invoice
+
+                             group yrs by new { anio = yrs.date_invoice_date.Value.Year } into empg
+                             select new
+                             {
+                                 invoicedate = empg.Key.anio,
+                                 count = empg.Count()
+                             }).OrderByDescending (a => a.invoicedate);
+
+            List<SelectListItem> _anios = new List<SelectListItem>();
+
+            foreach (var a in anios)
+            {
+                _anios.Add(new SelectListItem { Value = Convert.ToString(a.invoicedate), Text = Convert.ToString(a.invoicedate) });
+            }
+
+            ViewBag.AniosDropDown = _anios;
 
             return PartialView("_Invoicesummary", _invoices);
         }
@@ -2767,7 +2788,7 @@ namespace TenantMNG.Controllers
 
             try
             {
-                var invoices = _dbc.tbl_invoice.Where(x => x.int_tenant_id == _invoicevm.int_tenant_id && x.date_e_bill_date.Value.Month == _invoicevm.monthnumber);
+                var invoices = _dbc.tbl_invoice.Where(x => x.int_tenant_id == _invoicevm.int_tenant_id && x.date_e_bill_date.Value.Month == _invoicevm.monthnumber && x.date_e_bill_date.Value.Year == _invoicevm.anio);
 
                 if (invoices.ToList().Count > 0)
                 { 
