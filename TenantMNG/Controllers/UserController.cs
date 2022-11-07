@@ -624,6 +624,113 @@ namespace TenantMNG.Controllers
 
         }
 
+        [SessionCheck]
+        [HttpGet] // this action result returns the partial containing the modal
+        public ActionResult AssignMeter(int id)
+        {
+            try
+            {
+
+                var _tenant = _dbc.tbl_tenant_contract.Where(x => x.int_tenant_id == id).SingleOrDefault();
+
+                UdisEntities _dbmeter = new UdisEntities();
+
+                var _meter = _dbmeter.UDIS.Select(m => m.CFE_MeterID).Distinct().ToList();
+
+                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.int_tenant_id == id && x.bit_is_assign == true).ToList();
+
+                TenantMeterVM _objvm = new TenantMeterVM();
+
+                _objvm.Meters = getMeters();
+
+
+                if (_tenantmeter != null)
+                {
+                    foreach (var meter in _objvm.Meters)
+                    {
+                        var test = _tenantmeter.Where(x => x.str_meter_id == meter.Text).SingleOrDefault();
+
+                        if (test != null)
+                            meter.Selected = true;
+
+                    }
+
+                }
+
+
+
+                _objvm.bit_is_assign = true;
+                _objvm.int_tenant_id = id;
+
+                ViewBag.messgVal = 2;
+
+
+                return View(_objvm);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return View();
+
+
+        }
+
+        [HttpPost] // this action result returns the partial containing the modal
+        public ActionResult AssignMeter(TenantMeterVM _objvm)
+        {
+
+
+            int _lval = 0;
+            try
+            {
+                TenantBAL objbal = new TenantBAL();
+
+
+                objbal.tenant_delete_meter(_objvm.int_tenant_id);
+
+                foreach (var meterid in _objvm.Meters)
+                {
+                    if (meterid.Selected)
+                    {
+                        //int mid = 0;
+                        objbal = new TenantBAL();
+                        _objvm.bit_is_assign = true;
+                        //_objvm.str_meter_id = Int32.TryParse(meterid.Value, out mid) ? Int32.Parse(meterid.Value) : (int?)null;
+                        _objvm.str_meter_id = meterid.Text;
+                        _objvm.multiplier = 1;
+                        _lval = objbal.tenant_meter_insert(_objvm);
+                    }
+
+                }
+
+                ViewBag.messgVal = _lval;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+            return RedirectToAction("Tenant");
+        }
+
+        private static List<SelectListItem> getMeters()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            UdisEntities _dbmeter = new UdisEntities();
+            var _meter = _dbmeter.UDIS.Select(x => new { x.CFE_MeterID }).Distinct().ToList();
+            if (_meter != null)
+            {
+                foreach (var m in _meter)
+                {
+                    items.Add(new SelectListItem
+                    {
+                        Text = m.CFE_MeterID,
+                    });
+                }
+            }
+
+            return items;
+        }
 
         [HttpGet] // this action result returns the partial containing the modal
         public ActionResult BillRate(int id)

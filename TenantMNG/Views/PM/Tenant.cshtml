@@ -158,7 +158,7 @@
                                             @if (TenantMNG.Core.CommonCls.isTenantMeter(user.int_id))
                                             {
 
-                                                @Html.ActionLink(@TenantMNG.Resource.meter_update, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
+                                                @*Html.ActionLink(@TenantMNG.Resource.meter_update, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
                                                 @:&nbsp;
                                                 @*<a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.int_id">@TenantMNG.Resource.meter_update </a>*@
                                                 @*<a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>*@
@@ -170,6 +170,7 @@
                                             else
                                             {
                                                 @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
+                                                @:&nbsp;
                                                 @:&nbsp;
                                                 @Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
                                             }
