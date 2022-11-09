@@ -141,6 +141,19 @@ namespace TenantMNG.Core
 
         }
 
+        public static string getIdforMeter (string meterid)
+        {
+            DB_TenantMNGEntities _dbc = new DB_TenantMNGEntities();
+            var _tenantmeter = _dbc.UDIS.Where(x => x.CFE_MeterID == meterid).FirstOrDefault();
+
+            if (_tenantmeter != null)
+            {
+                return _tenantmeter.id_medidor;
+            }
+            else
+                return Resource.not_assign;
+
+        }
 
         //get metername from Meter id
         public static string getMeterNamefromId(string meterid)

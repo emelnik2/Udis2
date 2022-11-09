@@ -2010,6 +2010,7 @@ namespace TenantMNG.Controllers
                     tenant = _dbc.tbl_user_master.Where(x => x.int_id == invoice.int_tenant_id).FirstOrDefault();
 
                     invoicehtmldata += "<tr><td>" + tenant.str_comp_name + "</td>" +
+                        "<td>" + CommonCls.getIdforMeter(invoice.str_meter_id) + "</td>" +
                         "<td>" + invoice.str_meter_id + "</td>" +
                         "<td>" + (Convert.ToDouble(invoice.dec_tax_amt) / .16).ToString("N", new CultureInfo("en-US")) + "</td>" +
                         "<td>" + Convert.ToDecimal(invoice.dec_tax_amt).ToString("N", new CultureInfo("en-US")) + "</td>" +

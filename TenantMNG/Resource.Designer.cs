@@ -934,6 +934,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meter ID.
+        /// </summary>
+        public static string idmeter {
+            get {
+                return ResourceManager.GetString("idmeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin Code.
         /// </summary>
         public static string int_pin_code {

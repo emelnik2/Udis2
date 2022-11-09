@@ -963,4 +963,7 @@
   <data name="lectura_energia_reactiva_anterior" xml:space="preserve">
     <value>Lectura Anterior - Energía Reactiva</value>
   </data>
+  <data name="idmeter" xml:space="preserve">
+    <value>ID del Medidor</value>
+  </data>
 </root>
