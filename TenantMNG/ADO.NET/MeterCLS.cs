@@ -71,15 +71,32 @@ namespace TenantMNG.ADO.NET
             return (int)multiplier.multiplicador;
         }
 
+        public int getMeterID (string strmeterid)
+        {
+            DB_TenantMNGEntities _dbc = new DB_TenantMNGEntities();
+
+            var int_id = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == strmeterid).FirstOrDefault();
+
+            return (int)int_id.int_id;
+        }
+
     }
 
-    public class meter  
+    public class meter
     {
+
+        [Display(Name = "name", ResourceType = typeof(Resource))]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "metername_enter_name")]
         public string name { get; set; }
 
         public int tenant_id { get; set; }
 
+        [Display(Name = "multiplier", ResourceType = typeof(Resource))]
         public int multiplier { get; set; }
+
+        [Display(Name = "meterid", ResourceType = typeof(Resource))]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = "meterid_enter")]
+        public string meterid { get; set; }
 
 
     }

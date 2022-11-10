@@ -21,6 +21,7 @@ namespace TenantMNG.Models
         public Nullable<System.DateTime> date_detach_date { get; set; }
         public Nullable<bool> bit_is_assign { get; set; }
         public Nullable<int> multiplicador { get; set; }
+        public string meterid { get; set; }
     
         public virtual tbl_user_master tbl_user_master { get; set; }
     }

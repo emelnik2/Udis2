@@ -142,7 +142,7 @@
                                 <tr>
                                     <th>@TenantMNG.Resource.idmeter</th>
                                     <th>@TenantMNG.Resource.meter</th>
-                                    <th>@TenantMNG.Resource.assign_to</th>
+                                    <!--<th>@TenantMNG.Resource.assign_to</th>-->
                                     <th>@TenantMNG.Resource.assign_or_delete_meter</th>
                                     <th>@TenantMNG.Resource.reassign_meter</th>
                                     <th>@TenantMNG.Resource.multiplicador</th>
@@ -158,24 +158,24 @@
                                     <td>@user.name</td>
                                     <td>@TenantMNG.Core.CommonCls.getTenantNameforMeter(user.name)</td>
 
-                                    <td>
-                                        @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
+                                    <!--<td>-->
+                                        @*if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
                                         {
-                                            <a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.name">@TenantMNG.Resource.detach_meter</a>
+                                            <!--<a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.name">@TenantMNG.Resource.detach_meter</a>-->
 
                                         }
                                         else
                                         {
-                                            <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
+                                            <!--<a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>-->
                                         }
-                                    <td>
+<td>
                                         @if (TenantMNG.Core.CommonCls.isMeterTenant(user.name))
 
                                         {
                                             <a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.name">@TenantMNG.Resource.assign_meter</a>
-                                        }
+                                        }*@
 
-                                    </td>
+                                    <!--</td>-->
                                     <td>
                                         @Html.DropDownList("multiplier",
                                             new SelectList(

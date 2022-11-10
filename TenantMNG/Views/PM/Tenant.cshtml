@@ -167,13 +167,13 @@
                                                 @*Html.ActionLink(TenantMNG.Resource.invoice_summary, "InvoiceSummary", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
                                                 <a id="invoicesummary" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.invoice_summary</a>
                                             }
-                                            else
-                                            {
+                                            @*else*@
+                                            @*{*@
                                                 @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
-                                                @:&nbsp;
-                                                @:&nbsp;
-                                                @Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })
-                                            }
+                                                @*:&nbsp;*@
+                                                @*:&nbsp;*@
+                                                @*Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
+                                            @*}*@
 
                                         </td>
                                     </tr>

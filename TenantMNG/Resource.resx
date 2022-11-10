@@ -969,4 +969,19 @@
   <data name="idmeter" xml:space="preserve">
     <value>Meter ID</value>
   </data>
+  <data name="meterid" xml:space="preserve">
+    <value>Meter ID</value>
+  </data>
+  <data name="meterid_enter" xml:space="preserve">
+    <value>Please Enter the Meter ID</value>
+  </data>
+  <data name="metername_enter_name" xml:space="preserve">
+    <value>Please Enter Meter Name</value>
+  </data>
+  <data name="multiplier" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="msg_save_meter_success" xml:space="preserve">
+    <value>Meter Saved Successfully</value>
+  </data>
 </root>

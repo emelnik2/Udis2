@@ -1267,6 +1267,33 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meter ID.
+        /// </summary>
+        public static string meterid {
+            get {
+                return ResourceManager.GetString("meterid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter the Meter ID.
+        /// </summary>
+        public static string meterid_enter {
+            get {
+                return ResourceManager.GetString("meterid_enter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Meter Name.
+        /// </summary>
+        public static string metername_enter_name {
+            get {
+                return ResourceManager.GetString("metername_enter_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mon To Fri.
         /// </summary>
         public static string mon_to_fri {
@@ -1429,6 +1456,15 @@ namespace TenantMNG {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meter Saved Successfully.
+        /// </summary>
+        public static string msg_save_meter_success {
+            get {
+                return ResourceManager.GetString("msg_save_meter_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setting Inserted Successfully..
         /// </summary>
         public static string msg_save_setting {
@@ -1443,6 +1479,15 @@ namespace TenantMNG {
         public static string multiplicador {
             get {
                 return ResourceManager.GetString("multiplicador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiplier.
+        /// </summary>
+        public static string multiplier {
+            get {
+                return ResourceManager.GetString("multiplier", resourceCulture);
             }
         }
         

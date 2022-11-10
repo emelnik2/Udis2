@@ -1,0 +1,166 @@
+﻿@model TenantMNG.ADO.NET.meter
+
+@{
+    ViewBag.Title = TenantMNG.Core.CommonCls._applicationname + " : Create Meter";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .adisabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+<div id="content-header">
+    <div id="breadcrumb"> <a href="@Url.Action("Dashboard", "Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> @TenantMNG.Resource.home</a> <a href="@Url.Action("Tenant", "User")" class="tip-bottom">@TenantMNG.Resource.tenant_list</a> <a href="#" class="current">@TenantMNG.Resource.tenantuser</a> </div>
+
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>@TenantMNG.Resource.create @TenantMNG.Resource.meter</h5>
+
+                </div>
+                <div class="widget-content">
+
+                    @Html.AntiForgeryToken()
+
+                    @using (Html.BeginForm("CreateMeter", "User", FormMethod.Post, new { @class = "form-horizontal", @id = "formmeter" }))
+                    {
+
+
+                        <div class="alert alert-success" id="divSuccess" style="display:none">
+                            @TenantMNG.Resource.msg_save_meter_success
+                        </div>
+
+                        <div class="alert alert-danger" id="divFail" style="display:none">
+                            @TenantMNG.Resource.msg_global_fail
+                        </div>
+
+
+                        <div class="span5" style="margin-left:0">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.name, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.name, new { @class = "span12", @id = "str_meter_name" })
+                                    @Html.ValidationMessageFor(m => m.name)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span5">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.meterid, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.meterid, new { @class = "span12", @id = "str_meter_id" })
+                                    @Html.ValidationMessageFor(m => m.meterid)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="span5" style="margin-left:0">
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.multiplier, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.DropDownList("multiplier",
+                                        new SelectList(
+                                            new List<Object> {
+                                                new { value = 1 , text = "1"  },
+                                                new { value = 80 , text = "80"  },
+                                                new { value = 160 , text = "160"  },
+                                            },
+                                        "value",
+                                        "text"
+                                    ), new { @id = "multiplier", @class = "span12" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-actions">
+                            <input type="button" id="btnsave"
+                                   value="@TenantMNG.Resource.save_info" class="btn btn-success" />
+                            @Html.ActionLink(TenantMNG.Resource.cancel, "Meters", "User", new { @class = "btn btn-default" })
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section scriptstop {
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                var lang = '@Session["_lang"]';
+
+                //save contact information
+                $("#btnsave").click(function () {
+
+
+
+                    $.validator.unobtrusive.parse("#formmeter");
+                    $("#formmeter").validate();
+                    if ($("#formmeter").valid()) {
+
+                        var meter = {};
+
+                        meter.name = $('#str_meter_name').val();
+                        meter.meterid = $('#str_meter_id').val();
+                        meter.multiplier = $('#multiplier').val();
+                        var options = {};
+
+                        options.url = '@Url.Action("CreateMeter", "User")';
+                        options.type = "POST";
+                        options.data = JSON.stringify(meter),
+                        options.contentType = "application/json";
+                        options.dataType = "json";
+                        options.success = function (data) {
+                            alertMessageContact(data);
+                        };
+                        options.error = function () {
+                            alertMessageContact(0);
+                        };
+                        $.ajax(options);
+                    }
+
+                });
+
+            });
+
+            function alertMessageContact(val) {
+                if (val > 0) {
+                    $('#divSuccess').show();
+                    $('#divFail').hide();
+                }
+                else if (val == -1) {
+                    $('#divSuccess').hide();
+                    $('#divFail').show();
+                }
+            }
+
+        </script>
+
+
+    }
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+

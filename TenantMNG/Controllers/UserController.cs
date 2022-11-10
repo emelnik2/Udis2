@@ -592,6 +592,37 @@ namespace TenantMNG.Controllers
 
         }
 
+        [SessionCheck]
+        [HttpGet]
+        public ActionResult CreateMeter()
+        {
+            meter _metervm = new meter();
+            return View(_metervm);
+        }
+
+        [HttpPost]
+        public ActionResult CreateMeter(meter data)
+        {
+            int _lresult = 0;
+
+            try
+            {
+                TenantBAL objbal = new TenantBAL();
+
+                _lresult = objbal.insert_meter(data);
+
+            }
+            catch (Exception ex)
+            {
+
+                log.Error(ex.Message);
+
+            }
+
+            return Json(_lresult.ToString(), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         [HttpPost]
         public ActionResult ChangePassword(UserMasterVM objvm)
@@ -686,8 +717,10 @@ namespace TenantMNG.Controllers
             {
                 TenantBAL objbal = new TenantBAL();
 
+                MeterCLS obj = new MeterCLS();
 
-                objbal.tenant_delete_meter(_objvm.int_tenant_id);
+
+                objbal.tenant_deselect_meter(_objvm.int_tenant_id);
 
                 foreach (var meterid in _objvm.Meters)
                 {
@@ -696,10 +729,10 @@ namespace TenantMNG.Controllers
                         //int mid = 0;
                         objbal = new TenantBAL();
                         _objvm.bit_is_assign = true;
-                        //_objvm.str_meter_id = Int32.TryParse(meterid.Value, out mid) ? Int32.Parse(meterid.Value) : (int?)null;
                         _objvm.str_meter_id = meterid.Text;
-                        _objvm.multiplier = 1;
-                        _lval = objbal.tenant_meter_insert(_objvm);
+                        _objvm.multiplier = obj.getMeterMultiplier(meterid.Text);
+                        _objvm.int_id = obj.getMeterID(meterid.Text);
+                        _lval = objbal.tenant_meter_update(_objvm);
                     }
 
                 }
@@ -715,17 +748,37 @@ namespace TenantMNG.Controllers
 
         private static List<SelectListItem> getMeters()
         {
+            
             List<SelectListItem> items = new List<SelectListItem>();
             UdisEntities _dbmeter = new UdisEntities();
-            var _meter = _dbmeter.UDIS.Select(x => new { x.CFE_MeterID }).Distinct().ToList();
-            if (_meter != null)
+            DB_TenantMNGEntities _dbc = new DB_TenantMNGEntities();
+
+            var _udismeter = _dbmeter.UDIS.Select(x => new { x.CFE_MeterID }).Distinct().ToList();
+            var _tenantmeter = _dbc.tbl_tenant_meter.Select(x => new { x.str_meter_id }).Distinct().ToList();
+
+            if (_udismeter != null)
             {
-                foreach (var m in _meter)
+                foreach (var m in _udismeter)
                 {
                     items.Add(new SelectListItem
                     {
                         Text = m.CFE_MeterID,
                     });
+                }
+            }
+
+            if (_tenantmeter != null)
+            {
+                foreach (var m in _tenantmeter)
+                {
+                    var match = items.Where(x => x.Text == m.str_meter_id).FirstOrDefault();
+                    if (match == null)
+                    {
+                        items.Add(new SelectListItem
+                        {
+                            Text = m.str_meter_id,
+                        });
+                    }
                 }
             }
 
@@ -910,7 +963,7 @@ namespace TenantMNG.Controllers
 
                 var _tenant = _dbc.tbl_user_master.Where(x => x.int_user_type_id == 3);
 
-                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == id & x.bit_is_assign == true).SingleOrDefault();
+                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == id).SingleOrDefault();
 
                 TenantMeterVM _objvm = new TenantMeterVM();
 
@@ -918,16 +971,19 @@ namespace TenantMNG.Controllers
                 {
                     ViewBag.TenantDropDown = new SelectList(_tenant, "int_id", "str_comp_name");
                     _objvm.int_id = 0;
+                    _objvm.multiplier = 1;
 
                 }
                 else
                 {
                     ViewBag.TenantDropDown = new SelectList(_tenant, "int_id", "str_comp_name", _tenantmeter.int_tenant_id);
                     _objvm.int_id = _tenantmeter.int_id;
+                    _objvm.multiplier = Convert.ToInt32(_tenantmeter.multiplicador);
                 }
 
                 _objvm.bit_is_assign = true;
                 _objvm.str_meter_id = id;
+                
 
 
 
@@ -953,9 +1009,21 @@ namespace TenantMNG.Controllers
                 TenantBAL objbal = new TenantBAL();
 
                 _objvm.bit_is_assign = true;
-                _objvm.multiplier = 1;
+                //_objvm.multiplier = 1;
 
-                _lval = objbal.tenant_meter_insert(_objvm);
+                var _udismeter = _dbc.UDIS.Where(x => x.CFE_MeterID == _objvm.str_meter_id).SingleOrDefault();
+                var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == _objvm.str_meter_id).SingleOrDefault();
+
+
+                if (_udismeter == null && _tenantmeter != null)
+                {
+                    _lval = objbal.tenant_meter_update(_objvm);
+                }
+                else if  (_udismeter != null && _tenantmeter == null)
+                {
+                    _lval = objbal.tenant_meter_insert(_objvm); 
+                }
+
 
             }
             catch (Exception ex)

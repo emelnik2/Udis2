@@ -113,16 +113,25 @@ namespace TenantMNG.Core
 
                 foreach (var meterid in _tenantmeter)
                 {
-                    _meter = new UDI();
-                    _meter = _dbmeter.UDIS.OrderByDescending(x => x.CFE_MeterID == meterid.str_meter_id).FirstOrDefault();
-                    _metername = _metername + ",\n" + _meter.CFE_MeterID;
+                    var _udimeter = _dbmeter.UDIS.Where(x => x.CFE_MeterID == meterid.str_meter_id).FirstOrDefault();
+
+                    if (_udimeter == null)
+                    {
+                        _metername = _metername + ",\n" + meterid.str_meter_id;
+                    }
+                    else
+                    { 
+                        _meter = new UDI();
+                        _meter = _dbmeter.UDIS.OrderByDescending(x => x.CFE_MeterID == meterid.str_meter_id).FirstOrDefault();
+                        _metername = _metername + ",\n" + _meter.CFE_MeterID;
+                    }
                 }
 
 
                 return _metername.TrimStart(',');
             }
             else
-                return "Not Assign";
+                return "Sin medidores asignados";
 
         }
 
@@ -144,11 +153,16 @@ namespace TenantMNG.Core
         public static string getIdforMeter (string meterid)
         {
             DB_TenantMNGEntities _dbc = new DB_TenantMNGEntities();
-            var _tenantmeter = _dbc.UDIS.Where(x => x.CFE_MeterID == meterid).FirstOrDefault();
+            var _udismeter = _dbc.UDIS.Where(x => x.CFE_MeterID == meterid).FirstOrDefault();
+            var _tenantmeter = _dbc.tbl_tenant_meter.Where(x => x.str_meter_id == meterid).FirstOrDefault();
 
-            if (_tenantmeter != null)
+            if (_udismeter != null)
             {
-                return _tenantmeter.id_medidor;
+                return _udismeter.id_medidor;
+            }
+            else if (_tenantmeter != null && _tenantmeter.meterid != null)
+            {
+                return _tenantmeter.meterid;
             }
             else
                 return Resource.not_assign;

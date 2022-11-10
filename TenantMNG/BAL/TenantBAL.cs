@@ -145,7 +145,7 @@ namespace TenantMNG.BAL
 
                     dbcnx.Database.ExecuteSqlCommand("usp_insert_tenant_meter @int_tenant_id,@str_meter_id,@multiplicador,@int_id out", param);
 
-                    _lVal = Convert.ToInt32(param[2].Value);
+                    _lVal = Convert.ToInt32(param[3].Value);
                 }
             }
             catch (Exception ex)
@@ -624,6 +624,7 @@ namespace TenantMNG.BAL
                             new SqlParameter("@int_id", meter.int_id),
                             new SqlParameter("@int_tenant_id", meter.int_tenant_id),
                             new SqlParameter("@str_meter_id", meter.str_meter_id),
+                            new SqlParameter("@multiplicador", meter.multiplier),
                             new SqlParameter("@int_val",SqlDbType.Int){
                              Direction = System.Data.ParameterDirection.Output
                             }
@@ -631,7 +632,7 @@ namespace TenantMNG.BAL
 
                 };
 
-                    _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_tenant_meter @int_id,@int_tenant_id,@str_meter_id,@int_val out", param);
+                    _lVal = dbcnx.Database.ExecuteSqlCommand("usp_update_tenant_meter @int_id,@int_tenant_id,@str_meter_id,@multiplicador,@int_val out", param);
                 }
             }
             catch (Exception ex)
@@ -838,6 +839,39 @@ namespace TenantMNG.BAL
             return _lVal;
         }
 
+        public int insert_meter(meter meter)
+        {
+            int _lVal = 0;
+            try
+            {
+                using (DB_TenantMNGEntities dbcnx = new DB_TenantMNGEntities())
+                {
+                    SqlParameter[] param =
+                {
+
+                            new SqlParameter("@meterid",meter.meterid),
+                            new SqlParameter("@str_meter_id", meter.name),
+                            new SqlParameter("@multiplicador", meter.multiplier),
+                            new SqlParameter("@int_id",SqlDbType.Int) {
+                                Direction = System.Data.ParameterDirection.Output
+                            }
+
+
+                };
+
+                    dbcnx.Database.ExecuteSqlCommand("usp_insert_meter @meterid,@str_meter_id,@multiplicador,@int_id out", param);
+                    _lVal = Convert.ToInt32(param[3].Value);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return _lVal;
+        }
+
         public int tenant_setting_update(TenantSettingVM tenant)
         {
             int _lVal = 0;
@@ -881,6 +915,32 @@ namespace TenantMNG.BAL
                 };
 
                     _lVal = dbcnx.Database.ExecuteSqlCommand("usp_delete_tenant_meter @int_id", param);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
+
+            return _lVal;
+        }
+
+        public int tenant_deselect_meter(int? int_id)
+        {
+            int _lVal = 0;
+            try
+            {
+                using (DB_TenantMNGEntities dbcnx = new DB_TenantMNGEntities())
+                {
+                    SqlParameter[] param =
+                {
+                            new SqlParameter("@int_id", int_id),
+                            new SqlParameter("@int_val",SqlDbType.Int){
+                                Direction = System.Data.ParameterDirection.Output
+                            }
+                };
+
+                    _lVal = dbcnx.Database.ExecuteSqlCommand("usp_deselect_tenant_meter @int_id,@int_val out", param);
                 }
             }
             catch (Exception ex)

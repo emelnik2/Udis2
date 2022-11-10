@@ -121,7 +121,7 @@
                     <h5>@TenantMNG.Resource.meter_list</h5>
                 </div>
                 <div class="widget-content">
-                    @*@Html.ActionLink(TenantMNG.Resource.add_new, "CreateMeter", "PM", null, new { @class = "btn btn-primary" }*@
+                    @Html.ActionLink(TenantMNG.Resource.add_new, "CreateMeter", "User", null, new { @class = "btn btn-primary" })
 
                     <br />
 
@@ -291,6 +291,7 @@
                 tenantmeter.int_tenant_id = $('#tenant_id').val();
                 tenantmeter.int_id = $('#int_id').val();
                 tenantmeter.str_meter_id = $('#str_meter_id').val();
+                tenantmeter.multiplier = $('#multiplier').val();
 
 
 

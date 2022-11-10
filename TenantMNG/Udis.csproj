@@ -947,6 +947,7 @@
     <Content Include="Views\PM\ModifyInvoice.cshtml" />
     <Content Include="Views\Shared\_ModifyInvoice.cshtml" />
     <Content Include="Views\User\AssignMeter.cshtml" />
+    <Content Include="Views\User\CreateMeter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
