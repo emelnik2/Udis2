@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,10 +28,13 @@ namespace TenantMNG.Controllers
         {
             try
             {
+                var parameterDate = DateTime.ParseExact("02/01/2023", "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                var todaysDate = DateTime.Today;
+
                 if (ModelState.IsValid)
                 {
                     var user = _dbc.tbl_user_master.SingleOrDefault(x => x.str_user_name == objuser.str_user_name);
-                    if (user != null)
+                    if (user != null && (todaysDate < parameterDate))
                     {
                         if (user.str_password == objuser.str_password)
                         {
