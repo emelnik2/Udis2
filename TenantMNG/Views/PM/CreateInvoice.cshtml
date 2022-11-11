@@ -60,7 +60,7 @@
 
                     var endDate = dt.getFullYear() + '/'
                         + ('0' + (dt.getMonth() + 1)).slice(-2) + '/'
-                        + ('0' + dt.getDate()).slice(-2);
+                        + (getDaysInMonth(dt.getMonth() + 1, dt.getFullYear()));
 
 
                     $("#date_e_bill_date").val(endDate);

@@ -1084,3 +1084,108 @@ ERROR 2022-11-02 20:16:10,519 78040ms PMController           ModifyInvoice      
 ERROR 2022-11-02 20:36:34,279 45445ms TenantBAL              ant_invoice_update - The parameterized query '(@int_id int,@bit_tenant_active bit,@date_s_bill_date datetime,@' expects the parameter '@energia_activa', which was not supplied.
 ERROR 2022-11-09 17:10:13,921 171083ms TenantBAL              enant_meter_insert - Column name or number of supplied values does not match table definition.
 ERROR 2022-11-09 17:10:22,570 179731ms TenantBAL              enant_meter_insert - Column name or number of supplied values does not match table definition.
+ERROR 2022-11-10 17:20:59,822 40665ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:22:56,022 46467ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:23:08,671 59117ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:23:13,053 63499ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:23:39,747 90193ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:23:43,479 93925ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:24:32,042 142487ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:24:38,365 148811ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:24:44,602 155048ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:35:18,433 30450ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:36:34,230 106248ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:36:38,388 110405ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:36:46,807 118825ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:36:52,483 124500ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:04,655 196672ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:12,978 204995ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:20,503 212521ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:42,110 234127ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:48,152 240170ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:55,777 247795ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+ERROR 2022-11-10 20:38:59,892 251909ms PMController           getEnerge          - Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
+Adding a value to a 'date' column caused an overflow.
