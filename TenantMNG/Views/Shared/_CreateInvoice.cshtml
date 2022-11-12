@@ -128,7 +128,7 @@
             @Html.LabelFor(m => m.dec_base_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
+                @Html.TextBoxFor(m => m.dec_base_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -163,7 +163,7 @@
             @Html.LabelFor(m => m.dec_inter_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
+                @Html.TextBoxFor(m => m.dec_inter_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -198,7 +198,7 @@
             @Html.LabelFor(m => m.dec_peak_energy, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
+                @Html.TextBoxFor(m => m.dec_peak_energy, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)", @readonly = "readonly" })
 
             </div>
         </div>
@@ -233,7 +233,7 @@
             @Html.LabelFor(m => m.energia_reactiva, new { @class = "control-label" })
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)" })
+                @Html.TextBoxFor(m => m.energia_reactiva, new { @class = "float-right", @onkeypress = "return isDecimalNumberKey(event)", @onchange = "getEnergyData(false)", @readonly = "readonly" })
 
             </div>
         </div>

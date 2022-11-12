@@ -2021,7 +2021,7 @@ namespace TenantMNG.Controllers
 
                 html = html.Replace("#invoicedata", invoicehtmldata);
 
-                var totalhtml = "<tr><td></td><td></td><td></td><td></td><td>" + Convert.ToDecimal(total).ToString("N", new CultureInfo("en-US")) + "</td></tr>";
+                var totalhtml = "<tr><td></td><td></td><td></td><td></td><td></td><td>" + Convert.ToDecimal(total).ToString("N", new CultureInfo("en-US")) + "</td></tr>";
 
                 html = html.Replace("#totales", totalhtml);
 
@@ -2111,6 +2111,9 @@ namespace TenantMNG.Controllers
                     var meterReadingsString = "";
                     var currentReading = 0;
                     var previousReading = 0;
+                    var demandabase = 0;
+                    var demandaintermedia = 0;
+                    var demandapunta = 0;
                     var total = 0;
                     /*int currentReading = Convert.ToInt32(_invoice.dec_base_energy + _invoice.dec_inter_energy + _invoice.dec_peak_energy);
                     if (_previousinvoice != null)
@@ -2199,6 +2202,47 @@ namespace TenantMNG.Controllers
                         "<td style ='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0 }", previousReading) + "</td>" +
                         "<td style ='font-size:10px; text-align:center;'colspan='4'>" + total.ToString() + "</td>" +
                         "<td style ='font-size:10px; text-align:center;'colspan='4'>" + "kWh" + "</td></tr>";
+
+                    // Lectura en Energía Reactiva
+
+                    if (_invoice.lectura_energia_reactiva_actual != null)
+                        currentReading = Convert.ToInt32(_invoice.lectura_energia_reactiva_actual);
+                    else
+                        currentReading = 0;
+                    if (_invoice.lectura_energia_reactiva_anterior != null)
+                        previousReading = Convert.ToInt32(_invoice.lectura_energia_reactiva_anterior);
+                    else
+                        previousReading = 0;
+                    total = currentReading - previousReading;
+                    meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + "Energía Reactiva" + "</td>" +
+                        "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", currentReading) + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0 }", previousReading) + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'>" + total.ToString() + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'>" + "kWh" + "</td></tr>";
+
+                    // Demandas
+
+                    if (_invoice.demanda_base != null)
+                        demandabase = Convert.ToInt32(_invoice.demanda_base);
+                    if (_invoice.demanda_intermedia != null)
+                        demandaintermedia = Convert.ToInt32(_invoice.demanda_intermedia);
+                    if (_invoice.demanda_punta != null)
+                        demandapunta = Convert.ToInt32(_invoice.demanda_punta);
+                    meterReadingsString += "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + "Demanda Base" + "</td>" +
+                        "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", demandabase) + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td></tr>" +
+                        "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + "Demanda Int." + "</td>" +
+                        "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", demandaintermedia) + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td></tr>" +
+                        "<tr><td style ='font-size:10px;text-align:center;'colspan='4'>" + "Demanda Punta" + "</td>" +
+                        "<td style='font-size:10px; text-align:center;'colspan='4'>" + string.Format("{0:0}", demandapunta) + "</td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td>" +
+                        "<td style ='font-size:10px; text-align:center;'colspan='4'></td></tr>";
 
                     html = html.Replace("#read", meterReadingsString);
 
@@ -2302,7 +2346,7 @@ namespace TenantMNG.Controllers
                     
                     meterlisthtml = System.IO.File.ReadAllText(path);
 
-                    meterlisthtml = meterlisthtml.Replace("#metername", _invoice.str_meter_id);
+                    meterlisthtml = meterlisthtml.Replace("#metername", CommonCls.getIdforMeter(_invoice.str_meter_id));
                     //html = html.Replace("#edate", _invoice.date_e_bill_date.Value.ToString("dd/MM/yyyy"));
                     meterlisthtml = meterlisthtml.Replace("#energyusage1", CommonCls.DoFormat(_invoice.dec_peak_energy) + " kWh");
                     meterlisthtml = meterlisthtml.Replace("#energyrate1", _invoice.dec_peak_energy_rate.ToString());
@@ -3222,7 +3266,7 @@ namespace TenantMNG.Controllers
                 if (_invoice.Count() == 0)
                 {
                     max = max.AddMonths(-1);
-                    min = max.AddMonths(-2);
+                    min = max.AddMonths(-1);
 
                     _invoice = (from inv in _dbc.tbl_invoice
                                 where inv.date_e_bill_date >= min && inv.date_e_bill_date < max

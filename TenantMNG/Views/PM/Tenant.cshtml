@@ -146,37 +146,37 @@
                             <tbody>
                                 @foreach (var user in Model)
                                 {
-                                    <tr class="gradeX">
-                                        @*<td> @user.str_comp_name</td>*@
-                                        <td>@Html.ActionLink(user.str_comp_name, "EditTenant", "User", new { @tenantid = user.int_id }, new { @style = "color:blue;" })</td>
-                                        <td>@user.str_contact_name</td>
-                                        <td>@user.str_city</td>
-                                        <td>@user.str_state</td>
-                                        <td>@user.int_pin_code</td>
-                                        <td width="20%">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</td>
-                                        <td>
-                                            @if (TenantMNG.Core.CommonCls.isTenantMeter(user.int_id))
-                                            {
+                                <tr class="gradeX">
+                                    <td>@user.str_comp_name</td>
+                                    @*<td>@Html.ActionLink(user.str_comp_name, "EditTenant", "User", new { @tenantid = user.int_id }, new { @style = "color:blue;" })</td>*@
+                                    <td>@user.str_contact_name</td>
+                                    <td>@user.str_city</td>
+                                    <td>@user.str_state</td>
+                                    <td>@user.int_pin_code</td>
+                                    <td width="20%">@TenantMNG.Core.CommonCls.getMeterName(user.int_id)</td>
+                                    <td>
+                                        @if (TenantMNG.Core.CommonCls.isTenantMeter(user.int_id))
+                                        {
 
-                                                @*Html.ActionLink(@TenantMNG.Resource.meter_update, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
-                                                @:&nbsp;
-                                                @*<a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.int_id">@TenantMNG.Resource.meter_update </a>*@
-                                                @*<a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>*@
-                                                @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
-                                                @:&nbsp;
-                                                @*Html.ActionLink(TenantMNG.Resource.invoice_summary, "InvoiceSummary", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
-                                                <a id="invoicesummary" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.invoice_summary</a>
-                                            }
-                                            @*else*@
-                                            @*{*@
-                                                @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
-                                                @*:&nbsp;*@
-                                                @*:&nbsp;*@
-                                                @*Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
-                                            @*}*@
+                                            @*Html.ActionLink(@TenantMNG.Resource.meter_update, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
+                                            @:&nbsp;
+                                            @*<a id="assignmeter" class="btn btn-mini btn-success" data-target-id="@user.int_id">@TenantMNG.Resource.meter_update </a>*@
+                                            @*<a id="assignmeter" class="btn btn-mini btn-danger" data-target-id="@user.int_id">@TenantMNG.Resource.meter_detch</a>*@
+                                            @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
+                                            @:&nbsp;
+                                            @*Html.ActionLink(TenantMNG.Resource.invoice_summary, "InvoiceSummary", "PM", new { @tenantid = user.int_id }, new { @class = "btn btn-mini btn-info" });*@
+                                            <a id="invoicesummary" class="btn btn-mini btn-info" data-target-id="@user.int_id">@TenantMNG.Resource.invoice_summary</a>
+                                        }
+                                        @*else*@
+                                        @*{*@
+                                        @*Html.ActionLink(TenantMNG.Resource.delete, "Delete", "User", new { @id = user.int_id, @utype = TenantMNG.Core.CommonCls._usertypeTenant }, new { @class = "btn btn-mini btn-danger", onclick = "return confirm('Are you sure?');" })*@
+                                        @*:&nbsp;*@
+                                        @*:&nbsp;*@
+                                        @*Html.ActionLink(@TenantMNG.Resource.assign_meter, "AssignMeter", new { @id = user.int_id }, new { @class = "btn btn-mini btn-success" })*@
+                                        @*}*@
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
